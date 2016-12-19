@@ -21,6 +21,14 @@ class PostsController extends Controller
   }
 
   /**
+   * Display the specified resource.
+   */
+  public function show(Request $request, Post $post)
+  {
+    return view('posts.show')->withPost($post);
+  }
+
+  /**
    * Show the form for creating a new resource.
    *
    * @return Response
