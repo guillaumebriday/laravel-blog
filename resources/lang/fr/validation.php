@@ -146,4 +146,6 @@ return [
         'size'                  => 'Taille',
     ],
 
+    'errors' => ":count erreur :|:count erreurs : "
+
 ];
