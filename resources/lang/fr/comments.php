@@ -5,6 +5,7 @@ return [
   'comment' => 'Commenter',
   'add_comment' => 'Ajouter un commentaire',
   'created' => 'Commentaire créé avec succès',
+  'deleted' => 'Commentaire supprimé avec succès',
 
   'attributes' => [
     'content' => 'Contenu'
