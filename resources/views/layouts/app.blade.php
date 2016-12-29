@@ -50,5 +50,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @stack('inline-scripts')
 </body>
 </html>

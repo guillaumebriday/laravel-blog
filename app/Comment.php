@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Comment extends Model
 {
   /**
    * The attributes that are mass assignable.
@@ -13,7 +13,7 @@ class Post extends Model
    */
   protected $fillable = [
       'author_id',
-      'title',
+      'post_id',
       'content',
       'posted_at'
   ];
@@ -25,8 +25,8 @@ class Post extends Model
     return $this->belongsTo('App\User', 'author_id');
   }
 
-  public function comments()
+  public function post()
   {
-    return $this->hasMany('App\Comment');
+    return $this->belongsTo('App\Post');
   }
 }
