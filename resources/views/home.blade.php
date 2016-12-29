@@ -8,7 +8,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    {{ trans('auth.logged_in') }}
+                    @include ('posts/_list')
                 </div>
             </div>
         </div>
