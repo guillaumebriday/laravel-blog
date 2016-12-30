@@ -29,4 +29,26 @@ class UsersController extends Controller
 
     return view('users.edit', $user)->withUser($user);
   }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(UsersRequest $request, User $user)
+  {
+      $this->authorize('update', $user);
+
+      $user = Auth::user();
+
+      $user->name = $request->input('name');
+      $user->email = $request->input('email');
+
+      if ( $request->input('password') != '')
+      {
+          $user->password = bcrypt($request->input('password'));
+      }
+
+      $user->save();
+
+      return redirect()->route('users.show', $user)->withSuccess(trans('users.updated'));
+  }
 }
