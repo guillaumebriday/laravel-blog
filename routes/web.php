@@ -18,5 +18,5 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/', 'PostsController@index')->name('home');
     Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show']]);
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
-    Route::resource('users', 'UsersController', ['only' => ['show']]);
+    Route::resource('users', 'UsersController', ['only' => ['show', 'edit']]);
 });

@@ -19,4 +19,14 @@ class UsersController extends Controller
 
     return view('users.show')->withUser($user)->withPosts($posts)->withComments($comments);
   }
+
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Request $request, User $user)
+  {
+    $this->authorize('update', $user);
+
+    return view('users.edit', $user)->withUser($user);
+  }
 }
