@@ -36,6 +36,9 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ route('users.show', Auth::user()) }}">{{ trans('users.profil') }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('posts.create') }}">{{ trans('posts.add_article') }}</a>
                             </li>
                             <li>
