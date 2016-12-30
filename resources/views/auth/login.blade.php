@@ -54,9 +54,7 @@
                                     {{ trans('auth.login') }}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    {{ trans('auth.forgotten_password') }}
-                                </a>
+                                {{ link_to('/password/reset', trans('auth.forgotten_password'), ['class' => 'btn btn-link'])}}
                             </div>
                         </div>
                     </form>
