@@ -1,6 +1,6 @@
 <div class="panel panel-info">
     <div class="panel-heading">
-        <b><a href="{{ route('posts.show', ['id' => $post->id]) }}">{{ $post->title }}</a></b>,
+        <strong>{{ link_to_route('posts.show', $post->title, $post) }}</strong>,
         {{ $post->comments()->count() }} <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
         <time class="pull-right">{{ humanize_date($post->posted_at) }}</time>
     </div>
