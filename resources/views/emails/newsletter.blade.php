@@ -13,3 +13,7 @@
 <p>
   {{ trans('newsletter.email.thanks') }}
 </p>
+
+<p>
+  {{ link_to_route('newsletter-subscriptions.unsubscribe', trans('newsletter.email.unsubscribe'), ['email' => $email]) }}
+</p>
