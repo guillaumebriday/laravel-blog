@@ -46,6 +46,13 @@
 
             @yield('content')
         </div>
+
+        <nav class="navbar navbar-default navbar-fixed-bottom footer">
+            <div class="container">
+                @yield('footer')
+                @include('shared/newsletter-form')
+            </div>
+        </nav>
     </div>
 
     <!-- Scripts -->

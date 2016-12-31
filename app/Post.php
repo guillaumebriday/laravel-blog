@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -19,6 +20,13 @@ class Post extends Model
   ];
 
   public $dates = [ 'posted_at' ];
+
+  public function scopeLastMonth($query, $limit = 5)
+  {
+    return $query->whereBetween('created_at', [Carbon::now()->subMonth(), Carbon::now()])
+                 ->orderBy('posted_at', 'desc')
+                 ->limit($limit);
+  }
 
   public function author()
   {
