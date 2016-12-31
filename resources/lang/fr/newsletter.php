@@ -4,6 +4,7 @@ return [
   'subscribre' => "S'inscrire",
   'placeholder' => 'Votre email',
   'created' => "Email ajouté à la newsletter avec succès",
+  'unsubscribed' => 'La demande de désabonnement a bien été prise en compte.',
 
   'email' => [
     'subject' => 'Newsletter du mois',
