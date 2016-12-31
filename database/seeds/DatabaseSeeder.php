@@ -19,14 +19,14 @@ class DatabaseSeeder extends Seeder
         $faker = Factory::create();
 
         factory(User::class, 10)
-           ->create()
-           ->each(function ($user) use ($faker) {
-                factory(Post::class, $faker->numberBetween(2,20))
+            ->create()
+            ->each(function ($user) use ($faker) {
+                factory(Post::class, $faker->numberBetween(2, 20))
                     ->create([
                         'author_id' => $user->id
                     ])
                     ->each(function ($post) use ($faker) {
-                        factory(Comment::class, $faker->numberBetween(10,60))
+                        factory(Comment::class, $faker->numberBetween(10, 60))
                             ->create([
                                 'post_id' => $post->id
                             ]);

@@ -34,8 +34,7 @@ class UnsubscribeEmailNewsletter implements ShouldQueue
         $email = $this->email;
 
         $newsletterSubscription = NewsletterSubscription::where('email', $email)->first();
-        if ($newsletterSubscription)
-        {
+        if ($newsletterSubscription) {
             $newsletterSubscription->delete();
         }
     }

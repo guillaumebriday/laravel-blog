@@ -9,50 +9,50 @@ use App\Post;
 
 class PostsController extends Controller
 {
-  /**
-   * Show the application dashboard.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function index()
-  {
-      $posts = Post::orderBy('posted_at', 'desc')->paginate(20);
-      return view('home')->withPosts($posts);
-  }
+    /**
+    * Show the application dashboard.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index()
+    {
+        $posts = Post::orderBy('posted_at', 'desc')->paginate(20);
+        return view('home')->withPosts($posts);
+    }
 
-  /**
-   * Display the specified resource.
-   */
-  public function show(Request $request, Post $post)
-  {
-    $comments = $post->comments()->orderBy('posted_at', 'desc')->paginate(50);
-    return view('posts.show')->withPost($post)->withComments($comments);
-  }
+    /**
+    * Display the specified resource.
+    */
+    public function show(Request $request, Post $post)
+    {
+        $comments = $post->comments()->orderBy('posted_at', 'desc')->paginate(50);
+        return view('posts.show')->withPost($post)->withComments($comments);
+    }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create(Request $request)
-  {
-    return view('posts.create');
-  }
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return Response
+    */
+    public function create(Request $request)
+    {
+        return view('posts.create');
+    }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @return Response
-   */
-  public function store(PostsRequest $request)
-  {
-    $user = Auth::user();
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @return Response
+    */
+    public function store(PostsRequest $request)
+    {
+        $user = Auth::user();
 
-    $post = $user->posts()->create([
-        'title' => $request->input('title'),
-        'content' => $request->input('content')
-    ]);
+        $post = $user->posts()->create([
+            'title' => $request->input('title'),
+            'content' => $request->input('content')
+        ]);
 
-    return redirect()->route('posts.show', $post)->with('success', trans('posts.created'));
-  }
+        return redirect()->route('posts.show', $post)->with('success', trans('posts.created'));
+    }
 }
