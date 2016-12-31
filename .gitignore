@@ -9,3 +9,4 @@
 Homestead.json
 Homestead.yaml
 .env
+.php_cs.cache
