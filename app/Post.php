@@ -23,7 +23,7 @@ class Post extends Model
 
     public function scopeLastMonth($query, $limit = 5)
     {
-        return $query->whereBetween('created_at', [Carbon::now()->subMonth(), Carbon::now()])
+        return $query->whereBetween('posted_at', [Carbon::now()->subMonth(), Carbon::now()])
                      ->orderBy('posted_at', 'desc')
                      ->limit($limit);
     }
