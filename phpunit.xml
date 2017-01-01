@@ -20,6 +20,9 @@
     </filter>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="DB_DATABASE" value="test"/>
+        <env name="DB_USERNAME" value="test"/>
+        <env name="DB_PASSWORD" value="test"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
