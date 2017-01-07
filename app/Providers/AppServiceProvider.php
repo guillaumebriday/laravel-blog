@@ -3,9 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Post;
-use App\Comment;
-use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,13 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Post::creating(function ($post) {
-            $post->posted_at = Carbon::now();
-        });
-
-        Comment::creating(function ($comment) {
-            $comment->posted_at = Carbon::now();
-        });
+        //
     }
 
     /**
