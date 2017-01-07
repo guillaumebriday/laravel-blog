@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
+use App\Mail\Newsletter;
 use App\Post;
 use Mail;
 
@@ -37,10 +38,6 @@ class SendNewsletterSubscriptionEmail implements ShouldQueue
         $posts = Post::lastMonth()->get();
         $email = $this->email;
 
-        Mail::send('emails.newsletter', ['posts' => $posts, 'email' => $email], function ($message) use ($email) {
-            $message->from('hello@app.com', config('app.name', 'Laravel'));
-
-            $message->to($email)->subject(trans('newsletter.email.subject'));
-        });
+        Mail::to($this->email)->send(new Newsletter($posts, $email));
     }
 }
