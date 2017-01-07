@@ -28,7 +28,7 @@ class PostTest extends TestCase
         // Older Posts
         factory(Post::class, 10)
                 ->create()
-                ->each(function($post) use ($faker) {
+                ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(Carbon::now()->subMonths(3), Carbon::now()->subMonths(2));
                     $post->save();
                 });
@@ -36,7 +36,7 @@ class PostTest extends TestCase
         // Newer Posts
         factory(Post::class, 3)
                 ->create()
-                ->each(function($post) use ($faker) {
+                ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(Carbon::now()->subWeeks(3), Carbon::now()->subWeeks(1));
                     $post->save();
                 });
