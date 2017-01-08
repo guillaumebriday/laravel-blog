@@ -45,6 +45,6 @@ class NewsletterSubscriptionsController extends Controller
 
         Session::flash('success', trans('newsletter.unsubscribed'));
 
-        return view('newsletters.unsubscribed')->withSuccess(trans('newsletter.unsubscribed'));
+        return view('newsletters.unsubscribed');
     }
 }
