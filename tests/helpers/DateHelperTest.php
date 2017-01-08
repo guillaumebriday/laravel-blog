@@ -13,9 +13,9 @@ class DateHelperTest extends TestCase
 
     public function testHumanizeDateFormat()
     {
-      $date = Carbon::now();
-      $format = 'Y-m-d H:i:s';
+        $date = Carbon::now();
+        $format = 'Y-m-d H:i:s';
 
-      $this->assertEquals($date->format($format), humanize_date($date, $format));
+        $this->assertEquals($date->format($format), humanize_date($date, $format));
     }
 }
