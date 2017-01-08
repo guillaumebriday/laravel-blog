@@ -6,7 +6,7 @@
 
           @can('delete', $comment)
             {!! Form::model($comment, ['method' => 'DELETE', 'route' => ['comments.destroy', $comment->id], 'class' => 'form-inline delete-confirmation']) !!}
-              <button type="submit" class="btn btn-link">
+              <button type="submit" name="submit" class="btn btn-link">
                 <span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
             {!! Form::close() !!}
