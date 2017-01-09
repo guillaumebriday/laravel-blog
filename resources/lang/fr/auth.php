@@ -22,5 +22,11 @@ return [
     'forgotten_password' => 'Mot de passe oublié ?',
     'reset_password' => 'Réinitialiser le mot de passe',
     'send_password_reset_link' => 'Envoyer un lien de réinitialisation du mot de passe',
-    'logged_in' => 'Vous êtes désormais connecté.'
+    'logged_in' => 'Vous êtes désormais connecté.',
+    'logged_in_provider' => 'Vous êtes désormais connecté avec :Provider.',
+
+    'services' => [
+        'github' => 'Se connecter avec Github',
+        'twitter' => 'Se connecter avec Twitter',
+    ],
 ];
