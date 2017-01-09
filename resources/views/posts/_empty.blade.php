@@ -1,0 +1,1 @@
+{{ trans('posts.empty') }}
