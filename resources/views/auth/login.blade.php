@@ -58,6 +58,20 @@
                             </div>
                         </div>
                     </form>
+
+                    <hr>
+
+                    <div class="text-center">
+                        <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-default">
+                            {{ trans('auth.services.github') }}
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-default">
+                            {{ trans('auth.services.twitter') }}
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
