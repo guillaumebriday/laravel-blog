@@ -6,3 +6,6 @@
 
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
+require('./dropdown.js');
+var turbolinks = require('turbolinks');
+turbolinks.start();
