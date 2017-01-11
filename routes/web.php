@@ -24,5 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
     Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionsController', ['only' => ['store']]);
-    Route::get('newsletter-subscriptions/unsubscribe', 'NewsletterSubscriptionsController@unsubscribe')->name('newsletter-subscriptions.unsubscribe');
 });
+
+Route::get('newsletter-subscriptions/unsubscribe', 'NewsletterSubscriptionsController@unsubscribe')->name('newsletter-subscriptions.unsubscribe');
