@@ -55,6 +55,6 @@ class NewsletterSubscriptionsControllerTest extends TestCase
         $response = $this->actingAs($user)->call('GET', route('newsletter-subscriptions.unsubscribe'), $params);
 
         $this->assertRedirectedToRoute('home');
-        $this->assertSessionHasErrors('email');
+        $this->assertSessionHasErrors();
     }
 }
