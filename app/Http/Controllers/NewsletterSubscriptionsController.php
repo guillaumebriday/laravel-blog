@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsletterSubscriptionRequest;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use App\NewsletterSubscription;
 use App\Jobs\UnsubscribeEmailNewsletter;
 use Validator;
@@ -38,7 +39,14 @@ class NewsletterSubscriptionsController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('home')->withErrors($validator);
+            $errors = $validator->errors()->all();
+            if (Auth::check()) {
+                $route = 'home';
+            } else {
+                $route = 'login';
+            }
+
+            return redirect()->route($route)->withErrors($errors);
         }
 
         $this->dispatch(new UnsubscribeEmailNewsletter($request->input('email')));
