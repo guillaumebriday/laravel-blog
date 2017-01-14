@@ -7,7 +7,3 @@
 <div class="text-center">
     {{ $comments->links() }}
 </div>
-
-@push('inline-scripts')
-    @include ('javascripts.forms.delete-confirmation', ['trans' => 'forms.comments.delete'])
-@endpush
