@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\PostsRequest;
 use App\Post;
 
@@ -18,6 +19,20 @@ class PostsController extends Controller
     {
         $posts = Post::orderBy('posted_at', 'desc')->paginate(20);
         return view('posts.index')->withPosts($posts);
+    }
+
+    /**
+    * Show the rss feed of posts.
+    *
+    * @return Response
+    */
+    public function feed()
+    {
+        $posts = Cache::remember('feed-posts', 60, function () {
+            return Post::orderBy('posted_at', 'desc')->limit(20)->get();
+        });
+
+        return response()->view('posts.feed', ['posts' => $posts], 200)->header('Content-Type', 'text/xml');
     }
 
     /**

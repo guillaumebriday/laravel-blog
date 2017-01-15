@@ -37,4 +37,19 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+
+    /**
+     * return the excerpt of the post content
+     *
+     * @param  $length
+     * @return string
+     */
+    public function excerpt($length = 50)
+    {
+        if (strlen($this->content) > $length) {
+            return  substr($this->content, 0, $length) . '...';
+        } else {
+            return $this->content;
+        }
+    }
 }

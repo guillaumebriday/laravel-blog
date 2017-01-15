@@ -20,6 +20,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'PostsController@index')->name('home');
+    Route::get('/posts/feed', 'PostsController@feed')->name('posts.feed');
     Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show']]);
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
