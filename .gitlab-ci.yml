@@ -1,0 +1,28 @@
+image: php:7.1
+
+services:
+- mysql:latest
+
+variables:
+  MYSQL_DATABASE: testing
+  MYSQL_USER: root
+  MYSQL_ROOT_PASSWORD: testing
+
+phpunit:
+  before_script:
+    - apt-get update -yqq
+    - apt-get install git -yqq
+    - apt-get install zip unzip
+    - docker-php-ext-install pdo_mysql
+    - curl -sS https://getcomposer.org/installer | php
+    - php composer.phar install --no-progress --no-interaction --optimize-autoloader
+    - cp .env.testing .env
+  script:
+    - php artisan migrate
+    - vendor/bin/phpunit
+
+php-cs-fixer:
+  before_script:
+    - apt-get update -yqq
+  script:
+    - php php-cs-fixer.phar fix app/ --rules=@PSR2 --dry-run --verbose --using-cache=no --diff
