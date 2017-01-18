@@ -13,7 +13,7 @@ class CommentTest extends TestCase
     public function testCreatedAt()
     {
         $comment = factory(Comment::class)->create();
-        $this->assertEquals($comment->created_at, Carbon::now());
+        $this->assertEquals($comment->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
 
     public function testRelationWithAuthor()

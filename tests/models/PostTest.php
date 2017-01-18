@@ -52,7 +52,7 @@ class PostTest extends TestCase
     public function testCreatedAt()
     {
         $post = factory(Post::class)->create();
-        $this->assertEquals($post->created_at, Carbon::now());
+        $this->assertEquals($post->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
 
     public function testRelationWithAuthor()
