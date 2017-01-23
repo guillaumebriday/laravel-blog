@@ -10,6 +10,16 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether the user is admin for all authorization.
+     */
+    public function before(User $user)
+    {
+        if ($user->isAdmin()) {
+            return true;
+        }
+    }
+
+    /**
      * Determine whether the user can update the user.
      *
      * @param  \App\User  $user
