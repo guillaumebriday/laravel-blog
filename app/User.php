@@ -27,6 +27,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+    * Check if the user has a role
+    *
+    * @param string $role
+    * @return boolean
+    */
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
     public function posts()
     {
         return $this->hasMany('App\Post', 'author_id');
