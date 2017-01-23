@@ -20,6 +20,25 @@
     {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => trans('users.placeholder.password_confirmation')]) !!}
   </div>
 
+  @can('update_roles', $user)
+    <div class="form-group">
+      {!! Form::label('roles', trans('users.attributes.roles')) !!}
+
+      @foreach($roles as $role)
+        <div class="checkbox">
+          <label>
+            {!! Form::checkbox("roles[$role->id]", $role->id, $user->hasRole($role->name)) !!}
+            @if (Lang::has('roles.' . $role->name))
+              {!! trans('roles.' . $role->name) !!}
+            @else
+              {{ ucfirst($role->name) }}
+            @endif
+          </label>
+        </div>
+      @endforeach
+    </div>
+  @endcan
+
   <div class="pull-right">
     <a href="{{ route('users.show', $user) }}" class="btn btn-default">{{ trans('forms.actions.back') }}</a>
     {!! Form::submit(trans('forms.actions.save'), ['class' => 'btn btn-success']) !!}

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UsersRequest;
 use App\User;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -28,7 +29,9 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('users.edit', $user)->withUser($user);
+        $roles = Role::all();
+
+        return view('users.edit', $user)->withUser($user)->withRoles($roles);
     }
 
     /**
