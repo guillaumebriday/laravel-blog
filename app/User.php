@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Role;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,16 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->roles()->where('name', $role)->exists();
+    }
+
+    /**
+    * Check if the user has role admin
+    *
+    * @return boolean
+    */
+    public function isAdmin()
+    {
+        return $this->hasRole(Role::ROLE_ADMIN);
     }
 
     public function posts()
