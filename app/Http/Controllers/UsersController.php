@@ -41,8 +41,6 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user = Auth::user();
-
         $user->name = $request->input('name');
         $user->email = $request->input('email');
 
@@ -51,6 +49,11 @@ class UsersController extends Controller
         }
 
         $user->save();
+
+        if (Auth::user()->can('update_roles', $user)) {
+            $role_ids = array_values($request->get('roles', []));
+            $user->roles()->sync($role_ids);
+        }
 
         return redirect()->route('users.show', $user)->withSuccess(trans('users.updated'));
     }
