@@ -18,8 +18,14 @@ class UsersController extends Controller
     {
         $posts = $user->posts()->orderBy('posted_at', 'desc')->limit(5)->get();
         $comments = $user->comments()->orderBy('posted_at', 'desc')->limit(5)->get();
+        $roles = Role::all();
 
-        return view('users.show')->withUser($user)->withPosts($posts)->withComments($comments);
+        return view('users.show')->with([
+                                    'user' => $user,
+                                    'posts' => $posts,
+                                    'comments' => $comments,
+                                    'roles' => $roles
+                                ]);
     }
 
     /**
