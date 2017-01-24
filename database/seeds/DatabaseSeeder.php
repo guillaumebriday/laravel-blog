@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Users
         $user = User::where('email', 'darthvader@deathstar.ds')->first();
         if (! $user) {
             $user = User::create([
@@ -21,5 +23,9 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('4nak1n')
             ]);
         }
+
+        // Roles
+        Role::firstOrCreate(['name' => Role::ROLE_ADMIN]);
+        Role::firstOrCreate(['name' => Role::ROLE_EDITOR]);
     }
 }
