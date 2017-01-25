@@ -1,5 +1,9 @@
 image: php:7.1
 
+cache:
+  paths:
+  - vendor/
+
 services:
 - mysql:latest
 
@@ -16,7 +20,7 @@ phpunit:
     - docker-php-ext-install pdo_mysql
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install --no-progress --no-interaction --optimize-autoloader
-    - cp .env.testing .env
+    - cp .env.gitlab .env.testing
   script:
     - php artisan migrate
     - vendor/bin/phpunit

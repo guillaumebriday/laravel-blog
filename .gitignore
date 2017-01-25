@@ -10,4 +10,5 @@
 Homestead.json
 Homestead.yaml
 .env
+.env.testing
 .php_cs.cache
