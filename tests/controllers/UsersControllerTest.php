@@ -5,6 +5,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Role;
 
 class UsersControllerTest extends TestCase
 {
@@ -20,6 +21,7 @@ class UsersControllerTest extends TestCase
         $this->assertViewHas('user');
         $this->assertViewHas('posts');
         $this->assertViewHas('comments');
+        $this->assertViewHas('roles');
     }
 
     public function testEdit()
@@ -75,6 +77,25 @@ class UsersControllerTest extends TestCase
         $this->assertRedirectedToRoute('users.show', ['id' => $user->id]);
     }
 
+    public function testUpdateRoles()
+    {
+        $user = factory(User::class)->create();
+        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_editor = factory(Role::class)->create(['name' => 'editor']);
+        $user->roles()->sync([$role_admin->id]);
+
+        $params = [
+            'name' => 'Palpatine',
+            'email' => 'darthsidious@deathstar.ds',
+            'roles' => ['editor' => $role_editor->id]
+        ];
+
+        $response = $this->actingAs($user)->call('PATCH', route('users.update', $user->id), $params);
+
+        $this->assertRedirectedToRoute('users.show', ['id' => $user->id]);
+        $this->assertTrue($user->roles->pluck('id')->contains($role_editor->id));
+    }
+
     public function testUpdateFail()
     {
         $user = factory(User::class)->create();
@@ -88,5 +109,22 @@ class UsersControllerTest extends TestCase
 
         $this->notSeeInDatabase('users', $params);
         $this->assertResponseStatus('403');
+    }
+
+    public function testDoesNotUpdateRoles()
+    {
+        $user = factory(User::class)->create();
+        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+
+        $params = [
+            'name' => 'Palpatine',
+            'email' => 'darthsidious@deathstar.ds',
+            'roles' => ['admin' => $role_admin->id]
+        ];
+
+        $response = $this->actingAs($user)->call('PATCH', route('users.update', $user->id), $params);
+
+        $this->assertRedirectedToRoute('users.show', ['id' => $user->id]);
+        $this->assertFalse($user->roles->pluck('id')->contains($role_admin->id));
     }
 }
