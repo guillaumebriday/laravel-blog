@@ -1,5 +1,9 @@
 image: php:7.1
 
+cache:
+  paths:
+  - vendor/
+
 services:
 - mysql:latest
 
