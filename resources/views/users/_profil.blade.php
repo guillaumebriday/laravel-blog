@@ -28,7 +28,7 @@
     <label class="control-label col-sm-4" for="email">{{ trans('users.attributes.roles') }} : </label>
     <div class="col-sm-8">
       <ul class="list-unstyled form-control-static">
-        @foreach($roles as $role)
+        @forelse($roles as $role)
           <li>
             {!! Form::checkbox(null, $role->name, $user->hasRole($role->name), ['disabled' => true]) !!}
             @if (Lang::has('roles.' . $role->name))
@@ -37,7 +37,9 @@
               {{ ucfirst($role->name) }}
             @endif
           </li>
-        @endforeach
+        @empty
+          {{ trans('roles.none') }}
+        @endforelse
       </ul>
     </div>
   </div>
