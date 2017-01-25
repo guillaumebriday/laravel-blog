@@ -52,6 +52,7 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->call('PATCH', route('users.update', $user->id), $params);
 
+        $user = $user->fresh();
         $this->seeInDatabase('users', $params);
         $this->assertEquals($params['email'], $user->email);
         $this->assertResponseStatus('302');
@@ -69,6 +70,7 @@ class UsersControllerTest extends TestCase
 
         $response = $this->actingAs($user)->call('PATCH', route('users.update', $user->id), $params);
 
+        $user = $user->fresh();
         $this->assertTrue(Hash::check($params['password'], $user->password));
         $this->assertRedirectedToRoute('users.show', ['id' => $user->id]);
     }
