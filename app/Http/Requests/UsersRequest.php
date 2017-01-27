@@ -24,12 +24,11 @@ class UsersRequest extends FormRequest
      */
     public function rules()
     {
-        $user_id = Auth::id();
-
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user_id,
-            'password' => 'confirmed'
+            'email' => 'required|email|unique:users,email,' . $this->user->id,
+            'password' => 'confirmed',
+            'roles.*' => 'exists:roles,id'
         ];
     }
 }

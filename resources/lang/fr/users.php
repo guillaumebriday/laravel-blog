@@ -11,7 +11,8 @@ return [
     'name' => 'Nom',
     'email' => 'Email',
     'password' => 'Mot de passe',
-    'password_confirmation' => 'Confirmation du mot de passe'
+    'password_confirmation' => 'Confirmation du mot de passe',
+    'roles' => 'Rôles',
   ],
 
   'placeholder' => [

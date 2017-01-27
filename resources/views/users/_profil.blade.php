@@ -24,6 +24,26 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="control-label col-sm-4" for="email">{{ trans('users.attributes.roles') }} : </label>
+    <div class="col-sm-8">
+      <ul class="list-unstyled form-control-static">
+        @forelse($roles as $role)
+          <li>
+            {!! Form::checkbox(null, $role->name, $user->hasRole($role->name), ['disabled' => true]) !!}
+            @if (Lang::has('roles.' . $role->name))
+              {!! trans('roles.' . $role->name) !!}
+            @else
+              {{ ucfirst($role->name) }}
+            @endif
+          </li>
+        @empty
+          {{ trans('roles.none') }}
+        @endforelse
+      </ul>
+    </div>
+  </div>
+
   @can('update', $user)
     <a href="{{ route('users.edit', $user) }}" class="pull-right btn btn-primary">{{ trans('users.edit') }}</a>
   @endcan

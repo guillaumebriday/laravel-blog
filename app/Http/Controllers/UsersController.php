@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UsersRequest;
 use App\User;
+use App\Role;
 
 class UsersController extends Controller
 {
@@ -17,8 +18,14 @@ class UsersController extends Controller
     {
         $posts = $user->posts()->orderBy('posted_at', 'desc')->limit(5)->get();
         $comments = $user->comments()->orderBy('posted_at', 'desc')->limit(5)->get();
+        $roles = Role::all();
 
-        return view('users.show')->withUser($user)->withPosts($posts)->withComments($comments);
+        return view('users.show')->with([
+                                    'user' => $user,
+                                    'posts' => $posts,
+                                    'comments' => $comments,
+                                    'roles' => $roles
+                                ]);
     }
 
     /**
@@ -28,7 +35,9 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('users.edit', $user)->withUser($user);
+        $roles = Role::all();
+
+        return view('users.edit', $user)->withUser($user)->withRoles($roles);
     }
 
     /**
@@ -38,8 +47,6 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user = Auth::user();
-
         $user->name = $request->input('name');
         $user->email = $request->input('email');
 
@@ -48,6 +55,11 @@ class UsersController extends Controller
         }
 
         $user->save();
+
+        if (Auth::user()->can('update_roles', $user)) {
+            $role_ids = array_values($request->get('roles', []));
+            $user->roles()->sync($role_ids);
+        }
 
         return redirect()->route('users.show', $user)->withSuccess(trans('users.updated'));
     }
