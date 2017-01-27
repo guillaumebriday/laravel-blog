@@ -20,6 +20,8 @@ class NewsletterMailTest extends BrowserKitTest
 
         Mail::to($user->email)->send(new Newsletter($posts, $user->email));
 
-        Mail::assertSentTo([$user], Newsletter::class);
+        Mail::assertSent(Newsletter::class, function ($mailable) use ($user) {
+            return $mailable->hasTo($user->email);
+        });
     }
 }
