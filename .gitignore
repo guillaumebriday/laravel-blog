@@ -2,8 +2,7 @@
 /public/storage
 /public/css/app.css
 /public/css/app.css.map
-/public/fonts/bootstrap
-/public/fonts/font-awesome
+/public/fonts
 /public/js/app.js
 /vendor
 /.idea
