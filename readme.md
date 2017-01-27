@@ -46,7 +46,7 @@ $ php php-cs-fixer.phar fix . --rules=@PSR2 --verbose
 
 Construire les assets :
 ```
-$ gulp
+$ npm run dev
 ```
 
 Lancer les seeds :
