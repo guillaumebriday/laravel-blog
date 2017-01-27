@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
 
-class UsersControllerTest extends TestCase
+class UsersControllerTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 

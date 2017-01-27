@@ -7,7 +7,7 @@ use App\Mail\Newsletter;
 use App\Post;
 use App\User;
 
-class NewsletterMailTest extends TestCase
+class NewsletterMailTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 

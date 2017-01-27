@@ -7,7 +7,7 @@ use App\User;
 use App\Post;
 use App\Comment;
 
-class CommentsControllerTest extends TestCase
+class CommentsControllerTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
