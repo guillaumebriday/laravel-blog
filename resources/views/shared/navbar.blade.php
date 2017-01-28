@@ -12,6 +12,12 @@
 
             <!-- Branding Image -->
             {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
+
+            @if(Auth::check() && Auth::user()->isAdmin())
+                <p class="navbar-text">
+                    {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'navbar-link']) }}
+                </p>
+            @endif
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
