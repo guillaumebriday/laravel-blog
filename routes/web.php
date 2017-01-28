@@ -18,6 +18,10 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'namespace' => 'Admin'], function() {
+    Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'PostsController@index')->name('home');
     Route::get('/posts/feed', 'PostsController@feed')->name('posts.feed');
