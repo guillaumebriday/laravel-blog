@@ -7,7 +7,7 @@ use App\Mail\Newsletter;
 use App\Post;
 use App\User;
 
-class NewsletterMailTest extends TestCase
+class NewsletterMailTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
@@ -20,6 +20,8 @@ class NewsletterMailTest extends TestCase
 
         Mail::to($user->email)->send(new Newsletter($posts, $user->email));
 
-        Mail::assertSentTo([$user], Newsletter::class);
+        Mail::assertSent(Newsletter::class, function ($mailable) use ($user) {
+            return $mailable->hasTo($user->email);
+        });
     }
 }

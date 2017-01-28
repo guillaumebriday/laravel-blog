@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 use App\Post;
 
-class PostsControllerTest extends TestCase
+class PostsControllerTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 

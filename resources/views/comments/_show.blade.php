@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
+@component('components.panels.default')
+    @slot('title')
         <span>{{ link_to_route('users.show', user_name($comment->author), $comment->author) }}</span>
         <span class="pull-right">
             <time>{{ humanize_date($comment->posted_at) }}</time>
@@ -10,8 +10,7 @@
                 {!! Form::close() !!}
             @endcan
         </span>
-    </div>
-    <div class="panel-body">
-        {{ $comment->content }}
-    </div>
-</div>
+    @endslot
+
+    {{ $comment->content }}
+@endcomponent

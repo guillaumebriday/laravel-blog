@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\Comment;
 use Carbon\Carbon;
 
-class CommentTest extends TestCase
+class CommentTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 

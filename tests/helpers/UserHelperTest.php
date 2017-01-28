@@ -2,7 +2,7 @@
 
 use App\User;
 
-class UserHelperTest extends TestCase
+class UserHelperTest extends BrowserKitTest
 {
     public function testUserName()
     {

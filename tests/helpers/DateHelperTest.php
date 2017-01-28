@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 
-class DateHelperTest extends TestCase
+class DateHelperTest extends BrowserKitTest
 {
     public function testHumanizeDate()
     {

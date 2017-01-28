@@ -8,7 +8,7 @@ use App\Comment;
 use Faker\Factory;
 use Carbon\Carbon;
 
-class PostTest extends TestCase
+class PostTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 

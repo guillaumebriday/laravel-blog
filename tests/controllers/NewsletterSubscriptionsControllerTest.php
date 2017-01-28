@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 use App\NewsletterSubscription;
 
-class NewsletterSubscriptionsControllerTest extends TestCase
+class NewsletterSubscriptionsControllerTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 

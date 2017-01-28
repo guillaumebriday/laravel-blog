@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    @component('components.panels.default')
+        @slot('title')
             <strong>{{ user_name($user) }}</strong>
-        </div>
-        <div class="panel-body">
-            @include ('users/_profil')
-        </div>
-    </div>
+        @endslot
+
+        @include ('users/_profil')
+    @endcomponent
 
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="pill" href="#posts">{{ trans('posts.last_posts')}}</a></li>

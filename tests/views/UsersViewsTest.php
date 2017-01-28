@@ -7,7 +7,7 @@ use App\Role;
 use App\Comment;
 use Faker\Factory;
 
-class UsersViewsTest extends TestCase
+class UsersViewsTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
