@@ -4,18 +4,18 @@
 
 Ce dépôt a pour vocation de montrer les bonnes pratiques de développement sur [Laravel](http://laravel.com/) ainsi que de presenter plusieurs cas concrets d'utilisations des fonctionnalités du framework comme :
 
-- La localisation
-- La programmation parallèle et asynchrone (Queue)
-- Les migrations
-- Les seeds & factories
-- Les tests
-- Les templates, partials et components
-- Les policies
-- Les providers
-- Les requests
-- Les helpers
-- Les mails
-- Le cache
+- [La localisation](https://laravel.com/docs/5.4/localization)
+- [La programmation parallèle et asynchrone (Queue)](https://laravel.com/docs/5.4/queues)
+- [Les migrations](https://laravel.com/docs/5.4/migrations)
+- [Les seeds & factories](https://laravel.com/docs/5.4/seeding)
+- [Les tests](https://laravel.com/docs/5.4/testing)
+- [Les templates, partials et components](https://laravel.com/docs/5.4/blade)
+- [Les policies](https://laravel.com/docs/5.4/authorization)
+- [Les providers](https://laravel.com/docs/5.4/providers)
+- [Les requests](https://laravel.com/docs/5.4/validation#form-request-validation)
+- [Les helpers](https://laravel.com/docs/5.4/helpers)
+- [Les mails](https://laravel.com/docs/5.4/mail)
+- [Le cache](https://laravel.com/docs/5.4/cache)
 
 ## Informations
 
