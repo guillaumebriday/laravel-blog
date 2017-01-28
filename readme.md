@@ -1,6 +1,6 @@
 [![build status](https://gitlab.com/guillaumebriday/laravel-blog/badges/master/build.svg)](https://gitlab.com/guillaumebriday/laravel-blog/commits/master)
 
-# Laravel 5.3 blog
+# Laravel 5.4 blog
 
 Ce dépôt a pour vocation de montrer les bonnes pratiques de développement sur [Laravel](http://laravel.com/) ainsi que de presenter plusieurs cas concrets d'utilisations des fonctionnalités du framework comme :
 
@@ -9,7 +9,7 @@ Ce dépôt a pour vocation de montrer les bonnes pratiques de développement sur
 - Les migrations
 - Les seeds & factories
 - Les tests
-- Les templates & partials
+- Les templates, partials et components
 - Les policies
 - Les providers
 - Les requests
@@ -23,7 +23,7 @@ L'application est prévue pour être internationalisé. Actuellement, seule la t
 
 ## Installation
 
-Vous pouvez utiliser [Laravel homestead](https://laravel.com/docs/5.3/homestead) pour installer le projet sur un environnement local.
+Vous pouvez utiliser [Laravel homestead](https://laravel.com/docs/5.4/homestead) pour installer le projet sur un environnement local.
 
 ## Quelques commandes
 
@@ -80,6 +80,7 @@ Plus de détails sont disponibles ou à venir sur [le blog de Guillaume Briday](
 
 ## Todo
 
+- [ ] Migrer les tests vers la syntaxe de laravel 5.4
 - [ ] Rajouter des tests
 - [ ] Faire un back-office (Administrateur)
 - [ ] Répondre à un commentaire
