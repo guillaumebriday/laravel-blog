@@ -9,7 +9,8 @@
         "laravel/framework": "5.4.*",
         "laravelcollective/html": "^5.2.0",
         "laravel/socialite": "^2.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
