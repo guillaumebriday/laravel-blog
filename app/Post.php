@@ -28,6 +28,12 @@ class Post extends Model
                      ->limit($limit);
     }
 
+    public function scopeLastWeek($query)
+    {
+        return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
+                     ->orderBy('posted_at', 'desc');
+    }
+
     public function author()
     {
         return $this->belongsTo('App\User', 'author_id');

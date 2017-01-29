@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 use App\Role;
 
 class User extends Authenticatable
@@ -27,6 +28,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeLastWeek($query)
+    {
+        return $query->whereBetween('registered_at', [Carbon::now()->subWeek(), Carbon::now()])
+                     ->orderBy('registered_at', 'desc');
+    }
 
     /**
     * Check if the user has a role
