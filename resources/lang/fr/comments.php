@@ -7,6 +7,7 @@ return [
   'add_comment' => 'Ajouter un commentaire',
   'created' => 'Commentaire créé avec succès',
   'deleted' => 'Commentaire supprimé avec succès',
+  'new_comments' => 'nouveau commentaire|nouveaux commentaires',
 
   'attributes' => [
     'content' => 'Contenu'

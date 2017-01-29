@@ -6,6 +6,7 @@ return [
   'nb_of_comments' => "Nombre de commentaires",
   'edit' => 'Éditer',
   'updated' => 'Votre profil a bien été mis à jour',
+  'new_users' => 'nouvel utilisateur|nouveaux utilisateurs',
 
   'attributes' => [
     'name' => 'Nom',
