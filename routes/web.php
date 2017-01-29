@@ -18,8 +18,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'namespace' => 'Admin'], function() {
-    Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'namespace' => 'Admin', 'as' => 'admin.'], function () {
+    Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+    Route::resource('posts', 'PostsController', ['only' => ['index']]);
 });
 
 Route::group(['middleware' => 'auth'], function () {
