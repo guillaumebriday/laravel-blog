@@ -180,6 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\PostProvider::class,
         App\Providers\CommentProvider::class,
+        App\Providers\UserServiceProvider::class,
 
     ],
 
