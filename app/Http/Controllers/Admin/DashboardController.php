@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Post;
+use App\Comment;
 
 class DashboardController extends Controller
 {
@@ -13,6 +16,14 @@ class DashboardController extends Controller
     */
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $comments = Comment::lastWeek()->get();
+        $posts = Post::lastWeek()->get();
+        $users = User::lastWeek()->get();
+
+        return view('admin.dashboard.index')->with([
+                                                'comments' => $comments,
+                                                'posts' => $posts,
+                                                'users' => $users,
+                                            ]);
     }
 }
