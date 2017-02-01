@@ -4,6 +4,7 @@ return [
 
   'actions' => [
     'save' => 'Sauvegarder',
+    'update' => 'Mettre à jour',
     'back' => 'Retour'
   ],
 

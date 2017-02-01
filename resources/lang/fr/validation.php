@@ -144,6 +144,8 @@ return [
         'time'                  => 'Heure',
         'available'             => 'Disponible',
         'size'                  => 'Taille',
+        'posted_at'             => 'Posté le',
+        'author_id'             => 'Auteur',
     ],
 
     'errors' => ":count erreur :|:count erreurs : "
