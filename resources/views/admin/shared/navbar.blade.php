@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
 
@@ -12,20 +12,9 @@
 
             <!-- Branding Image -->
             {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
-
-            @if(Auth::check() && Auth::user()->isAdmin())
-                <p class="navbar-text">
-                    {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'navbar-link']) }}
-                </p>
-            @endif
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                &nbsp;
-            </ul>
-
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -41,9 +30,6 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 {{ link_to_route('users.show', trans('users.profil'), Auth::user()) }}
-                            </li>
-                            <li>
-                                {{ link_to_route('posts.create', trans('posts.add_article')) }}
                             </li>
                             <li>
                                 <a href="{{ url('/logout') }}"

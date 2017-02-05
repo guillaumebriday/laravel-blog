@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Comment extends Model
 {
@@ -19,6 +20,12 @@ class Comment extends Model
     ];
 
     public $dates = [ 'posted_at' ];
+
+    public function scopeLastWeek($query)
+    {
+        return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
+                     ->orderBy('posted_at', 'desc');
+    }
 
     public function author()
     {

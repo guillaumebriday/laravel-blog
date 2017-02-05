@@ -8,12 +8,16 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+// Base
+@import "base/base";
+
 // Font-awesome
 @import "node_modules/font-awesome/scss/font-awesome";
 
 // Modules
 @import "modules/form";
 @import "modules/turbolinks";
+@import "modules/panels";
 
 // Templates
 @import "templates/footer";

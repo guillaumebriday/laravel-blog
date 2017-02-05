@@ -49,6 +49,34 @@ class PostTest extends BrowserKitTest
         $this->assertTrue($isDuringLastMonth);
     }
 
+    public function testGettingOnlyLastWeekPosts()
+    {
+        $faker = Factory::create();
+
+        // Older Posts
+        factory(Post::class, 10)
+                ->create()
+                ->each(function ($post) use ($faker) {
+                    $post->posted_at = $faker->dateTimeBetween(Carbon::now()->subMonths(3), Carbon::now()->subMonths(2));
+                    $post->save();
+                });
+
+        // Newer Posts
+        factory(Post::class, 3)
+                ->create()
+                ->each(function ($post) use ($faker) {
+                    $post->posted_at = $faker->dateTimeBetween(Carbon::now()->subWeek(), Carbon::now());
+                    $post->save();
+                });
+
+        $isDuringLastWeek = true;
+        foreach (Post::lastWeek()->get() as $post) {
+            $isDuringLastWeek = $post->posted_at->between(Carbon::now()->subWeek(), Carbon::now());
+        }
+
+        $this->assertTrue($isDuringLastWeek);
+    }
+
     public function testCreatedAt()
     {
         $post = factory(Post::class)->create();
