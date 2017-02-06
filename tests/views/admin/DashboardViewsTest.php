@@ -14,7 +14,7 @@ class DashboardViewsTest extends BrowserKitTest
     public function testDashboardView()
     {
         $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_admin = factory(Role::class)->states('admin')->create();
         $user->roles()->sync([$role_admin->id]);
 
         $posts = factory(Post::class, 30)->create();

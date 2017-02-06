@@ -21,7 +21,7 @@ class DashboardControllerTest extends BrowserKitTest
     public function testDashboard()
     {
         $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_admin = factory(Role::class)->states('admin')->create();
         $user->roles()->sync([$role_admin->id]);
 
         $response = $this->actingAs($user)->call('GET', route('admin.dashboard'));

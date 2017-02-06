@@ -25,7 +25,7 @@ class UserTest extends BrowserKitTest
     {
         $user = factory(User::class)->create();
         $role_editor = factory(Role::class)->create(['name' => 'editor']);
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_admin = factory(Role::class)->states('admin')->create();
 
         $user->roles()->sync([$role_editor->id, $role_admin->id]);
 

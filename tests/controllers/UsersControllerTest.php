@@ -80,7 +80,7 @@ class UsersControllerTest extends BrowserKitTest
     public function testUpdateRoles()
     {
         $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_admin = factory(Role::class)->states('admin')->create();
         $role_editor = factory(Role::class)->create(['name' => 'editor']);
         $user->roles()->sync([$role_admin->id]);
 
@@ -114,7 +114,7 @@ class UsersControllerTest extends BrowserKitTest
     public function testDoesNotUpdateRoles()
     {
         $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_admin = factory(Role::class)->states('admin')->create();
 
         $params = [
             'name' => 'Palpatine',

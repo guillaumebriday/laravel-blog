@@ -36,7 +36,7 @@ class UsersViewsTest extends BrowserKitTest
     public function testUserProfilRoles()
     {
         $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
+        $role_admin = factory(Role::class)->states('admin')->create();
         $role_editor = factory(Role::class)->create(['name' => 'editor']);
 
         $this->actingAs($user)
