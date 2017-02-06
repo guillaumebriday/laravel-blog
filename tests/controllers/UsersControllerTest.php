@@ -77,10 +77,10 @@ class UsersControllerTest extends BrowserKitTest
 
     public function testUpdateRoles()
     {
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->create();
         $role_admin = factory(Role::class)->states('admin')->create();
-        $role_editor = factory(Role::class)->create(['name' => 'editor']);
-        $user->roles()->sync([$role_admin->id]);
+        $role_editor = factory(Role::class)->states('editor')->create();
+        $admin->roles()->attach($role_admin);
 
         $params = [
             'name' => 'Palpatine',
@@ -88,10 +88,10 @@ class UsersControllerTest extends BrowserKitTest
             'roles' => ['editor' => $role_editor->id]
         ];
 
-        $response = $this->actingAs($user)->call('PATCH', route('users.update', $user->id), $params);
+        $response = $this->actingAs($admin)->call('PATCH', route('users.update', $admin->id), $params);
 
-        $this->assertRedirectedToRoute('users.show', ['id' => $user->id]);
-        $this->assertTrue($user->roles->pluck('id')->contains($role_editor->id));
+        $this->assertRedirectedToRoute('users.show', ['id' => $admin->id]);
+        $this->assertTrue($admin->roles->pluck('id')->contains($role_editor->id));
     }
 
     public function testUpdateFail()

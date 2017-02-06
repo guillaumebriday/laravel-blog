@@ -13,15 +13,15 @@ class DashboardViewsTest extends BrowserKitTest
 
     public function testDashboardView()
     {
-        $user = factory(User::class)->create();
+        $admin = factory(User::class)->create();
         $role_admin = factory(Role::class)->states('admin')->create();
-        $user->roles()->sync([$role_admin->id]);
+        $admin->roles()->attach($role_admin);
 
         $posts = factory(Post::class, 30)->create();
         $comment = factory(Comment::class)->create();
         $users = factory(User::class, 5)->create();
 
-        $this->actingAs($user)
+        $this->actingAs($admin)
             ->visit(route('admin.dashboard'))
             ->see(__('dashboard.this_week'))
             ->see(Post::count())

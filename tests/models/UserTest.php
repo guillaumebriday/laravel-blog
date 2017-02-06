@@ -14,27 +14,26 @@ class UserTest extends BrowserKitTest
     {
         $user = factory(User::class)->create();
         $role = factory(Role::class)->create();
-        $user->roles()->sync([$role->id]);
+        $user->roles()->attach($role);
 
         $this->assertTrue($user->hasRole($role->name));
     }
 
     public function testIsAdmin()
     {
-        $user = factory(User::class)->create();
-        $role_editor = factory(Role::class)->create(['name' => 'editor']);
+        $admin = factory(User::class)->create();
+        $role_editor = factory(Role::class)->states('editor')->create();
         $role_admin = factory(Role::class)->states('admin')->create();
+        $admin->roles()->sync([$role_admin->id, $role_editor->id]);
 
-        $user->roles()->sync([$role_editor->id, $role_admin->id]);
-
-        $this->assertTrue($user->isAdmin());
+        $this->assertTrue($admin->isAdmin());
     }
 
     public function testIsAdminFail()
     {
         $user = factory(User::class)->create();
-        $role = factory(Role::class)->create(['name' => 'editor']);
-        $user->roles()->sync([$role->id]);
+        $role_editor = factory(Role::class)->states('editor')->create();
+        $user->roles()->attach($role_editor);
 
         $this->assertFalse($user->isAdmin());
     }
