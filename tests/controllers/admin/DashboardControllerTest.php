@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-
 use App\User;
 use App\Role;
 
