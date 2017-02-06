@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 
 class UserHelperTest extends BrowserKitTest
 {
+    use DatabaseMigrations;
+
     public function testUserName()
     {
         $user = factory(User::class)->create();

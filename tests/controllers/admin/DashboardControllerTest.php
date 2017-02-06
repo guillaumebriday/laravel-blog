@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-
 use App\User;
 use App\Role;
 
@@ -20,11 +19,10 @@ class DashboardControllerTest extends BrowserKitTest
 
     public function testDashboard()
     {
-        $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
-        $user->roles()->sync([$role_admin->id]);
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
 
-        $response = $this->actingAs($user)->call('GET', route('admin.dashboard'));
+        $response = $this->actingAs($admin)->call('GET', route('admin.dashboard'));
 
         $this->assertResponseOk();
         $this->assertViewHas('posts');

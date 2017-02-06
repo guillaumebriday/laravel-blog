@@ -36,8 +36,8 @@ class UsersViewsTest extends BrowserKitTest
     public function testUserProfilRoles()
     {
         $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->create(['name' => 'admin']);
-        $role_editor = factory(Role::class)->create(['name' => 'editor']);
+        $role_admin = factory(Role::class)->states('admin')->create();
+        $role_editor = factory(Role::class)->states('editor')->create();
 
         $this->actingAs($user)
             ->visit(route('users.show', $user))
@@ -57,14 +57,12 @@ class UsersViewsTest extends BrowserKitTest
 
     public function testUserEdit()
     {
-        $user = factory(User::class)->create();
         $faker = Factory::create();
-        $role = factory(Role::class)->create(['name' => 'admin']);
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
 
-        $user->roles()->sync([$role->id]);
-
-        $this->actingAs($user)
-            ->visit(route('users.edit', $user))
+        $this->actingAs($admin)
+            ->visit(route('users.edit', $admin))
             ->type($faker->name, 'name')
             ->check('roles[1]')
             ->press(trans('forms.actions.save'))
@@ -74,7 +72,7 @@ class UsersViewsTest extends BrowserKitTest
     public function testUserEditRoles()
     {
         $user = factory(User::class)->create();
-        $role = factory(Role::class)->create(['name' => 'admin']);
+        $role = factory(Role::class)->states('admin')->create();
 
         $this->actingAs($user)
             ->visit(route('users.edit', $user))
