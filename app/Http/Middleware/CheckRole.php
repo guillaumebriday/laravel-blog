@@ -17,7 +17,7 @@ class CheckRole
     public function handle($request, Closure $next, $role)
     {
         if (! $request->user()->hasRole($role)) {
-            return redirect()->route('home')->withErrors(trans('auth.not_authorized'));
+            return redirect()->route('home')->withErrors(__('auth.not_authorized'));
         }
 
         return $next($request);

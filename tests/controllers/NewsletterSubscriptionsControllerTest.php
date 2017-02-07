@@ -41,7 +41,7 @@ class NewsletterSubscriptionsControllerTest extends BrowserKitTest
         $response = $this->actingAs($user)->call('GET', route('newsletter-subscriptions.unsubscribe'), $params);
 
         $this->assertResponseStatus('200');
-        $this->assertSessionHas('success', trans('newsletter.unsubscribed'));
+        $this->assertSessionHas('success', __('newsletter.unsubscribed'));
     }
 
     public function testUnsubscribeFail()

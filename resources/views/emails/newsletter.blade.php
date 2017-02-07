@@ -1,7 +1,7 @@
-<h1>{{ trans('newsletter.email.welcome') }}</h1>
+<h1>{{ __('newsletter.email.welcome') }}</h1>
 
 <p>
-    {{ trans('newsletter.email.description', ['count' => $posts->count()]) }} :
+    {{ __('newsletter.email.description', ['count' => $posts->count()]) }} :
 </p>
 
 <ul>
@@ -11,9 +11,9 @@
 </ul>
 
 <p>
-    {{ trans('newsletter.email.thanks') }}
+    {{ __('newsletter.email.thanks') }}
 </p>
 
 <p>
-    {{ link_to_route('newsletter-subscriptions.unsubscribe', trans('newsletter.email.unsubscribe'), ['email' => $email]) }}
+    {{ link_to_route('newsletter-subscriptions.unsubscribe', __('newsletter.email.unsubscribe'), ['email' => $email]) }}
 </p>

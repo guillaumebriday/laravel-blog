@@ -89,7 +89,7 @@ class PostsViewsTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit(route('posts.create'))
-            ->see(trans('posts.add_article'));
+            ->see(__('posts.add_article'));
     }
 
     public function testPostForm()
@@ -101,7 +101,7 @@ class PostsViewsTest extends BrowserKitTest
             ->visit(route('posts.create'))
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
-            ->press(trans('posts.publish'))
-            ->see(trans('posts.created'));
+            ->press(__('posts.publish'))
+            ->see(__('posts.created'));
     }
 }

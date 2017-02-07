@@ -1,1 +1,1 @@
-{{ trans('posts.empty') }}
+{{ __('posts.empty') }}

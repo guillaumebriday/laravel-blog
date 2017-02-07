@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('home')->withSuccess(trans('auth.logged_in_provider', ['provider' => $provider]));
+        return redirect()->route('home')->withSuccess(__('auth.logged_in_provider', ['provider' => $provider]));
     }
 
     /**

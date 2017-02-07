@@ -23,7 +23,7 @@ class NewsletterSubscriptionsController extends Controller
             'email' => $request->input('email')
         ]);
 
-        return back()->withSuccess(trans('newsletter.created'));
+        return back()->withSuccess(__('newsletter.created'));
     }
 
     /**
@@ -51,7 +51,7 @@ class NewsletterSubscriptionsController extends Controller
 
         $this->dispatch(new UnsubscribeEmailNewsletter($request->input('email')));
 
-        Session::flash('success', trans('newsletter.unsubscribed'));
+        Session::flash('success', __('newsletter.unsubscribed'));
 
         return view('newsletters.unsubscribed');
     }

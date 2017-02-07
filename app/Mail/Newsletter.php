@@ -33,7 +33,7 @@ class Newsletter extends Mailable
     public function build()
     {
         return $this->from('hello@app.com', config('app.name', 'Laravel'))
-                    ->subject(trans('newsletter.email.subject'))
+                    ->subject(__('newsletter.email.subject'))
                     ->view('emails.newsletter')
                     ->with([
                         'posts' => $this->posts,

@@ -68,6 +68,6 @@ class PostsController extends Controller
             'content' => $request->input('content')
         ]);
 
-        return redirect()->route('posts.show', $post)->with('success', trans('posts.created'));
+        return redirect()->route('posts.show', $post)->with('success', __('posts.created'));
     }
 }

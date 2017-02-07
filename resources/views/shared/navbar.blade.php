@@ -30,8 +30,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li>{{ link_to_route('login', trans('auth.login')) }}</li>
-                    <li>{{ link_to_route('register', trans('auth.register')) }}</li>
+                    <li>{{ link_to_route('login', __('auth.login')) }}</li>
+                    <li>{{ link_to_route('register', __('auth.register')) }}</li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -40,16 +40,16 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                {{ link_to_route('users.show', trans('users.profil'), Auth::user()) }}
+                                {{ link_to_route('users.show', __('users.profil'), Auth::user()) }}
                             </li>
                             <li>
-                                {{ link_to_route('posts.create', trans('posts.add_article')) }}
+                                {{ link_to_route('posts.create', __('posts.add_article')) }}
                             </li>
                             <li>
                                 <a href="{{ url('/logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    {{ trans('auth.logout') }}
+                                    {{ __('auth.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
