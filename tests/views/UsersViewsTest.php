@@ -17,7 +17,7 @@ class UsersViewsTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit('/')
-            ->click(trans('users.profil'))
+            ->click(__('users.profil'))
             ->seeRouteIs('users.show', $user);
     }
 
@@ -27,10 +27,10 @@ class UsersViewsTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit(route('users.show', $user))
-            ->see(trans('users.nb_of_comments'))
-            ->see(trans('users.nb_of_posts'))
-            ->see(trans('users.edit'))
-            ->see(trans('roles.none'));
+            ->see(__('users.nb_of_comments'))
+            ->see(__('users.nb_of_posts'))
+            ->see(__('users.edit'))
+            ->see(__('roles.none'));
     }
 
     public function testUserProfilRoles()
@@ -41,8 +41,8 @@ class UsersViewsTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit(route('users.show', $user))
-            ->see(trans('roles.admin'))
-            ->see(trans('roles.editor'));
+            ->see(__('roles.admin'))
+            ->see(__('roles.editor'));
     }
 
     public function testUserEditLink()
@@ -51,7 +51,7 @@ class UsersViewsTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit(route('users.show', $user))
-            ->click(trans('users.edit'))
+            ->click(__('users.edit'))
             ->seeRouteIs('users.edit', $user);
     }
 
@@ -65,8 +65,8 @@ class UsersViewsTest extends BrowserKitTest
             ->visit(route('users.edit', $admin))
             ->type($faker->name, 'name')
             ->check('roles[1]')
-            ->press(trans('forms.actions.save'))
-            ->see(trans('users.updated'));
+            ->press(__('forms.actions.save'))
+            ->see(__('users.updated'));
     }
 
     public function testUserEditRoles()
@@ -76,6 +76,6 @@ class UsersViewsTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit(route('users.edit', $user))
-            ->dontSee(trans('roles.admin'));
+            ->dontSee(__('roles.admin'));
     }
 }

@@ -10,8 +10,8 @@
     @endcomponent
 
     <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="pill" href="#posts">{{ trans('posts.last_posts')}}</a></li>
-        <li><a data-toggle="pill" href="#comments">{{ trans('comments.last_comments')}}</a></li>
+        <li class="active"><a data-toggle="pill" href="#posts">{{ __('posts.last_posts') }}</a></li>
+        <li><a data-toggle="pill" href="#comments">{{ __('comments.last_comments') }}</a></li>
     </ul>
 
     <div class="tab-content">

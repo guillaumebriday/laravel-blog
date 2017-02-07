@@ -38,7 +38,7 @@ class CommentsViewsTest extends BrowserKitTest
         $this->actingAs($user)
             ->visit(route('posts.show', $comment->post))
             ->press('submit')
-            ->see(trans('comments.deleted'));
+            ->see(__('comments.deleted'));
     }
 
     public function testCommentFormStore()
@@ -50,8 +50,8 @@ class CommentsViewsTest extends BrowserKitTest
         $this->actingAs($user)
             ->visit(route('posts.show', $post))
             ->type($faker->paragraph, 'content')
-            ->press(trans('comments.comment'))
-            ->see(trans('comments.created'));
+            ->press(__('comments.comment'))
+            ->see(__('comments.created'));
     }
 
     public function testCommentShowInUserProfil()

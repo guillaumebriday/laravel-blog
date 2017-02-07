@@ -61,6 +61,6 @@ class UsersController extends Controller
             $user->roles()->sync($role_ids);
         }
 
-        return redirect()->route('users.show', $user)->withSuccess(trans('users.updated'));
+        return redirect()->route('users.show', $user)->withSuccess(__('users.updated'));
     }
 }
