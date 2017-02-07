@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Post;
 use App\Comment;
+use App\User;
+use App\Role;
 use Faker\Factory;
 use Carbon\Carbon;
 
@@ -95,5 +97,44 @@ class PostTest extends BrowserKitTest
         $comment = factory(Comment::class)->create(['post_id' => $post->id]);
 
         $this->assertContains($comment->id, $post->comments->pluck('id'));
+    }
+
+    public function testPostedAtScopeApplied()
+    {
+        $older_post = factory(Post::class)->create();
+        $older_post->update(['posted_at' => Carbon::yesterday()]);
+
+        $newer_post = factory(Post::class)->create();
+        $newer_post->update(['posted_at' => Carbon::tomorrow()]);
+
+        $isBeforeNow = true;
+        foreach (Post::all() as $post) {
+            $isBeforeNow = $post->posted_at->lt(Carbon::now());
+        }
+
+        $this->assertTrue($isBeforeNow);
+        $this->assertEquals(1, Post::count());
+    }
+
+    public function testPostedAtScopeNotApplied()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+
+        $this->actingAs($admin);
+
+        $older_post = factory(Post::class)->create();
+        $older_post->update(['posted_at' => Carbon::yesterday()]);
+
+        $newer_post = factory(Post::class)->create();
+        $newer_post->update(['posted_at' => Carbon::tomorrow()]);
+
+        $isBeforeNow = true;
+        foreach (Post::all() as $post) {
+            $isBeforeNow = $post->posted_at->lt(Carbon::now());
+        }
+
+        $this->assertFalse($isBeforeNow);
+        $this->assertEquals(2, Post::count());
     }
 }
