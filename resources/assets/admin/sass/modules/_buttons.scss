@@ -1,0 +1,10 @@
+.btn-link {
+    &.text-danger {
+        color: #a94442;
+
+        &:hover,
+        &:focus {
+            color: #843534;
+        }
+    }
+}
