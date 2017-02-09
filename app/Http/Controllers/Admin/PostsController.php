@@ -41,4 +41,17 @@ class PostsController extends Controller
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  Post  $post
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(Post  $post)
+    {
+        $post->delete();
+
+        return redirect()->route('admin.posts.index')->with('success', __('posts.deleted'));
+    }
 }
