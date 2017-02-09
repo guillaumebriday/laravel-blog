@@ -10,6 +10,10 @@ return [
 
   'comments' => [
     'delete' => 'Êtes-vous sûr de vouloir supprimer ce commentaires ?'
+  ],
+
+  'posts' => [
+    'delete' => 'Êtes-vous sûr de vouloir supprimer cet article ?'
   ]
 
 ];
