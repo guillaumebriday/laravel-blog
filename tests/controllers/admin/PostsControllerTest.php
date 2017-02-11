@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Post;
+use App\Comment;
 use App\Role;
 use Carbon\Carbon;
 
@@ -55,6 +56,25 @@ class AdminPostsControllerTest extends BrowserKitTest
 
         $this->seeInDatabase('posts', $params);
         $this->assertEquals($params['content'], $post->content);
+        $this->assertResponseStatus('302');
+    }
+
+    public function testDelete()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $post = factory(Post::class)->create();
+        $comments = factory(Comment::class, 5)
+                    ->create()
+                    ->each(function ($comment) use ($post) {
+                        $comment->post_id = $post->id;
+                        $comment->save();
+                    });
+
+        $response = $this->actingAs($admin)->call('DELETE', route('admin.posts.destroy', $post));
+
+        $this->notSeeInDatabase('posts', $post->toArray());
+        $this->assertTrue(Comment::all()->isEmpty());
         $this->assertResponseStatus('302');
     }
 }

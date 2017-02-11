@@ -76,4 +76,17 @@ class AdminPostsViewsTest extends BrowserKitTest
             ->press(__('forms.actions.update'))
             ->see(__('posts.updated'));
     }
+
+    public function testDeletePostForm()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $post = factory(Post::class)->create();
+
+        $this->actingAs($admin)
+            ->visit(route('admin.posts.edit', $post))
+            ->press(__('posts.delete'))
+            ->seeRouteIs('admin.posts.index')
+            ->see(__('posts.deleted'));
+    }
 }
