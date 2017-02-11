@@ -1,10 +1,9 @@
 /node_modules
 /public/storage
 /public/hot
-/public/css/app.css
-/public/css/app.css.map
+/public/css
 /public/fonts
-/public/js/app.js
+/public/js
 /vendor
 /.idea
 Homestead.json

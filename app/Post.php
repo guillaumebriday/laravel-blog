@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\PostedScope;
 use Carbon\Carbon;
 
 class Post extends Model
@@ -20,6 +21,17 @@ class Post extends Model
     ];
 
     public $dates = [ 'posted_at' ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new PostedScope);
+    }
 
     public function scopeLastMonth($query, $limit = 5)
     {
