@@ -5,8 +5,10 @@ return [
   'nb_of_posts' => "Nombre d'articles",
   'nb_of_comments' => "Nombre de commentaires",
   'edit' => 'Éditer',
+  'show' => 'Voir le profil',
   'updated' => 'Votre profil a bien été mis à jour',
   'new_users' => 'nouvel utilisateur|nouveaux utilisateurs',
+  'count' => ':count utilisateur|:count utilisateurs',
 
   'attributes' => [
     'name' => 'Nom',
@@ -14,6 +16,7 @@ return [
     'password' => 'Mot de passe',
     'password_confirmation' => 'Confirmation du mot de passe',
     'roles' => 'Rôles',
+    'registered_at' => 'Enregistré le',
   ],
 
   'placeholder' => [
