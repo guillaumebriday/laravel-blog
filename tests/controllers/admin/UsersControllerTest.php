@@ -18,4 +18,16 @@ class AdminUsersControllerTest extends BrowserKitTest
         $this->assertResponseOk();
         $this->assertViewHas('users');
     }
+
+    public function testEdit()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+
+        $response = $this->actingAs($admin)->call('GET', route('admin.users.edit', $admin));
+
+        $this->assertResponseOk();
+        $this->assertViewHas('roles');
+        $this->assertViewHas('user');
+    }
 }
