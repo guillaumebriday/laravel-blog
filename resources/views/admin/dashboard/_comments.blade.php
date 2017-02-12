@@ -1,5 +1,5 @@
 <div class="col-md-6">
-    @component('components.panels.primary')
+    @component('components.panels.default', ['type' => 'primary'])
         @slot('title')
         <div class="row">
             <div class="col-xs-3">
