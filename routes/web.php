@@ -21,6 +21,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
     Route::resource('posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'destroy']]);
+    Route::resource('users', 'UsersController', ['only' => ['index']]);
 });
 
 Route::group(['middleware' => 'auth'], function () {
