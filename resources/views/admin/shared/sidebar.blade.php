@@ -13,5 +13,12 @@
                 {{ __('dashboard.posts') }}
             </a>
         </li>
+
+        <li role="presentation" class="{{ Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.users.index') }}">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                {{ __('dashboard.users') }}
+            </a>
+        </li>
     </ul>
 </nav>
