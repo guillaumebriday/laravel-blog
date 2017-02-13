@@ -14,6 +14,13 @@
             </a>
         </li>
 
+        <li role="presentation" class="{{ Request::is('admin/comments') || Request::is('admin/comments/*') ? 'active' : '' }}">
+            <a href="{{ route('admin.comments.index') }}">
+                <i class="fa fa-comments" aria-hidden="true"></i>
+                {{ __('dashboard.comments') }}
+            </a>
+        </li>
+
         <li role="presentation" class="{{ Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}">
             <a href="{{ route('admin.users.index') }}">
                 <i class="fa fa-users" aria-hidden="true"></i>

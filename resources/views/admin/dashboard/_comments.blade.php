@@ -12,7 +12,7 @@
         </div>
         @endslot
 
-        <a href="#">
+        <a href="{{ route('admin.comments.index') }}">
             <span class="pull-left">{{ __('dashboard.details') }}</span>
             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
             <div class="clearfix"></div>
