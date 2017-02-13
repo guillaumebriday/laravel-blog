@@ -48,4 +48,20 @@ class AdminUsersViewsTest extends BrowserKitTest
             ->click(__('users.show'))
             ->seeRouteIs('users.show', $user);
     }
+
+    public function testUserUpdate()
+    {
+        $faker = Factory::create();
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $user = factory(User::class)->create();
+
+        $this->actingAs($admin)
+            ->visit(route('admin.users.edit', $user))
+            ->type($faker->name, 'name')
+            ->type($faker->email, 'email')
+            ->check('roles[1]')
+            ->press(__('forms.actions.update'))
+            ->see(__('users.updated'));
+    }
 }
