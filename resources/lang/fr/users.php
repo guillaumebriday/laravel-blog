@@ -6,7 +6,7 @@ return [
   'nb_of_comments' => "Nombre de commentaires",
   'edit' => 'Éditer',
   'show' => 'Voir le profil',
-  'updated' => 'Votre profil a bien été mis à jour',
+  'updated' => 'Le profil a bien été mis à jour',
   'new_users' => 'nouvel utilisateur|nouveaux utilisateurs',
   'count' => ':count utilisateur|:count utilisateurs',
 
