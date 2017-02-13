@@ -11,7 +11,7 @@
     <tbody>
         @foreach($comments as $comment)
             <tr>
-                <td>{{ $comment->content }}</td>
+                <th>{{ link_to_route('admin.comments.edit', $comment->content, $comment) }}</th>
                 <td>{{ link_to_route('posts.show', $comment->post->title, $comment->post) }}</td>
                 <td>{{ link_to_route('users.show', user_name($comment->author), $comment->author) }}</td>
                 <td>{{ humanize_date($comment->posted_at, 'd/m/Y H:i:s') }}</td>
