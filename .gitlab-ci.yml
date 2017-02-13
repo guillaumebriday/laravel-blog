@@ -28,5 +28,9 @@ phpunit:
 php-cs-fixer:
   before_script:
     - apt-get update -yqq
+    - apt-get install git -yqq
+    - apt-get install zip unzip
+    - curl -sS https://getcomposer.org/installer | php
+    - php composer.phar install --no-progress --no-interaction --optimize-autoloader
   script:
-    - php php-cs-fixer.phar fix app/ --rules=@PSR2 --dry-run --verbose --using-cache=no --diff
+    - vendor/bin/php-cs-fixer fix . --rules=@PSR2 --dry-run --verbose --using-cache=no --diff
