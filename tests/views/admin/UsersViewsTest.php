@@ -35,4 +35,17 @@ class AdminUsersViewsTest extends BrowserKitTest
             ->see(__('roles.admin'))
             ->see($user->email);
     }
+
+    public function testUserProfilViewLink()
+    {
+        $faker = Factory::create();
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $user = factory(User::class)->create();
+
+        $this->actingAs($admin)
+            ->visit(route('admin.users.edit', $user))
+            ->click(__('users.show'))
+            ->seeRouteIs('users.show', $user);
+    }
 }
