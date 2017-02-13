@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'name
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
     Route::resource('posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['index', 'edit', 'update']]);
+    Route::resource('comments', 'CommentsController', ['only' => ['index']]);
 });
 
 Route::group(['middleware' => 'auth'], function () {
