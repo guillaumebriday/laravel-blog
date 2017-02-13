@@ -41,7 +41,7 @@ $ ./vendor/bin/phpunit
 
 Lancer php-cs-fixer :
 ```
-$ php php-cs-fixer.phar fix . --rules=@PSR2 --verbose
+$ ./vendor/bin/php-cs-fixer fix . --rules=@PSR2 --verbose --dry-run --diff
 ```
 
 Construire les assets :
