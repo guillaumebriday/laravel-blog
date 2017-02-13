@@ -8,9 +8,13 @@ return [
   'created' => 'Commentaire créé avec succès',
   'deleted' => 'Commentaire supprimé avec succès',
   'new_comments' => 'nouveau commentaire|nouveaux commentaires',
+  'count' => ':count commentaire|:count commentaires',
 
   'attributes' => [
-    'content' => 'Contenu'
+    'content' => 'Contenu',
+    'author' => 'Auteur',
+    'post' => 'Article',
+    'posted_at' => 'Posté le',
   ],
 
   'placeholder' => [
