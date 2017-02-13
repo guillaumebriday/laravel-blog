@@ -30,15 +30,4 @@ class UserPolicy
     {
         return $current_user->id === $user->id;
     }
-
-    /**
-     * Determine whether the user can update the user's roles.
-     *
-     * @param  \App\User  $user
-     * @return bool
-     */
-    public function update_roles(User $user)
-    {
-        return $user->isAdmin();
-    }
 }

@@ -75,25 +75,6 @@ class UsersControllerTest extends BrowserKitTest
         $this->assertRedirectedToRoute('users.show', ['id' => $user->id]);
     }
 
-    public function testUpdateRoles()
-    {
-        $admin = factory(User::class)->create();
-        $role_admin = factory(Role::class)->states('admin')->create();
-        $role_editor = factory(Role::class)->states('editor')->create();
-        $admin->roles()->attach($role_admin);
-
-        $params = [
-            'name' => 'Palpatine',
-            'email' => 'darthsidious@deathstar.ds',
-            'roles' => ['editor' => $role_editor->id]
-        ];
-
-        $response = $this->actingAs($admin)->call('PATCH', route('users.update', $admin->id), $params);
-
-        $this->assertRedirectedToRoute('users.show', ['id' => $admin->id]);
-        $this->assertTrue($admin->roles->pluck('id')->contains($role_editor->id));
-    }
-
     public function testUpdateFail()
     {
         $user = factory(User::class)->create();

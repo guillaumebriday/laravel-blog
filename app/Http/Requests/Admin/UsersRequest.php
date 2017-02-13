@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +28,7 @@ class UsersRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $this->user->id,
             'password' => 'nullable|confirmed',
+            'roles.*' => 'exists:roles,id'
         ];
     }
 }

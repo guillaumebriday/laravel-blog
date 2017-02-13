@@ -64,7 +64,6 @@ class UsersViewsTest extends BrowserKitTest
         $this->actingAs($admin)
             ->visit(route('users.edit', $admin))
             ->type($faker->name, 'name')
-            ->check('roles[1]')
             ->press(__('forms.actions.save'))
             ->see(__('users.updated'));
     }
