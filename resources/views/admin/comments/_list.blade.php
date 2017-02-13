@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <caption>{{ trans_choice('comments.count', $comments->total()) }}</caption>
+    <thead>
+        <tr>
+            <th>{{ __('comments.attributes.content') }}</th>
+            <th>{{ __('comments.attributes.post') }}</th>
+            <th>{{ __('comments.attributes.author') }}</th>
+            <th>{{ __('comments.attributes.posted_at') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($comments as $comment)
+            <tr>
+                <td>{{ $comment->content }}</td>
+                <td>{{ link_to_route('posts.show', $comment->post->title, $comment->post) }}</td>
+                <td>{{ link_to_route('users.show', user_name($comment->author), $comment->author) }}</td>
+                <td>{{ humanize_date($comment->posted_at, 'd/m/Y H:i:s') }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+<div class="text-center">
+    {{ $comments->links() }}
+</div>
