@@ -4,6 +4,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Comment;
 use App\User;
 use App\Role;
+use Faker\Factory;
+use Carbon\Carbon;
 
 class AdminCommentsViewsTest extends BrowserKitTest
 {
@@ -57,5 +59,23 @@ class AdminCommentsViewsTest extends BrowserKitTest
             ->see($comment->content)
             ->see(humanize_date($comment->posted_at, 'd/m/Y H:i:s'))
             ->see(__('forms.actions.update'));
+    }
+
+    public function testCommentForm()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $author = factory(User::class)->create();
+        $comment = factory(Comment::class)->create();
+        $posted_at = Carbon::parse($comment->post->posted_at)->addDay();
+        $faker = Factory::create();
+
+        $this->actingAs($admin)
+            ->visit(route('admin.comments.edit', $comment))
+            ->type($faker->paragraph, 'content')
+            ->type($posted_at->format('d/m/Y H:i:s'), 'posted_at')
+            ->select($author->id, 'author_id')
+            ->press(__('forms.actions.update'))
+            ->see(__('comments.updated'));
     }
 }
