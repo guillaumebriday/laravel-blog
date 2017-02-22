@@ -20,4 +20,16 @@ class AdminCommentsControllerTest extends BrowserKitTest
         $this->assertResponseOk();
         $this->assertViewHas('comments');
     }
+
+    public function testEdit()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $comment = factory(Comment::class)->create();
+
+        $response = $this->actingAs($admin)->call('GET', route('admin.comments.edit', $comment->first()));
+        $this->assertResponseOk();
+        $this->assertViewHas('comment');
+        $this->assertViewHas('users');
+    }
 }
