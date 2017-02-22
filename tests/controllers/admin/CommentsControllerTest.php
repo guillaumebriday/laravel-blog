@@ -84,4 +84,16 @@ class AdminCommentsControllerTest extends BrowserKitTest
         $this->assertSessionHasErrors('posted_at');
         $this->assertResponseStatus('302');
     }
+
+    public function testDelete()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $comment = factory(Comment::class)->create();
+
+        $response = $this->actingAs($admin)->call('DELETE', route('admin.comments.destroy', $comment));
+
+        $this->notSeeInDatabase('comments', $comment->toArray());
+        $this->assertRedirectedToRoute('admin.comments.index');
+    }
 }
