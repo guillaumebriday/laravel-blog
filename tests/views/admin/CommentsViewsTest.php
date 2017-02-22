@@ -78,4 +78,17 @@ class AdminCommentsViewsTest extends BrowserKitTest
             ->press(__('forms.actions.update'))
             ->see(__('comments.updated'));
     }
+
+    public function testDeletePostForm()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $comment = factory(Comment::class)->create();
+
+        $this->actingAs($admin)
+            ->visit(route('admin.comments.edit', $comment))
+            ->press(__('comments.delete'))
+            ->seeRouteIs('admin.comments.index')
+            ->see(__('comments.deleted'));
+    }
 }
