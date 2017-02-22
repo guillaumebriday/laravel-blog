@@ -44,4 +44,18 @@ class AdminCommentsViewsTest extends BrowserKitTest
             ->see(trans_choice('comments.count', $comments->count()))
             ->see($comments->first()->content);
     }
+
+    public function testCommentEdit()
+    {
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $comment = factory(Comment::class)->create();
+
+        $this->actingAs($admin)
+            ->visit(route('admin.comments.edit', $comment))
+            ->see($comment->post->title)
+            ->see($comment->content)
+            ->see(humanize_date($comment->posted_at, 'd/m/Y H:i:s'))
+            ->see(__('forms.actions.update'));
+    }
 }
