@@ -41,4 +41,17 @@ class CommentsController extends Controller
 
         return redirect()->route('admin.comments.edit', $comment)->withSuccess(__('comments.updated'));
     }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  Comment  $comment
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+
+        return redirect()->route('admin.comments.index')->with('success', __('comments.deleted'));
+    }
 }
