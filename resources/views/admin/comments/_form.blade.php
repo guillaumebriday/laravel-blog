@@ -15,6 +15,10 @@
         {!! Form::textarea('content', null, ['class' => 'form-control', 'required' => 'required']) !!}
     </div>
 
-    {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary pull-left']) !!}
 
+{!! Form::close() !!}
+
+{!! Form::model($comment, ['method' => 'DELETE', 'route' => ['admin.comments.destroy', $comment], 'class' => 'form-inline pull-right', 'data-confirm' => __('forms.comments.delete')]) !!}
+    {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> ' . __('comments.delete'), ['class' => 'btn btn-link text-danger', 'name' => 'submit', 'type' => 'submit']) !!}
 {!! Form::close() !!}
