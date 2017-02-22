@@ -33,4 +33,4 @@ php-cs-fixer:
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install --no-progress --no-interaction --optimize-autoloader
   script:
-    - vendor/bin/php-cs-fixer fix . --rules=@PSR2 --dry-run --verbose --using-cache=no --diff
+    - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
