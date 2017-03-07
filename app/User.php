@@ -20,7 +20,14 @@ class User extends Authenticatable
         'name', 'email', 'password', 'provider', 'provider_id', 'registered_at'
     ];
 
-    public $dates = [ 'registered_at' ];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'registered_at'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
