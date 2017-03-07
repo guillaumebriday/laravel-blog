@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Role;
 
@@ -20,7 +19,7 @@ class DatabaseSeeder extends Seeder
             $user = User::create([
                 'name' => 'anakin',
                 'email' => 'darthvader@deathstar.ds',
-                'password' => Hash::make('4nak1n')
+                'password' => bcrypt('4nak1n')
             ]);
         }
 

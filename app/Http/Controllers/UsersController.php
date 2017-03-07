@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UsersRequest;
 use App\User;
 use App\Role;
@@ -51,7 +50,7 @@ class UsersController extends Controller
         $user->email = $request->input('email');
 
         if ($request->input('password') != '') {
-            $user->password = Hash::make($request->input('password'));
+            $user->password = bcrypt($request->input('password'));
         }
 
         $user->save();
