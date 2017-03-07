@@ -20,7 +20,14 @@ class User extends Authenticatable
         'name', 'email', 'password', 'provider', 'provider_id', 'registered_at'
     ];
 
-    public $dates = [ 'registered_at' ];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'registered_at'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -31,6 +38,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Scope a query to only include users registered last week.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('registered_at', [Carbon::now()->subWeek(), Carbon::now()])
@@ -58,16 +71,31 @@ class User extends Authenticatable
         return $this->hasRole(Role::ROLE_ADMIN);
     }
 
+    /**
+    * Return the user's posts
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
     public function posts()
     {
         return $this->hasMany('App\Post', 'author_id');
     }
 
+    /**
+    * Return the user's comments
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
     public function comments()
     {
         return $this->hasMany('App\Comment', 'author_id');
     }
 
+    /**
+    * Return the user's roles
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
     public function roles()
     {
         return $this->belongsToMany('App\Role')->withTimestamps();
