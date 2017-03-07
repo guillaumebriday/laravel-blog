@@ -1,30 +1,41 @@
 <?php
 
+namespace Tests;
+
 use Illuminate\Contracts\Console\Kernel;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
+use App\User;
+use App\Role;
 
 abstract class BrowserKitTest extends BaseTestCase
 {
+    use CreatesApplication;
+
     /**
      * The base URL to use while testing the application.
      *
      * @var string
      */
-    protected $baseUrl = 'http://192.168.42.16';
+    protected $baseUrl = 'http://laravel.blog';
 
     /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
+     * Return an admin user
+     * @return User $admin
      */
-    public function createApplication()
+    protected function admin()
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
 
-        $app->loadEnvironmentFrom('.env.testing');
+        return $admin;
+    }
 
-        $app->make(Kernel::class)->bootstrap();
-
-        return $app;
+    /**
+     * Return an user
+     * @return User
+     */
+    protected function user()
+    {
+        return factory(User::class)->create();
     }
 }

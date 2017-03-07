@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Controllers\Admin;
+
+use Tests\BrowserKitTest;
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Role;

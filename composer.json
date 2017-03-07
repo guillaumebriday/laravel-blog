@@ -34,9 +34,6 @@
         ]
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/BrowserKitTest.php"
-        ],
         "psr-4": {
             "Tests\\": "tests/"
         }
