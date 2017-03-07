@@ -6,66 +6,58 @@ use Tests\BrowserKitTest;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
-use App\Role;
 use Faker\Factory;
 
 class AdminUsersViewsTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
+    /**
+     * it clicks on user edit link in admin users index
+     * @return void
+     */
     public function testUserIndexEditLink()
     {
-        $admin = factory(User::class)->create();
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
-        $user = factory(User::class)->create();
+        $admin = $this->admin();
+        $anakin = factory(User::class)->states('anakin')->create();
 
         $this->actingAs($admin)
-            ->visit(route('admin.users.index'))
-            ->click(user_name($user))
-            ->seeRouteIs('admin.users.edit', $user);
+            ->visit('/admin/users')
+            ->click('Anakin')
+            ->seeRouteIs('admin.users.edit', $anakin);
     }
 
-    public function testUserEdit()
-    {
-        $faker = Factory::create();
-        $admin = factory(User::class)->create();
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
-        $user = factory(User::class)->create();
-
-        $this->actingAs($admin)
-            ->visit(route('admin.users.edit', $user))
-            ->see(user_name($user))
-            ->see(__('forms.actions.update'))
-            ->see(__('roles.admin'))
-            ->see($user->email);
-    }
-
+    /**
+     * it clicks on user profil link in user edit admin view
+     * @return void
+     */
     public function testUserProfilViewLink()
     {
-        $faker = Factory::create();
-        $admin = factory(User::class)->create();
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
-        $user = factory(User::class)->create();
+        $admin = $this->admin();
+        $user = $this->user();
 
         $this->actingAs($admin)
-            ->visit(route('admin.users.edit', $user))
-            ->click(__('users.show'))
+            ->visit("/admin/users/{$user->id}/edit")
+            ->click('Voir le profil')
             ->seeRouteIs('users.show', $user);
     }
 
+    /**
+     * it updates the user through admin edit form
+     * @return void
+     */
     public function testUserUpdate()
     {
         $faker = Factory::create();
-        $admin = factory(User::class)->create();
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
-        $user = factory(User::class)->create();
+        $admin = $this->admin();
+        $user = $this->user();
 
         $this->actingAs($admin)
-            ->visit(route('admin.users.edit', $user))
+            ->visit("/admin/users/{$user->id}/edit")
             ->type($faker->name, 'name')
             ->type($faker->email, 'email')
             ->check('roles[1]')
-            ->press(__('forms.actions.update'))
-            ->see(__('users.updated'));
+            ->press('Mettre à jour')
+            ->see('Le profil a bien été mis à jour');
     }
 }
