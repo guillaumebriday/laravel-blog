@@ -1,16 +1,23 @@
 <?php
 
+namespace Tests\Unit;
+
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use App\Role;
 use Faker\Factory;
 use Carbon\Carbon;
 
-class UserTest extends BrowserKitTest
+class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function testHasRole()
+    /**
+     * it checks if user has a specific role
+     * @return void
+     */
+    public function testUserHasRole()
     {
         $user = factory(User::class)->create();
         $role = factory(Role::class)->create();
@@ -19,17 +26,26 @@ class UserTest extends BrowserKitTest
         $this->assertTrue($user->hasRole($role->name));
     }
 
-    public function testIsAdmin()
+    /**
+     * it checks if user is admin
+     * @return void
+     */
+    public function testUserIsAdmin()
     {
         $admin = factory(User::class)->create();
         $role_editor = factory(Role::class)->states('editor')->create();
         $role_admin = factory(Role::class)->states('admin')->create();
+
         $admin->roles()->sync([$role_admin->id, $role_editor->id]);
 
         $this->assertTrue($admin->isAdmin());
     }
 
-    public function testIsAdminFail()
+    /**
+     * it checks if user is not admin
+     * @return void
+     */
+    public function testUserIsNotAdmin()
     {
         $user = factory(User::class)->create();
         $role_editor = factory(Role::class)->states('editor')->create();
@@ -38,6 +54,10 @@ class UserTest extends BrowserKitTest
         $this->assertFalse($user->isAdmin());
     }
 
+    /**
+     * it retrieves only users registered last week
+     * @return void
+     */
     public function testGettingOnlyLastWeekUsers()
     {
         $faker = Factory::create();
@@ -64,5 +84,16 @@ class UserTest extends BrowserKitTest
         }
 
         $this->assertTrue($isDuringLastWeek);
+    }
+
+    /**
+     * it tests the user_name helper
+     * @return void
+     */
+    public function testUserName()
+    {
+        $user = factory(User::class)->create(['name' => 'LEIA']);
+
+        $this->assertEquals('Leia', user_name($user));
     }
 }

@@ -1,38 +1,33 @@
 <?php
 
-abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
+namespace Tests;
+
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use App\User;
+use App\Role;
+
+abstract class TestCase extends BaseTestCase
 {
+    use CreatesApplication;
+
     /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
+     * Return an admin user
+     * @return User $admin
      */
-    protected $baseUrl = 'http://192.168.42.16';
-
-
-    public function setUp()
+    protected function admin()
     {
-        parent::setUp();
-        Artisan::call('migrate');
-    }
+        $admin = factory(User::class)->create();
+        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
 
-    public function tearDown()
-    {
-        Artisan::call('migrate:reset');
-        parent::tearDown();
+        return $admin;
     }
 
     /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
+     * Return an user
+     * @return User
      */
-    public function createApplication()
+    protected function user()
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-
-        return $app;
+        return factory(User::class)->create();
     }
 }
