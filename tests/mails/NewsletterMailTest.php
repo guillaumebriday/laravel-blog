@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Mails;
+
+use Tests\BrowserKitTest;
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Newsletter;

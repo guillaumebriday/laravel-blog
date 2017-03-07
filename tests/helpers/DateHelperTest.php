@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Helpers;
+
+use Tests\BrowserKitTest;
+
 use Carbon\Carbon;
 
 class DateHelperTest extends BrowserKitTest

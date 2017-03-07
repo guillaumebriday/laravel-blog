@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Models;
+
+use Tests\BrowserKitTest;
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Comment;
 use Carbon\Carbon;
