@@ -19,7 +19,14 @@ class Comment extends Model
       'posted_at'
     ];
 
-    public $dates = [ 'posted_at' ];
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'posted_at'
+    ];
 
     public function scopeLastWeek($query)
     {
