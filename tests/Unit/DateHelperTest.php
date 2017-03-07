@@ -1,13 +1,16 @@
 <?php
 
-namespace Tests\Helpers;
+namespace Tests\Unit;
 
-use Tests\BrowserKitTest;
-
+use Tests\TestCase;
 use Carbon\Carbon;
 
-class DateHelperTest extends BrowserKitTest
+class DateHelperTest extends TestCase
 {
+    /**
+     * it checks if the format returned is the default one
+     * @return void
+     */
     public function testHumanizeDate()
     {
         $date = Carbon::now();
@@ -15,6 +18,10 @@ class DateHelperTest extends BrowserKitTest
         $this->assertEquals($date->format('d F Y, H:i'), humanize_date($date));
     }
 
+    /**
+     * it checks if the format returned is the specified one
+     * @return void
+     */
     public function testHumanizeDateFormat()
     {
         $date = Carbon::now();
