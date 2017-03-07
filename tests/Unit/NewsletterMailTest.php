@@ -1,23 +1,25 @@
 <?php
 
-namespace Tests\Mails;
+namespace Tests\Unit;
 
-use Tests\BrowserKitTest;
-
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Newsletter;
-
 use App\Post;
 use App\User;
 
-class NewsletterMailTest extends BrowserKitTest
+class NewsletterMailTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * it checks if the newsletter is sent
+     * @return void
+     */
     public function testNewsletterMail()
     {
-        $user = factory(User::class)->create();
+        $user = $this->user();
         $posts = factory(Post::class, 10)->create();
 
         Mail::fake();
