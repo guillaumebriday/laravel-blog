@@ -1,30 +1,18 @@
 <?php
 
+namespace Tests;
+
 use Illuminate\Contracts\Console\Kernel;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
 abstract class BrowserKitTest extends BaseTestCase
 {
+    use CreatesApplication;
+
     /**
      * The base URL to use while testing the application.
      *
      * @var string
      */
-    protected $baseUrl = 'http://192.168.42.16';
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->loadEnvironmentFrom('.env.testing');
-
-        $app->make(Kernel::class)->bootstrap();
-
-        return $app;
-    }
+    protected $baseUrl = 'http://laravel.blog';
 }
