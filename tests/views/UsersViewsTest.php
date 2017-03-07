@@ -5,80 +5,54 @@ namespace Tests\Views;
 use Tests\BrowserKitTest;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use App\Post;
 use App\User;
-use App\Role;
-use App\Comment;
 use Faker\Factory;
 
 class UsersViewsTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
+    /**
+     * it clicks on my profil link in dropdown
+     * @return void
+     */
     public function testUserShowLink()
     {
-        $user = factory(User::class)->create();
+        $user = $this->user();
 
         $this->actingAs($user)
             ->visit('/')
-            ->click(__('users.profil'))
+            ->click('Mon profil')
             ->seeRouteIs('users.show', $user);
     }
 
-    public function testUserProfil()
-    {
-        $user = factory(User::class)->create();
-
-        $this->actingAs($user)
-            ->visit(route('users.show', $user))
-            ->see(__('users.nb_of_comments'))
-            ->see(__('users.nb_of_posts'))
-            ->see(__('users.edit'))
-            ->see(__('roles.none'));
-    }
-
-    public function testUserProfilRoles()
-    {
-        $user = factory(User::class)->create();
-        $role_admin = factory(Role::class)->states('admin')->create();
-        $role_editor = factory(Role::class)->states('editor')->create();
-
-        $this->actingAs($user)
-            ->visit(route('users.show', $user))
-            ->see(__('roles.admin'))
-            ->see(__('roles.editor'));
-    }
-
+    /**
+     * it clicks on edition link in user profil
+     * @return void
+     */
     public function testUserEditLink()
     {
-        $user = factory(User::class)->create();
+        $user = $this->user();
 
         $this->actingAs($user)
-            ->visit(route('users.show', $user))
-            ->click(__('users.edit'))
+            ->visit("/users/{$user->id}")
+            ->click('Éditer')
             ->seeRouteIs('users.edit', $user);
     }
 
-    public function testUserEdit()
+    /**
+     * it updates the user through edit form
+     * @return void
+     */
+    public function testUserUpdate()
     {
+        $user = $this->user();
         $faker = Factory::create();
-        $admin = factory(User::class)->create();
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
-
-        $this->actingAs($admin)
-            ->visit(route('users.edit', $admin))
-            ->type($faker->name, 'name')
-            ->press(__('forms.actions.save'))
-            ->see(__('users.updated'));
-    }
-
-    public function testUserEditRoles()
-    {
-        $user = factory(User::class)->create();
-        $role = factory(Role::class)->states('admin')->create();
 
         $this->actingAs($user)
-            ->visit(route('users.edit', $user))
-            ->dontSee(__('roles.admin'));
+            ->visit("/users/{$user->id}/edit")
+            ->type($faker->name, 'name')
+            ->press('Sauvegarder')
+            ->see('Le profil a bien été mis à jour');
     }
 }
