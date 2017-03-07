@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Views\Admin;
+namespace Tests\Browser\Admin;
 
 use Tests\BrowserKitTest;
 
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\User;
 use Faker\Factory;
 
-class AdminUsersViewsTest extends BrowserKitTest
+class UsersBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
