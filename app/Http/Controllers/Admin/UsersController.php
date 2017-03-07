@@ -39,7 +39,7 @@ class UsersController extends Controller
         $user->email = $request->input('email');
 
         if ($request->input('password') != '') {
-            $user->password = Hash::make($request->input('password'));
+            $user->password = bcrypt($request->input('password'));
         }
 
         $user->save();
