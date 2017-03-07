@@ -64,10 +64,6 @@ class Post extends Model
      */
     public function excerpt($length = 50)
     {
-        if (strlen($this->content) > $length) {
-            return  substr($this->content, 0, $length) . '...';
-        } else {
-            return $this->content;
-        }
+        return str_limit($this->content, $length);
     }
 }
