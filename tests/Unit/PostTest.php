@@ -1,30 +1,44 @@
 <?php
 
-namespace Tests\Models;
+namespace Tests\Unit;
 
-use Tests\BrowserKitTest;
-
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Post;
-use App\Comment;
-use App\User;
-use App\Role;
 use Faker\Factory;
 use Carbon\Carbon;
 
-class PostTest extends BrowserKitTest
+class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * it returns only the right number of posts
+     * @return void
+     */
     public function testLimitLastMonthPosts()
     {
-        $posts = factory(Post::class, 30)->create();
         $limit = 5;
+        $posts = factory(Post::class, 30)->create();
         $lastPosts = Post::lastMonth($limit)->get();
 
         $this->assertEquals($limit, $lastPosts->count());
     }
 
+    /**
+     * it fills the created_at field when a post is posted
+     * @return void
+     */
+    public function testCreatedAt()
+    {
+        $post = factory(Post::class)->create();
+        $this->assertEquals($post->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
+    }
+
+    /**
+     * it returns only posts posted last month
+     * @return void
+     */
     public function testGettingOnlyLastMonthPosts()
     {
         $faker = Factory::create();
@@ -53,6 +67,10 @@ class PostTest extends BrowserKitTest
         $this->assertTrue($isDuringLastMonth);
     }
 
+    /**
+     * it returns only posts posted last week
+     * @return void
+     */
     public function testGettingOnlyLastWeekPosts()
     {
         $faker = Factory::create();
@@ -81,35 +99,14 @@ class PostTest extends BrowserKitTest
         $this->assertTrue($isDuringLastWeek);
     }
 
-    public function testCreatedAt()
-    {
-        $post = factory(Post::class)->create();
-        $this->assertEquals($post->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
-    }
-
-    public function testRelationWithAuthor()
-    {
-        $post = factory(Post::class)->create();
-        $this->assertEquals($post->author_id, $post->author->id);
-    }
-
-    public function testRelationWithComments()
-    {
-        $post = factory(Post::class)->create();
-        $comments = factory(Comment::class, 5)->create(['post_id' => $post->id]);
-
-        $comment = factory(Comment::class)->create(['post_id' => $post->id]);
-
-        $this->assertContains($comment->id, $post->comments->pluck('id'));
-    }
-
+    /**
+     * it returns only posts posted before now
+     * @return void
+     */
     public function testPostedAtScopeApplied()
     {
-        $older_post = factory(Post::class)->create();
-        $older_post->update(['posted_at' => Carbon::yesterday()]);
-
-        $newer_post = factory(Post::class)->create();
-        $newer_post->update(['posted_at' => Carbon::tomorrow()]);
+        factory(Post::class)->create()->update(['posted_at' => Carbon::yesterday()]);
+        factory(Post::class)->create()->update(['posted_at' => Carbon::tomorrow()]);
 
         $isBeforeNow = true;
         foreach (Post::all() as $post) {
@@ -120,18 +117,16 @@ class PostTest extends BrowserKitTest
         $this->assertEquals(1, Post::count());
     }
 
+    /**
+     * it does not return only posts posted before now if user is an admin
+     * @return void
+     */
     public function testPostedAtScopeNotApplied()
     {
-        $admin = factory(User::class)->create();
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $this->actingAs($this->admin());
 
-        $this->actingAs($admin);
-
-        $older_post = factory(Post::class)->create();
-        $older_post->update(['posted_at' => Carbon::yesterday()]);
-
-        $newer_post = factory(Post::class)->create();
-        $newer_post->update(['posted_at' => Carbon::tomorrow()]);
+        factory(Post::class)->create()->update(['posted_at' => Carbon::yesterday()]);
+        factory(Post::class)->create()->update(['posted_at' => Carbon::tomorrow()]);
 
         $isBeforeNow = true;
         foreach (Post::all() as $post) {
