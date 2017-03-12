@@ -80,8 +80,6 @@ Plus de détails sont disponibles ou à venir sur [le blog de Guillaume Briday](
 
 ## Todo
 
-- [ ] Migrer les tests vers la syntaxe de laravel 5.4
-- [ ] Rajouter des tests
 - [ ] Répondre à un commentaire
 - [ ] Ajouter une sécurité sur la newsletter
 - [ ] Ajouter la traduction en anglais et adapter les routes
