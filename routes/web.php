@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'name
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'PostsController@index')->name('home');
+    Route::get('/files/{filename}', 'MediaController@getFile')->name('files');
     Route::get('/posts/feed', 'PostsController@feed')->name('posts.feed');
     Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show']]);
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
