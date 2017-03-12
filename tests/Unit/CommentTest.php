@@ -1,36 +1,31 @@
 <?php
 
-namespace Tests\Models;
+namespace Tests\Unit;
 
-use Tests\BrowserKitTest;
-
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Comment;
-use Carbon\Carbon;
 use Faker\Factory;
+use Carbon\Carbon;
 
-class CommentTest extends BrowserKitTest
+class CommentTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /**
+     * it fills the created_at field when a comment is posted
+     * @return void
+     */
     public function testCreatedAt()
     {
         $comment = factory(Comment::class)->create();
         $this->assertEquals($comment->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
 
-    public function testRelationWithAuthor()
-    {
-        $comment = factory(Comment::class)->create();
-        $this->assertEquals($comment->author_id, $comment->author->id);
-    }
-
-    public function testRelationWithPost()
-    {
-        $comment = factory(Comment::class)->create();
-        $this->assertEquals($comment->post_id, $comment->post->id);
-    }
-
+    /**
+     * it returns only comments posted last month
+     * @return void
+     */
     public function testGettingOnlyLastWeekComments()
     {
         $faker = Factory::create();
