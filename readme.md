@@ -2,92 +2,83 @@
 
 # Laravel 5.4 blog
 
-Ce dépôt a pour vocation de montrer les bonnes pratiques de développement sur [Laravel](http://laravel.com/) ainsi que de presenter plusieurs cas concrets d'utilisations des fonctionnalités du framework comme :
+The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's functionalities like :
 
-- [La localisation](https://laravel.com/docs/5.4/localization)
-- [La programmation parallèle et asynchrone (Queue)](https://laravel.com/docs/5.4/queues)
-- [Les migrations](https://laravel.com/docs/5.4/migrations)
-- [Les seeds & factories](https://laravel.com/docs/5.4/seeding)
-- [Les tests](https://laravel.com/docs/5.4/testing)
-- [Les templates, partials et components](https://laravel.com/docs/5.4/blade)
-- [Les policies](https://laravel.com/docs/5.4/authorization)
-- [Les providers](https://laravel.com/docs/5.4/providers)
-- [Les requests](https://laravel.com/docs/5.4/validation#form-request-validation)
-- [Les helpers](https://laravel.com/docs/5.4/helpers)
-- [Les mails](https://laravel.com/docs/5.4/mail)
-- [Le cache](https://laravel.com/docs/5.4/cache)
-
-## Informations
-
-L'application est prévue pour être internationalisé. Actuellement, seule la traduction française est disponible.
+- [Localization](https://laravel.com/docs/5.4/localization)
+- [Jobs & Queues](https://laravel.com/docs/5.4/queues)
+- [Migrations](https://laravel.com/docs/5.4/migrations)
+- [Seeding & Factories](https://laravel.com/docs/5.4/seeding)
+- [Testing](https://laravel.com/docs/5.4/testing)
+- [Blade](https://laravel.com/docs/5.4/blade)
+- [Policies](https://laravel.com/docs/5.4/authorization)
+- [Providers](https://laravel.com/docs/5.4/providers)
+- [Requests](https://laravel.com/docs/5.4/validation#form-request-validation)
+- [Helpers](https://laravel.com/docs/5.4/helpers)
+- [Mail](https://laravel.com/docs/5.4/mail)
+- [Cache](https://laravel.com/docs/5.4/cache)
 
 ## Installation
 
-Vous pouvez utiliser [Laravel homestead](https://laravel.com/docs/5.4/homestead) pour installer le projet sur un environnement local.
+You can use [Laravel homestead](https://laravel.com/docs/5.4/homestead) to setup your local development environment. On other environment, make sure the [default requirements](https://laravel.com/docs/5.4#installation) are available.
 
-## Quelques commandes
+## Before starting
 
-Initialisation du projet :
 ```
 $ composer install
 $ npm install
 $ php artisan migrate
 ```
 
-Lancer les tests :
+## Useful commands
+
+Running tests :
 ```
 $ ./vendor/bin/phpunit
 ```
 
-Lancer php-cs-fixer :
+Running php-cs-fixer :
 ```
 $ ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
 
-Construire les assets :
+Compiling assets :
 ```
 $ npm run dev
 ```
 
-Lancer les seeds :
+Running seeders :
 ```
 $ php artisan db:seed
 ```
 
-Cela aura pour effet de créer un utilisateur. Vous pourrez alors l'utiliser pour vous connecter à l'application :
-Identifiant : ```darthvader@deathstar.ds```
-Mot de passe : ```4nak1n```
+This will create a new user that you can use to sign in.
+Email : ```darthvader@deathstar.ds```
+Password : ```4nak1n```
 
-Créer des données de tests :
+Generating fake data :
 ```
 $ php artisan db:seed --class=DevDatabaseSeeder
 ```
 
-Lancer le worker de queue :
+Running the queue worker :
 ```
 $ php artisan queue:work
 ```
 
-Lancer le job pour la newsletter :
+Starting job for newsletter :
 ```
 $ php artisan tinker
 > dispatch(new App\Jobs\PrepareNewsletterSubscriptionEmail());
 ```
 
-## Plus de détails
+## More details
 
-Plus de détails sont disponibles ou à venir sur [le blog de Guillaume Briday](https://blog.guillaumebriday.fr).
+More details are available or to come on [Guillaume Briday's blog](https://blog.guillaumebriday.fr) (French).
 
-## Todo
+## Contributing
 
-- [ ] Répondre à un commentaire
-- [ ] Ajouter une sécurité sur la newsletter
-- [ ] Ajouter la traduction en anglais et adapter les routes
-
-## Contribution
-
-N'hésitez pas à contribuer au projet en l'adaptant ou en y ajoutant des fonctionnalités ! Ouvrez des issues ou faites des Pull Requets, c'est fait pour.
+Do not hesitate to contribute to the project by adapting or adding features ! Bug reports or pull requests are welcome.
 
 ## License
 
-Ce projet est une application open-source sous licence [MIT](http://opensource.org/licenses/MIT).
+This project is released under the [MIT](http://opensource.org/licenses/MIT) license.
