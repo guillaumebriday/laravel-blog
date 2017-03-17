@@ -12,7 +12,7 @@
         @foreach($posts as $post)
             <tr>
                 <th>{{ link_to_route('admin.posts.edit', $post->title, $post) }}</th>
-                <td>{{ link_to_route('users.show', user_name($post->author), $post->author) }}</td>
+                <td>{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</td>
                 <td>{{ humanize_date($post->posted_at, 'd/m/Y H:i:s') }}</td>
                 <td><span class="badge">{{ $post->comments()->count() }}</span></td>
             </tr>

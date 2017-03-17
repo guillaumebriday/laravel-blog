@@ -1,6 +1,6 @@
 @component('components.panels.default')
     @slot('title')
-        <span>{{ link_to_route('users.show', user_name($comment->author), $comment->author) }}</span>
+        <span>{{ link_to_route('users.show', $comment->author->fullname, $comment->author) }}</span>
         <span class="pull-right">
             <time>{{ humanize_date($comment->posted_at) }}</time>
 

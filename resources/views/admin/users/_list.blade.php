@@ -11,7 +11,7 @@
     <tbody>
         @foreach($users as $user)
             <tr>
-                <th>{{ link_to_route('admin.users.edit', user_name($user), $user) }}</th>
+                <th>{{ link_to_route('admin.users.edit', $user->fullname, $user) }}</th>
                 <td>{{ $user->email }}</td>
                 <td>{{ humanize_date($user->registered_at, 'd/m/Y H:i:s') }}</td>
                 <td><span class="badge">{{ $user->posts()->count() }}</span></td>
