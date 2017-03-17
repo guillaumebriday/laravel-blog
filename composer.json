@@ -29,7 +29,6 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Helpers/user.php",
             "app/Helpers/date.php"
         ]
     },

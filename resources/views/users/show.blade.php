@@ -3,7 +3,7 @@
 @section('content')
     @component('components.panels.default')
         @slot('title')
-            <strong>{{ user_name($user) }}</strong>
+            <strong>{{ $user->fullname }}</strong>
         @endslot
 
         @include ('users/_profil')
