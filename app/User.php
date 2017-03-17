@@ -39,6 +39,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the user's fullname titleized.
+     *
+     * @return string
+     */
+    public function getFullnameAttribute()
+    {
+        return title_case($this->name);
+    }
+
+    /**
      * Scope a query to only include users registered last week.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
