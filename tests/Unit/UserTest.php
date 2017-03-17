@@ -94,6 +94,6 @@ class UserTest extends TestCase
     {
         $user = factory(User::class)->create(['name' => 'LEIA']);
 
-        $this->assertEquals('Leia', user_name($user));
+        $this->assertEquals('Leia', $user->fullname);
     }
 }
