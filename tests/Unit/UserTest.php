@@ -87,10 +87,10 @@ class UserTest extends TestCase
     }
 
     /**
-     * it tests the user_name helper
+     * it tests the fullname attribute
      * @return void
      */
-    public function testUserName()
+    public function testFullnameAttribute()
     {
         $user = factory(User::class)->create(['name' => 'LEIA']);
 
