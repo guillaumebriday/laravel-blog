@@ -26,13 +26,13 @@ class PostTest extends TestCase
     }
 
     /**
-     * it fills the created_at field when a post is posted
+     * it fills the posted_at field when a post is posted
      * @return void
      */
-    public function testCreatedAt()
+    public function testPostedAt()
     {
         $post = factory(Post::class)->create();
-        $this->assertEquals($post->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
+        $this->assertEquals($post->posted_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
 
     /**
