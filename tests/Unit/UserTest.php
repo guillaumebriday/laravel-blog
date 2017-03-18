@@ -96,4 +96,14 @@ class UserTest extends TestCase
 
         $this->assertEquals('Leia', $user->fullname);
     }
+
+    /**
+     * it fills the registered_at field when a user is created
+     * @return void
+     */
+    public function testRegisteredAt()
+    {
+        $user = factory(User::class)->create();
+        $this->assertEquals($user->registered_at->toDateTimeString(), Carbon::now()->toDateTimeString());
+    }
 }
