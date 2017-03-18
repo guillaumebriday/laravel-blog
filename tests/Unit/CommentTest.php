@@ -13,13 +13,13 @@ class CommentTest extends TestCase
     use DatabaseMigrations;
 
     /**
-     * it fills the created_at field when a comment is posted
+     * it fills the posted_at field when a comment is posted
      * @return void
      */
-    public function testCreatedAt()
+    public function testPostedAt()
     {
         $comment = factory(Comment::class)->create();
-        $this->assertEquals($comment->created_at->toDateTimeString(), Carbon::now()->toDateTimeString());
+        $this->assertEquals($comment->posted_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
 
     /**
