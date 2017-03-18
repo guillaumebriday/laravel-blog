@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Concern\Mediable;
 use App\Scopes\PostedScope;
 use Carbon\Carbon;
 
 class Post extends Model
 {
+    use Mediable;
+
     /**
     * The attributes that are mass assignable.
     *
