@@ -3,10 +3,15 @@
         {{ __('posts.add_article') }}
     @endslot
 
-    {!! Form::open(['route' => 'posts.store', 'method' => 'post']) !!}
+    {!! Form::open(['route' => 'posts.store', 'method' => 'post', 'files' => true]) !!}
         <div class="form-group">
           {!! Form::label('title', __('posts.attributes.title')) !!}
           {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('posts.placeholder.title')]) !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('thumbnail', __('posts.attributes.thumbnail')) !!}
+            {!! Form::file('thumbnail', ['accept' => 'image/*']) !!}
         </div>
 
         <div class="form-group">
