@@ -20,7 +20,8 @@ class Post extends Model
         'author_id',
         'title',
         'content',
-        'posted_at'
+        'posted_at',
+        'thumbnail_id'
     ];
 
     /**
