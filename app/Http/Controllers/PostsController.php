@@ -68,6 +68,10 @@ class PostsController extends Controller
             'content' => $request->input('content')
         ]);
 
+        if ($request->hasFile('thumbnail')) {
+            $post->storeAndSetThumbnail($request->file('thumbnail'));
+        }
+
         return redirect()->route('posts.show', $post)->with('success', __('posts.created'));
     }
 }
