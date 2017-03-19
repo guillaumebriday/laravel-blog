@@ -5,5 +5,9 @@
         <time class="pull-right">{{ humanize_date($post->posted_at) }}</time>
     @endslot
 
+    @if ($post->hasThumbnail())
+        {{ Html::image($post->thumbnail()->url, $post->thumbnail()->original_filename, ['class' => 'img-responsive']) }}
+    @endif
+
     {{ $post->content }}
 @endcomponent
