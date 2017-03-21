@@ -5,6 +5,8 @@ namespace Tests\Browser;
 use Tests\BrowserKitTest;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\User;
 use Faker\Factory;
@@ -49,12 +51,16 @@ class PostsBrowserTest extends BrowserKitTest
     public function testPostCreateForm()
     {
         $faker = Factory::create();
+        $file = UploadedFile::fake()->image('file.png');
 
         $this->actingAs($this->user())
             ->visit('/posts/create')
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
+            ->attach($file->getPathname(), 'thumbnail')
             ->press('Publier')
             ->see('Article créé avec succès');
+
+        Storage::delete(Post::first()->thumbnail()->filename);
     }
 }
