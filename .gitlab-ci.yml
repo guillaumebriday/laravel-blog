@@ -15,9 +15,8 @@ variables:
 phpunit:
   before_script:
     - apt-get update -yqq
-    - apt-get install git -yqq
-    - apt-get install zip unzip
-    - docker-php-ext-install pdo_mysql
+    - apt-get install zip unzip git libjpeg-dev libpng-dev libfreetype6-dev -yqq
+    - docker-php-ext-install gd pdo_mysql
     - curl -sS https://getcomposer.org/installer | php
     - php composer.phar install --no-progress --no-interaction --optimize-autoloader
     - cp .env.gitlab .env.testing

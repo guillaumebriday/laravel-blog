@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Comment;
 use App\User;
@@ -86,8 +88,16 @@ class PostTest extends TestCase
 
         $response = $this->actingAs($user)->post('/posts', $params);
 
+        $params = array_except($params, ['thumbnail']);
+        $post = Post::first();
+
         $response->assertStatus(302);
         $this->assertDatabaseHas('posts', $params);
+        $this->assertTrue($post->hasThumbnail());
+        $this->assertTrue(Storage::disk('local')->exists($post->thumbnail()->filename));
+        $this->assertEquals($post->thumbnail()->original_filename, 'file.png');
+
+        Storage::delete($post->thumbnail()->filename);
     }
 
     /**
@@ -116,7 +126,8 @@ class PostTest extends TestCase
     {
         return array_merge([
             'title' => 'Star Trek ?',
-            'content' => 'Star Wars.'
+            'content' => 'Star Wars.',
+            'thumbnail' => UploadedFile::fake()->image('file.png')
         ], $overrides);
     }
 }

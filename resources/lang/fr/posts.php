@@ -17,6 +17,7 @@ return [
     'title' => 'Titre',
     'content' => 'Contenu',
     'author' => 'Auteur',
+    'thumbnail' => 'Image à la une',
     'posted_at' => 'Posté le',
   ],
 

@@ -4,6 +4,9 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use App\Media;
 use App\Post;
 use Faker\Factory;
 use Carbon\Carbon;
@@ -135,5 +138,52 @@ class PostTest extends TestCase
 
         $this->assertFalse($isBeforeNow);
         $this->assertEquals(2, Post::count());
+    }
+
+    /**
+     * it checks if post has thumbnail
+     * @return void
+     */
+    public function testHasThumbnail()
+    {
+        $post = factory(Post::class)->create();
+        $media = factory(Media::class)->states('thumbnail')->create(['mediable_id' => $post->id]);
+
+        $post->update(['thumbnail_id' => $media->id]);
+
+        $this->assertTrue($post->hasThumbnail());
+    }
+
+    /**
+     * it retrieves the post's thumbnail
+     * @return void
+     */
+    public function testPostsThumbnail()
+    {
+        $post = factory(Post::class)->create();
+        $media = factory(Media::class)->states('thumbnail')->create(['mediable_id' => $post->id]);
+
+        $post->update(['thumbnail_id' => $media->id]);
+
+        $this->assertTrue(is_a($post->thumbnail(), 'App\Media'));
+        $this->assertEquals($post->thumbnail()->id, $media->id);
+    }
+
+    /**
+     * it stores and set the uploaded post's thumbnail
+     * @return void
+     */
+    public function testStoreAndSetThumbnail()
+    {
+        $post = factory(Post::class)->create();
+        $thumbnail = UploadedFile::fake()->image('file.png');
+
+        $post->storeAndSetThumbnail($thumbnail);
+
+        $this->assertTrue($post->hasThumbnail());
+        $this->assertTrue(Storage::disk('local')->exists($post->thumbnail()->filename));
+        $this->assertEquals($post->thumbnail()->original_filename, 'file.png');
+
+        Storage::delete($post->thumbnail()->filename);
     }
 }

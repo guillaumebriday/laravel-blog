@@ -3,11 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
+use App\Concern\Mediable;
 use App\Scopes\PostedScope;
 use Carbon\Carbon;
 
 class Post extends Model
 {
+    use Mediable;
+
     /**
     * The attributes that are mass assignable.
     *
@@ -17,7 +21,8 @@ class Post extends Model
         'author_id',
         'title',
         'content',
-        'posted_at'
+        'posted_at',
+        'thumbnail_id'
     ];
 
     /**
@@ -63,6 +68,44 @@ class Post extends Model
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
                      ->orderBy('posted_at', 'desc');
+    }
+
+    /**
+     * Check if the post has a valid thumbnail
+     *
+     * @return boolean
+     */
+    public function hasThumbnail()
+    {
+        return $this->hasMedia($this->thumbnail_id);
+    }
+
+    /**
+     * Retrieve the post's thumbnail
+     *
+     * @return mixed
+     */
+    public function thumbnail()
+    {
+        return $this->media()->where('id', $this->thumbnail_id)->first();
+    }
+
+    /**
+     * Store and set the post's thumbnail
+     *
+     * @return void
+     */
+    public function storeAndSetThumbnail(UploadedFile $thumbnail)
+    {
+        $thumbnail_name = $thumbnail->store('/');
+
+        $media = $this->media()->create([
+            'filename' => $thumbnail_name,
+            'original_filename' => $thumbnail->getClientOriginalName(),
+            'mime_type' => $thumbnail->getMimeType()
+        ]);
+
+        $this->update(['thumbnail_id' => $media->id]);
     }
 
     /**

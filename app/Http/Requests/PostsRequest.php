@@ -26,6 +26,7 @@ class PostsRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required|max:255',
+            'thumbnail' => 'image'
         ];
     }
 }
