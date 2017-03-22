@@ -15,4 +15,5 @@ return Config::create()
     ->setRules([
         '@PSR2' => true
     ])
+    ->setUsingCache(false)
     ->setFinder($finder);
