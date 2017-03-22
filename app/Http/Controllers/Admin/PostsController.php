@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        $posts = Post::orderBy('posted_at', 'desc')->paginate(50);
+        $posts = Post::withCount('comments')->orderBy('posted_at', 'desc')->paginate(50);
 
         return view('admin.posts.index')->withPosts($posts);
     }
