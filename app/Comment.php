@@ -41,6 +41,17 @@ class Comment extends Model
     }
 
     /**
+     * Scope a query to order comments by latest posted.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('posted_at', 'desc');
+    }
+
+    /**
     * Return the comment's author
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

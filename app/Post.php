@@ -46,6 +46,17 @@ class Post extends Model
     }
 
     /**
+     * Scope a query to order posts by latest posted
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('posted_at', 'desc');
+    }
+
+    /**
      * Scope a query to only include posts posted last month.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
