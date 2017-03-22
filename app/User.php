@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('registered_at', [Carbon::now()->subWeek(), Carbon::now()])
-                     ->orderBy('registered_at', 'desc');
+                     ->latest();
     }
 
     /**

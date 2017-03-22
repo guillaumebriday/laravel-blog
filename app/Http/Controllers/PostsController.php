@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        $posts = Post::orderBy('posted_at', 'desc')->paginate(20);
+        $posts = Post::latest()->paginate(20);
         return view('posts.index')->withPosts($posts);
     }
 
@@ -29,7 +29,7 @@ class PostsController extends Controller
     public function feed()
     {
         $posts = Cache::remember('feed-posts', 60, function () {
-            return Post::orderBy('posted_at', 'desc')->limit(20)->get();
+            return Post::latest()->limit(20)->get();
         });
 
         return response()->view('posts.feed', ['posts' => $posts], 200)->header('Content-Type', 'text/xml');
@@ -40,7 +40,7 @@ class PostsController extends Controller
     */
     public function show(Request $request, Post $post)
     {
-        $comments = $post->comments()->orderBy('posted_at', 'desc')->paginate(50);
+        $comments = $post->comments()->latest()->paginate(50);
         return view('posts.show')->withPost($post)->withComments($comments);
     }
 

@@ -17,7 +17,7 @@ class CommentsController extends Controller
     */
     public function index()
     {
-        $comments = Comment::orderBy('posted_at', 'desc')->paginate(50);
+        $comments = Comment::latest()->paginate(50);
 
         return view('admin.comments.index')->withComments($comments);
     }

@@ -65,7 +65,7 @@ class Post extends Model
     public function scopeLastMonth($query, $limit = 5)
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subMonth(), Carbon::now()])
-                     ->orderBy('posted_at', 'desc')
+                     ->latest()
                      ->limit($limit);
     }
 
@@ -78,7 +78,7 @@ class Post extends Model
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
-                     ->orderBy('posted_at', 'desc');
+                     ->latest();
     }
 
     /**

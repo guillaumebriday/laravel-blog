@@ -37,7 +37,7 @@ class Comment extends Model
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
-                     ->orderBy('posted_at', 'desc');
+                     ->latest();
     }
 
     /**
