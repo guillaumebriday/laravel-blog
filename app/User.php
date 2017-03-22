@@ -57,7 +57,18 @@ class User extends Authenticatable
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('registered_at', [Carbon::now()->subWeek(), Carbon::now()])
-                     ->orderBy('registered_at', 'desc');
+                     ->latest();
+    }
+
+    /**
+     * Scope a query to order users by latest registered.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('registered_at', 'desc');
     }
 
     /**

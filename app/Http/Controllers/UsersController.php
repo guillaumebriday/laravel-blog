@@ -15,8 +15,8 @@ class UsersController extends Controller
     */
     public function show(Request $request, User $user)
     {
-        $posts = $user->posts()->withCount('comments')->orderBy('posted_at', 'desc')->limit(5)->get();
-        $comments = $user->comments()->orderBy('posted_at', 'desc')->limit(5)->get();
+        $posts = $user->posts()->withCount('comments')->latest()->limit(5)->get();
+        $comments = $user->comments()->latest()->limit(5)->get();
         $roles = Role::all();
 
         return view('users.show')->with([

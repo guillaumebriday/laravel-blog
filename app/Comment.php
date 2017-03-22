@@ -37,7 +37,18 @@ class Comment extends Model
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
-                     ->orderBy('posted_at', 'desc');
+                     ->latest();
+    }
+
+    /**
+     * Scope a query to order comments by latest posted.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('posted_at', 'desc');
     }
 
     /**

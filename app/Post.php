@@ -46,6 +46,17 @@ class Post extends Model
     }
 
     /**
+     * Scope a query to order posts by latest posted
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLatest($query)
+    {
+        return $query->orderBy('posted_at', 'desc');
+    }
+
+    /**
      * Scope a query to only include posts posted last month.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -54,7 +65,7 @@ class Post extends Model
     public function scopeLastMonth($query, $limit = 5)
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subMonth(), Carbon::now()])
-                     ->orderBy('posted_at', 'desc')
+                     ->latest()
                      ->limit($limit);
     }
 
@@ -67,7 +78,7 @@ class Post extends Model
     public function scopeLastWeek($query)
     {
         return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
-                     ->orderBy('posted_at', 'desc');
+                     ->latest();
     }
 
     /**
