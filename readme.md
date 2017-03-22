@@ -16,6 +16,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Helpers](https://laravel.com/docs/5.4/helpers)
 - [Mail](https://laravel.com/docs/5.4/mail)
 - [Cache](https://laravel.com/docs/5.4/cache)
+- [Filesystem](https://laravel.com/docs/5.4/filesystem)
 
 ## Installation
 
