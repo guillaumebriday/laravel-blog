@@ -16,7 +16,7 @@ class UsersController extends Controller
     */
     public function index()
     {
-        $users = User::orderBy('registered_at', 'desc')->paginate(50);
+        $users = User::withCount('posts')->orderBy('registered_at', 'desc')->paginate(50);
 
         return view('admin.users.index')->withUsers($users);
     }
