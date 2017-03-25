@@ -13,19 +13,19 @@
 
 Auth::routes();
 
-Route::group(['prefix' => 'auth'], function () {
+Route::prefix('auth')->group(function () {
     Route::get('{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
     Route::get('{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin'], 'namespace' => 'Admin', 'as' => 'admin.'], function () {
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->namespace('Admin')->as('admin.')->group(function () {
     Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
     Route::resource('posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['index', 'edit', 'update']]);
     Route::resource('comments', 'CommentsController', ['only' => ['index', 'edit', 'update', 'destroy']]);
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::middleware('auth')->group(function () {
     Route::get('/', 'PostsController@index')->name('home');
     Route::get('/files/{filename}', 'MediaController@getFile')->name('files');
     Route::get('/posts/feed', 'PostsController@feed')->name('posts.feed');
