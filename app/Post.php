@@ -7,6 +7,8 @@ use Illuminate\Http\UploadedFile;
 use App\Concern\Mediable;
 use App\Scopes\PostedScope;
 use Carbon\Carbon;
+use App\Comment;
+use App\User;
 
 class Post extends Model
 {
@@ -126,7 +128,7 @@ class Post extends Model
     */
     public function author()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
@@ -136,7 +138,7 @@ class Post extends Model
     */
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany(Comment::class);
     }
 
     /**

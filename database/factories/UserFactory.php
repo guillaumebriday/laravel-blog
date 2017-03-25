@@ -1,8 +1,9 @@
 <?php
 
+use Faker\Generator;
 use App\User;
 
-$factory->define(User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Generator $faker) {
     static $password;
 
     return [
@@ -13,7 +14,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->state(User::class, 'anakin', function (Faker\Generator $faker) {
+$factory->state(User::class, 'anakin', function (Generator $faker) {
     return [
         'name' => 'Anakin',
         'email' => 'anakin@skywalker.st'
