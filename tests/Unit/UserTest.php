@@ -110,4 +110,16 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
         $this->assertEquals($user->registered_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
+
+    /**
+     * it returns a unique personnal access token
+     *
+     * @return void
+     */
+    public function testGenerateApiToken()
+    {
+        $user = factory(User::class)->create();
+
+        $this->assertNotEquals($user->api_token, User::generateApiToken());
+    }
 }
