@@ -30,4 +30,16 @@ class UserPolicy
     {
         return $current_user->id === $user->id;
     }
+
+    /**
+     * Determine whether the user can generate a personnal access token.
+     *
+     * @param  \App\User $current_user
+     * @param  \App\User $user
+     * @return bool
+     */
+    public function api_token(User $current_user, User $user)
+    {
+        return $current_user->id === $user->id;
+    }
 }
