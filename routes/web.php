@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show']]);
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
+    Route::post('/users/{user}/api_token', 'UsersController@api_token')->name('users.api_token');
     Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionsController', ['only' => ['store']]);
 });
 
