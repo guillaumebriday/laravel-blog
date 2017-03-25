@@ -22,6 +22,14 @@
         @endif
       </div>
 
+    @if ($user->api_token)
+      {!! Form::model($user, ['method' => 'DELETE', 'route' => ['users.destroy_api_token', $user]]) !!}
+        <div class="pull-left">
+          {!! Form::submit(__('forms.actions.delete'), ['class' => 'btn btn-danger', 'data-confirm' => __('forms.users.destroy_api_token')]) !!}
+        </div>
+      {!! Form::close() !!}
+    @endif
+
     {!! Form::model($user, ['method' => 'POST', 'route' => ['users.api_token', $user]]) !!}
       <div class="pull-right">
         {!! Form::submit(__('forms.actions.generate'), $data) !!}
