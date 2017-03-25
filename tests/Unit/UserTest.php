@@ -81,6 +81,10 @@ class UserTest extends TestCase
         $isDuringLastWeek = true;
         foreach (User::lastWeek()->get() as $user) {
             $isDuringLastWeek = $user->registered_at->between(Carbon::now()->subWeek(), Carbon::now());
+
+            if (! $isDuringLastWeek) {
+                break;
+            }
         }
 
         $this->assertTrue($isDuringLastWeek);
