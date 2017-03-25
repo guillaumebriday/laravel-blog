@@ -65,6 +65,10 @@ class PostTest extends TestCase
         $isDuringLastMonth = true;
         foreach (Post::lastMonth()->get() as $post) {
             $isDuringLastMonth = $post->posted_at->between(Carbon::now()->subMonth(), Carbon::now());
+
+            if (! $isDuringLastMonth) {
+                break;
+            }
         }
 
         $this->assertTrue($isDuringLastMonth);
@@ -97,6 +101,10 @@ class PostTest extends TestCase
         $isDuringLastWeek = true;
         foreach (Post::lastWeek()->get() as $post) {
             $isDuringLastWeek = $post->posted_at->between(Carbon::now()->subWeek(), Carbon::now());
+
+            if (! $isDuringLastWeek) {
+                break;
+            }
         }
 
         $this->assertTrue($isDuringLastWeek);
@@ -114,6 +122,10 @@ class PostTest extends TestCase
         $isBeforeNow = true;
         foreach (Post::all() as $post) {
             $isBeforeNow = $post->posted_at->lt(Carbon::now());
+
+            if (! $isBeforeNow) {
+                break;
+            }
         }
 
         $this->assertTrue($isBeforeNow);
@@ -134,6 +146,10 @@ class PostTest extends TestCase
         $isBeforeNow = true;
         foreach (Post::all() as $post) {
             $isBeforeNow = $post->posted_at->lt(Carbon::now());
+
+            if (! $isBeforeNow) {
+                break;
+            }
         }
 
         $this->assertFalse($isBeforeNow);
