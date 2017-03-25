@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Carbon\Carbon;
 use App\Role;
+use App\Comment;
+use App\Post;
 
 class User extends Authenticatable
 {
@@ -99,7 +101,7 @@ class User extends Authenticatable
     */
     public function posts()
     {
-        return $this->hasMany('App\Post', 'author_id');
+        return $this->hasMany(Post::class, 'author_id');
     }
 
     /**
@@ -109,7 +111,7 @@ class User extends Authenticatable
     */
     public function comments()
     {
-        return $this->hasMany('App\Comment', 'author_id');
+        return $this->hasMany(Comment::class, 'author_id');
     }
 
     /**
@@ -119,6 +121,6 @@ class User extends Authenticatable
     */
     public function roles()
     {
-        return $this->belongsToMany('App\Role')->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 }

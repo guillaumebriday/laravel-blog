@@ -2,6 +2,8 @@
 
 namespace App\Concern;
 
+use App\Media;
+
 trait Mediable
 {
 
@@ -21,6 +23,6 @@ trait Mediable
      */
     public function media()
     {
-        return $this->morphMany('App\Media', 'mediable');
+        return $this->morphMany(Media::class, 'mediable');
     }
 }

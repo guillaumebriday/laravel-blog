@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\User;
+use App\Post;
 
 class Comment extends Model
 {
@@ -58,7 +60,7 @@ class Comment extends Model
     */
     public function author()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
@@ -68,6 +70,6 @@ class Comment extends Model
     */
     public function post()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo(Post::class);
     }
 }
