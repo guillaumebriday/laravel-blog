@@ -133,6 +133,40 @@ class UserTest extends TestCase
     }
 
     /**
+     * it generates a personnal acces token
+     * @return void
+     */
+    public function testGenerateApiToken()
+    {
+        $user = $this->user(['api_token' => null]);
+
+        $response = $this->actingAs($user)->post("/users/{$user->id}/api_token", []);
+
+        $user = $user->fresh();
+
+        $response->assertStatus(302);
+        $response->assertRedirect("/users/{$user->id}/edit");
+        $this->assertNotNull($user->api_token);
+    }
+
+    /**
+     * it deletes a personnal acces token
+     * @return void
+     */
+    public function testDestroyApiToken()
+    {
+        $user = $this->user();
+
+        $response = $this->actingAs($user)->delete("/users/{$user->id}/destroy_api_token", []);
+
+        $user = $user->fresh();
+
+        $response->assertStatus(302);
+        $response->assertRedirect("/users/{$user->id}/edit");
+        $this->assertNull($user->api_token);
+    }
+
+    /**
      * it does not update other user
      * @return void
      */
