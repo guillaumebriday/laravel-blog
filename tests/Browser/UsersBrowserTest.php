@@ -55,4 +55,35 @@ class UsersBrowserTest extends BrowserKitTest
             ->press('Sauvegarder')
             ->see('Le profil a bien été mis à jour');
     }
+
+    /**
+     * it generates a personnal acces token
+     * @return void
+     */
+    public function testUserGenerateApiToken()
+    {
+        $user = $this->user(['api_token' => null]);
+
+        $this->actingAs($user)
+            ->visit("/users/{$user->id}/edit")
+            ->see("Aucune clé d'API disponible.")
+            ->press('Générer')
+            ->see("La clé d'API a bien été générée")
+            ->see('Supprimer');
+    }
+
+    /**
+     * it destroy a personnal acces token
+     * @return void
+     */
+    public function testUserDestroyApiToken()
+    {
+        $user = $this->user();
+
+        $this->actingAs($user)
+            ->visit("/users/{$user->id}/edit")
+            ->press('Supprimer')
+            ->see("La clé d'API a bien été supprimée")
+            ->see("Aucune clé d'API disponible");
+    }
 }
