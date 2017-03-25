@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at'
+        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at', 'api_token'
     ];
 
     /**
@@ -39,6 +39,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Return a unique personnal access token.
+     *
+     * @var String
+     */
+    public static function generateApiToken()
+    {
+        do {
+            $api_token = str_random(60);
+        } while (self::where('api_token', $api_token)->exists());
+
+        return $api_token;
+    }
 
     /**
      * Get the user's fullname titleized.

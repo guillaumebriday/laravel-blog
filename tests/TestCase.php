@@ -14,9 +14,9 @@ abstract class TestCase extends BaseTestCase
      * Return an admin user
      * @return User $admin
      */
-    protected function admin()
+    protected function admin($overrides = [])
     {
-        $admin = factory(User::class)->create();
+        $admin = factory(User::class)->create($overrides);
         $admin->roles()->attach(factory(Role::class)->states('admin')->create());
 
         return $admin;
@@ -26,8 +26,8 @@ abstract class TestCase extends BaseTestCase
      * Return an user
      * @return User
      */
-    protected function user()
+    protected function user($overrides = [])
     {
-        return factory(User::class)->create();
+        return factory(User::class)->create($overrides);
     }
 }

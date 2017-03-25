@@ -8,4 +8,6 @@
 
         @include ('users/_form')
     @endcomponent
+
+    @include ('users/_api')
 @endsection
