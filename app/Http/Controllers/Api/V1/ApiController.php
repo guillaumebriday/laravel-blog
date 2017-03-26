@@ -28,4 +28,15 @@ class ApiController extends Controller
 
         return $this;
     }
+
+    /**
+     * Method to make a response in json.
+     * @param  array $data
+     * @param  array  $headers
+     * @return \Illuminate\Http\Response
+     */
+    public function respond($data, $headers = [])
+    {
+        return response()->json($data, $this->getStatusCode(), $headers);
+    }
 }
