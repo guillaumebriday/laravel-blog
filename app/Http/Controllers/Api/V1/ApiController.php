@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response as IlluminateResponse;
+use League\Fractal\Manager;
+use League\Fractal\Serializer\JsonApiSerializer;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 
 class ApiController extends Controller
 {
@@ -85,5 +90,68 @@ class ApiController extends Controller
                 'status' => $this->getStatusCode()
             ]
         ]);
+    }
+
+    /**
+     * Bind an item to a transformer and return data.
+     *
+     * @param object $item
+     * @param object $transformer
+     * @param String $resourceKey
+     *
+     * @return Array
+     */
+    public function item($item, $transformer, $resourceKey = null)
+    {
+        $resource = new Item($item, $transformer, $resourceKey);
+
+        return $this->createData($resource);
+    }
+
+    /**
+     * Bind an collection to a transformer and return data.
+     *
+     * @param object $collection
+     * @param object $transformer
+     * @param String $resourceKey
+     *
+     * @return Array
+     */
+    public function collection($items, $transformer, $resourceKey = null)
+    {
+        $resource = new Collection($items, $transformer, $resourceKey);
+
+        return $this->createData($resource);
+    }
+
+    /**
+     * Bind an paginated collection to a transformer and return data.
+     *
+     * @param object $item
+     * @param object $transformer
+     * @param String $resourceKey
+     *
+     * @return Array
+     */
+    public function paginatedCollection($paginator, $transformer, $resourceKey = null)
+    {
+        $resource = new Collection($paginator->getCollection(), $transformer, $resourceKey);
+        $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
+
+        return $this->createData($resource);
+    }
+
+    /**
+     * Return data of a transformed resource.
+     *
+     * @param object $resource
+     * @return Array
+     */
+    private function createData($resource)
+    {
+        $manager = new Manager();
+        $manager->setSerializer(new JsonApiSerializer());
+
+        return $manager->createData($resource)->toArray();
     }
 }
