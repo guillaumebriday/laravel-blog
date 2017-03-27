@@ -20,4 +20,23 @@ class PostsController extends ApiController
 
         return $this->respond($resource);
     }
+
+    /**
+    * Return the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function show($id)
+    {
+        $post = Post::withCount('comments')->find($id);
+
+        if (! $post) {
+            return $this->respondNotFound();
+        }
+
+        $resource = $this->item($post, new PostTransformer, 'posts');
+
+        return $this->respond($resource);
+    }
 }
