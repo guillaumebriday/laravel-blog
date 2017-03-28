@@ -7,14 +7,14 @@ use App\User;
 use App\Post;
 use App\Comment;
 
-class DashboardController extends Controller
+class ShowDashboard extends Controller
 {
     /**
     * Show the application admin dashboard.
     *
     * @return \Illuminate\Http\Response
     */
-    public function dashboard()
+    public function __invoke()
     {
         $comments = Comment::lastWeek()->get();
         $posts = Post::lastWeek()->get();
