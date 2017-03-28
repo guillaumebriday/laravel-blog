@@ -72,6 +72,22 @@ $ php artisan tinker
 > dispatch(new App\Jobs\PrepareNewsletterSubscriptionEmail());
 ```
 
+## Accessing the API
+
+Clients can access to the REST API. API requests require authentication via token. You can create a new token in your user profil.
+
+Then, you can use this token either as url parameter or in Authorization header :
+
+```
+# Url parameter
+GET http://laravel-blog.dev/api/v1/posts?api_token=your_private_token_here
+
+# Authorization Header
+curl --header "Authorization: Bearer your_private_token_here" http://laravel-blog.dev/api/v1/posts
+```
+
+API are prefixed by ```api``` and the API version number like so ```v1```.
+
 ## More details
 
 More details are available or to come on [Guillaume Briday's blog](https://blog.guillaumebriday.fr) (French).

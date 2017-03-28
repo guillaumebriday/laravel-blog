@@ -11,7 +11,8 @@
         "laravel/socialite": "^3.0",
         "doctrine/dbal": "^2.5",
         "laravel/tinker": "^1.0",
-        "laravel/browser-kit-testing": "^1.0"
+        "laravel/browser-kit-testing": "^1.0",
+        "league/fractal": "^0.15.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
