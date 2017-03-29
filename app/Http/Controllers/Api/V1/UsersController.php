@@ -49,14 +49,7 @@ class UsersController extends ApiController
     {
         $this->authorize('update', $user);
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-
-        if ($request->input('password') != '') {
-            $user->password = bcrypt($request->input('password'));
-        }
-
-        $user->save();
+        $user->update($request->intersect(['name', 'email', 'password']));
 
         $resource = $this->item($user, new UserTransformer, 'users');
 

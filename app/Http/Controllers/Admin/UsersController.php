@@ -35,14 +35,7 @@ class UsersController extends Controller
     */
     public function update(UsersRequest $request, User $user)
     {
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-
-        if ($request->input('password') != '') {
-            $user->password = bcrypt($request->input('password'));
-        }
-
-        $user->save();
+        $user->update($request->intersect(['name', 'email', 'password']));
 
         $role_ids = array_values($request->get('roles', []));
         $user->roles()->sync($role_ids);

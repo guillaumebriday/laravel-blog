@@ -65,6 +65,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Encrypt the user's password.
+     *
+     * @param string $passwword
+     * @return void
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
      * Scope a query to only include users registered last week.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

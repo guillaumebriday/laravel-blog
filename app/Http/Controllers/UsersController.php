@@ -46,14 +46,7 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-
-        if ($request->input('password') != '') {
-            $user->password = bcrypt($request->input('password'));
-        }
-
-        $user->save();
+        $user->update($request->intersect(['name', 'email', 'password']));
 
         return redirect()->route('users.show', $user)->withSuccess(__('users.updated'));
     }
