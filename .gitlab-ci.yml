@@ -21,7 +21,6 @@ phpunit:
     - php composer.phar install --no-progress --no-interaction --optimize-autoloader
     - cp .env.gitlab .env.testing
   script:
-    - php artisan migrate
     - vendor/bin/phpunit
 
 php-cs-fixer:
