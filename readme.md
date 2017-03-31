@@ -4,19 +4,24 @@
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's functionalities like :
 
-- [Localization](https://laravel.com/docs/5.4/localization)
-- [Jobs & Queues](https://laravel.com/docs/5.4/queues)
-- [Migrations](https://laravel.com/docs/5.4/migrations)
-- [Seeding & Factories](https://laravel.com/docs/5.4/seeding)
-- [Testing](https://laravel.com/docs/5.4/testing)
+- [Authentication](https://laravel.com/docs/5.4/authentication)
+- API
+  - Token authentication
+  - [Transformers](http://fractal.thephpleague.com/transformers/)
+  - Versioning
 - [Blade](https://laravel.com/docs/5.4/blade)
+- [Cache](https://laravel.com/docs/5.4/cache)
+- [Filesystem](https://laravel.com/docs/5.4/filesystem)
+- [Helpers](https://laravel.com/docs/5.4/helpers)
+- [Jobs & Queues](https://laravel.com/docs/5.4/queues)
+- [Localization](https://laravel.com/docs/5.4/localization)
+- [Mail](https://laravel.com/docs/5.4/mail)
+- [Migrations](https://laravel.com/docs/5.4/migrations)
 - [Policies](https://laravel.com/docs/5.4/authorization)
 - [Providers](https://laravel.com/docs/5.4/providers)
 - [Requests](https://laravel.com/docs/5.4/validation#form-request-validation)
-- [Helpers](https://laravel.com/docs/5.4/helpers)
-- [Mail](https://laravel.com/docs/5.4/mail)
-- [Cache](https://laravel.com/docs/5.4/cache)
-- [Filesystem](https://laravel.com/docs/5.4/filesystem)
+- [Seeding & Factories](https://laravel.com/docs/5.4/seeding)
+- [Testing](https://laravel.com/docs/5.4/testing)
 
 ## Installation
 
