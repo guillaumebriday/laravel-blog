@@ -55,6 +55,18 @@ class PostsController extends Controller
     }
 
     /**
+    * Display the specified resource edit form.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function edit(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        return view('posts.edit')->withPost($post);
+    }
+
+    /**
     * Store a newly created resource in storage.
     *
     * @return Response
