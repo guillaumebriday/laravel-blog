@@ -78,6 +78,16 @@ class ApiController extends Controller
     }
 
     /**
+     * Return a 204 no content response
+     * @param  string $message
+     * @return \Illuminate\Http\Response
+     */
+    public function respondNoContent($message = '')
+    {
+        return $this->setStatusCode(IlluminateResponse::HTTP_NO_CONTENT)->respond($message);
+    }
+
+    /**
      * Return an error response
      * @param String $message
      * @return \Illuminate\Http\Response
