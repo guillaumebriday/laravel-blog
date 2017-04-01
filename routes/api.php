@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function () {
     Route::prefix('v1')->namespace('Api\V1')->group(function () {
+        Route::resource('comments', 'CommentsController', ['only' => ['index', 'show', 'destroy']]);
         Route::resource('posts', 'PostsController', ['only' => ['index', 'show', 'store']]);
         Route::resource('users.posts', 'PostsController', ['only' => 'index']);
         Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'update']]);
