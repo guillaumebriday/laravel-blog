@@ -15,18 +15,11 @@ class PostsController extends ApiController
     * Return the posts.
     *
     * @param  Request $request
-    * @param  int|null $id
     * @return \Illuminate\Http\Response
     */
-    public function index(Request $request, $id = null)
+    public function index(Request $request)
     {
-        $builder = $this->buildPosts($id);
-
-        if (! $builder) {
-            return $this->respondNotFound();
-        }
-
-        $posts = $builder->withCount('comments')->latest()->paginate($request->input('limit', 20));
+        $posts = Post::withCount('comments')->latest()->paginate($request->input('limit', 20));
         $resource = $this->paginatedCollection($posts, new PostTransformer, 'posts');
 
         return $this->respond($resource);
@@ -67,26 +60,5 @@ class PostsController extends ApiController
         $resource = $this->item($post, new PostTransformer, 'posts');
 
         return $this->setStatusCode(201)->respond($resource);
-    }
-
-    /**
-     * Build posts query for posts or nested user's posts
-     *
-     * @param  int|null $userId
-     * @return \Illuminate\Database\Query\Builder
-     */
-    private function buildPosts($userId)
-    {
-        if (! $userId) {
-            return Post::query();
-        }
-
-        $user = User::find($userId);
-
-        if ($user) {
-            return $user->posts();
-        }
-
-        return false;
     }
 }
