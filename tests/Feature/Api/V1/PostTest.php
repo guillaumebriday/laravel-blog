@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
 use App\Post;
 use App\Comment;
+use App\User;
 use Carbon\Carbon;
 
 class PostTest extends TestCase
@@ -58,6 +59,79 @@ class PostTest extends TestCase
                         'total' => 10,
                         'total_pages' => 1
                     ]
+                ]
+            ]);
+    }
+
+    /**
+     * it returns a posts collection
+     * @return void
+     */
+    public function testUsersPosts()
+    {
+        $user = factory(User::class)->create();
+        $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
+        $randomPosts = factory(Post::class, 10)->create();
+
+        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/users/{$user->id}/posts");
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'data' => [[
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'title',
+                        'content',
+                        'posted_at',
+                        'author_id',
+                        'has_thumbnail',
+                        'thumbnail_url',
+                        'comments_count'
+                    ]
+                ]],
+                'meta' => [
+                    'pagination' => [
+                        'total'
+                    ]
+                ],
+                'links' => [
+                    'self',
+                    'first',
+                    'last'
+                ]
+            ])
+            ->assertJsonFragment([
+                'meta' => [
+                    'pagination' => [
+                        'count' => 10,
+                        'current_page' => 1,
+                        'per_page' => 20,
+                        'total' => 10,
+                        'total_pages' => 1
+                    ]
+                ]
+            ]);
+    }
+
+    /**
+     * it returns a 404 not found error
+     * @return void
+     */
+    public function testUsersPostsFail()
+    {
+        $user = factory(User::class)->create();
+        $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
+
+        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/users/314/posts');
+
+        $response
+            ->assertStatus(404)
+            ->assertJson([
+                'error' => [
+                    'message' => 'Not found.',
+                    'status' => 404
                 ]
             ]);
     }
