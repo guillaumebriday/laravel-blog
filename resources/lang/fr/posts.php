@@ -6,6 +6,7 @@ return [
   'edit' => 'Éditer',
   'last_posts' => 'Les derniers articles',
   'add_article' => 'Ajouter un article',
+  'edit_article' => 'Éditer un article',
   'created' => 'Article créé avec succès',
   'updated' => 'Article mis à jour avec succès',
   'deleted' => 'Article supprimé avec succès',
