@@ -20,7 +20,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('users/{user}/comments', 'UsersController@comments');
 
         Route::resource('posts', 'PostsController', ['only' => ['index', 'show', 'store']]);
-        Route::resource('users.posts', 'PostsController', ['only' => 'index']);
+        Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts.index');
         Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'update']]);
     });
 });

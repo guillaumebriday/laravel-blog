@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Transformers\UserTransformer;
 use App\Transformers\CommentTransformer;
+use App\Transformers\PostTransformer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
@@ -41,6 +42,27 @@ class UsersController extends ApiController
 
         $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
         $resource = $this->paginatedCollection($comments, new CommentTransformer, 'comments');
+
+        return $this->respond($resource);
+    }
+
+    /**
+    * Return the user's posts.
+    *
+    * @param  Request $request
+    * @param  int $id
+    * @return \Illuminate\Http\Response
+    */
+    public function posts(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if (! $user) {
+            return $this->respondNotFound();
+        }
+
+        $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
+        $resource = $this->paginatedCollection($posts, new PostTransformer, 'posts');
 
         return $this->respond($resource);
     }
