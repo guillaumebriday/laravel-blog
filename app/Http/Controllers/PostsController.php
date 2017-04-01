@@ -104,4 +104,18 @@ class PostsController extends Controller
 
         return redirect()->route('posts.show', $post)->withSuccess(__('posts.updated'));
     }
+
+    /**
+    * Unset the post's thumbnail.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy_thumbnail(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->update(['thumbnail_id' => null]);
+
+        return redirect()->route('posts.edit', $post)->withSuccess(__('posts.updated'));
+    }
 }
