@@ -17,6 +17,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::resource('comments', 'CommentsController', ['only' => ['index', 'show', 'destroy']]);
         Route::resource('posts.comments', 'PostCommentsController', ['only' => ['index', 'store']]);
+        Route::get('users/{user}/comments', 'UsersController@comments');
 
         Route::resource('posts', 'PostsController', ['only' => ['index', 'show', 'store']]);
         Route::resource('users.posts', 'PostsController', ['only' => 'index']);
