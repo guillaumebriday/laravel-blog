@@ -3,6 +3,7 @@
 return [
   'publish' => 'Publier',
   'delete' => 'Supprimer',
+  'delete_thumbnail' => "Supprimer l'image à la une",
   'edit' => 'Éditer',
   'last_posts' => 'Les derniers articles',
   'add_article' => 'Ajouter un article',
