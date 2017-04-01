@@ -3,6 +3,7 @@
 return [
   'publish' => 'Publier',
   'delete' => 'Supprimer',
+  'edit' => 'Éditer',
   'last_posts' => 'Les derniers articles',
   'add_article' => 'Ajouter un article',
   'created' => 'Article créé avec succès',

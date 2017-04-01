@@ -10,4 +10,10 @@
     @endif
 
     {{ $post->content }}
+
+  @can('update', $post)
+    <p>
+        <a href="{{ route('posts.edit', $post) }}" class="pull-right btn btn-primary">{{ __('posts.edit') }}</a>
+    </p>
+  @endcan
 @endcomponent
