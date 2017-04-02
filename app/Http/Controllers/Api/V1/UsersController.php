@@ -13,6 +13,17 @@ use App\User;
 class UsersController extends ApiController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->transformer = new UserTransformer;
+        $this->resourceKey = 'users';
+    }
+
+    /**
     * Return the users.
     *
     * @return \Illuminate\Http\Response
@@ -20,9 +31,8 @@ class UsersController extends ApiController
     public function index(Request $request)
     {
         $users = User::withCount(['comments', 'posts'])->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($users, new UserTransformer, 'users');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($users);
     }
 
     /**
@@ -41,9 +51,11 @@ class UsersController extends ApiController
         }
 
         $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($comments, new CommentTransformer, 'comments');
 
-        return $this->respond($resource);
+        return $this
+                ->setTransformer(new CommentTransformer)
+                ->setResourceKey('comments')
+                ->paginatedCollection($comments);
     }
 
     /**
@@ -62,9 +74,11 @@ class UsersController extends ApiController
         }
 
         $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($posts, new PostTransformer, 'posts');
 
-        return $this->respond($resource);
+        return $this
+                ->setTransformer(new PostTransformer)
+                ->setResourceKey('posts')
+                ->paginatedCollection($posts);
     }
 
     /**
@@ -81,9 +95,7 @@ class UsersController extends ApiController
             return $this->respondNotFound();
         }
 
-        $resource = $this->item($user, new UserTransformer, 'users');
-
-        return $this->respond($resource);
+        return $this->item($user);
     }
 
     /**
@@ -95,8 +107,6 @@ class UsersController extends ApiController
 
         $user->update($request->intersect(['name', 'email', 'password']));
 
-        $resource = $this->item($user, new UserTransformer, 'users');
-
-        return $this->respond($resource);
+        return $this->item($user);
     }
 }

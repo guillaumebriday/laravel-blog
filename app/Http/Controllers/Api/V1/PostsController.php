@@ -12,6 +12,17 @@ use App\User;
 class PostsController extends ApiController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->transformer = new PostTransformer;
+        $this->resourceKey = 'posts';
+    }
+
+    /**
     * Return the posts.
     *
     * @param  Request $request
@@ -20,9 +31,8 @@ class PostsController extends ApiController
     public function index(Request $request)
     {
         $posts = Post::withCount('comments')->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($posts, new PostTransformer, 'posts');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($posts);
     }
 
     /**
@@ -39,9 +49,7 @@ class PostsController extends ApiController
             return $this->respondNotFound();
         }
 
-        $resource = $this->item($post, new PostTransformer, 'posts');
-
-        return $this->respond($resource);
+        return $this->item($post);
     }
 
     /**
@@ -57,9 +65,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        $resource = $this->item($post, new PostTransformer, 'posts');
-
-        return $this->setStatusCode(201)->respond($resource);
+        return $this->setStatusCode(201)->item($post);
     }
 
     /**
@@ -79,9 +85,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        $resource = $this->item($post, new PostTransformer, 'posts');
-
-        return $this->respond($resource);
+        return $this->item($post);
     }
 
     /**
@@ -103,8 +107,6 @@ class PostsController extends ApiController
 
         $post->update(['thumbnail_id' => null]);
 
-        $resource = $this->item($post, new PostTransformer, 'posts');
-
-        return $this->respond($resource);
+        return $this->item($post);
     }
 }

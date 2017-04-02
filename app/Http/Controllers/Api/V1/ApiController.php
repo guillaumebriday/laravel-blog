@@ -19,6 +19,17 @@ class ApiController extends Controller
     protected $statusCode = IlluminateResponse::HTTP_OK;
 
     /**
+     * Resource key
+     * @var String
+     */
+    protected $resourceKey = null;
+
+    /**
+     * Resource Transformer
+     */
+    protected $transformer;
+
+    /**
      * Return the status code
      * @return String
      */
@@ -27,9 +38,51 @@ class ApiController extends Controller
         return $this->statusCode;
     }
 
+    /**
+     * Set the Status Code
+     * @param string $statusCode
+     */
     public function setStatusCode($statusCode)
     {
         $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    /**
+     * Return the transfomer
+     */
+    public function getTransformer()
+    {
+        return $this->transformer;
+    }
+
+    /**
+     * Set the transformer
+     * @param $transfomer
+     */
+    public function setTransformer($transformer)
+    {
+        $this->transformer = $transformer;
+
+        return $this;
+    }
+
+    /**
+     * Return the resourceKey
+     */
+    public function getResourceKey()
+    {
+        return $this->resourceKey;
+    }
+
+    /**
+     * Set the resourceKey
+     * @param string $resourceKey
+     */
+    public function setResourceKey($resourceKey)
+    {
+        $this->resourceKey = $resourceKey;
 
         return $this;
     }
@@ -106,49 +159,40 @@ class ApiController extends Controller
      * Bind an item to a transformer and return data.
      *
      * @param object $item
-     * @param object $transformer
-     * @param String $resourceKey
-     *
-     * @return Array
+     * @return \Illuminate\Http\Response
      */
-    public function item($item, $transformer, $resourceKey = null)
+    public function item($item)
     {
-        $resource = new Item($item, $transformer, $resourceKey);
+        $resource = new Item($item, $this->getTransformer(), $this->getResourceKey());
 
-        return $this->createData($resource);
+        return $this->respond($this->createData($resource));
     }
 
     /**
-     * Bind an collection to a transformer and return data.
+     * Bind a collection to a transformer and return data.
      *
      * @param object $collection
-     * @param object $transformer
-     * @param String $resourceKey
-     *
-     * @return Array
+     * @return \Illuminate\Http\Response
      */
-    public function collection($items, $transformer, $resourceKey = null)
+    public function collection($items)
     {
-        $resource = new Collection($items, $transformer, $resourceKey);
+        $resource = new Collection($items, $this->getTransformer(), $this->getResourceKey());
 
-        return $this->createData($resource);
+        return $this->respond($this->createData($resource));
     }
 
     /**
-     * Bind an paginated collection to a transformer and return data.
+     * Bind a paginated collection to a transformer and return data.
      *
      * @param object $item
-     * @param object $transformer
-     * @param String $resourceKey
-     *
-     * @return Array
+     * @return \Illuminate\Http\Response
      */
-    public function paginatedCollection($paginator, $transformer, $resourceKey = null)
+    public function paginatedCollection($paginator)
     {
-        $resource = new Collection($paginator->getCollection(), $transformer, $resourceKey);
+        $resource = new Collection($paginator->getCollection(), $this->getTransformer(), $this->getResourceKey());
         $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
-        return $this->createData($resource);
+        return $this->respond($this->createData($resource));
     }
 
     /**
