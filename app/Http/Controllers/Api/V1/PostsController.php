@@ -61,4 +61,50 @@ class PostsController extends ApiController
 
         return $this->setStatusCode(201)->respond($resource);
     }
+
+    /**
+    * Update the specified resource in storage.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function update(PostsRequest $request, Post $post)
+    {
+        if (! Auth::user()->can('update', $post)) {
+            return $this->respondUnauthorized();
+        }
+
+        $post->update($request->only(['title', 'content']));
+
+        if ($request->hasFile('thumbnail')) {
+            $post->storeAndSetThumbnail($request->file('thumbnail'));
+        }
+
+        $resource = $this->item($post, new PostTransformer, 'posts');
+
+        return $this->respond($resource);
+    }
+
+    /**
+    * Unset the post's thumbnail.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy_thumbnail($id)
+    {
+        $post = Post::find($id);
+
+        if (! $post) {
+            return $this->respondNotFound();
+        }
+
+        if (! Auth::user()->can('update', $post)) {
+            return $this->respondUnauthorized();
+        }
+
+        $post->update(['thumbnail_id' => null]);
+
+        $resource = $this->item($post, new PostTransformer, 'posts');
+
+        return $this->respond($resource);
+    }
 }
