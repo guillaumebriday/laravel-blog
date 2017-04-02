@@ -11,6 +11,16 @@ use App\Post;
 class PostCommentsController extends ApiController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->transformer = new CommentTransformer;
+    }
+
+    /**
     * Return the post's comments.
     *
     * @param  Request $request
@@ -27,7 +37,7 @@ class PostCommentsController extends ApiController
 
         $comments = $post->comments()->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($comments, new CommentTransformer, 'comments');
+        return $this->paginatedCollection($comments, 'comments');
     }
 
     /**
@@ -50,6 +60,6 @@ class PostCommentsController extends ApiController
             'content' => $request->input('content')
         ]);
 
-        return $this->setStatusCode(201)->item($comment, new CommentTransformer, 'comments');
+        return $this->setStatusCode(201)->item($comment, 'comments');
     }
 }

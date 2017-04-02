@@ -12,6 +12,16 @@ use App\User;
 class PostsController extends ApiController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->transformer = new PostTransformer;
+    }
+
+    /**
     * Return the posts.
     *
     * @param  Request $request
@@ -21,7 +31,7 @@ class PostsController extends ApiController
     {
         $posts = Post::withCount('comments')->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($posts, new PostTransformer, 'posts');
+        return $this->paginatedCollection($posts, 'posts');
     }
 
     /**
@@ -38,7 +48,7 @@ class PostsController extends ApiController
             return $this->respondNotFound();
         }
 
-        return $this->item($post, new PostTransformer, 'posts');
+        return $this->item($post, 'posts');
     }
 
     /**
@@ -54,7 +64,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        return $this->setStatusCode(201)->item($post, new PostTransformer, 'posts');
+        return $this->setStatusCode(201)->item($post, 'posts');
     }
 
     /**
@@ -74,7 +84,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        return $this->item($post, new PostTransformer, 'posts');
+        return $this->item($post, 'posts');
     }
 
     /**
@@ -96,6 +106,6 @@ class PostsController extends ApiController
 
         $post->update(['thumbnail_id' => null]);
 
-        return $this->item($post, new PostTransformer, 'posts');
+        return $this->item($post, 'posts');
     }
 }

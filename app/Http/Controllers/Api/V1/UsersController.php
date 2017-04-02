@@ -13,6 +13,16 @@ use App\User;
 class UsersController extends ApiController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->transformer = new UserTransformer;
+    }
+
+    /**
     * Return the users.
     *
     * @return \Illuminate\Http\Response
@@ -21,7 +31,7 @@ class UsersController extends ApiController
     {
         $users = User::withCount(['comments', 'posts'])->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($users, new UserTransformer, 'users');
+        return $this->paginatedCollection($users, 'users');
     }
 
     /**
@@ -41,7 +51,7 @@ class UsersController extends ApiController
 
         $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($comments, new CommentTransformer, 'comments');
+        return $this->setTransformer(new CommentTransformer)->paginatedCollection($comments, 'comments');
     }
 
     /**
@@ -61,7 +71,7 @@ class UsersController extends ApiController
 
         $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($posts, new PostTransformer, 'posts');
+        return $this->setTransformer(new PostTransformer)->paginatedCollection($posts, 'posts');
     }
 
     /**
@@ -78,7 +88,7 @@ class UsersController extends ApiController
             return $this->respondNotFound();
         }
 
-        return $this->item($user, new UserTransformer, 'users');
+        return $this->item($user, 'users');
     }
 
     /**
@@ -90,6 +100,6 @@ class UsersController extends ApiController
 
         $user->update($request->intersect(['name', 'email', 'password']));
 
-        return $this->item($user, new UserTransformer, 'users');
+        return $this->item($user, 'users');
     }
 }

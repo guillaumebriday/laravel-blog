@@ -10,6 +10,16 @@ use App\Comment;
 class CommentsController extends ApiController
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->transformer = new CommentTransformer;
+    }
+
+    /**
     * Return the comments.
     *
     * @param  Request $request
@@ -19,7 +29,7 @@ class CommentsController extends ApiController
     {
         $comments = Comment::latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($comments, new CommentTransformer, 'comments');
+        return $this->paginatedCollection($comments, 'comments');
     }
 
     /**
@@ -36,7 +46,7 @@ class CommentsController extends ApiController
             return $this->respondNotFound();
         }
 
-        return $this->item($comment, new CommentTransformer, 'comments');
+        return $this->item($comment, 'comments');
     }
 
     /**
