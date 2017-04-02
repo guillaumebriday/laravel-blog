@@ -227,7 +227,7 @@ class PostTest extends TestCase
     {
         $user = $this->user();
         $response = $this->actingAs($user, 'api')
-                         ->json('POST', '/api/v1/posts/', $this->validParams());
+                         ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'));
 
         $response->assertStatus(201);
     }
