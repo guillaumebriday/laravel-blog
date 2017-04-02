@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\V1;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Comment;
 use App\User;
@@ -229,6 +230,72 @@ class PostTest extends TestCase
                          ->json('POST', '/api/v1/posts/', $this->validParams());
 
         $response->assertStatus(201);
+    }
+
+    /**
+     * it updates the post
+     *
+     * @return void
+     */
+    public function testUpdate()
+    {
+        $user = $this->user();
+        $post = factory(Post::class)->create(['author_id' => $user->id]);
+        $params = $this->validParams();
+
+        $response = $this->actingAs($user, 'api')->json('PATCH', "/api/v1/posts/{$post->id}", $params);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
+        $this->assertEquals($params['title'], $post->title);
+        $this->assertEquals($params['content'], $post->content);
+
+        Storage::delete($post->thumbnail()->filename);
+    }
+
+    /**
+     * it updates the post
+     *
+     * @return void
+     */
+    public function testUpdateFail()
+    {
+        $post = factory(Post::class)->create();
+
+        $response = $this->actingAs($this->user(), 'api')->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams());
+
+        $response
+            ->assertStatus(401)
+            ->assertJson([
+                'error' => [
+                    'message' => 'Unauthorized.',
+                    'status' => 401
+                ]
+            ]);
+    }
+
+    /**
+     * it unsets the post's thumbnail
+     *
+     * @return void
+     */
+    public function testUnsetThumbnail()
+    {
+        $user = $this->user();
+        $post = factory(Post::class)->create(['author_id' => $user->id]);
+        $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
+        $filename = $post->thumbnail()->filename;
+
+        $response = $this->actingAs($user, 'api')->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", []);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(200);
+        $this->assertFalse($post->hasThumbnail());
+
+        Storage::delete($filename);
     }
 
     /**
