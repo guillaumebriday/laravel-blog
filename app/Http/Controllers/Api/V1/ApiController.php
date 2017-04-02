@@ -109,46 +109,46 @@ class ApiController extends Controller
      * @param object $transformer
      * @param String $resourceKey
      *
-     * @return Array
+     * @return \Illuminate\Http\Response
      */
     public function item($item, $transformer, $resourceKey = null)
     {
         $resource = new Item($item, $transformer, $resourceKey);
 
-        return $this->createData($resource);
+        return $this->respond($this->createData($resource));
     }
 
     /**
-     * Bind an collection to a transformer and return data.
+     * Bind a collection to a transformer and return data.
      *
      * @param object $collection
      * @param object $transformer
      * @param String $resourceKey
      *
-     * @return Array
+     * @return \Illuminate\Http\Response
      */
     public function collection($items, $transformer, $resourceKey = null)
     {
         $resource = new Collection($items, $transformer, $resourceKey);
 
-        return $this->createData($resource);
+        return $this->respond($this->createData($resource));
     }
 
     /**
-     * Bind an paginated collection to a transformer and return data.
+     * Bind a paginated collection to a transformer and return data.
      *
      * @param object $item
      * @param object $transformer
      * @param String $resourceKey
      *
-     * @return Array
+     * @return \Illuminate\Http\Response
      */
     public function paginatedCollection($paginator, $transformer, $resourceKey = null)
     {
         $resource = new Collection($paginator->getCollection(), $transformer, $resourceKey);
         $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
-        return $this->createData($resource);
+        return $this->respond($this->createData($resource));
     }
 
     /**
