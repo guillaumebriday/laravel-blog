@@ -18,9 +18,8 @@ class CommentsController extends ApiController
     public function index(Request $request)
     {
         $comments = Comment::latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($comments, new CommentTransformer, 'comments');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($comments, new CommentTransformer, 'comments');
     }
 
     /**
@@ -37,9 +36,7 @@ class CommentsController extends ApiController
             return $this->respondNotFound();
         }
 
-        $resource = $this->item($comment, new CommentTransformer, 'comments');
-
-        return $this->respond($resource);
+        return $this->item($comment, new CommentTransformer, 'comments');
     }
 
     /**

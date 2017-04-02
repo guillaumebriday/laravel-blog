@@ -20,9 +20,8 @@ class UsersController extends ApiController
     public function index(Request $request)
     {
         $users = User::withCount(['comments', 'posts'])->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($users, new UserTransformer, 'users');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($users, new UserTransformer, 'users');
     }
 
     /**
@@ -41,9 +40,8 @@ class UsersController extends ApiController
         }
 
         $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($comments, new CommentTransformer, 'comments');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($comments, new CommentTransformer, 'comments');
     }
 
     /**
@@ -62,9 +60,8 @@ class UsersController extends ApiController
         }
 
         $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($posts, new PostTransformer, 'posts');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($posts, new PostTransformer, 'posts');
     }
 
     /**
@@ -81,9 +78,7 @@ class UsersController extends ApiController
             return $this->respondNotFound();
         }
 
-        $resource = $this->item($user, new UserTransformer, 'users');
-
-        return $this->respond($resource);
+        return $this->item($user, new UserTransformer, 'users');
     }
 
     /**
@@ -95,8 +90,6 @@ class UsersController extends ApiController
 
         $user->update($request->intersect(['name', 'email', 'password']));
 
-        $resource = $this->item($user, new UserTransformer, 'users');
-
-        return $this->respond($resource);
+        return $this->item($user, new UserTransformer, 'users');
     }
 }

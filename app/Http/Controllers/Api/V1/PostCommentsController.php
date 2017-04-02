@@ -26,9 +26,8 @@ class PostCommentsController extends ApiController
         }
 
         $comments = $post->comments()->latest()->paginate($request->input('limit', 20));
-        $resource = $this->paginatedCollection($comments, new CommentTransformer, 'comments');
 
-        return $this->respond($resource);
+        return $this->paginatedCollection($comments, new CommentTransformer, 'comments');
     }
 
     /**
@@ -51,8 +50,6 @@ class PostCommentsController extends ApiController
             'content' => $request->input('content')
         ]);
 
-        $resource = $this->item($comment, new CommentTransformer, 'comments');
-
-        return $this->setStatusCode(201)->respond($resource);
+        return $this->setStatusCode(201)->item($comment, new CommentTransformer, 'comments');
     }
 }
