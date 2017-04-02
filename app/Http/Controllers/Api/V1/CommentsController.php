@@ -17,6 +17,7 @@ class CommentsController extends ApiController
     public function __construct()
     {
         $this->transformer = new CommentTransformer;
+        $this->resourceKey = 'comments';
     }
 
     /**
@@ -29,7 +30,7 @@ class CommentsController extends ApiController
     {
         $comments = Comment::latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($comments, 'comments');
+        return $this->paginatedCollection($comments);
     }
 
     /**
@@ -46,7 +47,7 @@ class CommentsController extends ApiController
             return $this->respondNotFound();
         }
 
-        return $this->item($comment, 'comments');
+        return $this->item($comment);
     }
 
     /**

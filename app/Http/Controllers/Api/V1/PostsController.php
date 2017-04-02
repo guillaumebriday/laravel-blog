@@ -19,6 +19,7 @@ class PostsController extends ApiController
     public function __construct()
     {
         $this->transformer = new PostTransformer;
+        $this->resourceKey = 'posts';
     }
 
     /**
@@ -31,7 +32,7 @@ class PostsController extends ApiController
     {
         $posts = Post::withCount('comments')->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($posts, 'posts');
+        return $this->paginatedCollection($posts);
     }
 
     /**
@@ -48,7 +49,7 @@ class PostsController extends ApiController
             return $this->respondNotFound();
         }
 
-        return $this->item($post, 'posts');
+        return $this->item($post);
     }
 
     /**
@@ -64,7 +65,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        return $this->setStatusCode(201)->item($post, 'posts');
+        return $this->setStatusCode(201)->item($post);
     }
 
     /**
@@ -84,7 +85,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        return $this->item($post, 'posts');
+        return $this->item($post);
     }
 
     /**
@@ -106,6 +107,6 @@ class PostsController extends ApiController
 
         $post->update(['thumbnail_id' => null]);
 
-        return $this->item($post, 'posts');
+        return $this->item($post);
     }
 }

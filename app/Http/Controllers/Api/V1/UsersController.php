@@ -20,6 +20,7 @@ class UsersController extends ApiController
     public function __construct()
     {
         $this->transformer = new UserTransformer;
+        $this->resourceKey = 'users';
     }
 
     /**
@@ -31,7 +32,7 @@ class UsersController extends ApiController
     {
         $users = User::withCount(['comments', 'posts'])->latest()->paginate($request->input('limit', 20));
 
-        return $this->paginatedCollection($users, 'users');
+        return $this->paginatedCollection($users);
     }
 
     /**
@@ -51,7 +52,10 @@ class UsersController extends ApiController
 
         $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
 
-        return $this->setTransformer(new CommentTransformer)->paginatedCollection($comments, 'comments');
+        return $this
+                ->setTransformer(new CommentTransformer)
+                ->setResourceKey('comments')
+                ->paginatedCollection($comments);
     }
 
     /**
@@ -71,7 +75,10 @@ class UsersController extends ApiController
 
         $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
 
-        return $this->setTransformer(new PostTransformer)->paginatedCollection($posts, 'posts');
+        return $this
+                ->setTransformer(new PostTransformer)
+                ->setResourceKey('posts')
+                ->paginatedCollection($posts);
     }
 
     /**
@@ -88,7 +95,7 @@ class UsersController extends ApiController
             return $this->respondNotFound();
         }
 
-        return $this->item($user, 'users');
+        return $this->item($user);
     }
 
     /**
@@ -100,6 +107,6 @@ class UsersController extends ApiController
 
         $user->update($request->intersect(['name', 'email', 'password']));
 
-        return $this->item($user, 'users');
+        return $this->item($user);
     }
 }
