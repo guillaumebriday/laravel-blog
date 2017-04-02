@@ -15,7 +15,8 @@ return [
   ],
 
   'posts' => [
-    'delete' => 'Êtes-vous sûr de vouloir supprimer cet article ?'
+    'delete' => 'Êtes-vous sûr de vouloir supprimer cet article ?',
+    'delete_thumbnail' => "Êtes-vous sûr de vouloir supprimer l'image à la une ?"
   ],
 
   'users' => [

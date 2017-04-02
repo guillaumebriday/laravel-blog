@@ -55,6 +55,18 @@ class PostsController extends Controller
     }
 
     /**
+    * Display the specified resource edit form.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function edit(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        return view('posts.edit')->withPost($post);
+    }
+
+    /**
     * Store a newly created resource in storage.
     *
     * @return Response
@@ -73,5 +85,37 @@ class PostsController extends Controller
         }
 
         return redirect()->route('posts.show', $post)->with('success', __('posts.created'));
+    }
+
+    /**
+    * Update the specified resource in storage.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function update(PostsRequest $request, Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->update($request->only(['title', 'content']));
+
+        if ($request->hasFile('thumbnail')) {
+            $post->storeAndSetThumbnail($request->file('thumbnail'));
+        }
+
+        return redirect()->route('posts.show', $post)->withSuccess(__('posts.updated'));
+    }
+
+    /**
+    * Unset the post's thumbnail.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy_thumbnail(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->update(['thumbnail_id' => null]);
+
+        return redirect()->route('posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 }

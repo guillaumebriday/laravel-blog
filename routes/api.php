@@ -19,7 +19,8 @@ Route::middleware('auth:api')->group(function () {
         Route::resource('posts.comments', 'PostCommentsController', ['only' => ['index', 'store']]);
         Route::get('users/{user}/comments', 'UsersController@comments');
 
-        Route::resource('posts', 'PostsController', ['only' => ['index', 'show', 'store']]);
+        Route::resource('posts', 'PostsController', ['only' => ['index', 'show', 'store', 'update']]);
+        Route::delete('/posts/{post}/thumbnail', 'PostsController@destroy_thumbnail')->name('posts.destroy_thumbnail');
         Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts.index');
         Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'update']]);
     });

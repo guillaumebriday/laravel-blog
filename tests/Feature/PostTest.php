@@ -78,6 +78,63 @@ class PostTest extends TestCase
     }
 
     /**
+     * it renders a post edit view
+     * @return void
+     */
+    public function testEdit()
+    {
+        $post = factory(Post::class)->create();
+        $response = $this->actingAs($post->author)->get("/posts/{$post->id}/edit");
+
+        $response->assertStatus(200)
+                 ->assertSee('Éditer un article')
+                 ->assertSee('Titre')
+                 ->assertSee($post->title)
+                 ->assertSee('Contenu')
+                 ->assertSee($post->content)
+                 ->assertSee('Publier');
+    }
+
+    /**
+     * it updates the post
+     * @return void
+     */
+    public function testUpdate()
+    {
+        $post = factory(Post::class)->create();
+        $params = $this->validParams();
+
+        $response = $this->actingAs($post->author)->patch("/posts/{$post->id}", $params);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(302);
+        $response->assertRedirect("/posts/{$post->id}");
+        $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
+        $this->assertEquals($params['title'], $post->title);
+        $this->assertEquals($params['content'], $post->content);
+
+        Storage::delete($post->thumbnail()->filename);
+    }
+
+    /**
+     * it unsets the post's thumnbail
+     * @return void
+     */
+    public function testUnsetThumbnail()
+    {
+        $post = factory(Post::class)->create();
+
+        $response = $this->actingAs($post->author)->delete("/posts/{$post->id}/thumbnail", []);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(302);
+        $response->assertRedirect("/posts/{$post->id}/edit");
+        $this->assertFalse($post->hasThumbnail());
+    }
+
+    /**
      * it stores a new post
      * @return void
      */
