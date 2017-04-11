@@ -1,4 +1,4 @@
-[![build status](https://gitlab.com/guillaumebriday/laravel-blog/badges/master/build.svg)](https://gitlab.com/guillaumebriday/laravel-blog/commits/master)
+[![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
 
 # Laravel 5.4 blog
 
