@@ -8,5 +8,4 @@
 /.idea
 /.vagrant
 .env
-.env.testing
 .php_cs.cache
