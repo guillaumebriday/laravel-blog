@@ -20,7 +20,8 @@
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
-        "friendsofphp/php-cs-fixer": "^2.1"
+        "friendsofphp/php-cs-fixer": "^2.1",
+        "laravel/homestead": "^5.2"
     },
     "autoload": {
         "classmap": [

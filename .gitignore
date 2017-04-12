@@ -6,8 +6,6 @@
 /public/js
 /vendor
 /.idea
-Homestead.json
-Homestead.yaml
+/.vagrant
 .env
-.env.testing
 .php_cs.cache

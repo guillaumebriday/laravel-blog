@@ -14,12 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Users
-        $user = User::where('email', 'darthvader@deathstar.ds')->first();
-        if (! $user) {
-            $user = User::create([
+        if (! User::where('email', 'darthvader@deathstar.ds')->exists()) {
+            User::create([
                 'name' => 'anakin',
                 'email' => 'darthvader@deathstar.ds',
-                'password' => bcrypt('4nak1n')
+                'password' => '4nak1n'
             ]);
         }
 

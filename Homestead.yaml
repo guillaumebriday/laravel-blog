@@ -1,0 +1,17 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 1
+provider: virtualbox
+hostname: laravel-blog
+name: laravel-blog
+folders:
+    -
+        map: '.'
+        to: /home/vagrant/laravel-blog
+sites:
+    -
+        map: laravel-blog.app
+        to: /home/vagrant/laravel-blog/public
+databases:
+    - homestead
+    - testing

@@ -13,6 +13,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Cache](https://laravel.com/docs/5.4/cache)
 - [Filesystem](https://laravel.com/docs/5.4/filesystem)
 - [Helpers](https://laravel.com/docs/5.4/helpers)
+- [Homestead](https://laravel.com/docs/5.4/homestead)
 - [Jobs & Queues](https://laravel.com/docs/5.4/queues)
 - [Localization](https://laravel.com/docs/5.4/localization)
 - [Mail](https://laravel.com/docs/5.4/mail)
@@ -25,17 +26,55 @@ The purpose of this repository is to show good development practices on [Laravel
 
 ## Installation
 
-You can use [Laravel homestead](https://laravel.com/docs/5.4/homestead) to setup your local development environment. On other environment, make sure the [default requirements](https://laravel.com/docs/5.4#installation) are available.
+Development environment requirements :
+- [VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)
+- [Vagrant 1.9](https://www.vagrantup.com/downloads.html)
+- [Composer 1.3](https://getcomposer.org)
+
+Setting up your development environment on your local machine with [Homestead](https://laravel.com/docs/5.4/homestead) :
+```
+$ git clone https://github.com/guillaumebriday/laravel-blog.git
+$ cd laravel-blog
+$ cp .env.dev .env
+$ composer install
+$ vagrant up
+```
+
+Now you can access the site via [http://192.168.10.10](http://192.168.10.10) or [http://laravel-blog.app](http://laravel-blog.app) if you added the domain to your hosts file.
 
 ## Before starting
 
+The following commands must be executed on the virtual machine :
 ```
-$ composer install
-$ npm install
+$ vagrant ssh
+$ cd /home/vagrant/laravel-blog
+```
+
+You need to run the migrations :
+```
 $ php artisan migrate
 ```
 
+Seed the database :
+```
+$ php artisan db:seed
+```
+
+This will create a new user that you can use to sign in :
+```
+Email : darthvader@deathstar.ds
+Password : 4nak1n
+```
+
+And then, compile the assets :
+```
+$ npm install
+$ npm run dev
+```
+
 ## Useful commands
+
+The following commands must be executed on the virtual machine in the folder ```/home/vagrant/laravel-blog```.
 
 Running tests :
 ```
@@ -46,20 +85,6 @@ Running php-cs-fixer :
 ```
 $ ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
-
-Compiling assets :
-```
-$ npm run dev
-```
-
-Running seeders :
-```
-$ php artisan db:seed
-```
-
-This will create a new user that you can use to sign in.
-Email : ```darthvader@deathstar.ds```
-Password : ```4nak1n```
 
 Generating fake data :
 ```
@@ -85,10 +110,10 @@ Then, you can use this token either as url parameter or in Authorization header 
 
 ```
 # Url parameter
-GET http://laravel-blog.dev/api/v1/posts?api_token=your_private_token_here
+GET http://laravel-blog.app/api/v1/posts?api_token=your_private_token_here
 
 # Authorization Header
-curl --header "Authorization: Bearer your_private_token_here" http://laravel-blog.dev/api/v1/posts
+curl --header "Authorization: Bearer your_private_token_here" http://laravel-blog.app/api/v1/posts
 ```
 
 API are prefixed by ```api``` and the API version number like so ```v1```.
