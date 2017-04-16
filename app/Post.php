@@ -24,7 +24,8 @@ class Post extends Model
         'title',
         'content',
         'posted_at',
-        'thumbnail_id'
+        'thumbnail_id',
+        'slug',
     ];
 
     /**
