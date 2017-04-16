@@ -49,6 +49,20 @@ class Post extends Model
     }
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        if (request()->expectsJson()) {
+            return 'id';
+        } else {
+            return 'slug';
+        }
+    }
+
+    /**
      * Scope a query to order posts by latest posted
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
