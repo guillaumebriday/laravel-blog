@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Transformers\PostTransformer;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostsRequest;
 use App\Post;
 use App\User;
 
@@ -38,7 +36,7 @@ class PostsController extends ApiController
     /**
     * Return the specified resource.
     *
-    * @param  int  $id
+    * @param  int $id
     * @return \Illuminate\Http\Response
     */
     public function show($id)
@@ -48,64 +46,6 @@ class PostsController extends ApiController
         if (! $post) {
             return $this->respondNotFound();
         }
-
-        return $this->item($post);
-    }
-
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @return Response
-    */
-    public function store(PostsRequest $request)
-    {
-        $post = Auth::user()->posts()->create($request->only('title', 'content'));
-
-        if ($request->hasFile('thumbnail')) {
-            $post->storeAndSetThumbnail($request->file('thumbnail'));
-        }
-
-        return $this->setStatusCode(201)->item($post);
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function update(PostsRequest $request, Post $post)
-    {
-        if (! Auth::user()->can('update', $post)) {
-            return $this->respondUnauthorized();
-        }
-
-        $post->update($request->only(['title', 'content']));
-
-        if ($request->hasFile('thumbnail')) {
-            $post->storeAndSetThumbnail($request->file('thumbnail'));
-        }
-
-        return $this->item($post);
-    }
-
-    /**
-    * Unset the post's thumbnail.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function destroy_thumbnail($id)
-    {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
-        if (! Auth::user()->can('update', $post)) {
-            return $this->respondUnauthorized();
-        }
-
-        $post->update(['thumbnail_id' => null]);
 
         return $this->item($post);
     }

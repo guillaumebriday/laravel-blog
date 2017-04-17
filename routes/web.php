@@ -29,8 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', 'PostsController@index')->name('home');
     Route::get('/files/{filename}', 'MediaController@getFile')->name('files');
     Route::get('/posts/feed', 'PostsController@feed')->name('posts.feed');
-    Route::resource('posts', 'PostsController', ['only' => ['create', 'store', 'show', 'edit', 'update']]);
-    Route::delete('/posts/{post}/thumbnail', 'PostsController@destroy_thumbnail')->name('posts.destroy_thumbnail');
+    Route::resource('posts', 'PostsController', ['only' => ['show']]);
     Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['show', 'edit', 'update']]);
     Route::post('/users/{user}/api_token', 'UsersController@api_token')->name('users.api_token');

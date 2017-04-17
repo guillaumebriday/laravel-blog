@@ -43,9 +43,6 @@
                                 {{ link_to_route('users.show', __('users.profil'), Auth::user()) }}
                             </li>
                             <li>
-                                {{ link_to_route('posts.create', __('posts.add_article')) }}
-                            </li>
-                            <li>
                                 <a href="{{ url('/logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
