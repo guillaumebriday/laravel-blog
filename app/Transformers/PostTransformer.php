@@ -18,6 +18,7 @@ class PostTransformer extends TransformerAbstract
         return [
             'id' => $post->id,
             'title' => $post->title,
+            'slug' => $post->slug,
             'content' => $post->content,
             'posted_at' => $post->posted_at->toIso8601String(),
             'author_id' => $post->author_id,
