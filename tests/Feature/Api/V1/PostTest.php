@@ -206,20 +206,4 @@ class PostTest extends TestCase
                 ]
             ]);
     }
-
-    /**
-     * it returns a 401 unauthenticated error
-     * @return void
-     */
-    public function testPostShowUnauthenticated()
-    {
-        $post = factory(Post::class)->create();
-        $response = $this->json('GET', "/api/v1/posts/{$post->id}");
-
-        $response
-            ->assertStatus(401)
-            ->assertJson([
-                'error' => 'Unauthenticated.'
-            ]);
-    }
 }

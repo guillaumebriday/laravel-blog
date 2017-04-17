@@ -290,6 +290,22 @@ class CommentTest extends TestCase
     }
 
     /**
+     * it returns a 401 unauthenticated error
+     * @return void
+     */
+    public function testPostShowUnauthenticated()
+    {
+        $comment = factory(Comment::class)->create();
+        $response = $this->json('DELETE', "/api/v1/comments/{$comment->id}");
+
+        $response
+            ->assertStatus(401)
+            ->assertJson([
+                'error' => 'Unauthenticated.'
+            ]);
+    }
+
+    /**
      * Valid params for updating or creating a resource
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
