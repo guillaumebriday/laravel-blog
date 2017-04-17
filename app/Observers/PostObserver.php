@@ -17,4 +17,15 @@ class PostObserver
     {
         $post->posted_at = Carbon::now();
     }
+
+    /**
+     * Listen to the Post saving event.
+     *
+     * @param  Post $post
+     * @return void
+     */
+    public function saving(Post $post)
+    {
+        $post->slug = str_slug($post->title, '-');
+    }
 }

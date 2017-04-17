@@ -49,12 +49,16 @@ class CommentTest extends TestCase
     public function testDelete()
     {
         $user = $this->user();
-        $comment = factory(Comment::class)->create(['author_id' => $user->id]);
+        $post = factory(Post::class)->create();
+        $comment = factory(Comment::class)->create([
+            'author_id' => $user->id,
+            'post_id' => $post->id
+        ]);
 
         $response = $this->actingAs($user)
                          ->delete("/comments/{$comment->id}");
 
-        $response->assertRedirect("/posts/{$comment->post_id}");
+        $response->assertRedirect("/posts/{$post->slug}");
         $this->assertDatabaseMissing('comments', $comment->toArray());
     }
 

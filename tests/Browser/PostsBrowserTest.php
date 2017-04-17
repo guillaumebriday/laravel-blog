@@ -54,7 +54,7 @@ class PostsBrowserTest extends BrowserKitTest
         $post = factory(Post::class)->create();
 
         $this->actingAs($post->author)
-            ->visit("posts/{$post->id}")
+            ->visit("posts/{$post->slug}")
             ->click('Éditer')
             ->seeRouteIs('posts.edit', $post);
     }
@@ -69,7 +69,7 @@ class PostsBrowserTest extends BrowserKitTest
         $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
 
         $this->actingAs($post->author)
-            ->visit("posts/{$post->id}/edit")
+            ->visit("posts/{$post->slug}/edit")
             ->press("Supprimer l'image à la une")
             ->seeRouteIs('posts.edit', $post)
             ->see('Article mis à jour avec succès');
@@ -87,7 +87,7 @@ class PostsBrowserTest extends BrowserKitTest
         $post = factory(Post::class)->create();
 
         $this->actingAs($post->author)
-            ->visit("posts/{$post->id}/edit")
+            ->visit("posts/{$post->slug}/edit")
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
             ->press('Publier')

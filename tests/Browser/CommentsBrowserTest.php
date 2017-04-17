@@ -23,7 +23,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $comment = factory(Comment::class)->create(['author_id' => $user->id]);
 
         $this->actingAs($user)
-            ->visit("/posts/{$comment->post->id}")
+            ->visit("/posts/{$comment->post->slug}")
             ->press('submit')
             ->see('Commentaire supprimé avec succès');
     }
@@ -38,7 +38,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $faker = Factory::create();
 
         $this->actingAs($this->user())
-             ->visit("/posts/{$post->id}")
+             ->visit("/posts/{$post->slug}")
              ->type($faker->paragraph, 'content')
              ->press('Commenter')
              ->see('Commentaire créé avec succès');

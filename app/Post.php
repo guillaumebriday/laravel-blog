@@ -24,7 +24,8 @@ class Post extends Model
         'title',
         'content',
         'posted_at',
-        'thumbnail_id'
+        'thumbnail_id',
+        'slug',
     ];
 
     /**
@@ -45,6 +46,20 @@ class Post extends Model
     {
         parent::boot();
         static::addGlobalScope(new PostedScope);
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        if (request()->expectsJson()) {
+            return 'id';
+        } else {
+            return 'slug';
+        }
     }
 
     /**

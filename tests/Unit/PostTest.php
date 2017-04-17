@@ -39,6 +39,16 @@ class PostTest extends TestCase
     }
 
     /**
+     * it fills the slug field when a post is being saved
+     * @return void
+     */
+    public function testSlug()
+    {
+        $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
+        $this->assertEquals($post->slug, 'the-empire-strikes-back');
+    }
+
+    /**
      * it returns only posts posted last month
      * @return void
      */
