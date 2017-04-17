@@ -45,7 +45,7 @@ class PostTest extends TestCase
         $anakin = factory(User::class)->states('anakin')->create();
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
-        $response = $this->actingAs($this->admin())->get("/admin/posts/{$post->id}/edit");
+        $response = $this->actingAs($this->admin())->get("/admin/posts/{$post->slug}/edit");
 
         $response->assertStatus(200)
                  ->assertSee('Anakin')
@@ -67,13 +67,13 @@ class PostTest extends TestCase
         $params = $this->validParams();
 
         $response = $this->actingAs($this->admin())
-                         ->patch("/admin/posts/{$post->id}", $params);
+                         ->patch("/admin/posts/{$post->slug}", $params);
 
         $post = $post->fresh();
         $params['posted_at'] = Carbon::createFromFormat('d/m/Y H:i:s', $params['posted_at']);
 
         $response->assertStatus(302);
-        $response->assertRedirect("/admin/posts/{$post->id}/edit");
+        $response->assertRedirect("/admin/posts/{$post->slug}/edit");
         $this->assertDatabaseHas('posts', $params);
         $this->assertEquals($params['content'], $post->content);
     }
@@ -92,7 +92,7 @@ class PostTest extends TestCase
                         $comment->save();
                     });
 
-        $response = $this->actingAs($this->admin())->delete("/admin/posts/{$post->id}");
+        $response = $this->actingAs($this->admin())->delete("/admin/posts/{$post->slug}");
 
         $response->assertStatus(302);
         $this->assertDatabaseMissing('posts', $post->toArray());

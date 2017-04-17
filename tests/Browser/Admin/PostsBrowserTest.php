@@ -53,7 +53,7 @@ class PostsBrowserTest extends BrowserKitTest
         $faker = Factory::create();
 
         $this->actingAs($this->admin())
-            ->visit("/admin/posts/{$post->id}/edit")
+            ->visit("/admin/posts/{$post->slug}/edit")
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
             ->type($faker->datetime->format('d/m/Y H:i:s'), 'posted_at')
@@ -71,7 +71,7 @@ class PostsBrowserTest extends BrowserKitTest
         $post = factory(Post::class)->create();
 
         $this->actingAs($this->admin())
-            ->visit("/admin/posts/{$post->id}/edit")
+            ->visit("/admin/posts/{$post->slug}/edit")
             ->press('Supprimer')
             ->see('Article supprimé avec succès');
     }

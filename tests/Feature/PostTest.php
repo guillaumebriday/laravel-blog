@@ -48,7 +48,7 @@ class PostTest extends TestCase
         $comments = factory(Comment::class, 9)->create(['post_id' => $post->id]);
         $comment = factory(Comment::class)->create(['post_id' => $post->id]);
 
-        $response = $this->actingAs($user)->get("/posts/{$post->id}");
+        $response = $this->actingAs($user)->get("/posts/{$post->slug}");
 
         $response->assertStatus(200)
                  ->assertSee(e($post->content))
@@ -84,7 +84,7 @@ class PostTest extends TestCase
     public function testEdit()
     {
         $post = factory(Post::class)->create();
-        $response = $this->actingAs($post->author)->get("/posts/{$post->id}/edit");
+        $response = $this->actingAs($post->author)->get("/posts/{$post->slug}/edit");
 
         $response->assertStatus(200)
                  ->assertSee('Éditer un article')
@@ -104,12 +104,12 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
         $params = $this->validParams();
 
-        $response = $this->actingAs($post->author)->patch("/posts/{$post->id}", $params);
+        $response = $this->actingAs($post->author)->patch("/posts/{$post->slug}", $params);
 
         $post = $post->fresh();
 
         $response->assertStatus(302);
-        $response->assertRedirect("/posts/{$post->id}");
+        $response->assertRedirect("/posts/{$post->slug}");
         $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
         $this->assertEquals($params['title'], $post->title);
         $this->assertEquals($params['content'], $post->content);
@@ -125,12 +125,12 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $response = $this->actingAs($post->author)->delete("/posts/{$post->id}/thumbnail", []);
+        $response = $this->actingAs($post->author)->delete("/posts/{$post->slug}/thumbnail", []);
 
         $post = $post->fresh();
 
         $response->assertStatus(302);
-        $response->assertRedirect("/posts/{$post->id}/edit");
+        $response->assertRedirect("/posts/{$post->slug}/edit");
         $this->assertFalse($post->hasThumbnail());
     }
 
