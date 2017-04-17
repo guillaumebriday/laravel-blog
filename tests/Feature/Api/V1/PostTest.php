@@ -32,6 +32,7 @@ class PostTest extends TestCase
                     'id',
                     'attributes' => [
                         'title',
+                        'slug',
                         'content',
                         'posted_at',
                         'author_id',
@@ -84,6 +85,7 @@ class PostTest extends TestCase
                     'id',
                     'attributes' => [
                         'title',
+                        'slug',
                         'content',
                         'posted_at',
                         'author_id',
@@ -159,6 +161,7 @@ class PostTest extends TestCase
                     'id',
                     'attributes' => [
                         'title',
+                        'slug',
                         'content',
                         'posted_at',
                         'author_id',
@@ -174,6 +177,7 @@ class PostTest extends TestCase
                     'id' => $post->id,
                     'attributes' => [
                         'title' => 'The Empire Strikes Back',
+                        'slug' => 'the-empire-strikes-back',
                         'content' => 'A Star Wars Story',
                         'posted_at' => $post->posted_at->toIso8601String(),
                         'author_id' => $post->author_id,
