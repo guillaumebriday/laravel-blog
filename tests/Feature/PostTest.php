@@ -59,4 +59,18 @@ class PostTest extends TestCase
                  ->assertSee('Commenter')
                  ->assertSee(e($comment->content));
     }
+
+    /**
+     * it renders a post show view if unauthenticated
+     * @return void
+     */
+    public function testShowUnauthenticated()
+    {
+        $post = factory(Post::class)->create();
+
+        $this->actingAs($this->user())
+            ->get("/posts/{$post->slug}")
+            ->assertStatus(200)
+            ->assertSee('Vous devez vous connecter pour commenter.');
+    }
 }
