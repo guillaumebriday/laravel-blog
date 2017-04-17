@@ -17,6 +17,18 @@ class PostsRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => str_slug($this->input('title'))
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
