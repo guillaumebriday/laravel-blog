@@ -38,7 +38,8 @@ class PostsRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required|max:255',
-            'thumbnail' => 'image'
+            'thumbnail' => 'image',
+            'slug' => 'unique:posts,slug,' . ($this->post ? $this->post->id : null),
         ];
     }
 }
