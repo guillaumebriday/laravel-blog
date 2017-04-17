@@ -21,9 +21,8 @@ class CommentTest extends TestCase
     public function testCommentIndex()
     {
         $comments = factory(Comment::class, 10)->create();
-        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/comments');
 
-        $response
+        $this->json('GET', '/api/v1/comments')
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
@@ -59,9 +58,7 @@ class CommentTest extends TestCase
         $comments = factory(Comment::class, 10)->create(['author_id' => $user->id]);
         $randomComments = factory(Comment::class, 10)->create();
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/users/{$user->id}/comments");
-
-        $response
+        $this->json('GET', "/api/v1/users/{$user->id}/comments")
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
@@ -108,9 +105,7 @@ class CommentTest extends TestCase
         $comments = factory(Comment::class, 10)->create(['post_id' => $post->id]);
         $randomComments = factory(Comment::class, 10)->create();
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/posts/{$post->id}/comments");
-
-        $response
+        $this->json('GET', "/api/v1/posts/{$post->id}/comments")
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
@@ -190,9 +185,7 @@ class CommentTest extends TestCase
             'content' => 'The Empire Strikes Back'
         ]);
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/comments/{$comment->id}");
-
-        $response
+        $this->json('GET', "/api/v1/comments/{$comment->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -226,9 +219,7 @@ class CommentTest extends TestCase
      */
     public function testCommentShowFail()
     {
-        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/comments/31415');
-
-        $response
+        $this->json('GET', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
                 'error' => [
@@ -246,9 +237,9 @@ class CommentTest extends TestCase
     {
         $comment = factory(Comment::class)->create();
 
-        $response = $this->actingAs($comment->author, 'api')->json('DELETE', "/api/v1/comments/{$comment->id}");
-
-        $response->assertStatus(204);
+        $this->actingAs($comment->author, 'api')
+            ->json('DELETE', "/api/v1/comments/{$comment->id}")
+            ->assertStatus(204);
     }
 
     /**
@@ -257,9 +248,8 @@ class CommentTest extends TestCase
      */
     public function testCommentDeleteNotFound()
     {
-        $response = $this->actingAs($this->user(), 'api')->json('DELETE', '/api/v1/comments/31415');
-
-        $response
+        $this->actingAs($this->user(), 'api')
+            ->json('DELETE', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
                 'error' => [
@@ -277,9 +267,8 @@ class CommentTest extends TestCase
     {
         $comment = factory(Comment::class)->create();
 
-        $response = $this->actingAs($this->user(), 'api')->json('DELETE', "/api/v1/comments/{$comment->id}");
-
-        $response
+        $this->actingAs($this->user(), 'api')
+            ->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertStatus(401)
             ->assertJson([
                 'error' => [
@@ -293,12 +282,10 @@ class CommentTest extends TestCase
      * it returns a 401 unauthenticated error
      * @return void
      */
-    public function testPostShowUnauthenticated()
+    public function testCommentsDeleteUnauthenticated()
     {
         $comment = factory(Comment::class)->create();
-        $response = $this->json('DELETE', "/api/v1/comments/{$comment->id}");
-
-        $response
+        $this->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertStatus(401)
             ->assertJson([
                 'error' => 'Unauthenticated.'

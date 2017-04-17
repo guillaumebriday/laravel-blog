@@ -21,20 +21,18 @@ class PostTest extends TestCase
      */
     public function testIndex()
     {
-        $user = $this->user();
         $anakin = factory(User::class)->states('anakin')->create();
 
         $posts = factory(Post::class, 10)->create();
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
-        $response = $this->actingAs($user)->get('/');
-
-        $response->assertStatus(200)
-                 ->assertSee('Les derniers articles')
-                 ->assertSee(e($post->content))
-                 ->assertSee(e($post->title))
-                 ->assertSee(humanize_date($post->posted_at))
-                 ->assertSee('Anakin');
+        $this->get('/')
+            ->assertStatus(200)
+            ->assertSee('Les derniers articles')
+            ->assertSee(e($post->content))
+            ->assertSee(e($post->title))
+            ->assertSee(humanize_date($post->posted_at))
+            ->assertSee('Anakin');
     }
 
     /**
@@ -43,21 +41,20 @@ class PostTest extends TestCase
      */
     public function testShow()
     {
-        $user = $this->user();
         $post = factory(Post::class)->create();
         $comments = factory(Comment::class, 9)->create(['post_id' => $post->id]);
         $comment = factory(Comment::class)->create(['post_id' => $post->id]);
 
-        $response = $this->actingAs($user)->get("/posts/{$post->slug}");
-
-        $response->assertStatus(200)
-                 ->assertSee(e($post->content))
-                 ->assertSee(e($post->title))
-                 ->assertSee(humanize_date($post->posted_at))
-                 ->assertSee('10 commentaires')
-                 ->assertSee('Ajouter un commentaire')
-                 ->assertSee('Commenter')
-                 ->assertSee(e($comment->content));
+        $this->actingAs($this->user())
+            ->get("/posts/{$post->slug}")
+            ->assertStatus(200)
+            ->assertSee(e($post->content))
+            ->assertSee(e($post->title))
+            ->assertSee(humanize_date($post->posted_at))
+            ->assertSee('10 commentaires')
+            ->assertSee('Ajouter un commentaire')
+            ->assertSee('Commenter')
+            ->assertSee(e($comment->content));
     }
 
     /**
@@ -68,8 +65,7 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->user())
-            ->get("/posts/{$post->slug}")
+        $this->get("/posts/{$post->slug}")
             ->assertStatus(200)
             ->assertSee('Vous devez vous connecter pour commenter.');
     }

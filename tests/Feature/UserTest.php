@@ -27,17 +27,17 @@ class UserTest extends TestCase
         $comment = factory(Comment::class)->create(['author_id' => $user->id]);
         $post = factory(Post::class)->create(['author_id' => $user->id]);
 
-        $response = $this->actingAs($user)->get("/users/{$user->id}");
-
-        $response->assertStatus(200)
-                 ->assertSee(e($user->name))
-                 ->assertSee(e($user->email))
-                 ->assertSee('Nombre de commentaires')
-                 ->assertSee('Administrateur')
-                 ->assertSee('Éditeur')
-                 ->assertSee('Éditer')
-                 ->assertSee(e($comment->content))
-                 ->assertSee(e($post->content));
+        $this->actingAs($user)
+            ->get("/users/{$user->id}")
+            ->assertStatus(200)
+            ->assertSee(e($user->name))
+            ->assertSee(e($user->email))
+            ->assertSee('Nombre de commentaires')
+            ->assertSee('Administrateur')
+            ->assertSee('Éditeur')
+            ->assertSee('Éditer')
+            ->assertSee(e($comment->content))
+            ->assertSee(e($post->content));
     }
 
     /**
@@ -48,13 +48,12 @@ class UserTest extends TestCase
     {
         $user = $this->user();
 
-        $response = $this->actingAs($user)->get("/users/{$user->id}");
-
-        $response->assertStatus(200)
-                 ->assertSee(e($user->name))
-                 ->assertSee(e($user->email))
-                 ->assertSee('Nombre de commentaires')
-                 ->assertSee('Aucun');
+        $this->get("/users/{$user->id}")
+            ->assertStatus(200)
+            ->assertSee(e($user->name))
+            ->assertSee(e($user->email))
+            ->assertSee('Nombre de commentaires')
+            ->assertSee('Aucun');
     }
 
     /**

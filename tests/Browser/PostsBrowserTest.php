@@ -24,8 +24,7 @@ class PostsBrowserTest extends BrowserKitTest
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->user())
-            ->visit('/')
+        $this->visit('/')
             ->click($post->title)
             ->seeRouteIs('posts.show', $post);
     }
@@ -39,8 +38,7 @@ class PostsBrowserTest extends BrowserKitTest
         $anakin = factory(User::class)->states('anakin')->create();
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->user())
-            ->visit('/')
+        $this->visit('/')
             ->click('Anakin')
             ->seeRouteIs('users.show', $post->author);
     }

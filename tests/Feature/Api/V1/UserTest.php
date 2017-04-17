@@ -26,9 +26,7 @@ class UserTest extends TestCase
                         $user->roles()->save(factory(Role::class)->create());
                     });
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/users');
-
-        $response
+        $this->json('GET', '/api/v1/users')
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
@@ -82,9 +80,7 @@ class UserTest extends TestCase
         $comments = factory(Comment::class, 2)->create(['author_id' => $user->id]);
         $posts = factory(Post::class, 5)->create(['author_id' => $user->id]);
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/users/{$user->id}");
-
-        $response
+        $this->json('GET', "/api/v1/users/{$user->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
