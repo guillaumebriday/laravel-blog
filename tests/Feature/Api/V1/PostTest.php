@@ -22,9 +22,8 @@ class PostTest extends TestCase
     public function testPostIndex()
     {
         $posts = factory(Post::class, 10)->create();
-        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/posts');
 
-        $response
+        $this->json('GET', '/api/v1/posts')
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
@@ -75,9 +74,7 @@ class PostTest extends TestCase
         $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
         $randomPosts = factory(Post::class, 10)->create();
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/users/{$user->id}/posts");
-
-        $response
+        $this->json('GET', "/api/v1/users/{$user->id}/posts")
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
@@ -127,9 +124,7 @@ class PostTest extends TestCase
         $user = factory(User::class)->create();
         $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/users/314/posts');
-
-        $response
+        $this->json('GET', '/api/v1/users/314/posts')
             ->assertStatus(404)
             ->assertJson([
                 'error' => [
@@ -151,9 +146,7 @@ class PostTest extends TestCase
         ]);
         $comment = factory(Comment::class, 5)->create(['post_id' => $post->id]);
 
-        $response = $this->actingAs($this->user(), 'api')->json('GET', "/api/v1/posts/{$post->id}");
-
-        $response
+        $this->json('GET', "/api/v1/posts/{$post->id}")
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
@@ -195,31 +188,13 @@ class PostTest extends TestCase
      */
     public function testPostShowFail()
     {
-        $response = $this->actingAs($this->user(), 'api')->json('GET', '/api/v1/posts/31415');
-
-        $response
+        $this->json('GET', '/api/v1/posts/31415')
             ->assertStatus(404)
             ->assertJson([
                 'error' => [
                     'message' => 'Not found.',
                     'status' => 404
                 ]
-            ]);
-    }
-
-    /**
-     * it returns a 401 unauthenticated error
-     * @return void
-     */
-    public function testPostShowUnauthenticated()
-    {
-        $post = factory(Post::class)->create();
-        $response = $this->json('GET', "/api/v1/posts/{$post->id}");
-
-        $response
-            ->assertStatus(401)
-            ->assertJson([
-                'error' => 'Unauthenticated.'
             ]);
     }
 }

@@ -24,11 +24,11 @@ class MediaTest extends TestCase
             'filename' => $filename,
             'original_filename' => 'file.png'
         ]);
-        $response = $this->actingAs($this->user())->get("/files/{$filename}");
 
-        $response->assertStatus(200)
-                 ->assertHeader('Content-Type', 'image/png')
-                 ->assertHeader('Content-Disposition', "filename='file.png'");
+        $this->get("/files/{$filename}")
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'image/png')
+            ->assertHeader('Content-Disposition', "filename='file.png'");
 
         Storage::delete($filename);
     }
