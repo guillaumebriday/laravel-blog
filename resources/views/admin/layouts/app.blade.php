@@ -24,15 +24,14 @@
 <body class="admin-body">
     @include('admin/shared/navbar')
 
-    <div class="container">
-        @include('shared/alerts')
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="col-lg-12">
+                @include('shared/alerts')
 
-        <div class="row">
-            <div class="col-md-3">
-                @include('admin/shared/sidebar')
-            </div>
-            <div class="col-md-9">
-                @yield('content')
+                <div class="row">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>

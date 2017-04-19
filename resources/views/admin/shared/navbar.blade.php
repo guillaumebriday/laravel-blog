@@ -1,9 +1,9 @@
-<nav class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
         <div class="navbar-header">
 
             <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-container" aria-expanded="false">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -14,7 +14,7 @@
             {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
         </div>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <div class="navbar-collapse">
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
@@ -47,5 +47,7 @@
                 @endif
             </ul>
         </div>
+
+        @include('admin/shared/_sidebar')
     </div>
 </nav>
