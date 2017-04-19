@@ -38,7 +38,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script src="/js/admin.js"></script>
+    <script src="/js/app.js" data-turbolinks-eval="false"></script>
+    <script src="/js/admin.js" data-turbolinks-eval="false"></script>
 </body>
 </html>
