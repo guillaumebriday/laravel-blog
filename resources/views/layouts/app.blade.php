@@ -43,7 +43,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="/js/app.js" data-turbolinks-eval="false"></script>
     @stack('inline-scripts')
 </body>
 </html>
