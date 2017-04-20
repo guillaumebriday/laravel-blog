@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\User;
 
 class PostsRequest extends FormRequest
 {
@@ -17,6 +18,21 @@ class PostsRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $author = User::find($this->author_id);
+        $canBeAuthor = $author ? $author->canBeAuthor() : false;
+
+        $this->merge([
+            'can_be_author' => $canBeAuthor
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -27,7 +43,8 @@ class PostsRequest extends FormRequest
             'title' => 'required',
             'content' => 'required|max:255',
             'posted_at' => 'required|date_format:d/m/Y H:i:s',
-            'author_id' => 'required|exists:users,id'
+            'author_id' => 'required|exists:users,id',
+            'can_be_author' => 'required|accepted'
         ];
     }
 }

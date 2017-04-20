@@ -97,9 +97,9 @@ return [
     |
     */
 
-    'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+    'custom' => [
+        'can_be_author' => [
+            'accepted' => "L'auteur sélectionné n'est pas valide.",
         ],
     ],
 
