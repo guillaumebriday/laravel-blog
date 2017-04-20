@@ -27,7 +27,8 @@ class PostsController extends Controller
     */
     public function edit(Post $post)
     {
-        $users = User::pluck('name', 'id');
+        $users = User::authors()->pluck('name', 'id');
+
         return view('admin.posts.edit')->withPost($post)->withUsers($users);
     }
 

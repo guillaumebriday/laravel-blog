@@ -99,6 +99,20 @@ class User extends Authenticatable
     }
 
     /**
+     * Scope a query to filter available author users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAuthors($query)
+    {
+        return $query->whereHas('roles', function ($query) {
+            $query->where('roles.name', Role::ROLE_ADMIN)
+                  ->orWhere('roles.name', Role::ROLE_EDITOR);
+        });
+    }
+
+    /**
     * Check if the user has a role
     *
     * @param string $role
