@@ -1,5 +1,11 @@
 // Datetime-picker
 @import "node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker";
 
+// Variables
+@import "variables";
+
+// Base
+@import "base/base";
+
 // Layouts
 @import "layouts/navbar";
