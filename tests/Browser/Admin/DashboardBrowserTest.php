@@ -21,7 +21,7 @@ class DashboardBrowserTest extends BrowserKitTest
     {
         $this->actingAs($this->admin())
             ->visit('/admin/dashboard')
-            ->click('Les articles')
+            ->click('Articles')
             ->seeRouteIs('admin.posts.index');
     }
 
@@ -33,7 +33,7 @@ class DashboardBrowserTest extends BrowserKitTest
     {
         $this->actingAs($this->admin())
             ->visit('/admin/dashboard')
-            ->click('Les commentaires')
+            ->click('Commentaires')
             ->seeRouteIs('admin.comments.index');
     }
 
@@ -45,7 +45,7 @@ class DashboardBrowserTest extends BrowserKitTest
     {
         $this->actingAs($this->admin())
             ->visit('/admin/dashboard')
-            ->click('Les utilisateurs')
+            ->click('Utilisateurs')
             ->seeRouteIs('admin.users.index');
     }
 }
