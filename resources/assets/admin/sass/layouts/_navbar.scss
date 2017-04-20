@@ -1,0 +1,24 @@
+@media (min-width: 768px) {
+  .content-wrapper {
+    padding-left: $sidebar-width;
+  }
+
+  .sidebar-container {
+    position: fixed;
+    top: $navbar-height;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    background-color: $sidebar-background;
+    overflow-x: hidden;
+    max-height: none!important;
+
+    li {
+      width: 100%;
+
+      &:hover {
+        background-color: $sidebar-link-hover;
+      }
+    }
+  }
+}
