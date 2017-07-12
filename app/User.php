@@ -99,6 +99,30 @@ class User extends Authenticatable
     }
 
     /**
+     * Scope a query to filter available author users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAuthors($query)
+    {
+        return $query->whereHas('roles', function ($query) {
+            $query->where('roles.name', Role::ROLE_ADMIN)
+                  ->orWhere('roles.name', Role::ROLE_EDITOR);
+        });
+    }
+
+    /**
+    * Check if the user can be an author
+    *
+    * @return boolean
+    */
+    public function canBeAuthor()
+    {
+        return $this->isAdmin() || $this->isEditor();
+    }
+
+    /**
     * Check if the user has a role
     *
     * @param string $role
@@ -117,6 +141,16 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->hasRole(Role::ROLE_ADMIN);
+    }
+
+    /**
+    * Check if the user has role editor
+    *
+    * @return boolean
+    */
+    public function isEditor()
+    {
+        return $this->hasRole(Role::ROLE_EDITOR);
     }
 
     /**

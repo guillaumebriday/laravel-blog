@@ -42,7 +42,7 @@ class PostTest extends TestCase
      */
     public function testEdit()
     {
-        $anakin = factory(User::class)->states('anakin')->create();
+        $anakin = $this->admin(['name' => 'Anakin', 'email' => 'anakin@skywalker.st']);
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
         $response = $this->actingAs($this->admin())->get("/admin/posts/{$post->slug}/edit");
@@ -110,7 +110,7 @@ class PostTest extends TestCase
             'title' => 'hello world',
             'content' => "I'm a content",
             'posted_at' => Carbon::yesterday()->format('d/m/Y H:i:s'),
-            'author_id' => factory(User::class)->create()->id,
+            'author_id' => $this->admin()->id,
         ], $overrides);
     }
 }
