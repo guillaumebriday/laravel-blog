@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        $posts = Post::withCount('comments')->latest()->paginate(50);
+        $posts = Post::withCount('comments')->with('author')->latest()->paginate(50);
 
         return view('admin.posts.index')->withPosts($posts);
     }

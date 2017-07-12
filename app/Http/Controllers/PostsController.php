@@ -16,7 +16,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        $posts = Post::latest()->paginate(20);
+        $posts = Post::with('author')->latest()->paginate(20);
         return view('posts.index')->withPosts($posts);
     }
 
@@ -39,7 +39,8 @@ class PostsController extends Controller
     */
     public function show(Request $request, Post $post)
     {
-        $comments = $post->comments()->latest()->paginate(50);
+        $comments = $post->comments()->with('author')->latest()->paginate(50);
+
         return view('posts.show')->withPost($post)->withComments($comments);
     }
 }
