@@ -25,7 +25,7 @@ class CommentsController extends Controller
             'content' => $request->input('content')
         ]);
 
-        return redirect()->route('posts.show', $post)->with('success', __('comments.created'));
+        return redirect()->route('posts.show', $post)->withSuccess(__('comments.created'));
     }
 
     /**
@@ -40,6 +40,6 @@ class CommentsController extends Controller
 
         $comment->delete();
 
-        return redirect()->route('posts.show', $comment->post)->with('success', __('comments.deleted'));
+        return redirect()->route('posts.show', $comment->post)->withSuccess(__('comments.deleted'));
     }
 }

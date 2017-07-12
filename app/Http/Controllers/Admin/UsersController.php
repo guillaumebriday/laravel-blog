@@ -16,9 +16,9 @@ class UsersController extends Controller
     */
     public function index()
     {
-        $users = User::withCount('posts')->latest()->paginate(50);
-
-        return view('admin.users.index')->withUsers($users);
+        return view('admin.users.index')->with([
+            'users' => User::withCount('posts')->latest()->paginate(50)
+        ]);
     }
 
     /**
@@ -26,8 +26,10 @@ class UsersController extends Controller
     */
     public function edit(User $user)
     {
-        $roles = Role::all();
-        return view('admin.users.edit')->withUser($user)->withRoles($roles);
+        return view('admin.users.edit')->with([
+            'user' => $user,
+            'roles' => Role::all()
+        ]);
     }
 
     /**

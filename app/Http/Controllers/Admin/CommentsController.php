@@ -17,9 +17,9 @@ class CommentsController extends Controller
     */
     public function index()
     {
-        $comments = Comment::with('post', 'author')->latest()->paginate(50);
-
-        return view('admin.comments.index')->withComments($comments);
+        return view('admin.comments.index')->with([
+            'comments' => Comment::with('post', 'author')->latest()->paginate(50)
+        ]);
     }
 
     /**
@@ -27,8 +27,10 @@ class CommentsController extends Controller
     */
     public function edit(Comment $comment)
     {
-        $users = User::pluck('name', 'id');
-        return view('admin.comments.edit')->withComment($comment)->withUsers($users);
+        return view('admin.comments.edit')->with([
+            'comment' => $comment,
+            'users' => User::pluck('name', 'id')
+        ]);
     }
 
     /**
@@ -52,6 +54,6 @@ class CommentsController extends Controller
     {
         $comment->delete();
 
-        return redirect()->route('admin.comments.index')->with('success', __('comments.deleted'));
+        return redirect()->route('admin.comments.index')->withSuccess(__('comments.deleted'));
     }
 }

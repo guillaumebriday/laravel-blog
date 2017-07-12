@@ -15,16 +15,12 @@ class UsersController extends Controller
     */
     public function show(Request $request, User $user)
     {
-        $posts = $user->posts()->withCount('comments')->latest()->limit(5)->get();
-        $comments = $user->comments()->with('post.author')->latest()->limit(5)->get();
-        $roles = Role::all();
-
         return view('users.show')->with([
-                                    'user' => $user,
-                                    'posts' => $posts,
-                                    'comments' => $comments,
-                                    'roles' => $roles
-                                ]);
+            'user' => $user,
+            'posts' => $user->posts()->withCount('comments')->latest()->limit(5)->get(),
+            'comments' => $user->comments()->with('post.author')->latest()->limit(5)->get(),
+            'roles' => Role::all()
+        ]);
     }
 
     /**
@@ -34,9 +30,10 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        $roles = Role::all();
-
-        return view('users.edit', $user)->withUser($user)->withRoles($roles);
+        return view('users.edit', $user)->with([
+            'user' => $user,
+            'roles' => Role::all()
+        ]);
     }
 
     /**
