@@ -13,7 +13,7 @@ class PostTransformer extends TransformerAbstract
      * @param Post $post
      * @return array
      */
-    public function transform(Post $post)
+    public function transform(Post $post): array
     {
         return [
             'id' => $post->id,

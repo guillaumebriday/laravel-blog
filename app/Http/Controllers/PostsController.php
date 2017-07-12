@@ -16,8 +16,9 @@ class PostsController extends Controller
     */
     public function index()
     {
-        $posts = Post::latest()->paginate(20);
-        return view('posts.index')->withPosts($posts);
+        return view('posts.index')->with([
+            'posts' => Post::with('author')->latest()->paginate(20)
+        ]);
     }
 
     /**
@@ -31,7 +32,9 @@ class PostsController extends Controller
             return Post::latest()->limit(20)->get();
         });
 
-        return response()->view('posts.feed', ['posts' => $posts], 200)->header('Content-Type', 'text/xml');
+        return response()->view('posts.feed', [
+            'posts' => $posts
+        ], 200)->header('Content-Type', 'text/xml');
     }
 
     /**
@@ -39,7 +42,9 @@ class PostsController extends Controller
     */
     public function show(Request $request, Post $post)
     {
-        $comments = $post->comments()->latest()->paginate(50);
-        return view('posts.show')->withPost($post)->withComments($comments);
+        return view('posts.show')->with([
+            'post' => $post,
+            'comments' => $post->comments()->with('author')->latest()->paginate(50)
+        ]);
     }
 }

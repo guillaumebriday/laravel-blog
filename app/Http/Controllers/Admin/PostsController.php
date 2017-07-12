@@ -17,9 +17,9 @@ class PostsController extends Controller
     */
     public function index()
     {
-        $posts = Post::withCount('comments')->latest()->paginate(50);
-
-        return view('admin.posts.index')->withPosts($posts);
+        return view('admin.posts.index')->with([
+            'posts' => Post::withCount('comments')->with('author')->latest()->paginate(50)
+        ]);
     }
 
     /**
@@ -27,9 +27,10 @@ class PostsController extends Controller
     */
     public function edit(Post $post)
     {
-        $users = User::authors()->pluck('name', 'id');
-
-        return view('admin.posts.edit')->withPost($post)->withUsers($users);
+        return view('admin.posts.edit')->with([
+            'post' => $post,
+            'users' => User::authors()->pluck('name', 'id')
+        ]);
     }
 
     /**
@@ -53,6 +54,6 @@ class PostsController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->with('success', __('posts.deleted'));
+        return redirect()->route('admin.posts.index')->withSuccess(__('posts.deleted'));
     }
 }

@@ -24,9 +24,9 @@ class UserPolicy
      *
      * @param  \App\User  $user
      * @param  \App\User  $user
-     * @return mixed
+     * @return boolean
      */
-    public function update(User $current_user, User $user)
+    public function update(User $current_user, User $user): bool
     {
         return $current_user->id === $user->id;
     }
@@ -38,7 +38,7 @@ class UserPolicy
      * @param  \App\User $user
      * @return bool
      */
-    public function api_token(User $current_user, User $user)
+    public function api_token(User $current_user, User $user): bool
     {
         return $current_user->id === $user->id;
     }

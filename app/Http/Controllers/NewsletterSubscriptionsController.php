@@ -40,10 +40,10 @@ class NewsletterSubscriptionsController extends Controller
 
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
+            $route = 'login';
+
             if (Auth::check()) {
                 $route = 'home';
-            } else {
-                $route = 'login';
             }
 
             return redirect()->route($route)->withErrors($errors);
