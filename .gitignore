@@ -9,3 +9,4 @@
 /.vagrant
 .env
 .php_cs.cache
+/storage/debugbar
