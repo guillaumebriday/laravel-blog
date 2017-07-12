@@ -30,6 +30,10 @@ class PostsRequest extends FormRequest
         $this->merge([
             'can_be_author' => $canBeAuthor
         ]);
+
+        $this->merge([
+            'slug' => str_slug($this->input('title'))
+        ]);
     }
 
     /**
@@ -44,7 +48,8 @@ class PostsRequest extends FormRequest
             'content' => 'required|max:255',
             'posted_at' => 'required|date_format:d/m/Y H:i:s',
             'author_id' => 'required|exists:users,id',
-            'can_be_author' => 'required|accepted'
+            'can_be_author' => 'required|accepted',
+            'slug' => 'unique:posts,slug,' . ($this->post ? $this->post->id : null),
         ];
     }
 }
