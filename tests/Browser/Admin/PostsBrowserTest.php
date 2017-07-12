@@ -48,7 +48,7 @@ class PostsBrowserTest extends BrowserKitTest
      */
     public function testUpdatePost()
     {
-        $author = factory(User::class)->create();
+        $author = $this->admin();
         $post = factory(Post::class)->create();
         $faker = Factory::create();
 
