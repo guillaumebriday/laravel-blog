@@ -13,7 +13,7 @@ class CommentTransformer extends TransformerAbstract
      * @param Comment $comment
      * @return array
      */
-    public function transform(Comment $comment)
+    public function transform(Comment $comment): array
     {
         return [
             'id' => $comment->id,

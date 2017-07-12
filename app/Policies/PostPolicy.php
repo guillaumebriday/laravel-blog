@@ -27,7 +27,7 @@ class PostPolicy
      * @param  Post $post
      * @return bool
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, Post $post): bool
     {
         return $user->id === $post->author_id;
     }

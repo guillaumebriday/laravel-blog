@@ -13,7 +13,7 @@ trait Mediable
      * @param integer $media_id
      * @return boolean
      */
-    public function hasMedia($media_id)
+    public function hasMedia($media_id): bool
     {
         return $this->media()->where('id', $media_id)->exists();
     }

@@ -53,7 +53,7 @@ class Post extends Model
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         if (request()->expectsJson()) {
             return 'id';
@@ -103,7 +103,7 @@ class Post extends Model
      *
      * @return boolean
      */
-    public function hasThumbnail()
+    public function hasThumbnail(): bool
     {
         return $this->hasMedia($this->thumbnail_id);
     }
@@ -162,7 +162,7 @@ class Post extends Model
      * @param  $length
      * @return string
      */
-    public function excerpt($length = 50)
+    public function excerpt($length = 50): string
     {
         return str_limit($this->content, $length);
     }

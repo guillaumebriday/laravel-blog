@@ -13,7 +13,7 @@ class RoleTransformer extends TransformerAbstract
      * @param Role $role
      * @return array
      */
-    public function transform(Role $role)
+    public function transform(Role $role): array
     {
         return [
             'id' => $role->id,

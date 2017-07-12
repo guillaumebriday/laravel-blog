@@ -45,7 +45,7 @@ class User extends Authenticatable
      *
      * @var String
      */
-    public static function generateApiToken()
+    public static function generateApiToken(): string
     {
         do {
             $api_token = str_random(60);
@@ -59,7 +59,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getFullnameAttribute()
+    public function getFullnameAttribute(): string
     {
         return title_case($this->name);
     }
@@ -117,7 +117,7 @@ class User extends Authenticatable
     *
     * @return boolean
     */
-    public function canBeAuthor()
+    public function canBeAuthor(): bool
     {
         return $this->isAdmin() || $this->isEditor();
     }
@@ -128,7 +128,7 @@ class User extends Authenticatable
     * @param string $role
     * @return boolean
     */
-    public function hasRole($role)
+    public function hasRole($role): bool
     {
         return $this->roles->where('name', $role)->isNotEmpty();
     }
@@ -138,7 +138,7 @@ class User extends Authenticatable
     *
     * @return boolean
     */
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return $this->hasRole(Role::ROLE_ADMIN);
     }
@@ -148,7 +148,7 @@ class User extends Authenticatable
     *
     * @return boolean
     */
-    public function isEditor()
+    public function isEditor(): bool
     {
         return $this->hasRole(Role::ROLE_EDITOR);
     }

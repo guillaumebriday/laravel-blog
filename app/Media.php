@@ -24,7 +24,7 @@ class Media extends Model
      *
      * @return string
      */
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return route('files', ['filename' => $this->filename]);
     }
@@ -34,7 +34,7 @@ class Media extends Model
      *
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return storage_path('app/') . $this->filename;
     }

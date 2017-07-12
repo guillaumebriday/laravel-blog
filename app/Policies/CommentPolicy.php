@@ -25,9 +25,9 @@ class CommentPolicy
      *
      * @param  \App\User  $user
      * @param  \App\Comment  $comment
-     * @return mixed
+     * @return boolean
      */
-    public function delete(User $user, Comment $comment)
+    public function delete(User $user, Comment $comment): bool
     {
         return $user->id === $comment->author_id;
     }
