@@ -122,4 +122,31 @@ class UserTest extends TestCase
 
         $this->assertNotEquals($user->api_token, User::generateApiToken());
     }
+
+    /**
+     * it returns only authors
+     * @return void
+     */
+    public function testAuthorsScope()
+    {
+        $editor = factory(Role::class)->states('editor')->create();
+        factory(User::class, 10)->create();
+        factory(User::class, 3)
+            ->create()
+            ->each(function ($user) use ($editor) {
+                $user->roles()->attach($editor);
+            });
+
+        $authors = User::authors()->get();
+
+        $hasOnlyAuthors = true;
+        foreach ($authors as $author) {
+            if (! $author->canBeAuthor()) {
+                break;
+            }
+        }
+
+        $this->assertTrue($hasOnlyAuthors);
+        $this->assertCount(3, $authors);
+    }
 }
