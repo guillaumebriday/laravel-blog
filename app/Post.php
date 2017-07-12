@@ -57,9 +57,9 @@ class Post extends Model
     {
         if (request()->expectsJson()) {
             return 'id';
-        } else {
-            return 'slug';
         }
+
+        return 'slug';
     }
 
     /**
