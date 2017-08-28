@@ -13,14 +13,14 @@ class CommentsController extends Controller
     /**
     * Store a newly created resource in storage.
     *
+    * @param CommentsRequest $request
     * @return Response
     */
     public function store(CommentsRequest $request)
     {
-        $user = Auth::user();
-        $post = Post::findOrFail($request->input('post_id'));
+        $post = Post::find($request->input('post_id'));
 
-        $comment = $user->comments()->create([
+        Auth::user()->comments()->create([
             'post_id' => $post->id,
             'content' => $request->input('content')
         ]);
@@ -31,7 +31,7 @@ class CommentsController extends Controller
     /**
     * Remove the specified resource from storage.
     *
-    * @param  Comment  $comment
+    * @param  Comment $comment
     * @return \Illuminate\Http\Response
     */
     public function destroy(Comment $comment)
