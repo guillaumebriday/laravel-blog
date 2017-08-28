@@ -2,7 +2,7 @@
     $data['class'] = 'btn btn-success';
 
     if ($user->api_token) {
-        $data['data-confirm'] = __('forms.users.regenerate');
+        $data['data-confirm'] = __('forms.tokens.regenerate');
     }
 @endphp
 
@@ -23,14 +23,14 @@
       </div>
 
     @if ($user->api_token)
-      {!! Form::model($user, ['method' => 'DELETE', 'route' => ['users.destroy_api_token', $user]]) !!}
+      {!! Form::model($user, ['method' => 'DELETE', 'route' => ['tokens.destroy', $user]]) !!}
         <div class="pull-left">
-          {!! Form::submit(__('forms.actions.delete'), ['class' => 'btn btn-danger', 'data-confirm' => __('forms.users.destroy_api_token')]) !!}
+          {!! Form::submit(__('forms.actions.delete'), ['class' => 'btn btn-danger', 'data-confirm' => __('forms.tokens.delete')]) !!}
         </div>
       {!! Form::close() !!}
     @endif
 
-    {!! Form::model($user, ['method' => 'POST', 'route' => ['users.api_token', $user]]) !!}
+    {!! Form::model($user, ['method' => 'POST', 'route' => ['tokens.store', $user]]) !!}
       <div class="pull-right">
         {!! Form::submit(__('forms.actions.generate'), $data) !!}
       </div>
