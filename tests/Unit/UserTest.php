@@ -112,18 +112,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * it returns a unique personnal access token
-     *
-     * @return void
-     */
-    public function testGenerateApiToken()
-    {
-        $user = factory(User::class)->create();
-
-        $this->assertNotEquals($user->api_token, User::generateApiToken());
-    }
-
-    /**
      * it returns only authors
      * @return void
      */
