@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,8 +24,7 @@ class CommentsRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:255',
-            'post_id' => 'required|exists:posts,id'
+            'content' => 'required|max:255'
         ];
     }
 }

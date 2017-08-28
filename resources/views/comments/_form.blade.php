@@ -6,9 +6,11 @@
     @if (Auth::check())
         {!! Form::open(['route' => 'comments.store', 'method' => 'post']) !!}
             {!! Form::hidden('post_id', $post->id) !!}
+
             <div class="form-group">
-                {!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => __('comments.placeholder.content'), 'rows' => '4']) !!}
+                {!! Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => __('comments.placeholder.content'), 'rows' => '4', 'required']) !!}
             </div>
+
             {!! Form::submit(__('comments.comment'), ['class' => 'btn btn-primary pull-right']) !!}
         {!! Form::close() !!}
     @else

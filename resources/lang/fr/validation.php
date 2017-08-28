@@ -146,6 +146,7 @@ return [
         'size'                  => 'Taille',
         'posted_at'             => 'Posté le',
         'author_id'             => 'Auteur',
+        'post_id'               => 'Article',
     ],
 
     'errors' => ":count erreur :|:count erreurs : "
