@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Transformers\CommentTransformer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Requests\CommentsRequest;
+use App\Http\Requests\Api\CommentsRequest;
 use App\Post;
 
 class PostCommentsController extends ApiController
