@@ -19,9 +19,9 @@ return [
     'delete_thumbnail' => "Êtes-vous sûr de vouloir supprimer l'image à la une ?"
   ],
 
-  'users' => [
+  'tokens' => [
     'regenerate' => 'Êtes-vous sûr de vouloir regénérer une clé ? Toutes ses API seront deconnectées.',
-    'destroy_api_token' => 'Êtes-vous sûr de vouloir supprimer cette clé ? Toutes ses API seront deconnectées.',
+    'delete' => 'Êtes-vous sûr de vouloir supprimer cette clé ? Toutes ses API seront deconnectées.',
   ]
 
 ];
