@@ -21,26 +21,24 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        @include('shared/navbar')
+    @include('shared/navbar')
 
-        <div class="container">
-            @include('shared/alerts')
+    <div class="container">
+        @include('shared/alerts')
 
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    @yield('content')
-                </div>
+        <div class="row">
+            <div class="col-md-12">
+                @yield('content')
             </div>
         </div>
-
-        <nav class="navbar navbar-default navbar-fixed-bottom footer">
-            <div class="container">
-                @yield('footer')
-                @include('shared/newsletter-form')
-            </div>
-        </nav>
     </div>
+
+    <nav class="navbar navbar-dark bg-dark fixed-bottom footer">
+        <div class="container">
+            @yield('footer')
+            @include('shared/newsletter-form')
+        </div>
+    </nav>
 
     <!-- Scripts -->
     <script src="/js/app.js" data-turbolinks-eval="false"></script>
