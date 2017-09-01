@@ -1,13 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @component('components.panels.default')
-        @slot('title')
-            <strong>{{ $user->fullname }}</strong>
-        @endslot
+  <h1>{{ __('users.edit') }}</h1>
 
-        @include ('users/_form')
-    @endcomponent
-
-    @include ('users/_api')
+  @include ('users/_form')
+  @include ('users/_api')
 @endsection

@@ -4,7 +4,7 @@ return [
   'profil' => 'Mon profil',
   'nb_of_posts' => "Nombre d'articles",
   'nb_of_comments' => "Nombre de commentaires",
-  'edit' => 'Éditer',
+  'edit' => 'Éditer le profil',
   'show' => 'Voir le profil',
   'updated' => 'Le profil a bien été mis à jour',
   'new_users' => 'nouvel utilisateur|nouveaux utilisateurs',

@@ -1,50 +1,53 @@
-<form class="form-horizontal">
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">{{ __('users.attributes.name') }} : </label>
-    <div class="col-sm-8">
-      <p class="form-control-static">{{ $user->name }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">{{ __('users.attributes.email') }} : </label>
-    <div class="col-sm-8">
-      <p class="form-control-static">{{ $user->email }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">{{ __('users.nb_of_posts') }} : </label>
-    <div class="col-sm-8">
-      <p class="form-control-static">{{ $user->posts()->count() }}</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">{{ __('users.nb_of_comments') }} : </label>
-    <div class="col-sm-8">
-      <p class="form-control-static">{{ $user->comments()->count() }}</p>
-    </div>
+{!! Form::open() !!}
+  <div class="form-group row">
+      {!! Form::label('name', __('users.attributes.name'), ['class' => 'col-sm-2 col-form-label']) !!}
+
+      <div class="col-sm-5">
+          {!! Form::text('name', $user->name, ['class' => 'form-control', 'readonly']) !!}
+      </div>
   </div>
 
-  <div class="form-group">
-    <label class="control-label col-sm-4" for="email">{{ __('users.attributes.roles') }} : </label>
-    <div class="col-sm-8">
-      <ul class="list-unstyled form-control-static">
-        @forelse($roles as $role)
-          <li>
-            {!! Form::checkbox(null, $role->name, $user->hasRole($role->name), ['disabled' => true]) !!}
-            @if (Lang::has('roles.' . $role->name))
-              {!! __('roles.' . $role->name) !!}
-            @else
-              {{ ucfirst($role->name) }}
-            @endif
-          </li>
-        @empty
-          {{ __('roles.none') }}
-        @endforelse
-      </ul>
-    </div>
+  <div class="form-group row">
+      {!! Form::label('email', __('users.attributes.email'), ['class' => 'col-sm-2 col-form-label']) !!}
+
+      <div class="col-sm-5">
+          {!! Form::text('email', $user->email, ['class' => 'form-control', 'readonly']) !!}
+      </div>
   </div>
 
-  @can('update', $user)
-    <a href="{{ route('users.edit', $user) }}" class="pull-right btn btn-primary">{{ __('users.edit') }}</a>
-  @endcan
-</form>
+  <div class="form-group row">
+      {!! Form::label('nb_of_posts', __('users.nb_of_posts'), ['class' => 'col-sm-2 col-form-label']) !!}
+
+      <div class="col-sm-5">
+          {!! Form::text('nb_of_posts', $user->posts()->count(), ['class' => 'form-control', 'readonly']) !!}
+      </div>
+  </div>
+
+  <div class="form-group row ">
+      {!! Form::label('nb_of_comments', __('users.nb_of_comments'), ['class' => 'col-sm-2 col-form-label']) !!}
+
+      <div class="col-sm-5">
+          {!! Form::text('nb_of_comments', $user->comments()->count(), ['class' => 'form-control', 'readonly']) !!}
+      </div>
+  </div>
+
+  <div class="form-group row">
+    {!! Form::label('roles', __('users.attributes.roles'), ['class' => 'col-sm-2 col-form-label']) !!}
+    <div class="col-sm-5">
+      @forelse($roles as $role)
+        <div class="form-check disabled">
+          <label class="form-check-label">
+              {!! Form::checkbox(null, $role->name, $user->hasRole($role->name), ['class' => 'form-check-input', 'disabled']) !!}
+              @if (Lang::has('roles.' . $role->name))
+                {!! __('roles.' . $role->name) !!}
+              @else
+                {{ ucfirst($role->name) }}
+              @endif
+          </label>
+        </div>
+      @empty
+        {{ __('roles.none') }}
+      @endforelse
+    </div>
+  </div>
+{!! Form::close() !!}
