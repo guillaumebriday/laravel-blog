@@ -8,3 +8,9 @@
         }
     }
 }
+
+.btn {
+    &:hover {
+        cursor: pointer;
+    }
+}
