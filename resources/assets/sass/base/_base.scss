@@ -1,7 +1,13 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
 .huge {
     font-size: 40px;
 }
 
 body > .container {
     padding-top: 60px;
+    padding-bottom: 60px;
 }
