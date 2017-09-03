@@ -1,0 +1,22 @@
+.sidebar {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #eee;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #3F3F3F;
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .nav-link {
+        border-radius: 0;
+        color: #fff;
+    }
+  }
