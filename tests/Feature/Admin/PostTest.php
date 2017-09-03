@@ -52,7 +52,7 @@ class PostTest extends TestCase
                  ->assertSee('Voir l&#039;article')
                  ->assertSee(e($post->title))
                  ->assertSee(e($post->content))
-                 ->assertSee(humanize_date($post->posted_at, 'd/m/Y H:i:s'))
+                 ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
                  ->assertSee('Mettre &agrave; jour')
                  ->assertSee('Post&eacute; le');
     }
@@ -70,7 +70,6 @@ class PostTest extends TestCase
                          ->patch("/admin/posts/{$post->slug}", $params);
 
         $post = $post->fresh();
-        $params['posted_at'] = Carbon::createFromFormat('d/m/Y H:i:s', $params['posted_at']);
 
         $response->assertStatus(302);
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
@@ -109,7 +108,7 @@ class PostTest extends TestCase
         return array_merge([
             'title' => 'hello world',
             'content' => "I'm a content",
-            'posted_at' => Carbon::yesterday()->format('d/m/Y H:i:s'),
+            'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
         ], $overrides);
     }

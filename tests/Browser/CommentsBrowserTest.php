@@ -24,7 +24,7 @@ class CommentsBrowserTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit("/posts/{$comment->post->slug}")
-            ->press('submit')
+            ->press('×')
             ->see('Commentaire supprimé avec succès');
     }
 

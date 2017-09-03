@@ -35,9 +35,7 @@ class UserTest extends TestCase
             ->assertSee('Nombre de commentaires')
             ->assertSee('Administrateur')
             ->assertSee('Éditeur')
-            ->assertSee('Éditer')
-            ->assertSee(e($comment->content))
-            ->assertSee(e($post->content));
+            ->assertSee('&Eacute;diter le profil');
     }
 
     /**
