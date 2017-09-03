@@ -12,13 +12,9 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "cross-env": "^3.2.4",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.46",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "laravel-mix": "^1.0",
-    "lodash": "^4.17.4",
-    "moment": "^2.17.1",
-    "popper.js": "^1.11.0",
-    "turbolinks": "^5.0.0"
+    "popper.js": "^1.11.0"
   }
 }

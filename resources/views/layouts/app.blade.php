@@ -41,7 +41,7 @@
     </nav>
 
     <!-- Scripts -->
-    <script src="/js/app.js" data-turbolinks-eval="false"></script>
+    <script src="/js/app.js"></script>
     @stack('inline-scripts')
 </body>
 </html>
