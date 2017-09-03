@@ -14,12 +14,12 @@
                 <th>{{ link_to_route('admin.posts.edit', $post->title, $post) }}</th>
                 <td>{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</td>
                 <td>{{ humanize_date($post->posted_at, 'd/m/Y H:i:s') }}</td>
-                <td><span class="badge">{{ $post->comments_count }}</span></td>
+                <td><span class="badge badge-pill badge-secondary">{{ $post->comments_count }}</span></td>
             </tr>
         @endforeach
     </tbody>
 </table>
 
-<div class="text-center">
+<div class="d-flex justify-content-center">
     {{ $posts->links() }}
 </div>

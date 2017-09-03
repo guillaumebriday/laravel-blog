@@ -5,7 +5,9 @@
       <h1>{{ __('dashboard.this_week') }}</h1>
     </div>
 
-    @include('admin/dashboard/_posts')
-    @include('admin/dashboard/_comments')
-    @include('admin/dashboard/_users')
+    <div class="card-deck">
+      @include('admin/dashboard/_posts')
+      @include('admin/dashboard/_comments')
+      @include('admin/dashboard/_users')
+    </div>
 @endsection

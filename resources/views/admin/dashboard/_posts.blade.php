@@ -1,21 +1,16 @@
-<div class="col-md-6">
-    @component('components.panels.default', ['type' => 'green'])
-        @slot('title')
-        <div class="row">
-            <div class="col-xs-3">
-                <i class="fa fa-file-text fa-5x" aria-hidden="true"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-                <div class="huge">{{ $posts->count() }}</div>
-                <div>{{ trans_choice('posts.new_posts', $posts->count()) }}</div>
-            </div>
+@component('components.cards.default', ['class' => 'bg-success text-light m-2'])
+    <div class="row justify-content-between">
+        <i class="fa fa-file-text fa-5x" aria-hidden="true"></i>
+        <div class="text-right">
+            <div class="huge">{{ $posts->count() }}</div>
+            <div>{{ trans_choice('posts.new_posts', $posts->count()) }}</div>
         </div>
-        @endslot
+    </div>
 
-        <a href="{{ route('admin.posts.index') }}">
-            <span class="pull-left">{{ __('dashboard.details') }}</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
+    @slot('footer')
+        <a href="{{ route('admin.posts.index') }}" class="d-flex justify-content-between text-light">
+            <span>{{ __('dashboard.details') }}</span>
+            <span><i class="fa fa-arrow-circle-right"></i></span>
         </a>
-    @endcomponent
-</div>
+    @endslot
+@endcomponent
