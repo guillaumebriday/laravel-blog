@@ -61,7 +61,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $this->actingAs($this->admin())
             ->visit("/admin/comments/{$comment->id}/edit")
             ->type($faker->paragraph, 'content')
-            ->type($posted_at->format('d/m/Y H:i:s'), 'posted_at')
+            ->type($posted_at->format('Y-m-d\TH:i'), 'posted_at')
             ->select($author->id, 'author_id')
             ->press('Mettre à jour')
             ->see('Commentaire mis à jour avec succès');

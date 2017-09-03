@@ -1,12 +1,5 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
-// Variables
-@import "variables";
-
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 // Base
 @import "base/base";
@@ -19,6 +12,9 @@
 @import "modules/turbolinks";
 @import "modules/panels";
 @import "modules/buttons";
+
+// Shared
+@import "shared/sidebar";
 
 // Templates
 @import "templates/footer";

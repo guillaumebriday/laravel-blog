@@ -1,74 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading">{{ __('auth.login') }}</div>
-        <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                {{ csrf_field() }}
+<div class="row justify-content-md-center mt-5">
+    <div class="col-md-6">
+        <h1>{{ __('auth.login') }}</h1>
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="col-md-4 control-label">{{ __('validation.attributes.email') }}</label>
+        {!! Form::open(['route' => 'login', 'role' => 'form', 'method' => 'POST']) !!}
+            <div class="form-group">
+                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
+                {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required', 'autofocus']) !!}
 
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">{{ __('validation.attributes.password') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control" name="password" required>
-
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="remember"> {{ __('auth.remember_me') }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('auth.login') }}
-                        </button>
-
-                        {{ link_to('/password/reset', __('auth.forgotten_password'), ['class' => 'btn btn-link'])}}
-                    </div>
-                </div>
-            </form>
-
-            <hr>
-
-            <div class="text-center">
-                <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-default">
-                    {{ __('auth.services.github') }}
-                    <i class="fa fa-github" aria-hidden="true"></i>
-                </a>
-
-                <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-default">
-                    {{ __('auth.services.twitter') }}
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+                @endif
             </div>
+
+            <div class="form-group">
+                {!! Form::label('password', __('validation.attributes.password'), ['class' => 'control-label']) !!}
+                {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'required']) !!}
+
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('remember', null, old('remember')) !!} {{ __('auth.remember_me') }}
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                {!! Form::submit(__('auth.login'), ['class' => 'btn btn-primary']) !!}
+                {{ link_to('/password/reset', __('auth.forgotten_password'), ['class' => 'btn btn-link'])}}
+            </div>
+        {!! Form::close() !!}
+
+        <hr>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-secondary">
+                {{ __('auth.services.github') }}
+                <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+
+            <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-secondary">
+                {{ __('auth.services.twitter') }}
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
         </div>
     </div>
+</div>
 @endsection

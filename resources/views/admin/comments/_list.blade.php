@@ -20,6 +20,6 @@
     </tbody>
 </table>
 
-<div class="text-center">
+<div class="d-flex justify-content-center">
     {{ $comments->links() }}
 </div>

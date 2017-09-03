@@ -1,9 +1,6 @@
 @if (Auth::check())
-    {!! Form::open(['route' => 'newsletter-subscriptions.store', 'method' => 'post', 'class' => 'navbar-form navbar-right']) !!}
-        <div class="form-group">
-            {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => __('newsletter.placeholder')]) !!}
-        </div>
-
-        {!! Form::submit(__('newsletter.subscribre'), ['class' => 'btn btn-default']) !!}
+    {!! Form::open(['route' => 'newsletter-subscriptions.store', 'method' => 'post', 'class' => 'form-inline ml-auto']) !!}
+        {!! Form::text('email', null, ['class' => 'form-control mr-sm-2', 'placeholder' => __('newsletter.placeholder')]) !!}
+        {!! Form::submit(__('newsletter.subscribre'), ['class' => 'btn btn-secondary']) !!}
     {!! Form::close() !!}
 @endif

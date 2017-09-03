@@ -1,5 +1,7 @@
-@each('posts/_show', $posts, 'post', 'posts/_empty')
+<div class="card-columns">
+    @each('posts/_show', $posts, 'post', 'posts/_empty')
+</div>
 
-<div class="text-center">
+<div class="d-flex justify-content-center">
     {{ $posts->links() }}
 </div>

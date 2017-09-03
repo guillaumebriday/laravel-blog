@@ -1,16 +1,18 @@
 {!! Form::model($comment, ['route' => ['admin.comments.update', $comment], 'method' =>'PUT' ]) !!}
 
-    <div class="form-group col-md-6">
-        {!! Form::label('author_id', __('comments.attributes.author')) !!}
-        {!! Form::select('author_id', $users, null, ['class' => 'form-control', 'required' => 'required']) !!}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            {!! Form::label('author_id', __('comments.attributes.author')) !!}
+            {!! Form::select('author_id', $users, null, ['class' => 'form-control', 'required' => 'required']) !!}
+        </div>
+
+        <div class="form-group col-md-6">
+            {!! Form::label('posted_at', __('comments.attributes.posted_at')) !!}
+            <input type="datetime-local" name="posted_at" class="form-control" required value="{{ old('posted_at') ?? $comment->posted_at->format('Y-m-d\TH:i') }}">
+        </div>
     </div>
 
-    <div class="form-group col-md-6">
-        {!! Form::label('posted_at', __('comments.attributes.posted_at')) !!}
-        {!! Form::text('posted_at', humanize_date($comment->posted_at, 'd/m/Y H:i:s'), ['class' => 'form-control datepicker', 'required' => 'required']) !!}
-    </div>
-
-    <div class="form-group col-md-12">
+    <div class="form-group">
         {!! Form::label('content', __('comments.attributes.content')) !!}
         {!! Form::textarea('content', null, ['class' => 'form-control', 'required' => 'required']) !!}
     </div>

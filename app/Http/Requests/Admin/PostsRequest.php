@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\User;
+use Carbon\Carbon;
 
 class PostsRequest extends FormRequest
 {
@@ -34,6 +35,10 @@ class PostsRequest extends FormRequest
         $this->merge([
             'slug' => str_slug($this->input('title'))
         ]);
+
+        $this->merge([
+            'posted_at' => Carbon::parse($this->input('posted_at'))
+        ]);
     }
 
     /**
@@ -46,7 +51,7 @@ class PostsRequest extends FormRequest
         return [
             'title' => 'required',
             'content' => 'required|max:255',
-            'posted_at' => 'required|date_format:d/m/Y H:i:s',
+            'posted_at' => 'required|date',
             'author_id' => 'required|exists:users,id',
             'can_be_author' => 'required|accepted',
             'slug' => 'unique:posts,slug,' . ($this->post ? $this->post->id : null),

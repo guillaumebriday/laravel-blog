@@ -6,33 +6,21 @@
     }
 @endphp
 
-@component('components.panels.default')
-    @slot('title')
-        <strong>{{ __('users.attributes.api_token') }}</strong>
-    @endslot
+<h1>{{ __('users.attributes.api_token') }}</h1>
 
-      <div class="form-group">
-        {!! Form::label('api_token', __('users.attributes.api_token')) !!}
-        @if ($user->api_token)
-            <div class="well well-sm">{!! $user->api_token !!}</div>
-        @else
-            @component('components.alerts.default', ['type' => 'warning'])
-              {{ __('users.empty_api_token') }}
-            @endcomponent
-        @endif
-      </div>
+<div class="form-group">
+  {!! Form::label('api_token', __('users.attributes.api_token')) !!}
+  {!! Form::text('email', $user->api_token ?? __('users.empty_api_token'), ['class' => 'form-control', 'readonly']) !!}
+</div>
 
-    @if ($user->api_token)
-      {!! Form::model($user, ['method' => 'DELETE', 'route' => ['tokens.destroy', $user]]) !!}
-        <div class="pull-left">
-          {!! Form::submit(__('forms.actions.delete'), ['class' => 'btn btn-danger', 'data-confirm' => __('forms.tokens.delete')]) !!}
-        </div>
-      {!! Form::close() !!}
-    @endif
-
-    {!! Form::model($user, ['method' => 'POST', 'route' => ['tokens.store', $user]]) !!}
-      <div class="pull-right">
-        {!! Form::submit(__('forms.actions.generate'), $data) !!}
-      </div>
+<div class="d-flex justify-content-start">
+  @if ($user->api_token)
+    {!! Form::model($user, ['method' => 'DELETE', 'route' => ['tokens.destroy', $user]]) !!}
+      {!! Form::submit(__('forms.actions.delete'), ['class' => 'btn btn-danger', 'data-confirm' => __('forms.tokens.delete')]) !!}
     {!! Form::close() !!}
-@endcomponent
+  @endif
+
+  {!! Form::model($user, ['method' => 'POST', 'route' => ['tokens.store', $user], 'class' => 'ml-auto']) !!}
+    {!! Form::submit(__('forms.actions.generate'), $data) !!}
+  {!! Form::close() !!}
+</div>

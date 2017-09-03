@@ -1,13 +1,13 @@
-@component('components.panels.default', ['type' => 'info'])
-    @slot('title')
-        <strong>{{ link_to_route('posts.show', $post->title, $post) }}</strong>,
-        <span>{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</span>
-        <time class="pull-right">{{ humanize_date($post->posted_at) }}</time>
-    @endslot
+<div class="card">
+  @if ($post->hasThumbnail())
+      {{ Html::image($post->thumbnail()->url, $post->thumbnail()->original_filename, ['class' => 'card-img-top']) }}
+  @endif
 
-    @if ($post->hasThumbnail())
-        {{ Html::image($post->thumbnail()->url, $post->thumbnail()->original_filename, ['class' => 'img-responsive']) }}
-    @endif
+  <div class="card-body">
+    <h4 class="card-title">{{ link_to_route('posts.show', $post->title, $post) }}</h4>
 
-    {{ $post->content }}
-@endcomponent
+    <p class="card-text"><small class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small></p>
+    <p class="card-text">{{ $post->content }}</p>
+    <p class="card-text"><small class="text-muted">{{ humanize_date($post->posted_at) }}</small></p>
+  </div>
+</div>

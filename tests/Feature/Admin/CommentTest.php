@@ -54,7 +54,7 @@ class CommentTest extends TestCase
                  ->assertSee('Contenu')
                  ->assertSee(e($comment->content))
                  ->assertSee('Post&eacute; le')
-                 ->assertSee(humanize_date($comment->posted_at, 'd/m/Y H:i:s'))
+                 ->assertSee(humanize_date($comment->posted_at, 'Y-m-d\TH:i'))
                  ->assertSee('Mettre &agrave; jour')
                  ->assertSee('Supprimer');
     }
@@ -69,15 +69,13 @@ class CommentTest extends TestCase
         $comment = factory(Comment::class)->create(['post_id' => $post->id]);
         $params = $this->validParams([
             'post_id' => $post->id,
-            'posted_at' => $post->posted_at->addDay()->format('d/m/Y H:i:s')
+            'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i')
         ]);
 
         $response = $this->actingAs($this->admin())
                          ->patch("/admin/comments/{$comment->id}", $params);
 
         $comment = $comment->fresh();
-
-        $params['posted_at'] = Carbon::createFromFormat('d/m/Y H:i:s', $params['posted_at']);
 
         $response->assertStatus(302);
         $response->assertRedirect("/admin/comments/{$comment->id}/edit");
@@ -95,15 +93,13 @@ class CommentTest extends TestCase
         $comment = factory(Comment::class)->create(['post_id' => $post->id]);
         $params = $this->validParams([
             'post_id' => $post->id,
-            'posted_at' => $post->posted_at->subDay()->format('d/m/Y H:i:s')
+            'posted_at' => $post->posted_at->subDay()->format('Y-m-d\TH:i')
         ]);
 
         $response = $this->actingAs($this->admin())
                          ->patch("/admin/comments/{$comment->id}", $params);
 
         $comment = $comment->fresh();
-
-        $params['posted_at'] = Carbon::createFromFormat('d/m/Y H:i:s', $params['posted_at']);
 
         $response->assertStatus(302);
         $response->assertSessionHas('errors');
@@ -137,7 +133,7 @@ class CommentTest extends TestCase
 
         return array_merge([
             'content' => "Great article ! Thanks for sharing it with us.",
-            'posted_at' => $post->posted_at->addDay()->format('d/m/Y H:i:s'),
+            'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i'),
             'post_id' => $post->id,
             'author_id' => factory(User::class)->create()->id,
         ], $overrides);

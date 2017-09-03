@@ -14,12 +14,12 @@
                 <th>{{ link_to_route('admin.users.edit', $user->fullname, $user) }}</th>
                 <td>{{ $user->email }}</td>
                 <td>{{ humanize_date($user->registered_at, 'd/m/Y H:i:s') }}</td>
-                <td><span class="badge">{{ $user->posts_count }}</span></td>
+                <td><span class="badge badge-pill badge-secondary">{{ $user->posts_count }}</span></td>
             </tr>
         @endforeach
     </tbody>
 </table>
 
-<div class="text-center">
+<div class="d-flex justify-content-center">
     {{ $users->links() }}
 </div>

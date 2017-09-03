@@ -1,70 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading">{{ __('auth.register') }}</div>
-        <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                {{ csrf_field() }}
+<div class="row justify-content-md-center mt-5">
+    <div class="col-md-6">
+        <h1>{{ __('auth.register') }}</h1>
 
-                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <label for="name" class="col-md-4 control-label">{{ __('validation.attributes.name') }}</label>
+        {!! Form::open(['route' => 'register', 'role' => 'form', 'method' => 'POST']) !!}
+            <div class="form-group">
+                {!! Form::label('name', __('validation.attributes.name'), ['class' => 'control-label']) !!}
+                {!! Form::text('name', old('name'), ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'required', 'autofocus']) !!}
 
-                    <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                @if ($errors->has('name'))
+                    <span class="invalid-feedback">{{ $errors->first('name') }}</span>
+                @endif
+            </div>
 
-                        @if ($errors->has('name'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
+            <div class="form-group">
+                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
+                {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="col-md-4 control-label">{{ __('validation.attributes.email') }}</label>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
 
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+            <div class="form-group">
+                {!! Form::label('password', __('validation.attributes.password'), ['class' => 'control-label']) !!}
+                {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'required']) !!}
 
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
 
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">{{ __('validation.attributes.password') }}</label>
+            <div class="form-group">
+                {!! Form::label('password_confirmation', __('validation.attributes.password_confirmation'), ['class' => 'control-label']) !!}
+                {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'required']) !!}
 
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control" name="password" required>
+                @if ($errors->has('password_confirmation'))
+                    <span class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
+                @endif
+            </div>
 
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
+            <div class="form-group">
+                {!! Form::submit(__('auth.register'), ['class' => 'btn btn-primary']) !!}
+            </div>
 
-                <div class="form-group">
-                    <label for="password-confirm" class="col-md-4 control-label">{{ __('validation.attributes.password_confirmation') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('auth.register') }}
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        {!! Form::close() !!}
     </div>
+</div>
 @endsection

@@ -1,57 +1,49 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-md">
     <div class="container">
-        <div class="navbar-header">
+        <!-- Branding Image -->
+        {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <!-- Collapsed Hamburger -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Branding Image -->
-            {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
-
-            @if(Auth::check() && Auth::user()->isAdmin())
-                <p class="navbar-text">
-                    {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'navbar-link']) }}
-                </p>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            @if (Auth::check() && Auth::user()->isAdmin())
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'nav-link']) }}
+                    </li>
+                </ul>
             @endif
-        </div>
 
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
+            <ul class="navbar-nav ml-auto">
                 @if (Auth::guest())
-                    <li>{{ link_to_route('login', __('auth.login')) }}</li>
-                    <li>{{ link_to_route('register', __('auth.register')) }}</li>
+                    <li class="nav-item">{{ link_to_route('login', __('auth.login'), [], ['class' => 'nav-link']) }}</li>
+                    <li class="nav-item">{{ link_to_route('register', __('auth.register'), [], ['class' => 'nav-link']) }}</li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
                         </a>
 
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                {{ link_to_route('users.show', __('users.profil'), Auth::user()) }}
-                            </li>
-                            <li>
-                                <a href="{{ url('/logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    {{ __('auth.logout') }}
-                                </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            {{ link_to_route('users.show', __('users.profil'), Auth::user(), ['class' => 'dropdown-item']) }}
+                            <a href="{{ url('/logout') }}"
+                                class="dropdown-item"
+                                onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('auth.logout') }}
+                            </a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            <form id="logout-form" class="d-none" action="{{ url('/logout') }}" method="POST">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
                     </li>
                 @endif
             </ul>
         </div>
     </div>
 </nav>
+

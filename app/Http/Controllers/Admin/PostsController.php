@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
-use Carbon\Carbon;
 use App\Post;
 use App\User;
 
@@ -38,7 +37,6 @@ class PostsController extends Controller
     */
     public function update(PostsRequest $request, Post $post)
     {
-        $request['posted_at'] = Carbon::createFromFormat('d/m/Y H:i:s', $request->input('posted_at'));
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));

@@ -56,7 +56,7 @@ class PostsBrowserTest extends BrowserKitTest
             ->visit("/admin/posts/{$post->slug}/edit")
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
-            ->type($faker->datetime->format('d/m/Y H:i:s'), 'posted_at')
+            ->type($faker->datetime->format('Y-m-d\TH:i'), 'posted_at')
             ->select($author->id, 'author_id')
             ->press('Mettre à jour')
             ->see('Article mis à jour avec succès');

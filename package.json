@@ -9,17 +9,12 @@
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "devDependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "cross-env": "^3.2.3",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta",
+    "cross-env": "^3.2.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
-    "laravel-mix": "0.*",
-    "lodash": "^4.17.4",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.46",
-    "moment": "^2.17.1"
-  },
-  "dependencies": {
-    "turbolinks": "^5.0.0"
+    "laravel-mix": "^1.0",
+    "popper.js": "^1.11.0"
   }
 }
