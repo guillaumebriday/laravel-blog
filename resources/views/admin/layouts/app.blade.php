@@ -22,22 +22,21 @@
     </script>
 </head>
 <body class="admin-body">
-    @include('admin/shared/navbar')
+    @include('shared/navbar')
 
-    <div class="content-wrapper">
-        <div class="container-fluid">
-            <div class="col-lg-12">
+    <div class="container-fluid">
+        <div class="row">
+            @include('admin/shared/sidebar')
+
+            <main class="col-lg-10 ml-md-auto">
                 @include('shared/alerts')
 
-                <div class="row">
-                    @yield('content')
-                </div>
-            </div>
+                @yield('content')
+            </main>
         </div>
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js" data-turbolinks-eval="false"></script>
-    <script src="/js/admin.js" data-turbolinks-eval="false"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
