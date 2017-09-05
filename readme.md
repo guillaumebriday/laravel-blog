@@ -99,7 +99,7 @@ $ php artisan queue:work
 Starting job for newsletter :
 ```
 $ php artisan tinker
-> dispatch(new App\Jobs\PrepareNewsletterSubscriptionEmail());
+> App\Jobs\PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Accessing the API
