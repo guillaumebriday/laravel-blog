@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\User;
+use App\Rules\CanBeAuthor;
 use Carbon\Carbon;
 
 class PostsRequest extends FormRequest
@@ -25,13 +26,6 @@ class PostsRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        $author = User::find($this->author_id);
-        $canBeAuthor = $author ? $author->canBeAuthor() : false;
-
-        $this->merge([
-            'can_be_author' => $canBeAuthor
-        ]);
-
         $this->merge([
             'slug' => str_slug($this->input('title'))
         ]);
@@ -52,9 +46,8 @@ class PostsRequest extends FormRequest
             'title' => 'required',
             'content' => 'required|max:255',
             'posted_at' => 'required|date',
-            'author_id' => 'required|exists:users,id',
-            'can_be_author' => 'required|accepted',
-            'slug' => 'unique:posts,slug,' . ($this->post ? $this->post->id : null),
+            'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
+            'slug' => 'unique:posts,slug,' . optional($this->post)->id,
         ];
     }
 }
