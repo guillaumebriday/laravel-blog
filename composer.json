@@ -1,32 +1,35 @@
 {
-    "name": "laravel 5.3 blog",
-    "description": "Laravel 5.3 blog.",
+    "name": "laravel 5.5 blog",
+    "description": "Laravel 5.5 blog.",
     "keywords": ["framework", "laravel", "blog", "exemple"],
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-        "laravelcollective/html": "^5.2.0",
+        "php": ">=7.0.0",
+        "fideloper/proxy": "~3.3",
+        "laravel/framework": "5.5.*",
+        "laravelcollective/html": "^5.5",
         "laravel/socialite": "^3.0",
         "doctrine/dbal": "^2.5",
         "laravel/tinker": "^1.0",
-        "laravel/browser-kit-testing": "^1.0",
         "league/fractal": "^0.15.0",
         "barryvdh/laravel-debugbar": "^2.4"
     },
     "require-dev": {
+        "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
+        "phpunit/phpunit": "~6.0",
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
-        "friendsofphp/php-cs-fixer": "^2.1",
-        "laravel/homestead": "^5.2"
+        "friendsofphp/php-cs-fixer": "^2.5",
+        "laravel/homestead": "^6.1",
+        "laravel/browser-kit-testing": "^2.0"
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database/seeds",
+            "database/factories"
         ],
         "psr-4": {
             "App\\": "app/"
@@ -40,23 +43,27 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
     "scripts": {
         "post-root-package-install": [
-            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "php artisan key:generate"
+            "@php artisan key:generate"
         ],
-        "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
-        ],
-        "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }

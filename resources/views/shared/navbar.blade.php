@@ -18,7 +18,7 @@
             @endif
 
             <ul class="navbar-nav ml-auto">
-                @if (Auth::guest())
+                @guest
                     <li class="nav-item">{{ link_to_route('login', __('auth.login'), [], ['class' => 'nav-link']) }}</li>
                     <li class="nav-item">{{ link_to_route('register', __('auth.register'), [], ['class' => 'nav-link']) }}</li>
                 @else
@@ -41,7 +41,7 @@
                             </form>
                         </div>
                     </li>
-                @endif
+                @endguest
             </ul>
         </div>
     </div>

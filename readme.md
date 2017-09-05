@@ -1,28 +1,28 @@
 [![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
 
-# Laravel 5.4 blog
+# Laravel 5.5 blog
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's functionalities like :
 
-- [Authentication](https://laravel.com/docs/5.4/authentication)
+- [Authentication](https://laravel.com/docs/5.5/authentication)
 - API
   - Token authentication
   - [Transformers](http://fractal.thephpleague.com/transformers/)
   - Versioning
-- [Blade](https://laravel.com/docs/5.4/blade)
-- [Cache](https://laravel.com/docs/5.4/cache)
-- [Filesystem](https://laravel.com/docs/5.4/filesystem)
-- [Helpers](https://laravel.com/docs/5.4/helpers)
-- [Homestead](https://laravel.com/docs/5.4/homestead)
-- [Jobs & Queues](https://laravel.com/docs/5.4/queues)
-- [Localization](https://laravel.com/docs/5.4/localization)
-- [Mail](https://laravel.com/docs/5.4/mail)
-- [Migrations](https://laravel.com/docs/5.4/migrations)
-- [Policies](https://laravel.com/docs/5.4/authorization)
-- [Providers](https://laravel.com/docs/5.4/providers)
-- [Requests](https://laravel.com/docs/5.4/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/5.4/seeding)
-- [Testing](https://laravel.com/docs/5.4/testing)
+- [Blade](https://laravel.com/docs/5.5/blade)
+- [Cache](https://laravel.com/docs/5.5/cache)
+- [Filesystem](https://laravel.com/docs/5.5/filesystem)
+- [Helpers](https://laravel.com/docs/5.5/helpers)
+- [Homestead](https://laravel.com/docs/5.5/homestead)
+- [Jobs & Queues](https://laravel.com/docs/5.5/queues)
+- [Localization](https://laravel.com/docs/5.5/localization)
+- [Mail](https://laravel.com/docs/5.5/mail)
+- [Migrations](https://laravel.com/docs/5.5/migrations)
+- [Policies](https://laravel.com/docs/5.5/authorization)
+- [Providers](https://laravel.com/docs/5.5/providers)
+- [Requests](https://laravel.com/docs/5.5/validation#form-request-validation)
+- [Seeding & Factories](https://laravel.com/docs/5.5/seeding)
+- [Testing](https://laravel.com/docs/5.5/testing)
 
 ## Installation
 
@@ -31,7 +31,7 @@ Development environment requirements :
 - [Vagrant 1.9](https://www.vagrantup.com/downloads.html)
 - [Composer 1.3](https://getcomposer.org)
 
-Setting up your development environment on your local machine with [Homestead](https://laravel.com/docs/5.4/homestead) :
+Setting up your development environment on your local machine with [Homestead](https://laravel.com/docs/5.5/homestead) :
 ```
 $ git clone https://github.com/guillaumebriday/laravel-blog.git
 $ cd laravel-blog
@@ -99,7 +99,7 @@ $ php artisan queue:work
 Starting job for newsletter :
 ```
 $ php artisan tinker
-> dispatch(new App\Jobs\PrepareNewsletterSubscriptionEmail());
+> App\Jobs\PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Accessing the API

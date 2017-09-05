@@ -6,14 +6,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use App\NewsletterSubscription;
 use App\Jobs\SendNewsletterSubscriptionEmail;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Carbon\Carbon;
 
 class PrepareNewsletterSubscriptionEmail implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels, DispatchesJobs;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Execute the job.
@@ -25,9 +25,9 @@ class PrepareNewsletterSubscriptionEmail implements ShouldQueue
         $newsletterSubscriptions = NewsletterSubscription::all();
 
         $newsletterSubscriptions->each(function ($newsletterSubscription) {
-            $this->dispatch(new SendNewsletterSubscriptionEmail($newsletterSubscription->email));
+            SendNewsletterSubscriptionEmail::dispatch($newsletterSubscription->email);
         });
 
-        $this->dispatch((new PrepareNewsletterSubscriptionEmail())->delay(Carbon::now()->addMonth()));
+        PrepareNewsletterSubscriptionEmail::dispatch()->delay(Carbon::now()->addSecond());
     }
 }

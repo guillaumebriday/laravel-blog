@@ -49,7 +49,7 @@ class NewsletterSubscriptionsController extends Controller
             return redirect()->route($route)->withErrors($errors);
         }
 
-        $this->dispatch(new UnsubscribeEmailNewsletter($request->input('email')));
+        UnsubscribeEmailNewsletter::dispatch($request->input('email'));
 
         Session::flash('success', __('newsletter.unsubscribed'));
 
