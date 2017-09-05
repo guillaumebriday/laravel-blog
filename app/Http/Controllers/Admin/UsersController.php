@@ -37,7 +37,7 @@ class UsersController extends Controller
     */
     public function update(UsersRequest $request, User $user)
     {
-        $user->update($request->intersect(['name', 'email', 'password']));
+        $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
         $role_ids = array_values($request->get('roles', []));
         $user->roles()->sync($role_ids);

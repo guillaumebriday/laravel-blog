@@ -105,7 +105,7 @@ class UsersController extends ApiController
     {
         $this->authorize('update', $user);
 
-        $user->update($request->intersect(['name', 'email', 'password']));
+        $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
         return $this->item($user);
     }

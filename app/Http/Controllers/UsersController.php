@@ -43,7 +43,7 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        $user->update($request->intersect(['name', 'email', 'password']));
+        $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
         return redirect()->route('users.show', $user)->withSuccess(__('users.updated'));
     }
