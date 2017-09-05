@@ -6,14 +6,14 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "barryvdh/laravel-debugbar": "^3.0",
+        "doctrine/dbal": "^2.5",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
-        "laravelcollective/html": "^5.5",
         "laravel/socialite": "^3.0",
-        "doctrine/dbal": "^2.5",
         "laravel/tinker": "^1.0",
-        "league/fractal": "^0.15.0",
-        "barryvdh/laravel-debugbar": "^2.4"
+        "laravelcollective/html": "^5.5",
+        "league/fractal": "^0.15.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
