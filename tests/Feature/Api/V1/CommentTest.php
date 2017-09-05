@@ -288,7 +288,7 @@ class CommentTest extends TestCase
         $this->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertStatus(401)
             ->assertJson([
-                'error' => 'Unauthenticated.'
+                'message' => 'Unauthenticated.'
             ]);
     }
 

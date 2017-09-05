@@ -52,7 +52,7 @@ class UserTest extends TestCase
                  ->assertSee('anakin@skywalker.st')
                  ->assertSee('Confirmation du mot de passe')
                  ->assertSee('R&ocirc;les')
-                 ->assertSee('Mettre &agrave; jour')
+                 ->assertSee('Mettre à jour')
                  ->assertSee('Administrateur');
     }
 

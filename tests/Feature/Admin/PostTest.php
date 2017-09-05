@@ -53,7 +53,7 @@ class PostTest extends TestCase
                  ->assertSee(e($post->title))
                  ->assertSee(e($post->content))
                  ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
-                 ->assertSee('Mettre &agrave; jour')
+                 ->assertSee('Mettre à jour')
                  ->assertSee('Post&eacute; le');
     }
 
