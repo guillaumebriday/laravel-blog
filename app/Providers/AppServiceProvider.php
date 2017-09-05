@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
 use App\Comment;
@@ -24,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
         Post::observe(PostObserver::class);
         User::observe(UserObserver::class);
         Comment::observe(CommentObserver::class);
+
+        Blade::if('admin', function () {
+            return Auth::check() && Auth::user()->isAdmin();
+        });
     }
 
     /**

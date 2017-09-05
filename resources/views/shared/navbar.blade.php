@@ -9,13 +9,13 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            @if (Auth::check() && Auth::user()->isAdmin())
+            @admin
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'nav-link']) }}
                     </li>
                 </ul>
-            @endif
+            @endadmin
 
             <ul class="navbar-nav ml-auto">
                 @guest
