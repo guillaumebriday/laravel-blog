@@ -1,6 +1,6 @@
 <h5>{{ __('comments.add_comment') }}</h5>
 
-@if (Auth::check())
+@auth
     {!! Form::open(['route' => 'comments.store', 'method' => 'post']) !!}
         {!! Form::hidden('post_id', $post->id) !!}
 
@@ -21,4 +21,4 @@
     @component('components.alerts.default', ['type' => 'warning'])
       {{ __('comments.sign_in_to_comment') }}
     @endcomponent
-@endif
+@endauth
