@@ -85,6 +85,7 @@ return [
     'unique'               => 'La valeur du champ :attribute est déjà utilisée.',
     'uploaded'             => "Le fichier du champ :attribute n'a pu être téléchargé.",
     'url'                  => "Le format de l'URL de :attribute n'est pas valide.",
+    'can_be_author'        => "L'utilisateur sélectionné ne peut pas être un auteur.",
 
     /*
     |--------------------------------------------------------------------------
