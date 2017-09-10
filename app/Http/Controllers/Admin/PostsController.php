@@ -39,6 +39,10 @@ class PostsController extends Controller
     {
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
 
+        if ($request->hasFile('thumbnail')) {
+            $post->storeAndSetThumbnail($request->file('thumbnail'));
+        }
+
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 
