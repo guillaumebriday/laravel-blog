@@ -118,6 +118,8 @@ curl --header "Authorization: Bearer your_private_token_here" http://laravel-blo
 
 API are prefixed by ```api``` and the API version number like so ```v1```.
 
+Do not forget to set the ```X-Requested-With``` header to ```XMLHttpRequest```. Otherwise, Laravel won't recognize the call as an AJAX request.
+
 ## More details
 
 More details are available or to come on [Guillaume Briday's blog](https://blog.guillaumebriday.fr) (French).
