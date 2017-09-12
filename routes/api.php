@@ -17,6 +17,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::resource('posts.comments', 'PostCommentsController', ['only' => 'store']);
         Route::resource('users', 'UsersController', ['only' => 'update']);
         Route::resource('posts', 'PostsController', ['only' => 'update']);
+        Route::delete('/posts/{post}/thumbnail', 'PostsThumbnailController@destroy')->name('posts_thumbnail.destroy');
     });
 
     Route::resource('posts.comments', 'PostCommentsController', ['only' => 'index']);
