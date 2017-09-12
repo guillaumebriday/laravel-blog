@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Comment;
 use App\User;
+use App\Role;
 use Carbon\Carbon;
 
 class PostTest extends TestCase
@@ -196,5 +197,88 @@ class PostTest extends TestCase
                     'status' => 404
                 ]
             ]);
+    }
+
+    /**
+     * it updates the post
+     *
+     * @return void
+     */
+    public function testUpdate()
+    {
+        $post = factory(Post::class)->create();
+        $params = $this->validParams();
+
+        $response = $this->actingAs($this->admin(), 'api')
+                         ->json('PATCH', "/api/v1/posts/{$post->id}", $params);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
+        $this->assertEquals($params['title'], $post->title);
+        $this->assertEquals($params['content'], $post->content);
+
+        Storage::delete($post->thumbnail()->filename);
+    }
+
+    /**
+     * it updates the post
+     *
+     * @return void
+     */
+    public function testUpdateFail()
+    {
+        $post = factory(Post::class)->create();
+
+        $response = $this->actingAs($this->user(), 'api')
+                         ->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams());
+
+        $response
+        ->assertStatus(401)
+        ->assertJson([
+            'error' => [
+                'message' => 'Unauthorized.',
+                'status' => 401
+            ]
+        ]);
+    }
+
+    /**
+     * it unsets the post's thumbnail
+     *
+     * @return void
+     */
+    public function testUnsetThumbnail()
+    {
+        $post = factory(Post::class)->create();
+        $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
+        $filename = $post->thumbnail()->filename;
+
+        $response = $this->actingAs($this->admin(), 'api')
+                         ->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", []);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(200);
+        $this->assertFalse($post->hasThumbnail());
+
+        Storage::delete($filename);
+    }
+
+    /**
+     * Valid params for updating or creating a resource
+     * @param  array $overrides new params
+     * @return array Valid params for updating or creating a resource
+     */
+    private function validParams($overrides = [])
+    {
+        return array_merge([
+            'title' => 'Star Trek ?',
+            'content' => 'Star Wars.',
+            'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
+            'author_id' => $this->admin()->id,
+            'thumbnail' => UploadedFile::fake()->image('file.png')
+        ], $overrides);
     }
 }

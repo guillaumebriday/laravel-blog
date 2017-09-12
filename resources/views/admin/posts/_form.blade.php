@@ -1,4 +1,4 @@
-{!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' =>'PUT' ]) !!}
+{!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' =>'PUT', 'files' => true]) !!}
 
     <div class="form-group">
         {!! Form::label('title', __('posts.attributes.title')) !!}
@@ -15,6 +15,11 @@
             {!! Form::label('posted_at', __('posts.attributes.posted_at')) !!}
             <input type="datetime-local" name="posted_at" class="form-control" required value="{{ old('posted_at') ?? $post->posted_at->format('Y-m-d\TH:i') }}">
         </div>
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('thumbnail', __('posts.attributes.thumbnail')) !!}
+        {!! Form::file('thumbnail', ['accept' => 'image/*', 'class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">

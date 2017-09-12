@@ -6,6 +6,8 @@ use Tests\TestCase;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Post;
 use App\Role;
@@ -73,8 +75,33 @@ class PostTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
-        $this->assertDatabaseHas('posts', $params);
+        $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
+        $this->assertTrue($post->hasThumbnail());
         $this->assertEquals($params['content'], $post->content);
+
+        Storage::delete($post->thumbnail()->filename);
+    }
+
+    /**
+     * it unsets the post's thumnbail
+     *
+     * @return void
+     */
+    public function testUnsetThumbnail()
+    {
+        $post = factory(Post::class)->create();
+        $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
+        $thumbnail = $post->thumbnail();
+
+        $response = $this->actingAs($this->admin())->delete("/admin/posts/{$post->slug}/thumbnail", []);
+
+        $post = $post->fresh();
+
+        $response->assertStatus(302);
+        $response->assertRedirect("/admin/posts/{$post->slug}/edit");
+        $this->assertFalse($post->hasThumbnail());
+
+        Storage::delete($thumbnail->filename);
     }
 
     /**
@@ -110,6 +137,7 @@ class PostTest extends TestCase
             'content' => "I'm a content",
             'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
+            'thumbnail' => UploadedFile::fake()->image('file.png'),
         ], $overrides);
     }
 }

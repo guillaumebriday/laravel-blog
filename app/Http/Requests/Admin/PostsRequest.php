@@ -42,12 +42,19 @@ class PostsRequest extends FormRequest
      */
     public function rules()
     {
+        $post_id = optional($this->post)->id;
+
+        if ($this->expectsJson()) {
+            $post_id = $this->post;
+        }
+
         return [
             'title' => 'required',
             'content' => 'required|max:255',
             'posted_at' => 'required|date',
             'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
-            'slug' => 'unique:posts,slug,' . optional($this->post)->id,
+            'slug' => 'unique:posts,slug,' . $post_id,
+            'thumbnail' => 'image',
         ];
     }
 }
