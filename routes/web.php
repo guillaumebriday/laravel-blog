@@ -20,7 +20,7 @@ Route::prefix('auth')->group(function () {
 
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->namespace('Admin')->as('admin.')->group(function () {
     Route::get('dashboard', 'ShowDashboard')->name('dashboard');
-    Route::resource('posts', 'PostsController', ['only' => ['index', 'edit', 'update', 'destroy']]);
+    Route::resource('posts', 'PostsController');
     Route::delete('/posts/{post}/thumbnail', 'PostsThumbnailController@destroy')->name('posts_thumbnail.destroy');
     Route::resource('users', 'UsersController', ['only' => ['index', 'edit', 'update']]);
     Route::resource('comments', 'CommentsController', ['only' => ['index', 'edit', 'update', 'destroy']]);
