@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Post;
 use Faker\Factory;
+use Carbon\Carbon;
 
 class PostsBrowserTest extends BrowserKitTest
 {
@@ -85,6 +86,29 @@ class PostsBrowserTest extends BrowserKitTest
             ->see('Article mis à jour avec succès');
 
         Storage::delete($post->thumbnail()->filename);
+    }
+
+    /**
+     * it creates a post through create form
+     * @return void
+     */
+    public function testPostCreateForm()
+    {
+        $faker = Factory::create();
+        $file = UploadedFile::fake()->image('file.png');
+        $author = $this->admin();
+
+        $this->actingAs($this->admin())
+            ->visit('/admin/posts/create')
+            ->type($faker->sentence, 'title')
+            ->type($faker->paragraph, 'content')
+            ->select($author->id, 'author_id')
+            ->type(Carbon::now()->format('Y-m-d\TH:i'), 'posted_at')
+            ->attach($file->getPathname(), 'thumbnail')
+            ->press('Sauvegarder')
+            ->see('Article créé avec succès');
+
+        Storage::delete(Post::first()->thumbnail()->filename);
     }
 
     /**

@@ -39,6 +39,59 @@ class PostTest extends TestCase
     }
 
     /**
+     * it renders a post create view
+     * @return void
+     */
+    public function testCreate()
+    {
+        $response = $this->actingAs($this->admin())->get('/admin/posts/create');
+
+        $response->assertStatus(200)
+               ->assertSee('Ajouter un article')
+               ->assertSee('Titre')
+               ->assertSee('Auteur')
+               ->assertSee('Post&eacute; le')
+               ->assertSee('Contenu')
+               ->assertSee('Sauvegarder');
+    }
+
+    /**
+     * it stores a new post
+     * @return void
+     */
+    public function testStore()
+    {
+        $params = $this->validParams();
+
+        $response = $this->actingAs($this->admin())->post('/admin/posts', $params);
+        $params['posted_at'] = Carbon::now()->toDateTimeString();
+
+        $post = Post::first();
+
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('posts', array_except($params, ['thumbnail']));
+        $this->assertTrue($post->hasThumbnail());
+        $this->assertTrue(Storage::disk('local')->exists($post->thumbnail()->filename));
+        $this->assertEquals($post->thumbnail()->original_filename, 'file.png');
+
+        Storage::delete($post->thumbnail()->filename);
+    }
+
+    /**
+     * it returns errors when param's missing
+     * @return void
+     */
+    public function testStoreFail()
+    {
+        $params = $this->validParams(['content' => null]);
+
+        $response = $this->actingAs($this->admin())->post('/admin/posts', $params);
+
+        $response->assertStatus(302)
+                 ->assertSessionHas('errors');
+    }
+
+    /**
      * it renders admin posts edit view
      * @return void
      */
@@ -135,7 +188,7 @@ class PostTest extends TestCase
         return array_merge([
             'title' => 'hello world',
             'content' => "I'm a content",
-            'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
+            'posted_at' => Carbon::now()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
             'thumbnail' => UploadedFile::fake()->image('file.png'),
         ], $overrides);
