@@ -7,7 +7,8 @@ return [
     'update' => 'Mettre à jour',
     'back' => 'Retour',
     'generate' => 'Générer',
-    'delete' => 'Supprimer'
+    'delete' => 'Supprimer',
+    'add' => 'Ajouter',
   ],
 
   'comments' => [
