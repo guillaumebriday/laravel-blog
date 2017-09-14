@@ -121,16 +121,6 @@ class ApiController extends Controller
     }
 
     /**
-     * Return a 404 not found error
-     * @param  string $message
-     * @return \Illuminate\Http\Response
-     */
-    public function respondNotFound($message = 'Not found.')
-    {
-        return $this->setStatusCode(IlluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
-    }
-
-    /**
      * Return a 204 no content response
      * @param  string $message
      * @return \Illuminate\Http\Response
