@@ -152,7 +152,7 @@ class UserTest extends TestCase
 
         $response = $this->actingAs($user, 'api')->json('PATCH', "/api/v1/users/{$user->id}", $params);
 
-        $user = $user->fresh();
+        $user->refresh();
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('users', $params);

@@ -75,7 +75,7 @@ class CommentTest extends TestCase
         $response = $this->actingAs($this->admin())
                          ->patch("/admin/comments/{$comment->id}", $params);
 
-        $comment = $comment->fresh();
+        $comment->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/admin/comments/{$comment->id}/edit");
@@ -99,7 +99,7 @@ class CommentTest extends TestCase
         $response = $this->actingAs($this->admin())
                          ->patch("/admin/comments/{$comment->id}", $params);
 
-        $comment = $comment->fresh();
+        $comment->refresh();
 
         $response->assertStatus(302);
         $response->assertSessionHas('errors');

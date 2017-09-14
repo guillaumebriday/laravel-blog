@@ -21,7 +21,7 @@ class TokenTest extends TestCase
 
         $response = $this->actingAs($user)->post("/tokens/{$user->id}", []);
 
-        $user = $user->fresh();
+        $user->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/users/{$user->id}/edit");
@@ -38,7 +38,7 @@ class TokenTest extends TestCase
 
         $response = $this->actingAs($user)->delete("/tokens/{$user->id}", []);
 
-        $user = $user->fresh();
+        $user->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/users/{$user->id}/edit");

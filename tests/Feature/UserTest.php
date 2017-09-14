@@ -98,7 +98,7 @@ class UserTest extends TestCase
 
         $response = $this->actingAs($user)->patch("/users/{$user->id}", $params);
 
-        $user = $user->fresh();
+        $user->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/users/{$user->id}");
@@ -120,7 +120,7 @@ class UserTest extends TestCase
 
         $response = $this->actingAs($user)->patch("/users/{$user->id}", $params);
 
-        $user = $user->fresh();
+        $user->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/users/{$user->id}");
