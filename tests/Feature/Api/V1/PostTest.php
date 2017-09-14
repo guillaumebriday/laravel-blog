@@ -245,6 +245,41 @@ class PostTest extends TestCase
     }
 
     /**
+     * it stores a new post
+     * @return void
+     */
+    public function testStorePost()
+    {
+        $params = array_except($this->validParams(), 'thumbnail');
+
+        $response = $this->actingAs($this->admin(), 'api')
+                         ->json('POST', '/api/v1/posts/', $params);
+
+        $params['posted_at'] = Carbon::now()->toDateTimeString();
+
+        $this->assertDatabaseHas('posts', $params);
+        $response->assertStatus(201);
+    }
+
+    /**
+     * it does not store a new post
+     * @return void
+     */
+    public function testStorePostUnauthorized()
+    {
+        $response = $this->actingAs($this->user(), 'api')
+                         ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'));
+
+        $response->assertStatus(401)
+                ->assertJson([
+                    'error' => [
+                        'message' => 'Unauthorized.',
+                        'status' => 401
+                    ]
+                ]);
+    }
+
+    /**
      * it unsets the post's thumbnail
      *
      * @return void
