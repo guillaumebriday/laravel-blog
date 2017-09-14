@@ -64,6 +64,26 @@ class PostsController extends ApiController
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(PostsRequest $request)
+    {
+        if (! Auth::user()->can('store', Post::class)) {
+            return $this->respondUnauthorized();
+        }
+
+        $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id']));
+
+        if ($request->hasFile('thumbnail')) {
+            $post->storeAndSetThumbnail($request->file('thumbnail'));
+        }
+
+        return $this->setStatusCode(201)->item($post);
+    }
+
+    /**
     * Return the specified resource.
     *
     * @param  int $id
