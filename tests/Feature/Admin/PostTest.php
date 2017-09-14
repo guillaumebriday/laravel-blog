@@ -64,7 +64,7 @@ class PostTest extends TestCase
         $params = $this->validParams();
 
         $response = $this->actingAs($this->admin())->post('/admin/posts', $params);
-        $params['posted_at'] = Carbon::now()->toDateTimeString();
+        $params['posted_at'] = Carbon::now()->second(0)->toDateTimeString();
 
         $post = Post::first();
 

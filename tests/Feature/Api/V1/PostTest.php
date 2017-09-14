@@ -255,7 +255,7 @@ class PostTest extends TestCase
         $response = $this->actingAs($this->admin(), 'api')
                          ->json('POST', '/api/v1/posts/', $params);
 
-        $params['posted_at'] = Carbon::now()->toDateTimeString();
+        $params['posted_at'] = Carbon::yesterday()->second(0)->toDateTimeString();
 
         $this->assertDatabaseHas('posts', $params);
         $response->assertStatus(201);
