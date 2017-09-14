@@ -124,7 +124,7 @@ class PostTest extends TestCase
         $response = $this->actingAs($this->admin())
                          ->patch("/admin/posts/{$post->slug}", $params);
 
-        $post = $post->fresh();
+        $post->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
@@ -148,7 +148,7 @@ class PostTest extends TestCase
 
         $response = $this->actingAs($this->admin())->delete("/admin/posts/{$post->slug}/thumbnail", []);
 
-        $post = $post->fresh();
+        $post->refresh();
 
         $response->assertStatus(302);
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");

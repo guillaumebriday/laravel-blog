@@ -212,7 +212,7 @@ class PostTest extends TestCase
         $response = $this->actingAs($this->admin(), 'api')
                          ->json('PATCH', "/api/v1/posts/{$post->id}", $params);
 
-        $post = $post->fresh();
+        $post->refresh();
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
@@ -293,7 +293,7 @@ class PostTest extends TestCase
         $response = $this->actingAs($this->admin(), 'api')
                          ->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", []);
 
-        $post = $post->fresh();
+        $post->refresh();
 
         $response->assertStatus(200);
         $this->assertFalse($post->hasThumbnail());
