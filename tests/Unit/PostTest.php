@@ -29,16 +29,6 @@ class PostTest extends TestCase
     }
 
     /**
-     * it fills the posted_at field when a post is posted
-     * @return void
-     */
-    public function testPostedAt()
-    {
-        $post = factory(Post::class)->create();
-        $this->assertEquals($post->posted_at->toDateTimeString(), Carbon::now()->toDateTimeString());
-    }
-
-    /**
      * it fills the slug field when a post is being saved
      * @return void
      */
