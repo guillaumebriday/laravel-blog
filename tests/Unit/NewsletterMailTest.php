@@ -13,10 +13,6 @@ class NewsletterMailTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it checks if the newsletter is sent
-     * @return void
-     */
     public function testNewsletterMail()
     {
         $user = $this->user();

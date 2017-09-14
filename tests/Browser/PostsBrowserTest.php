@@ -16,10 +16,6 @@ class PostsBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on a post's link in index
-     * @return void
-     */
     public function testPostIndexShowLink()
     {
         $post = factory(Post::class)->create();
@@ -29,10 +25,6 @@ class PostsBrowserTest extends BrowserKitTest
             ->seeRouteIs('posts.show', $post);
     }
 
-    /**
-     * it clicks on a post's author link in index
-     * @return void
-     */
     public function testPostIndexAuthorLink()
     {
         $anakin = factory(User::class)->states('anakin')->create();

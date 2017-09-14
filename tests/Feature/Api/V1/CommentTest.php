@@ -14,10 +14,6 @@ class CommentTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it returns a comments collection
-     * @return void
-     */
     public function testCommentIndex()
     {
         $comments = factory(Comment::class, 10)->create();
@@ -48,10 +44,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a comments collection
-     * @return void
-     */
     public function testUsersComments()
     {
         $user = factory(User::class)->create();
@@ -95,10 +87,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a comments collection
-     * @return void
-     */
     public function testPostsComments()
     {
         $post = factory(Post::class)->create();
@@ -142,10 +130,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it stores a new comment
-     * @return void
-     */
     public function testStore()
     {
         $post = factory(Post::class)->create();
@@ -156,10 +140,6 @@ class CommentTest extends TestCase
         $response->assertStatus(201);
     }
 
-    /**
-     * it returns a 404 not found error
-     * @return void
-     */
     public function testStoreFail()
     {
         $response = $this->actingAs($this->user(), 'api')
@@ -175,10 +155,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a comment item
-     * @return void
-     */
     public function testCommentShow()
     {
         $comment = factory(Comment::class)->create([
@@ -213,10 +189,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a 404 not found error
-     * @return void
-     */
     public function testCommentShowFail()
     {
         $this->json('GET', '/api/v1/comments/31415')
@@ -229,10 +201,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it deletes requested comment
-     * @return void
-     */
     public function testCommentDelete()
     {
         $comment = factory(Comment::class)->create();
@@ -242,10 +210,6 @@ class CommentTest extends TestCase
             ->assertStatus(204);
     }
 
-    /**
-     * it returns a 404 not found error
-     * @return void
-     */
     public function testCommentDeleteNotFound()
     {
         $this->actingAs($this->user(), 'api')
@@ -259,10 +223,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a 401 unauthorized error
-     * @return void
-     */
     public function testCommentDeleteUnauthorized()
     {
         $comment = factory(Comment::class)->create();
@@ -278,10 +238,6 @@ class CommentTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a 401 unauthenticated error
-     * @return void
-     */
     public function testCommentsDeleteUnauthenticated()
     {
         $comment = factory(Comment::class)->create();
@@ -294,6 +250,7 @@ class CommentTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

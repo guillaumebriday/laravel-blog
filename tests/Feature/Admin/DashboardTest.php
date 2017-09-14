@@ -13,10 +13,6 @@ class DashboardTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it renders dashboard admin view
-     * @return void
-     */
     public function testDashboard()
     {
         $posts = factory(Post::class, 25)->create();

@@ -14,10 +14,6 @@ class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it renders admin users index view
-     * @return void
-     */
     public function testIndex()
     {
         $users = factory(User::class, 24)->create();
@@ -36,10 +32,6 @@ class UserTest extends TestCase
                  ->assertSee('Enregistré le');
     }
 
-    /**
-     * it renders admin users edit view
-     * @return void
-     */
     public function testEdit()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -56,10 +48,6 @@ class UserTest extends TestCase
                  ->assertSee('Administrateur');
     }
 
-    /**
-     * it updates requested user in admin dashboard
-     * @return void
-     */
     public function testUpdate()
     {
         $user = factory(User::class)->create();
@@ -75,10 +63,6 @@ class UserTest extends TestCase
         $this->assertEquals($params['email'], $user->email);
     }
 
-    /**
-     * it updates requested user's roles in admin dashboard
-     * @return void
-     */
     public function testUpdateRoles()
     {
         $user = factory(User::class)->create();
@@ -97,6 +81,7 @@ class UserTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array  $overrides new params
      * @return array  Valid params for updating or creating a resource
      */

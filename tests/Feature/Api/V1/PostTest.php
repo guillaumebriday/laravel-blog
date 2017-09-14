@@ -16,10 +16,6 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it returns a posts collection
-     * @return void
-     */
     public function testPostIndex()
     {
         $posts = factory(Post::class, 10)->create();
@@ -65,10 +61,6 @@ class PostTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a posts collection
-     * @return void
-     */
     public function testUsersPosts()
     {
         $user = factory(User::class)->create();
@@ -116,10 +108,6 @@ class PostTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a 404 not found error
-     * @return void
-     */
     public function testUsersPostsFail()
     {
         $user = factory(User::class)->create();
@@ -135,10 +123,6 @@ class PostTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a post item
-     * @return void
-     */
     public function testPostShow()
     {
         $post = factory(Post::class)->create([
@@ -183,10 +167,6 @@ class PostTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a 404 not found error
-     * @return void
-     */
     public function testPostShowFail()
     {
         $this->json('GET', '/api/v1/posts/31415')
@@ -199,11 +179,6 @@ class PostTest extends TestCase
             ]);
     }
 
-    /**
-     * it updates the post
-     *
-     * @return void
-     */
     public function testUpdate()
     {
         $post = factory(Post::class)->create();
@@ -222,11 +197,6 @@ class PostTest extends TestCase
         Storage::delete($post->thumbnail()->filename);
     }
 
-    /**
-     * it updates the post
-     *
-     * @return void
-     */
     public function testUpdateFail()
     {
         $post = factory(Post::class)->create();
@@ -244,10 +214,6 @@ class PostTest extends TestCase
         ]);
     }
 
-    /**
-     * it stores a new post
-     * @return void
-     */
     public function testStorePost()
     {
         $params = array_except($this->validParams(), 'thumbnail');
@@ -261,10 +227,6 @@ class PostTest extends TestCase
         $response->assertStatus(201);
     }
 
-    /**
-     * it does not store a new post
-     * @return void
-     */
     public function testStorePostUnauthorized()
     {
         $response = $this->actingAs($this->user(), 'api')
@@ -279,11 +241,6 @@ class PostTest extends TestCase
                 ]);
     }
 
-    /**
-     * it unsets the post's thumbnail
-     *
-     * @return void
-     */
     public function testUnsetThumbnail()
     {
         $post = factory(Post::class)->create();
@@ -301,10 +258,6 @@ class PostTest extends TestCase
         Storage::delete($filename);
     }
 
-    /**
-     * it deletes requested post
-     * @return void
-     */
     public function testPostDelete()
     {
         $post = factory(Post::class)->create();
@@ -316,10 +269,6 @@ class PostTest extends TestCase
         $this->assertDatabaseMissing('posts', $post->toArray());
     }
 
-    /**
-     * it returns a 401 unauthorized error
-     * @return void
-     */
     public function testPostDeleteUnauthorized()
     {
         $post = factory(Post::class)->create();
@@ -339,6 +288,7 @@ class PostTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

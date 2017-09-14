@@ -15,10 +15,6 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it returns only the right number of posts
-     * @return void
-     */
     public function testLimitLastMonthPosts()
     {
         $limit = 5;
@@ -28,20 +24,12 @@ class PostTest extends TestCase
         $this->assertEquals($limit, $lastPosts->count());
     }
 
-    /**
-     * it fills the slug field when a post is being saved
-     * @return void
-     */
     public function testSlug()
     {
         $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
         $this->assertEquals($post->slug, 'the-empire-strikes-back');
     }
 
-    /**
-     * it returns only posts posted last month
-     * @return void
-     */
     public function testGettingOnlyLastMonthPosts()
     {
         $faker = Factory::create();
@@ -74,10 +62,6 @@ class PostTest extends TestCase
         $this->assertTrue($isDuringLastMonth);
     }
 
-    /**
-     * it returns only posts posted last week
-     * @return void
-     */
     public function testGettingOnlyLastWeekPosts()
     {
         $faker = Factory::create();
@@ -110,10 +94,6 @@ class PostTest extends TestCase
         $this->assertTrue($isDuringLastWeek);
     }
 
-    /**
-     * it returns only posts posted before now
-     * @return void
-     */
     public function testPostedAtScopeApplied()
     {
         factory(Post::class)->create()->update(['posted_at' => Carbon::yesterday()]);
@@ -132,10 +112,6 @@ class PostTest extends TestCase
         $this->assertEquals(1, Post::count());
     }
 
-    /**
-     * it does not return only posts posted before now if user is an admin
-     * @return void
-     */
     public function testPostedAtScopeNotApplied()
     {
         $this->actingAs($this->admin());
@@ -156,10 +132,6 @@ class PostTest extends TestCase
         $this->assertEquals(2, Post::count());
     }
 
-    /**
-     * it checks if post has thumbnail
-     * @return void
-     */
     public function testHasThumbnail()
     {
         $post = factory(Post::class)->create();
@@ -170,10 +142,6 @@ class PostTest extends TestCase
         $this->assertTrue($post->hasThumbnail());
     }
 
-    /**
-     * it retrieves the post's thumbnail
-     * @return void
-     */
     public function testPostsThumbnail()
     {
         $post = factory(Post::class)->create();
@@ -185,10 +153,6 @@ class PostTest extends TestCase
         $this->assertEquals($post->thumbnail()->id, $media->id);
     }
 
-    /**
-     * it stores and set the uploaded post's thumbnail
-     * @return void
-     */
     public function testStoreAndSetThumbnail()
     {
         $post = factory(Post::class)->create();

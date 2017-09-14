@@ -12,10 +12,6 @@ class CommentTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it stores a new comment
-     * @return void
-     */
     public function testStore()
     {
         $params = $this->validParams();
@@ -27,10 +23,6 @@ class CommentTest extends TestCase
         $this->assertDatabaseHas('comments', $params);
     }
 
-    /**
-     * it returns errors when param's missing
-     * @return void
-     */
     public function testStoreFail()
     {
         $response = $this->actingAs($this->user())
@@ -42,10 +34,6 @@ class CommentTest extends TestCase
                  ->assertSessionHas('errors');
     }
 
-    /**
-     * it deletes requested comment
-     * @return void
-     */
     public function testDelete()
     {
         $user = $this->user();
@@ -62,10 +50,6 @@ class CommentTest extends TestCase
         $this->assertDatabaseMissing('comments', $comment->toArray());
     }
 
-    /**
-     * it does not delete requested comment
-     * @return void
-     */
     public function testDeleteForbidden()
     {
         $comment = factory(Comment::class)->create();
@@ -79,6 +63,7 @@ class CommentTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

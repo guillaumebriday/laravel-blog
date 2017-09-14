@@ -12,20 +12,12 @@ class CommentTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it fills the posted_at field when a comment is posted
-     * @return void
-     */
     public function testPostedAt()
     {
         $comment = factory(Comment::class)->create();
         $this->assertEquals($comment->posted_at->toDateTimeString(), Carbon::now()->toDateTimeString());
     }
 
-    /**
-     * it returns only comments posted last month
-     * @return void
-     */
     public function testGettingOnlyLastWeekComments()
     {
         $faker = Factory::create();

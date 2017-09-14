@@ -11,10 +11,6 @@ class TokenTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it generates a personnal acces token
-     * @return void
-     */
     public function testStore()
     {
         $user = $this->user(['api_token' => null]);
@@ -28,10 +24,6 @@ class TokenTest extends TestCase
         $this->assertNotNull($user->api_token);
     }
 
-    /**
-     * it deletes a personnal acces token
-     * @return void
-     */
     public function testDestroy()
     {
         $user = $this->user();
