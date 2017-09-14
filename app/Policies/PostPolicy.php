@@ -31,4 +31,15 @@ class PostPolicy
     {
         return $user->isAdmin();
     }
+
+    /**
+     * Determine whether the user can store a post.
+     *
+     * @param  User $user
+     * @return bool
+     */
+    public function store(User $user): bool
+    {
+        return $user->isAdmin();
+    }
 }
