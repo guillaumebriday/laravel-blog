@@ -39,17 +39,11 @@ class PostsController extends ApiController
     * Update the specified resource in storage.
     *
     * @param  App\Http\Requests\Admin\PostsRequest $request
-    * @param  $id
+    * @param  Post $post
     * @return \Illuminate\Http\Response
     */
-    public function update(PostsRequest $request, $id)
+    public function update(PostsRequest $request, Post $post)
     {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
         if (! Auth::user()->can('update', $post)) {
             return $this->respondUnauthorized();
         }
@@ -89,31 +83,19 @@ class PostsController extends ApiController
     * @param  int $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::withCount('comments')->find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
         return $this->item($post);
     }
 
     /**
     * Remove the specified resource from storage.
     *
-    * @param  int $id
+    * @param  Post $post
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
         if (! Auth::user()->can('delete', $post)) {
             return $this->respondUnauthorized();
         }

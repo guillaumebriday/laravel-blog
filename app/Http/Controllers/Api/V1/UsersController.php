@@ -39,17 +39,11 @@ class UsersController extends ApiController
     * Return the user's comments.
     *
     * @param  Request $request
-    * @param  int $id
+    * @param  User $user
     * @return \Illuminate\Http\Response
     */
-    public function comments(Request $request, $id)
+    public function comments(Request $request, User $user)
     {
-        $user = User::find($id);
-
-        if (! $user) {
-            return $this->respondNotFound();
-        }
-
         $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
 
         return $this
@@ -62,17 +56,11 @@ class UsersController extends ApiController
     * Return the user's posts.
     *
     * @param  Request $request
-    * @param  int $id
+    * @param  User $user
     * @return \Illuminate\Http\Response
     */
-    public function posts(Request $request, $id)
+    public function posts(Request $request, User $user)
     {
-        $user = User::find($id);
-
-        if (! $user) {
-            return $this->respondNotFound();
-        }
-
         $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
 
         return $this
@@ -84,17 +72,11 @@ class UsersController extends ApiController
     /**
     * Return the specified resource.
     *
-    * @param  int $id
+    * @param  User $user
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::withCount(['comments', 'posts'])->find($id);
-
-        if (! $user) {
-            return $this->respondNotFound();
-        }
-
         return $this->item($user);
     }
 

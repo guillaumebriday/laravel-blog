@@ -36,34 +36,22 @@ class CommentsController extends ApiController
     /**
     * Return the specified resource.
     *
-    * @param  int  $id
+    * @param  Comment $comment
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show(Comment $comment)
     {
-        $comment = Comment::find($id);
-
-        if (! $comment) {
-            return $this->respondNotFound();
-        }
-
         return $this->item($comment);
     }
 
     /**
     * Remove the specified resource from storage.
     *
-    * @param  int $id
+    * @param  Comment $comment
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        $comment = Comment::find($id);
-
-        if (! $comment) {
-            return $this->respondNotFound();
-        }
-
         if (! Auth::user()->can('delete', $comment)) {
             return $this->respondUnauthorized();
         }
