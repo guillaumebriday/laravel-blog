@@ -116,10 +116,7 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/users/314/posts')
             ->assertStatus(404)
             ->assertJson([
-                'error' => [
-                    'message' => 'Not found.',
-                    'status' => 404
-                ]
+                'message' => 'No query results for model [App\\User].'
             ]);
     }
 
@@ -172,10 +169,7 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/posts/31415')
             ->assertStatus(404)
             ->assertJson([
-                'error' => [
-                    'message' => 'Not found.',
-                    'status' => 404
-                ]
+                'message' => 'No query results for model [App\\Post].'
             ]);
     }
 

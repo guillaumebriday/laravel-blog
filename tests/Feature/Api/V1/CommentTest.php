@@ -148,10 +148,7 @@ class CommentTest extends TestCase
         $response
             ->assertStatus(404)
             ->assertJson([
-                'error' => [
-                    'message' => 'Not found.',
-                    'status' => 404
-                ]
+                'message' => 'No query results for model [App\\Post].'
             ]);
     }
 
@@ -194,10 +191,7 @@ class CommentTest extends TestCase
         $this->json('GET', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
-                'error' => [
-                    'message' => 'Not found.',
-                    'status' => 404
-                ]
+                'message' => 'No query results for model [App\\Comment].'
             ]);
     }
 
@@ -216,10 +210,7 @@ class CommentTest extends TestCase
             ->json('DELETE', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
-                'error' => [
-                    'message' => 'Not found.',
-                    'status' => 404
-                ]
+                'message' => 'No query results for model [App\\Comment].'
             ]);
     }
 
