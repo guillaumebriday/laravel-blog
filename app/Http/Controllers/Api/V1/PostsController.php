@@ -99,4 +99,27 @@ class PostsController extends ApiController
 
         return $this->item($post);
     }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int $id
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+
+        if (! $post) {
+            return $this->respondNotFound();
+        }
+
+        if (! Auth::user()->can('delete', $post)) {
+            return $this->respondUnauthorized();
+        }
+
+        $post->delete();
+
+        return $this->respondNoContent();
+    }
 }
