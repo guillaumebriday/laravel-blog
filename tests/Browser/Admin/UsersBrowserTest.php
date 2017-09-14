@@ -12,10 +12,6 @@ class UsersBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on user edit link in admin users index
-     * @return void
-     */
     public function testUserIndexEditLink()
     {
         $admin = $this->admin();
@@ -27,10 +23,6 @@ class UsersBrowserTest extends BrowserKitTest
             ->seeRouteIs('admin.users.edit', $anakin);
     }
 
-    /**
-     * it clicks on user profil link in user edit admin view
-     * @return void
-     */
     public function testUserProfilViewLink()
     {
         $admin = $this->admin();
@@ -42,10 +34,6 @@ class UsersBrowserTest extends BrowserKitTest
             ->seeRouteIs('users.show', $user);
     }
 
-    /**
-     * it updates the user through admin edit form
-     * @return void
-     */
     public function testUserUpdate()
     {
         $faker = Factory::create();

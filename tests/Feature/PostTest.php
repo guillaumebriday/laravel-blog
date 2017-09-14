@@ -15,10 +15,6 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it renders posts index view
-     * @return void
-     */
     public function testIndex()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -35,10 +31,6 @@ class PostTest extends TestCase
             ->assertSee('Anakin');
     }
 
-    /**
-     * it renders a post show view
-     * @return void
-     */
     public function testShow()
     {
         $post = factory(Post::class)->create();
@@ -57,10 +49,6 @@ class PostTest extends TestCase
             ->assertSee(e($comment->content));
     }
 
-    /**
-     * it renders a post show view if unauthenticated
-     * @return void
-     */
     public function testShowUnauthenticated()
     {
         $post = factory(Post::class)->create();

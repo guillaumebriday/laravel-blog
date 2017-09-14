@@ -13,10 +13,6 @@ class CommentsBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on a comment's delete link in post view
-     * @return void
-     */
     public function testCommentFormDelete()
     {
         $user = $this->user();
@@ -28,10 +24,6 @@ class CommentsBrowserTest extends BrowserKitTest
             ->see('Commentaire supprimé avec succès');
     }
 
-    /**
-     * it creates a comment through create form
-     * @return void
-     */
     public function testCommentCreateForm()
     {
         $post = factory(Post::class)->create();

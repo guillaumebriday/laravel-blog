@@ -15,10 +15,6 @@ class CommentTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it renders admin comments index view
-     * @return void
-     */
     public function testIndex()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -36,10 +32,6 @@ class CommentTest extends TestCase
                  ->assertSee(e($comment->content));
     }
 
-    /**
-     * it renders admin comments edit view
-     * @return void
-     */
     public function testEdit()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -59,10 +51,6 @@ class CommentTest extends TestCase
                  ->assertSee('Supprimer');
     }
 
-    /**
-     * it updates requested comment in admin dashboard
-     * @return void
-     */
     public function testUpdate()
     {
         $post = factory(Post::class)->create();
@@ -83,10 +71,6 @@ class CommentTest extends TestCase
         $this->assertEquals($params['content'], $comment->content);
     }
 
-    /**
-     * it does not update requested comment in admin dashboard
-     * @return void
-     */
     public function testUpdateFail()
     {
         $post = factory(Post::class)->create();
@@ -106,10 +90,6 @@ class CommentTest extends TestCase
         $this->assertDatabaseMissing('comments', $params);
     }
 
-    /**
-     * it deletes requested comment in admin dashboard
-     * @return void
-     */
     public function testDelete()
     {
         $comment = factory(Comment::class)->create();
@@ -124,6 +104,7 @@ class CommentTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

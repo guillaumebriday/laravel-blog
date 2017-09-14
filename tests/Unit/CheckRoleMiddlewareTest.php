@@ -9,10 +9,6 @@ class CheckRoleMiddlewareTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it checks if the format returned is the default one
-     * @return void
-     */
     public function testAdminAuthorized()
     {
         $response = $this->actingAs($this->admin())
@@ -21,10 +17,6 @@ class CheckRoleMiddlewareTest extends TestCase
         $response->assertStatus(200);
     }
 
-    /**
-     * it checks if the format returned is the default one
-     * @return void
-     */
     public function testAdminForbidden()
     {
         $response = $this->actingAs($this->user())

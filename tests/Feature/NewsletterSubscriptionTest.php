@@ -11,10 +11,6 @@ class NewsletterSubscriptionTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it stores a new newsletter subscription
-     * @return void
-     */
     public function testStore()
     {
         $params = $this->validParams();
@@ -27,10 +23,6 @@ class NewsletterSubscriptionTest extends TestCase
         $this->assertDatabaseHas('newsletter_subscriptions', $params);
     }
 
-    /**
-     * it does not store duplicate email in newsletter subscription
-     * @return void
-     */
     public function testStoreFail()
     {
         $params = $this->validParams();
@@ -44,10 +36,6 @@ class NewsletterSubscriptionTest extends TestCase
         $this->assertEquals(session('errors')->first(), 'La valeur du champ Adresse e-mail est déjà utilisée.');
     }
 
-    /**
-     * it unsubscribes requested email from newsletter
-     * @return void
-     */
     public function testUnsubscribe()
     {
         $params = $this->validParams();
@@ -61,10 +49,6 @@ class NewsletterSubscriptionTest extends TestCase
         $this->assertDatabaseMissing('newsletter_subscriptions', $newsletter->toArray());
     }
 
-    /**
-     * it unsubscribes requested email from newsletter only if exists
-     * @return void
-     */
     public function testUnsubscribeFail()
     {
         $params = $this->validParams();
@@ -80,6 +64,7 @@ class NewsletterSubscriptionTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

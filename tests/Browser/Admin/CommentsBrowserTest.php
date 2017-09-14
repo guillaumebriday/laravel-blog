@@ -15,10 +15,6 @@ class CommentsBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on comment author profil link in comments index view
-     * @return void
-     */
     public function testCommentIndexAuthorLink()
     {
         $comments = factory(Comment::class, 10)->create();
@@ -31,10 +27,6 @@ class CommentsBrowserTest extends BrowserKitTest
             ->seeRouteIs('users.show', $anakin);
     }
 
-    /**
-     * it clicks on comment's post link in comments index view
-     * @return void
-     */
     public function testCommentIndexPostLink()
     {
         $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
@@ -47,10 +39,6 @@ class CommentsBrowserTest extends BrowserKitTest
             ->seeRouteIs('posts.show', $post);
     }
 
-    /**
-     * it updates a comment through update form
-     * @return void
-     */
     public function testUpdateComment()
     {
         $author = factory(User::class)->create();
@@ -67,10 +55,6 @@ class CommentsBrowserTest extends BrowserKitTest
             ->see('Commentaire mis à jour avec succès');
     }
 
-    /**
-     * it clicks on delete comment link
-     * @return void
-     */
     public function testDeleteComment()
     {
         $comment = factory(Comment::class)->create();

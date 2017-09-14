@@ -18,10 +18,6 @@ class PostTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it renders admin posts index view
-     * @return void
-     */
     public function testIndex()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -38,10 +34,6 @@ class PostTest extends TestCase
                  ->assertSee('Titre');
     }
 
-    /**
-     * it renders a post create view
-     * @return void
-     */
     public function testCreate()
     {
         $response = $this->actingAs($this->admin())->get('/admin/posts/create');
@@ -55,10 +47,6 @@ class PostTest extends TestCase
                ->assertSee('Sauvegarder');
     }
 
-    /**
-     * it stores a new post
-     * @return void
-     */
     public function testStore()
     {
         $params = $this->validParams();
@@ -77,10 +65,6 @@ class PostTest extends TestCase
         Storage::delete($post->thumbnail()->filename);
     }
 
-    /**
-     * it returns errors when param's missing
-     * @return void
-     */
     public function testStoreFail()
     {
         $params = $this->validParams(['content' => null]);
@@ -91,10 +75,6 @@ class PostTest extends TestCase
                  ->assertSessionHas('errors');
     }
 
-    /**
-     * it renders admin posts edit view
-     * @return void
-     */
     public function testEdit()
     {
         $anakin = $this->admin(['name' => 'Anakin', 'email' => 'anakin@skywalker.st']);
@@ -112,10 +92,6 @@ class PostTest extends TestCase
                  ->assertSee('Post&eacute; le');
     }
 
-    /**
-     * it updates requested post in admin dashboard
-     * @return void
-     */
     public function testUpdate()
     {
         $post = factory(Post::class)->create();
@@ -135,11 +111,6 @@ class PostTest extends TestCase
         Storage::delete($post->thumbnail()->filename);
     }
 
-    /**
-     * it unsets the post's thumnbail
-     *
-     * @return void
-     */
     public function testUnsetThumbnail()
     {
         $post = factory(Post::class)->create();
@@ -157,10 +128,6 @@ class PostTest extends TestCase
         Storage::delete($thumbnail->filename);
     }
 
-    /**
-     * it deletes requested post in admin dashboard
-     * @return void
-     */
     public function testDelete()
     {
         $post = factory(Post::class)->create();
@@ -180,6 +147,7 @@ class PostTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

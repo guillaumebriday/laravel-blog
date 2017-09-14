@@ -14,10 +14,6 @@ class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it returns a posts collection
-     * @return void
-     */
     public function testUserIndex()
     {
         $users = factory(User::class, 10)
@@ -67,10 +63,6 @@ class UserTest extends TestCase
             ]);
     }
 
-    /**
-     * it returns a user item
-     * @return void
-     */
     public function testUserShow()
     {
         $user = factory(User::class)->states('anakin')->create();
@@ -141,10 +133,6 @@ class UserTest extends TestCase
             ]);
     }
 
-    /**
-     * it updates the user
-     * @return void
-     */
     public function testUpdate()
     {
         $user = $this->user();
@@ -162,6 +150,7 @@ class UserTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
      */

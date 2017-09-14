@@ -11,11 +11,6 @@ class TokenTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it returns a unique personnal access token
-     *
-     * @return void
-     */
     public function testGenerate()
     {
         $user = factory(User::class)->create();

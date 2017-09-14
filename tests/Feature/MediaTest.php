@@ -13,10 +13,6 @@ class MediaTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it retrieves the requested media
-     * @return void
-     */
     public function testGetFile()
     {
         $filename = UploadedFile::fake()->image('file.png')->store('/');

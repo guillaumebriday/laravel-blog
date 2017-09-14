@@ -12,10 +12,6 @@ class UsersBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on my profil link in dropdown
-     * @return void
-     */
     public function testUserShowLink()
     {
         $user = $this->user();
@@ -26,10 +22,6 @@ class UsersBrowserTest extends BrowserKitTest
             ->seeRouteIs('users.show', $user);
     }
 
-    /**
-     * it clicks on edition link in user profil
-     * @return void
-     */
     public function testUserEditLink()
     {
         $user = $this->user();
@@ -40,10 +32,6 @@ class UsersBrowserTest extends BrowserKitTest
             ->seeRouteIs('users.edit', $user);
     }
 
-    /**
-     * it updates the user through edit form
-     * @return void
-     */
     public function testUserUpdate()
     {
         $user = $this->user();
@@ -56,10 +44,6 @@ class UsersBrowserTest extends BrowserKitTest
             ->see('Le profil a bien été mis à jour');
     }
 
-    /**
-     * it generates a personnal acces token
-     * @return void
-     */
     public function testUserGenerateApiToken()
     {
         $user = $this->user(['api_token' => null]);
@@ -72,10 +56,6 @@ class UsersBrowserTest extends BrowserKitTest
             ->see('Supprimer');
     }
 
-    /**
-     * it destroy a personnal acces token
-     * @return void
-     */
     public function testUserDestroyApiToken()
     {
         $user = $this->user();

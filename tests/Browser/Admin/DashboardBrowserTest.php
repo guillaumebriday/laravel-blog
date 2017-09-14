@@ -13,10 +13,6 @@ class DashboardBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on posts index link in admin dashboard view
-     * @return void
-     */
     public function testDashboardPostsIndexLink()
     {
         $this->actingAs($this->admin())
@@ -25,10 +21,6 @@ class DashboardBrowserTest extends BrowserKitTest
             ->seeRouteIs('admin.posts.index');
     }
 
-    /**
-     * it clicks on comments index link in admin dashboard view
-     * @return void
-     */
     public function testDashboardCommentsIndexLink()
     {
         $this->actingAs($this->admin())
@@ -37,10 +29,6 @@ class DashboardBrowserTest extends BrowserKitTest
             ->seeRouteIs('admin.comments.index');
     }
 
-    /**
-     * it clicks on users index link in admin dashboard view
-     * @return void
-     */
     public function testDashboardUsersIndexLink()
     {
         $this->actingAs($this->admin())

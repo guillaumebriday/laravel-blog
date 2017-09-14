@@ -16,10 +16,6 @@ class PostsBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    /**
-     * it clicks on post edit link in admin posts index
-     * @return void
-     */
     public function testPostIndexEditLink()
     {
         $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
@@ -30,10 +26,6 @@ class PostsBrowserTest extends BrowserKitTest
             ->seeRouteIs('admin.posts.edit', $post);
     }
 
-    /**
-     * it clicks on post author profil link in admin posts index
-     * @return void
-     */
     public function testPostIndexAuthorLink()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -45,10 +37,6 @@ class PostsBrowserTest extends BrowserKitTest
             ->seeRouteIs('users.show', $post->author);
     }
 
-    /**
-     * it updates a post through update form
-     * @return void
-     */
     public function testUpdatePost()
     {
         $author = $this->admin();
@@ -69,11 +57,6 @@ class PostsBrowserTest extends BrowserKitTest
         Storage::delete(Post::first()->thumbnail()->filename);
     }
 
-    /**
-     * it clicks on the unset thumbnail link in post edit view
-     *
-     * @return void
-     */
     public function testPostUnsetThumbnailLink()
     {
         $post = factory(Post::class)->create();
@@ -88,10 +71,6 @@ class PostsBrowserTest extends BrowserKitTest
         Storage::delete($post->thumbnail()->filename);
     }
 
-    /**
-     * it creates a post through create form
-     * @return void
-     */
     public function testPostCreateForm()
     {
         $faker = Factory::create();
@@ -111,10 +90,6 @@ class PostsBrowserTest extends BrowserKitTest
         Storage::delete(Post::first()->thumbnail()->filename);
     }
 
-    /**
-     * it clicks on delete post link
-     * @return void
-     */
     public function testDeletePost()
     {
         $post = factory(Post::class)->create();

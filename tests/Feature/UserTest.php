@@ -15,10 +15,6 @@ class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /**
-     * it renders user profile view
-     * @return void
-     */
     public function testProfil()
     {
         $user = $this->user();
@@ -38,10 +34,6 @@ class UserTest extends TestCase
             ->assertSee('&Eacute;diter le profil');
     }
 
-    /**
-     * it renders user profile view if there is no role registered
-     * @return void
-     */
     public function testShowWithoutRoles()
     {
         $user = $this->user();
@@ -54,10 +46,6 @@ class UserTest extends TestCase
             ->assertSee('Aucun');
     }
 
-    /**
-     * it renders user profile editing view
-     * @return void
-     */
     public function testEditing()
     {
         $user = $this->user();
@@ -73,10 +61,6 @@ class UserTest extends TestCase
                  ->assertSee('Retour');
     }
 
-    /**
-     * it does not render user profile editing view
-     * @return void
-     */
     public function testEditingFail()
     {
         $user = $this->user();
@@ -87,10 +71,6 @@ class UserTest extends TestCase
         $response->assertStatus(403);
     }
 
-    /**
-     * it updates the user
-     * @return void
-     */
     public function testUpdate()
     {
         $user = $this->user();
@@ -106,10 +86,6 @@ class UserTest extends TestCase
         $this->assertEquals($params['email'], $user->email);
     }
 
-    /**
-     * it updates the user with password
-     * @return void
-     */
     public function testUpdatePassword()
     {
         $user = $this->user();
@@ -129,10 +105,6 @@ class UserTest extends TestCase
         $this->assertTrue(Hash::check($params['password'], $user->password));
     }
 
-    /**
-     * it does not update other user
-     * @return void
-     */
     public function testUpdateOtherUser()
     {
         $user = $this->user();
@@ -147,6 +119,7 @@ class UserTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
+     *
      * @param  array  $overrides new params
      * @return array  Valid params for updating or creating a resource
      */
