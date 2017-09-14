@@ -302,6 +302,42 @@ class PostTest extends TestCase
     }
 
     /**
+     * it deletes requested post
+     * @return void
+     */
+    public function testPostDelete()
+    {
+        $post = factory(Post::class)->create();
+
+        $this->actingAs($this->admin(), 'api')
+            ->json('DELETE', "/api/v1/posts/{$post->id}")
+            ->assertStatus(204);
+
+        $this->assertDatabaseMissing('posts', $post->toArray());
+    }
+
+    /**
+     * it returns a 401 unauthorized error
+     * @return void
+     */
+    public function testPostDeleteUnauthorized()
+    {
+        $post = factory(Post::class)->create();
+
+        $this->actingAs($this->user(), 'api')
+            ->json('DELETE', "/api/v1/posts/{$post->id}")
+            ->assertStatus(401)
+            ->assertJson([
+                'error' => [
+                    'message' => 'Unauthorized.',
+                    'status' => 401
+                ]
+            ]);
+
+        $this->assertDatabaseHas('posts', $post->toArray());
+    }
+
+    /**
      * Valid params for updating or creating a resource
      * @param  array $overrides new params
      * @return array Valid params for updating or creating a resource
