@@ -196,16 +196,11 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
 
         $response = $this->actingAs($this->user(), 'api')
-                         ->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams());
-
-        $response
-        ->assertStatus(401)
-        ->assertJson([
-            'error' => [
-                'message' => 'Unauthorized.',
-                'status' => 401
-            ]
-        ]);
+                         ->json('PATCH', "/api/v1/posts/{$post->id}", array_except($this->validParams(), 'thumbnail'))
+                         ->assertStatus(403)
+                         ->assertJson([
+                             'message' => 'This action is unauthorized.'
+                         ]);
     }
 
     public function testStorePost()
@@ -226,12 +221,9 @@ class PostTest extends TestCase
         $response = $this->actingAs($this->user(), 'api')
                          ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'));
 
-        $response->assertStatus(401)
+        $response->assertStatus(403)
                 ->assertJson([
-                    'error' => [
-                        'message' => 'Unauthorized.',
-                        'status' => 401
-                    ]
+                    'message' => 'This action is unauthorized.'
                 ]);
     }
 
@@ -269,12 +261,9 @@ class PostTest extends TestCase
 
         $this->actingAs($this->user(), 'api')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
-            ->assertStatus(401)
+            ->assertStatus(403)
             ->assertJson([
-                'error' => [
-                    'message' => 'Unauthorized.',
-                    'status' => 401
-                ]
+                'message' => 'This action is unauthorized.'
             ]);
 
         $this->assertDatabaseHas('posts', $post->toArray());

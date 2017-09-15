@@ -44,9 +44,7 @@ class PostsController extends ApiController
     */
     public function update(PostsRequest $request, Post $post)
     {
-        if (! Auth::user()->can('update', $post)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('update', $post);
 
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
 
@@ -64,9 +62,7 @@ class PostsController extends ApiController
      */
     public function store(PostsRequest $request)
     {
-        if (! Auth::user()->can('store', Post::class)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('store', Post::class);
 
         $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id']));
 
@@ -96,9 +92,7 @@ class PostsController extends ApiController
     */
     public function destroy(Post $post)
     {
-        if (! Auth::user()->can('delete', $post)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('delete', $post);
 
         $post->delete();
 

@@ -52,9 +52,7 @@ class CommentsController extends ApiController
     */
     public function destroy(Comment $comment)
     {
-        if (! Auth::user()->can('delete', $comment)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('delete', $comment);
 
         $comment->delete();
 

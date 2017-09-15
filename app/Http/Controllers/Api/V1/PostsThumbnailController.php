@@ -29,9 +29,7 @@ class PostsThumbnailController extends ApiController
     */
     public function destroy(Post $post)
     {
-        if (! Auth::user()->can('update', $post)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('update', $post);
 
         $post->update(['thumbnail_id' => null]);
 

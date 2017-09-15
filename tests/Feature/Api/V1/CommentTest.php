@@ -220,12 +220,9 @@ class CommentTest extends TestCase
 
         $this->actingAs($this->user(), 'api')
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
-            ->assertStatus(401)
+            ->assertStatus(403)
             ->assertJson([
-                'error' => [
-                    'message' => 'Unauthorized.',
-                    'status' => 401
-                ]
+                'message' => 'This action is unauthorized.'
             ]);
     }
 
