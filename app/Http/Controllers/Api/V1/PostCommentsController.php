@@ -25,17 +25,11 @@ class PostCommentsController extends ApiController
     * Return the post's comments.
     *
     * @param  Request $request
-    * @param  int $id
+    * @param  Post $post
     * @return \Illuminate\Http\Response
     */
-    public function index(Request $request, $id)
+    public function index(Request $request, Post $post)
     {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
         $comments = $post->comments()->latest()->paginate($request->input('limit', 20));
 
         return $this->paginatedCollection($comments);
@@ -45,17 +39,11 @@ class PostCommentsController extends ApiController
     * Store a newly created resource in storage.
     *
     * @param  CommentsRequest $request
-    * @param  int $id
+    * @param  Post $post
     * @return \Illuminate\Http\Response
     */
-    public function store(CommentsRequest $request, $id)
+    public function store(CommentsRequest $request, Post $post)
     {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
         $comment = Auth::user()->comments()->create([
             'post_id' => $post->id,
             'content' => $request->input('content')

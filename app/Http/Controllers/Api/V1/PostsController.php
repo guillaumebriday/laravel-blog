@@ -39,20 +39,12 @@ class PostsController extends ApiController
     * Update the specified resource in storage.
     *
     * @param  App\Http\Requests\Admin\PostsRequest $request
-    * @param  $id
+    * @param  Post $post
     * @return \Illuminate\Http\Response
     */
-    public function update(PostsRequest $request, $id)
+    public function update(PostsRequest $request, Post $post)
     {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
-        if (! Auth::user()->can('update', $post)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('update', $post);
 
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
 
@@ -70,9 +62,7 @@ class PostsController extends ApiController
      */
     public function store(PostsRequest $request)
     {
-        if (! Auth::user()->can('store', Post::class)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('store', Post::class);
 
         $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id']));
 
@@ -89,34 +79,20 @@ class PostsController extends ApiController
     * @param  int $id
     * @return \Illuminate\Http\Response
     */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::withCount('comments')->find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
         return $this->item($post);
     }
 
     /**
     * Remove the specified resource from storage.
     *
-    * @param  int $id
+    * @param  Post $post
     * @return \Illuminate\Http\Response
     */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
-
-        if (! $post) {
-            return $this->respondNotFound();
-        }
-
-        if (! Auth::user()->can('delete', $post)) {
-            return $this->respondUnauthorized();
-        }
+        $this->authorize('delete', $post);
 
         $post->delete();
 
