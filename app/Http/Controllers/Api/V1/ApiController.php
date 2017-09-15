@@ -99,28 +99,6 @@ class ApiController extends Controller
     }
 
     /**
-     * Return a 401 unauthorized error.
-     *
-     * @param string $message
-     * @return \Illuminate\Http\Response
-     */
-    public function respondUnauthorized($message = 'Unauthorized.')
-    {
-        return $this->setStatusCode(IlluminateResponse::HTTP_UNAUTHORIZED)->respondWithError($message);
-    }
-
-    /**
-     * Return a 403 forbidden error.
-     *
-     * @param string $message
-     * @return \Illuminate\Http\Response
-     */
-    public function respondForbidden($message = 'Forbidden.')
-    {
-        return $this->setStatusCode(IlluminateResponse::HTTP_FORBIDDEN)->respondWithError($message);
-    }
-
-    /**
      * Return a 204 no content response
      * @param  string $message
      * @return \Illuminate\Http\Response
@@ -128,21 +106,6 @@ class ApiController extends Controller
     public function respondNoContent($message = '')
     {
         return $this->setStatusCode(IlluminateResponse::HTTP_NO_CONTENT)->respond($message);
-    }
-
-    /**
-     * Return an error response
-     * @param String $message
-     * @return \Illuminate\Http\Response
-     */
-    public function respondWithError($message)
-    {
-        return $this->respond([
-            'error' => [
-                'message' => $message,
-                'status' => $this->getStatusCode()
-            ]
-        ]);
     }
 
     /**
