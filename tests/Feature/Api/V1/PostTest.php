@@ -24,9 +24,7 @@ class PostTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
-                    'type',
-                    'id',
-                    'attributes' => [
+                        'id',
                         'title',
                         'slug',
                         'content',
@@ -35,28 +33,21 @@ class PostTest extends TestCase
                         'has_thumbnail',
                         'thumbnail_url',
                         'comments_count'
-                    ]
                 ]],
-                'meta' => [
-                    'pagination' => [
-                        'total'
-                    ]
-                ],
                 'links' => [
-                    'self',
                     'first',
-                    'last'
-                ]
-            ])
-            ->assertJsonFragment([
+                    'last',
+                    'prev',
+                    'next',
+                ],
                 'meta' => [
-                    'pagination' => [
-                        'count' => 10,
-                        'current_page' => 1,
-                        'per_page' => 20,
-                        'total' => 10,
-                        'total_pages' => 1
-                    ]
+                    'current_page',
+                    'from',
+                    'last_page',
+                    'path',
+                    'per_page',
+                    'to',
+                    'total',
                 ]
             ]);
     }
@@ -71,39 +62,30 @@ class PostTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
-                    'type',
                     'id',
-                    'attributes' => [
-                        'title',
-                        'slug',
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'has_thumbnail',
-                        'thumbnail_url',
-                        'comments_count'
-                    ]
+                    'title',
+                    'slug',
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'has_thumbnail',
+                    'thumbnail_url',
+                    'comments_count'
                 ]],
-                'meta' => [
-                    'pagination' => [
-                        'total'
-                    ]
-                ],
                 'links' => [
-                    'self',
                     'first',
-                    'last'
-                ]
-            ])
-            ->assertJsonFragment([
+                    'last',
+                    'prev',
+                    'next',
+                ],
                 'meta' => [
-                    'pagination' => [
-                        'count' => 10,
-                        'current_page' => 1,
-                        'per_page' => 20,
-                        'total' => 10,
-                        'total_pages' => 1
-                    ]
+                    'current_page',
+                    'from',
+                    'last_page',
+                    'path',
+                    'per_page',
+                    'to',
+                    'total',
                 ]
             ]);
     }
@@ -132,34 +114,28 @@ class PostTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
-                    'type',
                     'id',
-                    'attributes' => [
-                        'title',
-                        'slug',
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'has_thumbnail',
-                        'thumbnail_url',
-                        'comments_count'
-                    ]
+                    'title',
+                    'slug',
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'has_thumbnail',
+                    'thumbnail_url',
+                    'comments_count'
                 ],
             ])
             ->assertJson([
                 'data' => [
-                    'type' => 'posts',
                     'id' => $post->id,
-                    'attributes' => [
-                        'title' => 'The Empire Strikes Back',
-                        'slug' => 'the-empire-strikes-back',
-                        'content' => 'A Star Wars Story',
-                        'posted_at' => $post->posted_at->toIso8601String(),
-                        'author_id' => $post->author_id,
-                        'has_thumbnail' => false,
-                        'thumbnail_url' => null,
-                        'comments_count' => 5
-                    ]
+                    'title' => 'The Empire Strikes Back',
+                    'slug' => 'the-empire-strikes-back',
+                    'content' => 'A Star Wars Story',
+                    'posted_at' => $post->posted_at->toIso8601String(),
+                    'author_id' => $post->author_id,
+                    'has_thumbnail' => false,
+                    'thumbnail_url' => null,
+                    'comments_count' => 5
                 ],
             ]);
     }
