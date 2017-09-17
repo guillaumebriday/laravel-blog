@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Transformers\UserTransformer;
+use App\Http\Resources\User as UserResource;
 use App\Transformers\CommentTransformer;
 use App\Transformers\PostTransformer;
 use Illuminate\Support\Facades\Auth;
@@ -13,26 +13,15 @@ use App\User;
 class UsersController extends ApiController
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->transformer = new UserTransformer;
-        $this->resourceKey = 'users';
-    }
-
-    /**
     * Return the users.
     *
     * @return \Illuminate\Http\Response
     */
     public function index(Request $request)
     {
-        $users = User::withCount(['comments', 'posts'])->latest()->paginate($request->input('limit', 20));
-
-        return $this->paginatedCollection($users);
+        return UserResource::collection(
+            User::withCount(['comments', 'posts'])->with('roles')->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
@@ -77,7 +66,7 @@ class UsersController extends ApiController
     */
     public function show(User $user)
     {
-        return $this->item($user);
+        return new UserResource($user);
     }
 
     /**
@@ -89,6 +78,6 @@ class UsersController extends ApiController
 
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
-        return $this->item($user);
+        return new UserResource($user);
     }
 }
