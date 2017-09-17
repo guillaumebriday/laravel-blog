@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\User;
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::if('admin', function () {
             return Auth::check() && Auth::user()->isAdmin();
+        });
+
+        Response::macro('noContent', function () {
+            return response()->json(null, 204);
         });
     }
 
