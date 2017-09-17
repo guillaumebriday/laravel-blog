@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\Comment as CommentResource;
-use App\Transformers\CommentTransformer;
-use App\Transformers\PostTransformer;
+use App\Http\Resources\Post as PostResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
@@ -48,12 +47,9 @@ class UsersController extends ApiController
     */
     public function posts(Request $request, User $user)
     {
-        $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
-
-        return $this
-                ->setTransformer(new PostTransformer)
-                ->setResourceKey('posts')
-                ->paginatedCollection($posts);
+        return PostResource::collection(
+            $user->posts()->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
