@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
 use App\Http\Resources\Comment as CommentResource;
 use App\Http\Resources\Post as PostResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use App\User;
 
-class UsersController extends ApiController
+class UsersController extends Controller
 {
     /**
     * Return the users.

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Post as PostResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,7 +10,7 @@ use App\Http\Requests\Admin\PostsRequest;
 use App\Post;
 use App\User;
 
-class PostsController extends ApiController
+class PostsController extends Controller
 {
     /**
     * Return the posts.

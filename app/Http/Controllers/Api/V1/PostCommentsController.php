@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Comment as CommentResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\CommentsRequest;
 use App\Post;
 
-class PostCommentsController extends ApiController
+class PostCommentsController extends Controller
 {
     /**
     * Return the post's comments.

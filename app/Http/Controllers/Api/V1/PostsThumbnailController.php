@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Post as PostResource;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Post;
 
-class PostsThumbnailController extends ApiController
+class PostsThumbnailController extends Controller
 {
     /**
     * Unset the post's thumbnail.
