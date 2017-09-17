@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Comment as CommentResource;
 use App\Transformers\CommentTransformer;
 use App\Transformers\PostTransformer;
 use Illuminate\Support\Facades\Auth;
@@ -33,12 +34,9 @@ class UsersController extends ApiController
     */
     public function comments(Request $request, User $user)
     {
-        $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
-
-        return $this
-                ->setTransformer(new CommentTransformer)
-                ->setResourceKey('comments')
-                ->paginatedCollection($comments);
+        return CommentResource::collection(
+            $user->comments()->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
