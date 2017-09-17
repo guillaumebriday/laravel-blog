@@ -2,27 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Transformers\UserTransformer;
-use App\Transformers\CommentTransformer;
-use App\Transformers\PostTransformer;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\User as UserResource;
+use App\Http\Resources\Comment as CommentResource;
+use App\Http\Resources\Post as PostResource;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 use App\User;
 
-class UsersController extends ApiController
+class UsersController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->transformer = new UserTransformer;
-        $this->resourceKey = 'users';
-    }
-
     /**
     * Return the users.
     *
@@ -30,9 +19,9 @@ class UsersController extends ApiController
     */
     public function index(Request $request)
     {
-        $users = User::withCount(['comments', 'posts'])->latest()->paginate($request->input('limit', 20));
-
-        return $this->paginatedCollection($users);
+        return UserResource::collection(
+            User::withCount(['comments', 'posts'])->with('roles')->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
@@ -44,12 +33,9 @@ class UsersController extends ApiController
     */
     public function comments(Request $request, User $user)
     {
-        $comments = $user->comments()->latest()->paginate($request->input('limit', 20));
-
-        return $this
-                ->setTransformer(new CommentTransformer)
-                ->setResourceKey('comments')
-                ->paginatedCollection($comments);
+        return CommentResource::collection(
+            $user->comments()->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
@@ -61,12 +47,9 @@ class UsersController extends ApiController
     */
     public function posts(Request $request, User $user)
     {
-        $posts = $user->posts()->latest()->paginate($request->input('limit', 20));
-
-        return $this
-                ->setTransformer(new PostTransformer)
-                ->setResourceKey('posts')
-                ->paginatedCollection($posts);
+        return PostResource::collection(
+            $user->posts()->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
@@ -77,7 +60,7 @@ class UsersController extends ApiController
     */
     public function show(User $user)
     {
-        return $this->item($user);
+        return new UserResource($user);
     }
 
     /**
@@ -89,6 +72,6 @@ class UsersController extends ApiController
 
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
-        return $this->item($user);
+        return new UserResource($user);
     }
 }

@@ -2,26 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Transformers\PostTransformer;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Post as PostResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\PostsRequest;
 use App\Post;
 use App\User;
 
-class PostsController extends ApiController
+class PostsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->transformer = new PostTransformer;
-        $this->resourceKey = 'posts';
-    }
-
     /**
     * Return the posts.
     *
@@ -30,9 +20,9 @@ class PostsController extends ApiController
     */
     public function index(Request $request)
     {
-        $posts = Post::withCount('comments')->latest()->paginate($request->input('limit', 20));
-
-        return $this->paginatedCollection($posts);
+        return PostResource::collection(
+            Post::withCount('comments')->latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
@@ -52,7 +42,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        return $this->item($post);
+        return new PostResource($post);
     }
 
     /**
@@ -70,7 +60,7 @@ class PostsController extends ApiController
             $post->storeAndSetThumbnail($request->file('thumbnail'));
         }
 
-        return $this->setStatusCode(201)->item($post);
+        return new PostResource($post);
     }
 
     /**
@@ -81,7 +71,7 @@ class PostsController extends ApiController
     */
     public function show(Post $post)
     {
-        return $this->item($post);
+        return new PostResource($post);
     }
 
     /**
@@ -96,6 +86,6 @@ class PostsController extends ApiController
 
         $post->delete();
 
-        return $this->respondNoContent();
+        return response()->noContent();
     }
 }

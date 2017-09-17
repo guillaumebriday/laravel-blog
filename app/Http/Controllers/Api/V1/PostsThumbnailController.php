@@ -3,24 +3,11 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Transformers\PostTransformer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\Post as PostResource;
 use App\Post;
 
-class PostsThumbnailController extends ApiController
+class PostsThumbnailController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->transformer = new PostTransformer;
-        $this->resourceKey = 'posts';
-    }
-
     /**
     * Unset the post's thumbnail.
     *
@@ -33,6 +20,6 @@ class PostsThumbnailController extends ApiController
 
         $post->update(['thumbnail_id' => null]);
 
-        return $this->item($post);
+        return new PostResource($post);
     }
 }

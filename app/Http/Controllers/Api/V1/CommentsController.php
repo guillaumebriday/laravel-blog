@@ -2,24 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Transformers\CommentTransformer;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Comment as CommentResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Comment;
 
-class CommentsController extends ApiController
+class CommentsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->transformer = new CommentTransformer;
-        $this->resourceKey = 'comments';
-    }
-
     /**
     * Return the comments.
     *
@@ -28,9 +18,9 @@ class CommentsController extends ApiController
     */
     public function index(Request $request)
     {
-        $comments = Comment::latest()->paginate($request->input('limit', 20));
-
-        return $this->paginatedCollection($comments);
+        return CommentResource::collection(
+            Comment::latest()->paginate($request->input('limit', 20))
+        );
     }
 
     /**
@@ -41,7 +31,7 @@ class CommentsController extends ApiController
     */
     public function show(Comment $comment)
     {
-        return $this->item($comment);
+        return new CommentResource($comment);
     }
 
     /**
@@ -56,6 +46,6 @@ class CommentsController extends ApiController
 
         $comment->delete();
 
-        return $this->respondNoContent();
+        return response()->noContent();
     }
 }

@@ -26,39 +26,33 @@ class UserTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
-                    'type',
                     'id',
-                    'attributes' => [
-                        'name',
-                        'email',
-                        'provider',
-                        'provider_id',
-                        'registered_at',
-                        'comments_count',
-                        'posts_count'
-                    ],
-                    'relationships' => [
-                        'roles' => [
-                            'data'
-                        ]
-                    ]
-                ]],
-                'included' => [[
-                    'type',
-                    'id',
-                    'attributes' => [
+                    'name',
+                    'email',
+                    'provider',
+                    'provider_id',
+                    'registered_at',
+                    'comments_count',
+                    'posts_count',
+                    'roles' => [[
+                        'id',
                         'name'
-                    ]
+                    ]]
                 ]],
-                'meta' => [
-                    'pagination' => [
-                        'total'
-                    ]
-                ],
                 'links' => [
-                    'self',
                     'first',
-                    'last'
+                    'last',
+                    'prev',
+                    'next',
+                ],
+                'meta' => [
+                    'current_page',
+                    'from',
+                    'last_page',
+                    'path',
+                    'per_page',
+                    'to',
+                    'total',
                 ]
             ]);
     }
@@ -76,60 +70,35 @@ class UserTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
-                    'type',
                     'id',
-                    'attributes' => [
-                        'name',
-                        'email',
-                        'provider',
-                        'provider_id',
-                        'registered_at',
-                        'comments_count',
-                        'posts_count'
-                    ],
-                    'relationships' => [
-                        'roles' => [
-                            'data'
-                        ]
-                    ]
-                ],
-                'included' => [[
-                    'type',
-                    'id',
-                    'attributes' => [
+                    'name',
+                    'email',
+                    'provider',
+                    'provider_id',
+                    'registered_at',
+                    'comments_count',
+                    'posts_count',
+                    'roles' => [[
+                        'id',
                         'name'
-                    ]
-                ]],
+                    ]]
+                ]
             ])
             ->assertJson([
                 'data' => [
-                    'type' => 'users',
                     'id' => $user->id,
-                    'attributes' => [
-                        'name' => 'Anakin',
-                        'email' => 'anakin@skywalker.st',
-                        'provider' => null,
-                        'provider_id' => null,
-                        'registered_at' => $user->registered_at->toIso8601String(),
-                        'comments_count' => 2,
-                        'posts_count' => 5
-                    ],
-                    'relationships' => [
-                        'roles' => [
-                            'data' => [[
-                                'type' => 'roles',
-                                'id' => $role->id
-                            ]]
-                        ]
-                    ]
+                    'name' => 'Anakin',
+                    'email' => 'anakin@skywalker.st',
+                    'provider' => null,
+                    'provider_id' => null,
+                    'registered_at' => $user->registered_at->toIso8601String(),
+                    'comments_count' => 2,
+                    'posts_count' => 5,
+                    'roles' => [[
+                        'id' => $role->id,
+                        'name' => 'editor'
+                    ]]
                 ],
-                'included' => [[
-                    'type' => 'roles',
-                    'id' => (int) $role->id,
-                    'attributes' => [
-                        'name' => $role->name
-                    ]
-                ]],
             ]);
     }
 

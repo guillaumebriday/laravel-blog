@@ -22,24 +22,26 @@ class CommentTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
-                    'type',
                     'id',
-                    'attributes' => [
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'post_id'
-                    ]
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'post_id'
                 ]],
-                'meta' => [
-                    'pagination' => [
-                        'total'
-                    ]
-                ],
                 'links' => [
-                    'self',
                     'first',
-                    'last'
+                    'last',
+                    'prev',
+                    'next',
+                ],
+                'meta' => [
+                    'current_page',
+                    'from',
+                    'last_page',
+                    'path',
+                    'per_page',
+                    'to',
+                    'total',
                 ]
             ]);
     }
@@ -54,36 +56,35 @@ class CommentTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
-                    'type',
                     'id',
-                    'attributes' => [
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'post_id',
-                    ]
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'post_id',
                 ]],
-                'meta' => [
-                    'pagination' => [
-                        'total'
-                    ]
-                ],
                 'links' => [
-                    'self',
                     'first',
-                    'last'
+                    'last',
+                    'prev',
+                    'next',
+                ],
+                'meta' => [
+                    'current_page',
+                    'from',
+                    'last_page',
+                    'path',
+                    'per_page',
+                    'to',
+                    'total',
                 ]
             ])
             ->assertJsonFragment([
-                'meta' => [
-                    'pagination' => [
-                        'count' => 10,
-                        'current_page' => 1,
-                        'per_page' => 20,
-                        'total' => 10,
-                        'total_pages' => 1
-                    ]
-                ]
+                'current_page' => 1,
+                'from' => 1,
+                'last_page' => 1,
+                'per_page' => 20,
+                'to' => 10,
+                'total' => 10
             ]);
     }
 
@@ -97,36 +98,35 @@ class CommentTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [[
-                    'type',
                     'id',
-                    'attributes' => [
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'post_id',
-                    ]
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'post_id',
                 ]],
-                'meta' => [
-                    'pagination' => [
-                        'total'
-                    ]
-                ],
                 'links' => [
-                    'self',
                     'first',
-                    'last'
+                    'last',
+                    'prev',
+                    'next',
+                ],
+                'meta' => [
+                    'current_page',
+                    'from',
+                    'last_page',
+                    'path',
+                    'per_page',
+                    'to',
+                    'total',
                 ]
             ])
             ->assertJsonFragment([
-                'meta' => [
-                    'pagination' => [
-                        'count' => 10,
-                        'current_page' => 1,
-                        'per_page' => 20,
-                        'total' => 10,
-                        'total_pages' => 1
-                    ]
-                ]
+                'current_page' => 1,
+                'from' => 1,
+                'last_page' => 1,
+                'per_page' => 20,
+                'to' => 10,
+                'total' => 10
             ]);
     }
 
@@ -162,26 +162,20 @@ class CommentTest extends TestCase
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
-                    'type',
                     'id',
-                    'attributes' => [
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'post_id',
-                    ]
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'post_id',
                 ],
             ])
             ->assertJson([
                 'data' => [
-                    'type' => 'comments',
                     'id' => $comment->id,
-                    'attributes' => [
-                        'content' => 'The Empire Strikes Back',
-                        'posted_at' => $comment->posted_at->toIso8601String(),
-                        'author_id' => $comment->author_id,
-                        'post_id' => $comment->post_id
-                    ]
+                    'content' => 'The Empire Strikes Back',
+                    'posted_at' => $comment->posted_at->toIso8601String(),
+                    'author_id' => $comment->author_id,
+                    'post_id' => $comment->post_id
                 ],
             ]);
     }
