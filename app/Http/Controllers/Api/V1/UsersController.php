@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as UserResource;
-use App\Http\Resources\Comment as CommentResource;
 use App\Http\Resources\Post as PostResource;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
@@ -21,20 +20,6 @@ class UsersController extends Controller
     {
         return UserResource::collection(
             User::withCount(['comments', 'posts'])->with('roles')->latest()->paginate($request->input('limit', 20))
-        );
-    }
-
-    /**
-    * Return the user's comments.
-    *
-    * @param  Request $request
-    * @param  User $user
-    * @return \Illuminate\Http\Response
-    */
-    public function comments(Request $request, User $user)
-    {
-        return CommentResource::collection(
-            $user->comments()->latest()->paginate($request->input('limit', 20))
         );
     }
 
