@@ -13,19 +13,27 @@
 
 Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::middleware('auth:api')->group(function () {
+        // Comments
         Route::resource('comments', 'CommentsController', ['only' => 'destroy']);
         Route::resource('posts.comments', 'PostCommentsController', ['only' => 'store']);
-        Route::resource('users', 'UsersController', ['only' => 'update']);
+
+        // Posts
         Route::resource('posts', 'PostsController', ['only' => ['update', 'store', 'destroy']]);
-        Route::delete('/posts/{post}/thumbnail', 'PostsThumbnailController@destroy')->name('posts_thumbnail.destroy');
+        Route::delete('/posts/{post}/thumbnail', 'PostsThumbnailController@destroy')->name('posts.thumbnail.destroy');
+
+        // Users
+        Route::resource('users', 'UsersController', ['only' => 'update']);
     });
 
+    // Comments
     Route::resource('posts.comments', 'PostCommentsController', ['only' => 'index']);
+    Route::resource('users.comments', 'UserCommentsController', ['only' => 'index']);
     Route::resource('comments', 'CommentsController', ['only' => ['index', 'show']]);
-    Route::get('users/{user}/comments', 'UsersController@comments');
 
+    // Posts
     Route::resource('posts', 'PostsController', ['only' => ['index', 'show']]);
-    Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts.index');
+    Route::resource('users.posts', 'UserPostsController', ['only' => 'index']);
 
+    // Users
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
 });
