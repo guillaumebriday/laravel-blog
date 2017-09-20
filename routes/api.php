@@ -21,8 +21,8 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
     });
 
     Route::resource('posts.comments', 'PostCommentsController', ['only' => 'index']);
+    Route::resource('users.comments', 'UserCommentsController', ['only' => 'index']);
     Route::resource('comments', 'CommentsController', ['only' => ['index', 'show']]);
-    Route::get('users/{user}/comments', 'UsersController@comments');
 
     Route::resource('posts', 'PostsController', ['only' => ['index', 'show']]);
     Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts.index');
