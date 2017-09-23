@@ -7,7 +7,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Authentication](https://laravel.com/docs/5.5/authentication)
 - API
   - Token authentication
-  - [Transformers](http://fractal.thephpleague.com/transformers/)
+  - [API Resources](https://laravel.com/docs/5.5/eloquent-resources)
   - Versioning
 - [Blade](https://laravel.com/docs/5.5/blade)
 - [Cache](https://laravel.com/docs/5.5/cache)
@@ -23,6 +23,14 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Requests](https://laravel.com/docs/5.5/validation#form-request-validation)
 - [Seeding & Factories](https://laravel.com/docs/5.5/seeding)
 - [Testing](https://laravel.com/docs/5.5/testing)
+
+Beside Laravel, this project uses other tools like :
+
+- [Bootstrap 4 Beta](https://getbootstrap.com/)
+- [PHP-CS-Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
+- [Travis CI](https://travis-ci.org/)
+- [Font Awesome](http://fontawesome.io/)
+- Many more to discover.
 
 ## Installation
 
