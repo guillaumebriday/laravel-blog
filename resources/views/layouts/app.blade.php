@@ -12,33 +12,28 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 </head>
 <body>
-    @include('shared/navbar')
+    <div id="app">
+        @include('shared/navbar')
 
-    <div class="container">
-        @include('shared/alerts')
+        <div class="container">
+            @include('shared/alerts')
 
-        <div class="row">
-            <div class="col-md-12">
-                @yield('content')
+            <div class="row">
+                <div class="col-md-12">
+                    @yield('content')
+                </div>
             </div>
         </div>
-    </div>
 
-    <nav class="navbar navbar-dark bg-dark fixed-bottom footer">
-        <div class="container">
-            @yield('footer')
-            @include('shared/newsletter-form')
-        </div>
-    </nav>
+        <nav class="navbar navbar-dark bg-dark fixed-bottom footer">
+            <div class="container">
+                @yield('footer')
+                @include('shared/newsletter-form')
+            </div>
+        </nav>
+    </div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
