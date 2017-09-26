@@ -15,7 +15,7 @@ class UsersController extends Controller
     */
     public function show(Request $request, User $user)
     {
-        return view('users.show')->with([
+        return view('users.show', [
             'user' => $user,
             'posts' => $user->posts()->withCount('comments')->latest()->limit(5)->get(),
             'comments' => $user->comments()->with('post.author')->latest()->limit(5)->get(),
@@ -30,7 +30,7 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('users.edit', $user)->with([
+        return view('users.edit', $user, [
             'user' => $user,
             'roles' => Role::all()
         ]);
