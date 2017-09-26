@@ -16,7 +16,7 @@ class ShowDashboard extends Controller
     */
     public function __invoke()
     {
-        return view('admin.dashboard.index')->with([
+        return view('admin.dashboard.index', [
             'comments' =>  Comment::lastWeek()->get(),
             'posts' => Post::lastWeek()->get(),
             'users' => User::lastWeek()->get(),

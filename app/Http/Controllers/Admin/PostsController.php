@@ -17,7 +17,7 @@ class PostsController extends Controller
     */
     public function index()
     {
-        return view('admin.posts.index')->with([
+        return view('admin.posts.index', [
             'posts' => Post::withCount('comments')->with('author')->latest()->paginate(50)
         ]);
     }
@@ -27,7 +27,7 @@ class PostsController extends Controller
     */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit')->with([
+        return view('admin.posts.edit', [
             'post' => $post,
             'users' => User::authors()->pluck('name', 'id')
         ]);
@@ -40,7 +40,7 @@ class PostsController extends Controller
     */
     public function create(Request $request)
     {
-        return view('admin.posts.create')->with([
+        return view('admin.posts.create', [
             'users' => User::authors()->pluck('name', 'id')
         ]);
     }
