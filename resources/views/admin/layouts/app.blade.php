@@ -13,26 +13,21 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 </head>
 <body class="admin-body">
-    @include('shared/navbar')
+    <div id="app">
+        @include('shared/navbar')
 
-    <div class="container-fluid">
-        <div class="row">
-            @include('admin/shared/sidebar')
+        <div class="container-fluid">
+            <div class="row">
+                @include('admin/shared/sidebar')
 
-            <main class="col-lg-10 ml-md-auto">
-                @include('shared/alerts')
+                <main class="col-lg-10 ml-md-auto">
+                    @include('shared/alerts')
 
-                @yield('content')
-            </main>
+                    @yield('content')
+                </main>
+            </div>
         </div>
     </div>
 
