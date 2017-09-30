@@ -21,7 +21,7 @@ class PostCommentsController extends Controller
     public function index(Request $request, Post $post)
     {
         return CommentResource::collection(
-            $post->comments()->latest()->paginate($request->input('limit', 20))
+            $post->comments()->with('author')->latest()->paginate($request->input('limit', 20))
         );
     }
 
