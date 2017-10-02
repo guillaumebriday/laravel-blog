@@ -1,22 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="blog-post">
+  <div class="bg-white p-3">
     @if ($post->hasThumbnail())
       {{ Html::image($post->thumbnail()->url, $post->thumbnail()->original_filename, ['class' => 'img-fluid rounded']) }}
     @endif
 
     <h1>{{ $post->title }}</h1>
 
-    <div class="blog-post-meta">
+    <div class="mb-3">
       <small class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small>,
       <small class="text-muted">{{ humanize_date($post->posted_at) }}</small>
     </div>
 
     {{ $post->content }}
   </div>
-
-  <hr>
 
   @include ('comments/_list')
 @endsection
