@@ -165,8 +165,12 @@ class CommentTest extends TestCase
                     'id',
                     'content',
                     'posted_at',
+                    'humanized_posted_at',
                     'author_id',
                     'post_id',
+                    'author_name',
+                    'author_url',
+                    'can_delete',
                 ],
             ])
             ->assertJson([
@@ -175,7 +179,9 @@ class CommentTest extends TestCase
                     'content' => 'The Empire Strikes Back',
                     'posted_at' => $comment->posted_at->toIso8601String(),
                     'author_id' => $comment->author_id,
-                    'post_id' => $comment->post_id
+                    'post_id' => $comment->post_id,
+                    'author_name' => $comment->author->name,
+                    'can_delete' => false
                 ],
             ]);
     }
