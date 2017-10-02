@@ -4,5 +4,6 @@
 
 <comment-list
     post_id="{{ $post->id }}"
-    loading_comments="{{ __('comments.loading_comments') }}">
+    loading_comments="{{ __('comments.loading_comments') }}"
+    data_confirm="{{ __('forms.comments.delete') }}">
 </comment-list>
