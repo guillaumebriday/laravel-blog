@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Token;
 use App\Role;
 
 class DatabaseSeeder extends Seeder
@@ -25,5 +26,10 @@ class DatabaseSeeder extends Seeder
         // Roles
         Role::firstOrCreate(['name' => Role::ROLE_ADMIN]);
         Role::firstOrCreate(['name' => Role::ROLE_EDITOR]);
+
+        // API tokens
+        User::where('api_token', null)->get()->each->update([
+            'api_token' => Token::generate()
+        ]);
     }
 }
