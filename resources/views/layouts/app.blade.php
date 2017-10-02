@@ -16,11 +16,11 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
     <div id="app">
         @include('shared/navbar')
 
-        <div class="container">
+        <div class="container {{ (Request::is('/') || Request::is('posts/*') || Request::is('login') || Request::is('register')) ? '' : 'bg-white' }}">
             @include('shared/alerts')
 
             <div class="row">
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-dark bg-dark fixed-bottom footer">
+        <nav class="navbar navbar-dark bg-dark fixed-bottom">
             <div class="container">
                 @yield('footer')
                 @include('shared/newsletter-form')

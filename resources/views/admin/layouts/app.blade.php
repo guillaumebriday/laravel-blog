@@ -14,11 +14,11 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
 </head>
-<body class="admin-body">
+<body class="admin-body bg-light">
     <div id="app">
         @include('shared/navbar')
 
-        <div class="container-fluid">
+        <div class="container-fluid {{ Request::is('admin/dashboard') ? '' : 'bg-white' }}">
             <div class="row">
                 @include('admin/shared/sidebar')
 
