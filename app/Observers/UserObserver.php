@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\User;
+use App\Token;
 use Carbon\Carbon;
 
 class UserObserver
@@ -16,5 +17,6 @@ class UserObserver
     public function creating(User $user)
     {
         $user->registered_at = Carbon::now();
+        $user->api_token = Token::generate();
     }
 }
