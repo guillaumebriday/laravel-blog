@@ -7,7 +7,14 @@ html {
     font-size: 40px;
 }
 
-body > #app > .container {
-    padding-top: 60px;
-    padding-bottom: 60px;
+body > #app > .container, {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+body > #app > .container-fluid {
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
