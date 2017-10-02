@@ -5,6 +5,10 @@
                 <h6>
                     <a :href="comment.author_url">{{ comment.author_name }}</a>
                 </h6>
+
+                <button v-if="comment.can_delete" @click="deleteComment" class="close text-danger">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
             <p class="card-text">{{ comment.content }}</p>
@@ -17,7 +21,24 @@
 
 <script>
 export default {
-    props: ['comment']
+    props: [
+        'comment',
+        'data_confirm'
+    ],
+
+    methods: {
+        deleteComment() {
+            if (confirm(this.data_confirm)) {
+                axios.delete('/api/v1/comments/' + this.comment.id)
+                    .then(response => {
+                        this.$emit('deleted', this)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }
+        }
+    }
 }
 </script>
 

@@ -2,7 +2,9 @@
     <div>
         <comment v-for="comment in comments"
                  :key="comment.id"
-                 :comment="comment">
+                 :comment="comment"
+                 :data_confirm="data_confirm"
+                 @deleted="removeComment(comment)">
         </comment>
 
         <button v-if="endpoint" @click="retrieveComments" class="btn btn-outline-primary btn-block">
@@ -16,7 +18,8 @@
 export default {
   props: [
       'post_id',
-      'loading_comments'
+      'loading_comments',
+      'data_confirm',
   ],
 
   data() {
@@ -40,6 +43,12 @@ export default {
             this.isLoading = false
             this.endpoint = response.data.links.next
         });
+    },
+
+    removeComment(comment) {
+        this.comments = this.comments.filter(item => {
+            return item.id !== comment.id
+        })
     }
   }
 }
