@@ -45,8 +45,7 @@ class PostTest extends TestCase
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('10 commentaires')
             ->assertSee('Ajouter un commentaire')
-            ->assertSee('Commenter')
-            ->assertSee(e($comment->content));
+            ->assertSee('Commenter');
     }
 
     public function testShowUnauthenticated()

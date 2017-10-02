@@ -32,3 +32,13 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+/**
+ * API Token as common header
+ */
+
+let api_token = document.head.querySelector('meta[name="api-token"]');
+
+if (api_token) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
+}

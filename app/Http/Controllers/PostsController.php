@@ -25,9 +25,9 @@ class PostsController extends Controller
     */
     public function show(Request $request, Post $post)
     {
+        $post->comments_count = $post->comments()->count();
         return view('posts.show', [
-            'post' => $post,
-            'comments' => $post->comments()->with('author')->latest()->paginate(50)
+            'post' => $post
         ]);
     }
 }

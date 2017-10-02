@@ -1,9 +1,9 @@
-<h2 class="mt-2">{{ trans_choice('comments.count', $comments->total()) }}</h2>
+<h2 class="mt-2">{{ trans_choice('comments.count', $post->comments_count) }}</h2>
 
 @include ('comments/_form')
 
-@each('comments/_show', $comments, 'comment')
-
-<div class="d-flex justify-content-center mt-2">
-    {{ $comments->links() }}
-</div>
+<comment-list
+    post_id="{{ $post->id }}"
+    loading_comments="{{ __('comments.loading_comments') }}"
+    data_confirm="{{ __('forms.comments.delete') }}">
+</comment-list>

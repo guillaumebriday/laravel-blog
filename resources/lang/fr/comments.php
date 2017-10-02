@@ -13,6 +13,7 @@ return [
   'count' => ':count commentaire|:count commentaires',
   'on_post' => "Commentaire sur l'article : :post",
   'sign_in_to_comment' => 'Vous devez vous connecter pour commenter.',
+  'loading_comments' => 'Charger les commentaires',
 
   'attributes' => [
     'content' => 'Contenu',
