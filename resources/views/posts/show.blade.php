@@ -13,7 +13,9 @@
       <small class="text-muted">{{ humanize_date($post->posted_at) }}</small>
     </div>
 
-    {{ $post->content }}
+    <div class="post-content">
+      {!! $post->content !!}
+    </div>
   </div>
 
   @include ('comments/_list')
