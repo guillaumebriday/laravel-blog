@@ -44,7 +44,7 @@ class PostsRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'content' => 'required|max:255',
+            'content' => 'required',
             'posted_at' => 'required|date',
             'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
             'slug' => 'unique:posts,slug,' . optional($this->post)->id,

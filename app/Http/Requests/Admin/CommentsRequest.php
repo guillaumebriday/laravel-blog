@@ -37,7 +37,7 @@ class CommentsRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required|max:255',
+            'content' => 'required',
             'posted_at' => 'required|after_or_equal:' . $this->comment->post->posted_at,
             'author_id' => 'required|exists:users,id'
         ];
