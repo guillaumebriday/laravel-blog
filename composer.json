@@ -22,7 +22,6 @@
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*",
         "friendsofphp/php-cs-fixer": "^2.5",
-        "laravel/homestead": "^6.1",
         "laravel/browser-kit-testing": "^2.0"
     },
     "autoload": {
