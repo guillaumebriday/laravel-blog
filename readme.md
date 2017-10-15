@@ -13,7 +13,6 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Cache](https://laravel.com/docs/5.5/cache)
 - [Filesystem](https://laravel.com/docs/5.5/filesystem)
 - [Helpers](https://laravel.com/docs/5.5/helpers)
-- [Homestead](https://laravel.com/docs/5.5/homestead)
 - [Jobs & Queues](https://laravel.com/docs/5.5/queues)
 - [Localization](https://laravel.com/docs/5.5/localization)
 - [Mail](https://laravel.com/docs/5.5/mail)
@@ -37,37 +36,30 @@ Beside Laravel, this project uses other tools like :
 ## Installation
 
 Development environment requirements :
-- [VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)
-- [Vagrant 1.9](https://www.vagrantup.com/downloads.html)
-- [Composer 1.3](https://getcomposer.org)
+- [Docker](https://www.docker.com)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-Setting up your development environment on your local machine with [Homestead](https://laravel.com/docs/5.5/homestead) :
+Setting up your development environment on your local machine :
 ```
 $ git clone https://github.com/guillaumebriday/laravel-blog.git
 $ cd laravel-blog
-$ cp .env.dev .env
-$ composer install
-$ vagrant up
+$ cp .env.example .env
+$ docker-compose run blog-server composer install
+$ docker-compose run blog-server php artisan key:generate
+$ docker-compose up -d
 ```
 
-Now you can access the site via [http://192.168.10.10](http://192.168.10.10) or [http://laravel-blog.app](http://laravel-blog.app) if you added the domain to your hosts file.
+Now you can access the site via [http://localhost](http://localhost) or [http://laravel-blog.app](http://laravel-blog.app) if you added the domain to your hosts file.
 
 ## Before starting
-
-The following commands must be executed on the virtual machine :
-```
-$ vagrant ssh
-$ cd /home/vagrant/laravel-blog
-```
-
 You need to run the migrations :
 ```
-$ php artisan migrate
+$ docker-compose run blog-server php artisan migrate
 ```
 
 Seed the database :
 ```
-$ php artisan db:seed
+$ docker-compose run blog-server php artisan db:seed
 ```
 
 This will create a new user that you can use to sign in :
@@ -78,38 +70,35 @@ Password : 4nak1n
 
 And then, compile the assets :
 ```
-$ npm install
-$ npm run dev
+$ docker run --rm -it -v $(pwd):/app -w /app node npm install
+$ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
 ```
 
 ## Useful commands
-
-The following commands must be executed on the virtual machine in the folder ```/home/vagrant/laravel-blog```.
-
 Running tests :
 ```
-$ ./vendor/bin/phpunit
+$ docker-compose run blog-server ./vendor/bin/phpunit
 ```
 
 Running php-cs-fixer :
 ```
-$ ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
+$ docker-compose run blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
 
 Generating fake data :
 ```
-$ php artisan db:seed --class=DevDatabaseSeeder
-```
-
-Running the queue worker :
-```
-$ php artisan queue:work
+$ docker-compose run blog-server php artisan db:seed --class=DevDatabaseSeeder
 ```
 
 Starting job for newsletter :
 ```
-$ php artisan tinker
+$ docker-compose run blog-server php artisan tinker
 > App\Jobs\PrepareNewsletterSubscriptionEmail::dispatch();
+```
+
+Discover package
+```
+$ docker-compose run blog-server php artisan package:discover
 ```
 
 ## Accessing the API
@@ -133,7 +122,7 @@ Do not forget to set the ```X-Requested-With``` header to ```XMLHttpRequest```. 
 To list all the available routes for API :
 
 ```bash
-$ php artisan route:list --path=api
+$ docker-compose run blog-server php artisan route:list --path=api
 ```
 
 ## More details
