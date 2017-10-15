@@ -15,7 +15,7 @@ trait Mediable
      */
     public function hasMedia($media_id): bool
     {
-        return $this->media()->where('id', $media_id)->exists();
+        return $this->media->where('id', $media_id)->isNotEmpty();
     }
 
     /**
