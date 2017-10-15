@@ -14,18 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Roles
+        Role::firstOrCreate(['name' => Role::ROLE_EDITOR]);
+        $role_admin = Role::firstOrCreate(['name' => Role::ROLE_ADMIN]);
+
         // Users
         if (! User::where('email', 'darthvader@deathstar.ds')->exists()) {
-            User::create([
+            $user = User::create([
                 'name' => 'anakin',
                 'email' => 'darthvader@deathstar.ds',
                 'password' => '4nak1n'
             ]);
-        }
 
-        // Roles
-        Role::firstOrCreate(['name' => Role::ROLE_ADMIN]);
-        Role::firstOrCreate(['name' => Role::ROLE_EDITOR]);
+            $user->roles()->attach($role_admin->id);
+        }
 
         // API tokens
         User::where('api_token', null)->get()->each->update([
