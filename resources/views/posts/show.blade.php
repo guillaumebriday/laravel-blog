@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="bg-white p-3">
+  <div class="bg-white p-3 post-card">
     @if ($post->hasThumbnail())
       {{ Html::image($post->thumbnail()->url, $post->thumbnail()->original_filename, ['class' => 'img-fluid rounded']) }}
     @endif
