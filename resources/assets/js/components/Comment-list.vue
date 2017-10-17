@@ -1,5 +1,13 @@
 <template>
     <div>
+        <comment-form
+            v-if="auth"
+            :post_id="post_id"
+            :placeholder="placeholder"
+            :button="button"
+            @added="addComment"
+        ></comment-form>
+
         <comment v-for="comment in comments"
                  :key="comment.id"
                  :comment="comment"
@@ -20,6 +28,9 @@ export default {
       'post_id',
       'loading_comments',
       'data_confirm',
+      'placeholder',
+      'button',
+      'auth'
   ],
 
   data() {
@@ -49,6 +60,10 @@ export default {
         this.comments = this.comments.filter(item => {
             return item.id !== comment.id
         })
+    },
+
+    addComment(comment) {
+        this.comments.unshift(comment)
     }
   }
 }

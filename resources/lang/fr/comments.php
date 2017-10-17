@@ -5,7 +5,6 @@ return [
   'comment' => 'Commenter',
   'delete' => 'Supprimer',
   'last_comments' => 'Les derniers commentaires',
-  'add_comment' => 'Ajouter un commentaire',
   'created' => 'Commentaire créé avec succès',
   'updated' => 'Commentaire mis à jour avec succès',
   'deleted' => 'Commentaire supprimé avec succès',
