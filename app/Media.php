@@ -26,7 +26,7 @@ class Media extends Model
      */
     public function getUrlAttribute(): string
     {
-        return route('files', ['filename' => $this->filename]);
+        return route('media.show', ['medium' => $this->filename]);
     }
 
     /**

@@ -8,12 +8,12 @@ use App\Media;
 class MediaController extends Controller
 {
     /**
-     * @param  String $filename
+     * @param  String $medium
      * @return Response
      */
-    public function getFile(String $filename)
+    public function show(String $medium)
     {
-        $media = Media::where('filename', '=', $filename)->firstOrFail();
+        $media = Media::where('filename', $medium)->firstOrFail();
 
         $headers = [
             'Content-Type' => $media->mime_type,

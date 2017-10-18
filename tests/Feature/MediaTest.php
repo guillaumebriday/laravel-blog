@@ -21,7 +21,7 @@ class MediaTest extends TestCase
             'original_filename' => 'file.png'
         ]);
 
-        $this->get("/files/{$filename}")
+        $this->get("/media/{$filename}")
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'image/png')
             ->assertHeader('Content-Disposition', "filename='file.png'");
