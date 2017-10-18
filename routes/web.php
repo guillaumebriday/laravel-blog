@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', 'PostsController@index')->name('home');
-Route::get('/files/{filename}', 'MediaController@getFile')->name('files');
+Route::resource('media', 'MediaController', ['only' => 'show']);
 Route::get('/posts/feed', 'PostsFeedController@index')->name('posts.feed');
 Route::resource('posts', 'PostsController', ['only' => 'show']);
 Route::resource('users', 'UsersController', ['only' => 'show']);
