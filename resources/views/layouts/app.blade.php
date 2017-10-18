@@ -11,6 +11,14 @@
         <meta name="api-token" content="{{ auth()->user()->api_token }}">
     @endauth
 
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'pusherKey' => config('broadcasting.connections.pusher.key'),
+            'pusherCluster' => config('broadcasting.connections.pusher.options.cluster')
+        ]) !!};
+    </script>
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
