@@ -10,6 +10,7 @@ The purpose of this repository is to show good development practices on [Laravel
   - [API Resources](https://laravel.com/docs/5.5/eloquent-resources)
   - Versioning
 - [Blade](https://laravel.com/docs/5.5/blade)
+- [Broadcasting](https://laravel.com/docs/5.5/broadcasting)
 - [Cache](https://laravel.com/docs/5.5/cache)
 - [Filesystem](https://laravel.com/docs/5.5/filesystem)
 - [Helpers](https://laravel.com/docs/5.5/helpers)
@@ -123,6 +124,24 @@ To list all the available routes for API :
 
 ```bash
 $ docker-compose run blog-server php artisan route:list --path=api
+```
+
+## Broadcasting & WebSockets
+Before using WebSockets, you need to create a free Pusher account at [https://pusher.com/signup](https://pusher.com/signup) then login to your dashboard and create an app.
+
+Set the `BROADCAST_DRIVER` in your `.env` file :
+
+```txt
+BROADCAST_DRIVER=pusher
+```
+
+Then fill in your Pusher app credentials in your `.env` file:
+
+```txt
+PUSHER_APP_ID=xxxxxx
+PUSHER_APP_KEY=xxxxxx
+PUSHER_APP_SECRET=xxxxxx
+PUSHER_APP_CLUSTER=xx
 ```
 
 ## More details
