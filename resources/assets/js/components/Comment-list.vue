@@ -42,7 +42,12 @@ export default {
   },
 
   mounted() {
-      this.retrieveComments()
+    this.retrieveComments()
+
+    Echo.channel('post.' + this.post_id)
+        .listen('.comment.posted', (e) => {
+            this.comments.unshift(e.comment)
+        });
   },
 
   methods: {
