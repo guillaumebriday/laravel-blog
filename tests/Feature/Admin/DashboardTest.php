@@ -4,14 +4,14 @@ namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Post;
 use App\User;
 use App\Comment;
 
 class DashboardTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testDashboard()
     {

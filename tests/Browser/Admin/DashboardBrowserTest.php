@@ -4,14 +4,14 @@ namespace Tests\Browser\Admin;
 
 use Tests\BrowserKitTest;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Post;
 use Faker\Factory;
 
 class DashboardBrowserTest extends BrowserKitTest
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testDashboardPostsIndexLink()
     {

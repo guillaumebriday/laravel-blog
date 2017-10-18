@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api\V1;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 class PostTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testPostIndex()
     {

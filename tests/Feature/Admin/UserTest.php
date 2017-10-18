@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Post;
@@ -12,7 +12,7 @@ use App\Role;
 
 class UserTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testIndex()
     {

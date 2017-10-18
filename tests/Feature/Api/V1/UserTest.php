@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api\V1;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Post;
 use App\Comment;
@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class UserTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testUserIndex()
     {

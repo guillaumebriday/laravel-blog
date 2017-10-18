@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin;
 
 use Tests\TestCase;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Post;
 use App\Role;
@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class CommentTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testIndex()
     {
