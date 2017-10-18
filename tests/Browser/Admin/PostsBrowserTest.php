@@ -4,7 +4,7 @@ namespace Tests\Browser\Admin;
 
 use Tests\BrowserKitTest;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use App\User;
@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 class PostsBrowserTest extends BrowserKitTest
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testPostIndexEditLink()
     {

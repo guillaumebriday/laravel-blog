@@ -4,13 +4,13 @@ namespace Tests\Browser;
 
 use Tests\BrowserKitTest;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use Faker\Factory;
 
 class UsersBrowserTest extends BrowserKitTest
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testUserShowLink()
     {

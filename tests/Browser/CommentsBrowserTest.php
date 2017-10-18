@@ -4,14 +4,14 @@ namespace Tests\Browser;
 
 use Tests\BrowserKitTest;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Post;
 use App\Comment;
 use Faker\Factory;
 
 class CommentsBrowserTest extends BrowserKitTest
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testCommentFormDelete()
     {

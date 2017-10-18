@@ -4,7 +4,7 @@ namespace Tests\Browser\Admin;
 
 use Tests\BrowserKitTest;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Post;
 use App\Comment;
@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class CommentsBrowserTest extends BrowserKitTest
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testCommentIndexAuthorLink()
     {
