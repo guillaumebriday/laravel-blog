@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1 class="mb-3">{{ __('users.show') }}</h1>
+  <h1 class="mb-3">@lang('users.show')</h1>
 
   @include ('users/_profil')
 

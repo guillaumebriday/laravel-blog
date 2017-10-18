@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-md-center">
     <div class="col-md-6">
-        <h1>{{ __('auth.register') }}</h1>
+        <h1>@lang('auth.register')</h1>
 
         {!! Form::open(['route' => 'register', 'role' => 'form', 'method' => 'POST']) !!}
             <div class="form-group">

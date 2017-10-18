@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-md-center">
     <div class="col-md-6">
-        <h1>{{ __('auth.login') }}</h1>
+        <h1>@lang('auth.login')</h1>
 
         {!! Form::open(['route' => 'login', 'role' => 'form', 'method' => 'POST']) !!}
             <div class="form-group">
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        {!! Form::checkbox('remember', null, old('remember')) !!} {{ __('auth.remember_me') }}
+                        {!! Form::checkbox('remember', null, old('remember')) !!} @lang('auth.remember_me')
                     </label>
                 </div>
             </div>
@@ -42,12 +42,12 @@
 
         <div class="d-flex justify-content-between flex-wrap">
             <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-secondary mb-2">
-                {{ __('auth.services.github') }}
+                @lang('auth.services.github')
                 <i class="fa fa-github" aria-hidden="true"></i>
             </a>
 
             <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-secondary mb-2">
-                {{ __('auth.services.twitter') }}
+                @lang('auth.services.twitter')
                 <i class="fa fa-twitter" aria-hidden="true"></i>
             </a>
         </div>

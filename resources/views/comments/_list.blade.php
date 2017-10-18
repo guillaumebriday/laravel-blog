@@ -4,9 +4,9 @@
 
 <comment-list
     post_id="{{ $post->id }}"
-    loading_comments="{{ __('comments.loading_comments') }}"
-    data_confirm="{{ __('forms.comments.delete') }}"
-    placeholder="{{ __('comments.placeholder.content') }}"
-    button="{{ __('comments.comment') }}"
+    loading_comments="@lang('comments.loading_comments')"
+    data_confirm="@lang('forms.comments.delete')"
+    placeholder="@lang('comments.placeholder.content')"
+    button="@lang('comments.comment')"
     auth="{{ Auth::check() }}">
 </comment-list>

@@ -6,7 +6,7 @@
     }
 @endphp
 
-<h1>{{ __('users.attributes.api_token') }}</h1>
+<h1>@lang('users.attributes.api_token')</h1>
 
 <div class="form-group">
   {!! Form::label('api_token', __('users.attributes.api_token')) !!}

@@ -2,9 +2,9 @@
     <caption>{{ trans_choice('posts.count', $posts->total()) }}</caption>
     <thead>
         <tr>
-            <th>{{ __('posts.attributes.title') }}</th>
-            <th>{{ __('posts.attributes.author') }}</th>
-            <th>{{ __('posts.attributes.posted_at') }}</th>
+            <th>@lang('posts.attributes.title')</th>
+            <th>@lang('posts.attributes.author')</th>
+            <th>@lang('posts.attributes.posted_at')</th>
             <th><i class="fa fa-comments" aria-hidden="true"></i></th>
         </tr>
     </thead>
