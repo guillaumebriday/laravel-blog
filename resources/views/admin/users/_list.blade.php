@@ -2,9 +2,9 @@
     <caption>{{ trans_choice('users.count', $users->total()) }}</caption>
     <thead>
         <tr>
-            <th>{{ __('users.attributes.name') }}</th>
-            <th>{{ __('users.attributes.email') }}</th>
-            <th>{{ __('users.attributes.registered_at') }}</th>
+            <th>@lang('users.attributes.name')</th>
+            <th>@lang('users.attributes.email')</th>
+            <th>@lang('users.attributes.registered_at')</th>
             <th><i class="fa fa-file" aria-hidden="true"></i></th>
         </tr>
     </thead>

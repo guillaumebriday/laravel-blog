@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <h1><h1>{{ __('posts.create') }}</h1></h1>
+    <h1>@lang('posts.create')</h1>
 
     {!! Form::open(['route' => ['admin.posts.store'], 'method' =>'POST', 'files' => true]) !!}
         @include('admin/posts/_form')

@@ -9,7 +9,7 @@
 
     @slot('footer')
         <a href="{{ route('admin.comments.index') }}" class="d-flex justify-content-between text-light">
-            <span>{{ __('dashboard.details') }}</span>
+            <span>@lang('dashboard.details')</span>
             <span><i class="fa fa-arrow-circle-right"></i></span>
         </a>
     @endslot

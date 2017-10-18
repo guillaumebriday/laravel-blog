@@ -1,7 +1,7 @@
-<h1>{{ __('newsletter.email.welcome') }}</h1>
+<h1>@lang('newsletter.email.welcome')</h1>
 
 <p>
-    {{ __('newsletter.email.description', ['count' => $posts->count()]) }} :
+    @lang('newsletter.email.description', ['count' => $posts->count()]) :
 </p>
 
 <ul>
@@ -11,7 +11,7 @@
 </ul>
 
 <p>
-    {{ __('newsletter.email.thanks') }}
+    @lang('newsletter.email.thanks')
 </p>
 
 <p>

@@ -46,7 +46,7 @@
           </label>
         </div>
       @empty
-        {{ __('roles.none') }}
+        @lang('roles.none')
       @endforelse
     </div>
   </div>

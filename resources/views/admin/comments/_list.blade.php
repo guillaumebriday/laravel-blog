@@ -2,10 +2,10 @@
     <caption>{{ trans_choice('comments.count', $comments->total()) }}</caption>
     <thead>
         <tr>
-            <th>{{ __('comments.attributes.content') }}</th>
-            <th>{{ __('comments.attributes.post') }}</th>
-            <th>{{ __('comments.attributes.author') }}</th>
-            <th>{{ __('comments.attributes.posted_at') }}</th>
+            <th>@lang('comments.attributes.content')</th>
+            <th>@lang('comments.attributes.post')</th>
+            <th>@lang('comments.attributes.author')</th>
+            <th>@lang('comments.attributes.posted_at')</th>
         </tr>
     </thead>
     <tbody>

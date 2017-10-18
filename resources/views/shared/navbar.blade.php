@@ -33,7 +33,7 @@
                                 class="dropdown-item"
                                 onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                {{ __('auth.logout') }}
+                                @lang('auth.logout')
                             </a>
 
                             <form id="logout-form" class="d-none" action="{{ url('/logout') }}" method="POST">

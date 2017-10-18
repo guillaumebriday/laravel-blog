@@ -1,1 +1,1 @@
-{{ __('posts.empty') }}
+@lang('posts.empty')

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-header">
-      <h1>{{ __('dashboard.this_week') }}</h1>
+      <h1>@lang('dashboard.this_week')</h1>
     </div>
 
     <div class="card-deck">

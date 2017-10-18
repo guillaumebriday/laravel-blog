@@ -49,7 +49,7 @@
   </div>
 
   <div class="form-group">
-    <a href="{{ route('users.show', $user) }}" class="btn btn-secondary">{{ __('forms.actions.back') }}</a>
+    <a href="{{ route('users.show', $user) }}" class="btn btn-secondary">@lang('forms.actions.back')</a>
     {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-success']) !!}
   </div>
 

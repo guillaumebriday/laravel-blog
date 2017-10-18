@@ -3,7 +3,7 @@
 @section('content')
 <div class="row justify-content-md-center m-3">
     <div class="col-md-6">
-        <h1>{{ __('auth.reset_password') }}</h1>
+        <h1>@lang('auth.reset_password')</h1>
 
         @if (session('status'))
             @component('components.alerts.dismissible', ['type' => 'success'])
