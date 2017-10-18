@@ -27,7 +27,6 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->namespace('Admin')->
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('comments', 'CommentsController', ['only' => ['store', 'destroy']]);
     Route::resource('users', 'UsersController', ['only' => ['edit', 'update']]);
     Route::post('/tokens/{user}', 'TokensController@store')->name('tokens.store');
     Route::delete('/tokens/{user}', 'TokensController@destroy')->name('tokens.destroy');
