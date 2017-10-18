@@ -35,6 +35,8 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=testing
+    volumes:
+      - ./storage/tmp/test:/var/lib/mysql
 
   nginx:
     image: nginx
