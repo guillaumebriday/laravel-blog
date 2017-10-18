@@ -7,6 +7,7 @@ use App\Http\Resources\Comment as CommentResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\CommentsRequest;
+use App\Events\CommentPosted;
 use App\Post;
 
 class PostCommentsController extends Controller
@@ -34,11 +35,15 @@ class PostCommentsController extends Controller
     */
     public function store(CommentsRequest $request, Post $post)
     {
-        return new CommentResource(
+        $comment = new CommentResource(
             Auth::user()->comments()->create([
                 'post_id' => $post->id,
                 'content' => $request->input('content')
             ])
         );
+
+        broadcast(new CommentPosted($comment, $post))->toOthers();
+
+        return $comment;
     }
 }
