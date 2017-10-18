@@ -44,7 +44,6 @@ class PostTest extends TestCase
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('10 commentaires')
-            ->assertSee('Ajouter un commentaire')
             ->assertSee('Commenter');
     }
 
