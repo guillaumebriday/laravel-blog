@@ -8,6 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'pusherKey' => config('broadcasting.connections.pusher.key'),
+            'pusherCluster' => config('broadcasting.connections.pusher.options.cluster')
+        ]) !!};
+    </script>
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
