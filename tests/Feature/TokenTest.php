@@ -23,17 +23,4 @@ class TokenTest extends TestCase
         $response->assertRedirect("/users/{$user->id}/edit");
         $this->assertNotNull($user->api_token);
     }
-
-    public function testDestroy()
-    {
-        $user = $this->user();
-
-        $response = $this->actingAs($user)->delete("/tokens/{$user->id}", []);
-
-        $user->refresh();
-
-        $response->assertStatus(302);
-        $response->assertRedirect("/users/{$user->id}/edit");
-        $this->assertNull($user->api_token);
-    }
 }
