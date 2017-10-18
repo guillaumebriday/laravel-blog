@@ -14,12 +14,6 @@
 </div>
 
 <div class="d-flex justify-content-start">
-  @if ($user->api_token)
-    {!! Form::model($user, ['method' => 'DELETE', 'route' => ['tokens.destroy', $user]]) !!}
-      {!! Form::submit(__('forms.actions.delete'), ['class' => 'btn btn-danger', 'data-confirm' => __('forms.tokens.delete')]) !!}
-    {!! Form::close() !!}
-  @endif
-
   {!! Form::model($user, ['method' => 'POST', 'route' => ['tokens.store', $user], 'class' => 'ml-auto']) !!}
     {!! Form::submit(__('forms.actions.generate'), $data) !!}
   {!! Form::close() !!}
