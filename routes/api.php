@@ -25,6 +25,8 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::resource('users', 'UsersController', ['only' => 'update']);
     });
 
+    Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
+
     // Comments
     Route::resource('posts.comments', 'PostCommentsController', ['only' => 'index']);
     Route::resource('users.comments', 'UserCommentsController', ['only' => 'index']);
