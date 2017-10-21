@@ -12,6 +12,7 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
+  - rm composer.lock
   - composer install --no-progress --no-interaction --prefer-dist --no-suggest
   - mysql -e 'CREATE DATABASE homestead;'
   - cp .env.travis .env.testing
