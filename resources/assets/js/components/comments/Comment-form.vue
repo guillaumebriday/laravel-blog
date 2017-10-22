@@ -44,7 +44,7 @@
                     content: this.content
                 })
                 .then(response => {
-                    this.$emit('added', response.data.data)
+                    Event.$emit('added', response.data.data)
 
                     this.content = ''
                     this.isLoading = false
