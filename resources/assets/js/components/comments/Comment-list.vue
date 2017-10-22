@@ -39,6 +39,10 @@ export default {
                 this.comments.unshift(e.comment)
             });
     }
+
+    Event.$on('added', (comment) => {
+        this.addComment(comment)
+    })
   },
 
   methods: {
