@@ -2,9 +2,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('comment', require('./components/Comment.vue'));
-Vue.component('comment-list', require('./components/Comment-list.vue'));
-Vue.component('comment-form', require('./components/Comment-form.vue'));
+Vue.component('comment', require('./components/comments/Comment.vue'));
+Vue.component('comment-list', require('./components/comments/Comment-list.vue'));
+Vue.component('comment-form', require('./components/comments/Comment-form.vue'));
 
 const app = new Vue({
     el: '#app',
