@@ -44,10 +44,12 @@ export default {
   mounted() {
     this.retrieveComments()
 
-    Echo.channel('post.' + this.post_id)
-        .listen('.comment.posted', (e) => {
-            this.comments.unshift(e.comment)
-        });
+    if (window.Echo) {
+        Echo.channel('post.' + this.post_id)
+            .listen('.comment.posted', (e) => {
+                this.comments.unshift(e.comment)
+            });
+    }
   },
 
   methods: {
