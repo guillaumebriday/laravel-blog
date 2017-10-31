@@ -2,7 +2,7 @@ version: '2'
 
 services:
   blog-server:
-    build: ./provisioning/development
+    build: ./provisioning
     image: laravel-blog
     links:
       - mysql
@@ -43,7 +43,7 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./provisioning/development/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./:/application
     links:
       - blog-server
