@@ -115,7 +115,7 @@ class Post extends Model
      */
     public function thumbnail()
     {
-        return $this->media()->where('id', $this->thumbnail_id)->first();
+        return $this->media->where('id', $this->thumbnail_id)->first();
     }
 
     /**
