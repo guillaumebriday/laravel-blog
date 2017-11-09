@@ -11,3 +11,4 @@
 .php_cs.cache
 /storage/debugbar
 /storage/tmp
+/log
