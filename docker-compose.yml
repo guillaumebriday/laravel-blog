@@ -6,6 +6,7 @@ services:
     image: laravel-blog
     links:
       - mysql
+      - mysql-test
     volumes:
       - ./:/application
 
