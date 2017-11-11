@@ -48,6 +48,7 @@ $ cd laravel-blog
 $ cp .env.example .env
 $ docker-compose run blog-server composer install
 $ docker-compose run blog-server php artisan key:generate
+$ docker run --rm -it -v $(pwd):/app -w /app node npm install
 $ docker-compose up -d
 ```
 
@@ -72,7 +73,6 @@ Password : 4nak1n
 
 And then, compile the assets :
 ```
-$ docker run --rm -it -v $(pwd):/app -w /app node npm install
 $ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
 ```
 
