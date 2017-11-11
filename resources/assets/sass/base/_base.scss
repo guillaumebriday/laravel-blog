@@ -9,9 +9,15 @@ html {
 
 body > #app > .container, {
     margin-top: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 220px;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+@include media-breakpoint-down(xs) {
+    body > #app > .container, {
+        margin-bottom: 320px;
+    }
 }
 
 body > #app > .container-fluid {
