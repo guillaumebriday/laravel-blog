@@ -50,14 +50,3 @@ if (api_token) {
  */
 
 import Echo from "laravel-echo";
-
-window.Pusher = require('pusher-js');
-
-if (Laravel.pusherKey != null) {
-  window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: Laravel.pusherKey,
-    cluster: Laravel.pusherCluster,
-    encrypted: true
-  });
-}
