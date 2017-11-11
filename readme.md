@@ -33,6 +33,7 @@ Beside Laravel, this project uses other tools like :
 - [Font Awesome](http://fontawesome.io/)
 - [Vue.js](https://vuejs.org/)
 - [axios](https://github.com/mzabriskie/axios)
+- [Redis](https://redis.io/)
 - Many more to discover.
 
 ## Installation
@@ -128,21 +129,10 @@ $ docker-compose run blog-server php artisan route:list --path=api
 ```
 
 ## Broadcasting & WebSockets
-Before using WebSockets, you need to create a free Pusher account at [https://pusher.com/signup](https://pusher.com/signup) then login to your dashboard and create an app.
-
-Set the `BROADCAST_DRIVER` in your `.env` file :
+Before using WebSockets, you need to set the `BROADCAST_DRIVER` in your `.env` file for Redis :
 
 ```txt
-BROADCAST_DRIVER=pusher
-```
-
-Then fill in your Pusher app credentials in your `.env` file:
-
-```txt
-PUSHER_APP_ID=xxxxxx
-PUSHER_APP_KEY=xxxxxx
-PUSHER_APP_SECRET=xxxxxx
-PUSHER_APP_CLUSTER=xx
+BROADCAST_DRIVER=redis
 ```
 
 ## More details
