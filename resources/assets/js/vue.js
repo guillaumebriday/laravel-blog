@@ -7,11 +7,11 @@ Vue.component('comment-form', require('./components/comments/Comment-form.vue'))
 window.Event = new Vue();
 
 const app = new Vue({
-    el: '#app',
+  el: '#app',
 
-    mounted() {
-        $('[data-confirm]').on('click', function() {
-            return confirm($(this).data('confirm'))
-        })
-    }
+  mounted() {
+    $('[data-confirm]').on('click', function () {
+      return confirm($(this).data('confirm'))
+    })
+  }
 });

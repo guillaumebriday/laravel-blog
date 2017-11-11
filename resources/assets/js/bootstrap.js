@@ -28,9 +28,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -40,7 +40,7 @@ if (token) {
 let api_token = document.head.querySelector('meta[name="api-token"]');
 
 if (api_token) {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
+  axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
 }
 
 /**
@@ -54,10 +54,10 @@ import Echo from "laravel-echo";
 window.Pusher = require('pusher-js');
 
 if (Laravel.pusherKey != null) {
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: Laravel.pusherKey,
-        cluster: Laravel.pusherCluster,
-        encrypted: true
-    });
+  window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: Laravel.pusherKey,
+    cluster: Laravel.pusherCluster,
+    encrypted: true
+  });
 }
