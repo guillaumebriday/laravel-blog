@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-group text-right">
-            <button class="btn btn-primary" @click="sendComment">
+            <button class="btn btn-primary" @click="sendComment" :disabled="this.isDisabled">
                 <i v-if="isLoading" class="fa fa-spinner fa-spin fa-fw"></i>
                 {{ button }}
             </button>
@@ -33,6 +33,12 @@
                 content: '',
                 isLoading: false,
                 errors: []
+            }
+        },
+
+        computed: {
+            isDisabled() {
+                return (this.isLoading || this.content.length === 0)
             }
         },
 

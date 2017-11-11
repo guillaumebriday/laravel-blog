@@ -7,7 +7,7 @@
                  @deleted="removeComment(comment)">
         </comment>
 
-        <button v-if="endpoint" @click="retrieveComments" class="btn btn-outline-primary btn-block">
+        <button v-if="endpoint" @click="retrieveComments" :disabled="isLoading" class="btn btn-outline-primary btn-block">
             <i v-if="isLoading" class="fa fa-spinner fa-spin fa-fw"></i>
             {{ loading_comments }}
         </button>
