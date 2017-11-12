@@ -47,8 +47,8 @@ Setting up your development environment on your local machine :
 $ git clone https://github.com/guillaumebriday/laravel-blog.git
 $ cd laravel-blog
 $ cp .env.example .env
-$ docker-compose run blog-server composer install
-$ docker-compose run blog-server php artisan key:generate
+$ docker-compose run --rm --no-deps blog-server composer install
+$ docker-compose run --rm --no-deps blog-server php artisan key:generate
 $ docker run --rm -it -v $(pwd):/app -w /app node npm install
 $ docker-compose up -d
 ```
@@ -58,12 +58,12 @@ Now you can access the site via [http://localhost](http://localhost) or [http://
 ## Before starting
 You need to run the migrations :
 ```
-$ docker-compose run blog-server php artisan migrate
+$ docker-compose run --rm blog-server php artisan migrate
 ```
 
 Seed the database :
 ```
-$ docker-compose run blog-server php artisan db:seed
+$ docker-compose run --rm blog-server php artisan db:seed
 ```
 
 This will create a new user that you can use to sign in :
@@ -80,17 +80,17 @@ $ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
 ## Useful commands
 Running tests :
 ```
-$ docker-compose run blog-server ./vendor/bin/phpunit
+$ docker-compose run --rm blog-server ./vendor/bin/phpunit
 ```
 
 Running php-cs-fixer :
 ```
-$ docker-compose run blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
+$ docker-compose run --rm --no-deps blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
 
 Generating fake data :
 ```
-$ docker-compose run blog-server php artisan db:seed --class=DevDatabaseSeeder
+$ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
 ```
 
 Starting job for newsletter :
@@ -101,7 +101,7 @@ $ docker-compose run blog-server php artisan tinker
 
 Discover package
 ```
-$ docker-compose run blog-server php artisan package:discover
+$ docker-compose run --rm --no-deps blog-server php artisan package:discover
 ```
 
 ## Accessing the API
@@ -125,7 +125,7 @@ Do not forget to set the ```X-Requested-With``` header to ```XMLHttpRequest```. 
 To list all the available routes for API :
 
 ```bash
-$ docker-compose run blog-server php artisan route:list --path=api
+$ docker-compose run --rm --no-deps blog-server php artisan route:list --path=api
 ```
 
 ## Broadcasting & WebSockets
