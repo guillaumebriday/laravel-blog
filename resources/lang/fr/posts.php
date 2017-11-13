@@ -14,6 +14,8 @@ return [
   'new_posts' => 'nouvel article|nouveaux articles',
   'count' => ':count article|:count articles',
   'show' => "Voir l'article",
+  'search' => "Recherche ...",
+  'search_results' => ":count article trouvé|:count articles trouvés",
 
   'attributes' => [
     'title' => 'Titre',
