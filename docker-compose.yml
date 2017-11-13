@@ -7,6 +7,7 @@ services:
     links:
       - mysql
       - mysql-test
+      - redis
     volumes:
       - ./:/application
 
@@ -48,3 +49,20 @@ services:
       - ./:/application
     links:
       - blog-server
+
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+
+  echo-server:
+    image: node
+    ports:
+      - 8888:8888
+    working_dir: /application
+    volumes:
+      - .:/application
+    links:
+      - redis
+      - blog-server
+    command: 'npm start'
