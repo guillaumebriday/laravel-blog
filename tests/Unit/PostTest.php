@@ -166,4 +166,14 @@ class PostTest extends TestCase
 
         Storage::delete($post->thumbnail()->filename);
     }
+
+    public function testSearch()
+    {
+        factory(Post::class)->create(['title' => 'Hello Luke']);
+        factory(Post::class)->create(['title' => 'Hello Leia']);
+
+        $this->assertCount(0, Post::search('Hi Anakin')->get());
+        $this->assertCount(1, Post::search('Hello Lu')->get());
+        $this->assertCount(2, Post::search('Hello')->get());
+    }
 }

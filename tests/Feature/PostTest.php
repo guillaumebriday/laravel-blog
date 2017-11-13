@@ -33,6 +33,19 @@ class PostTest extends TestCase
             ->assertSee('Anakin');
     }
 
+    public function testSearch()
+    {
+        factory(Post::class, 10)->create();
+        $post = factory(Post::class)->create(['title' => 'Hello Obiwan']);
+
+        $this->get('/?q=Hello')
+            ->assertStatus(200)
+            ->assertSee('1 article trouvé')
+            ->assertSee(e($post->content))
+            ->assertSee(e($post->title))
+            ->assertSee(humanize_date($post->posted_at));
+    }
+
     public function testShow()
     {
         $post = factory(Post::class)->create();
