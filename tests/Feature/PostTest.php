@@ -21,6 +21,7 @@ class PostTest extends TestCase
 
         $posts = factory(Post::class, 10)->create();
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
+        $comments = factory(Comment::class, 3)->create(['post_id' => $post->id]);
 
         $this->get('/')
             ->assertStatus(200)
@@ -28,6 +29,7 @@ class PostTest extends TestCase
             ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
+            ->assertSee('3')
             ->assertSee('Anakin');
     }
 
