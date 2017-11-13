@@ -13,10 +13,14 @@ class PostsController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(Request $request)
     {
         return view('posts.index', [
-            'posts' => Post::with('author', 'media')->withCount('comments')->latest()->paginate(20)
+            'posts' => Post::search($request->input('q'))
+                             ->with('author', 'media')
+                             ->withCount('comments')
+                             ->latest()
+                             ->paginate(20)
         ]);
     }
 
