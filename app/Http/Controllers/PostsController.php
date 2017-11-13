@@ -16,7 +16,7 @@ class PostsController extends Controller
     public function index()
     {
         return view('posts.index', [
-            'posts' => Post::with('author', 'media')->latest()->paginate(20)
+            'posts' => Post::with('author', 'media')->withCount('comments')->latest()->paginate(20)
         ]);
     }
 
