@@ -22,7 +22,7 @@ services:
   mysql:
     image: mysql
     ports:
-      - '3306:3306'
+      - '3307:3307'
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel-blog
@@ -32,7 +32,7 @@ services:
   mysql-test:
     image: mysql
     ports:
-      - '3307:3306'
+      - '3308:3308'
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=testing
@@ -42,7 +42,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - '80:80'
+      - '8085:85'
     volumes:
       - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./:/application
