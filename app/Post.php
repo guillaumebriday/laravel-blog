@@ -71,7 +71,9 @@ class Post extends Model
      */
     public function scopeSearch($query, $search)
     {
-        return $query->where('title', 'LIKE', "%{$search}%");
+        if ($search) {
+            return $query->where('title', 'LIKE', "%{$search}%");
+        }
     }
 
     /**
