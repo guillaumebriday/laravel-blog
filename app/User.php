@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Role;
 use App\Comment;
 use App\Post;
+use App\Like;
 
 class User extends Authenticatable
 {
@@ -157,6 +158,16 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class, 'author_id');
+    }
+
+    /**
+    * Return the user's likes
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'author_id');
     }
 
     /**

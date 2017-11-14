@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use App\Concern\Mediable;
+use App\Concern\Likeable;
 use App\Scopes\PostedScope;
 use Carbon\Carbon;
 use App\Comment;
@@ -12,7 +13,7 @@ use App\User;
 
 class Post extends Model
 {
-    use Mediable;
+    use Mediable, Likeable;
 
     /**
     * The attributes that are mass assignable.
