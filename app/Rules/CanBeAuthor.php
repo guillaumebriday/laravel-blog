@@ -17,9 +17,7 @@ class CanBeAuthor implements Rule
     public function passes($attribute, $value)
     {
         $author = User::find($value);
-        return $author
-               ? $author->canBeAuthor()
-               : false;
+        return $author->canBeAuthor();
     }
 
     /**
