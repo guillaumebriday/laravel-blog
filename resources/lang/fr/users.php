@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'profil' => 'Mon profil',
+  'profile' => 'Mon profil',
   'nb_of_posts' => "Nombre d'articles",
   'nb_of_comments' => "Nombre de commentaires",
   'edit' => 'Éditer le profil',

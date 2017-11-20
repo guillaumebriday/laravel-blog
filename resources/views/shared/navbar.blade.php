@@ -28,7 +28,7 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            {{ link_to_route('users.show', __('users.profil'), Auth::user(), ['class' => 'dropdown-item']) }}
+                            {{ link_to_route('users.show', __('users.profile'), Auth::user(), ['class' => 'dropdown-item']) }}
                             <a href="{{ url('/logout') }}"
                                 class="dropdown-item"
                                 onclick="event.preventDefault();
