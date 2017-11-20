@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\NewsletterSubscriptionRequest;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use App\NewsletterSubscription;
 use App\Jobs\UnsubscribeEmailNewsletter;
+use App\NewsletterSubscription;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Validator;
 
 class NewsletterSubscriptionsController extends Controller
 {
     /**
-    * Store a newly created resource in storage.
-    *
-    * @return Response
-    */
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function store(NewsletterSubscriptionRequest $request)
     {
         $newsletterSubscription = NewsletterSubscription::create([
@@ -27,11 +27,11 @@ class NewsletterSubscriptionsController extends Controller
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  Request $request
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function unsubscribe(Request $request)
     {
         $validator = Validator::make($request->all(), [

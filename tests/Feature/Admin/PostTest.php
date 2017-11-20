@@ -2,17 +2,15 @@
 
 namespace Tests\Feature\Admin;
 
-use Tests\TestCase;
+use App\Comment;
 
+use App\Post;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use App\User;
-use App\Post;
-use App\Role;
-use App\Comment;
-use Carbon\Carbon;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {

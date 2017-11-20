@@ -2,12 +2,12 @@
 
 namespace Tests\Browser;
 
-use Tests\BrowserKitTest;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Post;
 use App\Comment;
+
+use App\Post;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\BrowserKitTest;
 
 class CommentsBrowserTest extends BrowserKitTest
 {

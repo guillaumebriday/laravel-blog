@@ -2,14 +2,12 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-use App\Post;
 use App\Comment;
+
+use App\Post;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UsersRequest;
-use App\User;
 use App\Role;
+use App\User;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     /**
-    * Display the specified resource.
-    */
+     * Display the specified resource.
+     */
     public function show(Request $request, User $user)
     {
         return view('users.show', [
@@ -24,8 +23,8 @@ class UsersController extends Controller
     }
 
     /**
-    * Show the form for editing the specified resource.
-    */
+     * Show the form for editing the specified resource.
+     */
     public function edit(Request $request, User $user)
     {
         $this->authorize('update', $user);
@@ -37,8 +36,8 @@ class UsersController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    */
+     * Update the specified resource in storage.
+     */
     public function update(UsersRequest $request, User $user)
     {
         $this->authorize('update', $user);

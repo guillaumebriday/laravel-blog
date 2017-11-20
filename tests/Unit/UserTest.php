@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
 use App\Role;
-use Faker\Factory;
+use App\User;
 use Carbon\Carbon;
+use Faker\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {

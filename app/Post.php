@@ -2,24 +2,22 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
-use App\Concern\Mediable;
 use App\Concern\Likeable;
+use App\Concern\Mediable;
 use App\Scopes\PostedScope;
 use Carbon\Carbon;
-use App\Comment;
-use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 
 class Post extends Model
 {
     use Mediable, Likeable;
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'author_id',
         'title',
@@ -151,20 +149,20 @@ class Post extends Model
     }
 
     /**
-    * Return the post's author
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    */
+     * Return the post's author
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
-    * Return the post's comments
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    */
+     * Return the post's comments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
         return $this->hasMany(Comment::class);

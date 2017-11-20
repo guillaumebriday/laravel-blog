@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\User;
 use App\Token;
+use App\User;
 use Carbon\Carbon;
 
 class UserObserver

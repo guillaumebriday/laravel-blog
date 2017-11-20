@@ -2,14 +2,12 @@
 
 namespace Tests\Feature\Admin;
 
-use Tests\TestCase;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
-use App\Post;
-use App\Role;
 use App\Comment;
-use Carbon\Carbon;
+
+use App\Post;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CommentTest extends TestCase
 {

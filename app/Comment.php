@@ -2,21 +2,19 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Concern\Likeable;
 use Carbon\Carbon;
-use App\User;
-use App\Post;
+use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
     use Likeable;
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
       'author_id',
       'post_id',
@@ -57,20 +55,20 @@ class Comment extends Model
     }
 
     /**
-    * Return the comment's author
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    */
+     * Return the comment's author
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
-    * Return the comment's post
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    */
+     * Return the comment's post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function post()
     {
         return $this->belongsTo(Post::class);

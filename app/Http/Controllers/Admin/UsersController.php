@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UsersRequest;
-use App\User;
 use App\Role;
+use App\User;
 
 class UsersController extends Controller
 {
     /**
-    * Show the application users index.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the application users index.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.users.index', [
@@ -22,8 +22,8 @@ class UsersController extends Controller
     }
 
     /**
-    * Display the specified resource edit form.
-    */
+     * Display the specified resource edit form.
+     */
     public function edit(User $user)
     {
         return view('admin.users.edit', [
@@ -33,8 +33,8 @@ class UsersController extends Controller
     }
 
     /**
-    * Update the specified resource in storage.
-    */
+     * Update the specified resource in storage.
+     */
     public function update(UsersRequest $request, User $user)
     {
         $user->update(array_filter($request->only(['name', 'email', 'password'])));

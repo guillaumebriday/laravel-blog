@@ -12,7 +12,7 @@ class RedirectIfAuthenticated
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param  null|string  $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)

@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator;
 use App\Role;
+use Faker\Generator;
 
 $factory->define(Role::class, function (Generator $faker) {
     return [

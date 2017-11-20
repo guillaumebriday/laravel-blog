@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Auth;
 use App\User;
+use Auth;
 use Socialite;
 
 class AuthController extends Controller

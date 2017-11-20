@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use App\User;
+use Illuminate\Contracts\Validation\Rule;
 
 class CanBeAuthor implements Rule
 {

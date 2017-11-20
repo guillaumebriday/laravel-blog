@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Admin;
 
-use Tests\TestCase;
+use App\Comment;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Post;
 use App\User;
-use App\Comment;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {

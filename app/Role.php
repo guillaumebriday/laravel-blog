@@ -10,9 +10,9 @@ class Role extends Model
     const ROLE_EDITOR = 'editor';
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name'];
 }
