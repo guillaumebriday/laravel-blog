@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Concern\Likeable;
 use Carbon\Carbon;
 use App\User;
 use App\Post;
 
 class Comment extends Model
 {
+    use Likeable;
+
     /**
     * The attributes that are mass assignable.
     *

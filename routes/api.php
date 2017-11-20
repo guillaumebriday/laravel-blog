@@ -20,6 +20,8 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         // Posts
         Route::resource('posts', 'PostsController', ['only' => ['update', 'store', 'destroy']]);
         Route::delete('/posts/{post}/thumbnail', 'PostsThumbnailController@destroy')->name('posts.thumbnail.destroy');
+        Route::post('/posts/{post}/likes', 'PostLikesController@store')->name('posts.likes.store');
+        Route::delete('/posts/{post}/likes', 'PostLikesController@destroy')->name('posts.likes.destroy');
 
         // Users
         Route::resource('users', 'UsersController', ['only' => 'update']);
