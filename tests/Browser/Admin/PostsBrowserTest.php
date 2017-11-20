@@ -2,15 +2,15 @@
 
 namespace Tests\Browser\Admin;
 
-use Tests\BrowserKitTest;
+use App\Post;
 
+use App\User;
+use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use App\User;
-use App\Post;
-use Faker\Factory;
-use Carbon\Carbon;
+use Tests\BrowserKitTest;
 
 class PostsBrowserTest extends BrowserKitTest
 {

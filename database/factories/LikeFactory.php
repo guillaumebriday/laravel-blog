@@ -1,9 +1,9 @@
 <?php
 
-use Faker\Generator;
+use App\Like;
 use App\Post;
 use App\User;
-use App\Like;
+use Faker\Generator;
 
 $factory->define(Like::class, function (Generator $faker) {
     return [

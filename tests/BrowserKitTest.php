@@ -2,10 +2,9 @@
 
 namespace Tests;
 
-use Illuminate\Contracts\Console\Kernel;
-use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
-use App\User;
 use App\Role;
+use App\User;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
 abstract class BrowserKitTest extends BaseTestCase
 {

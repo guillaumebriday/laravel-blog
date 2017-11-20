@@ -2,15 +2,13 @@
 
 namespace App\Events;
 
+use App\Http\Resources\Comment as CommentResource;
+use App\Post;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
-use App\Http\Resources\Comment as CommentResource;
-use App\Post;
+use Illuminate\Queue\SerializesModels;
 
 class CommentPosted implements ShouldBroadcast
 {
@@ -44,7 +42,7 @@ class CommentPosted implements ShouldBroadcast
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return Channel|array
+     * @return array|Channel
      */
     public function broadcastOn()
     {
@@ -52,10 +50,10 @@ class CommentPosted implements ShouldBroadcast
     }
 
     /**
-    * The event's broadcast name.
-    *
-    * @return string
-    */
+     * The event's broadcast name.
+     *
+     * @return string
+     */
     public function broadcastAs()
     {
         return 'comment.posted';

@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Post;
-use App\User;
 use App\Comment;
 use App\NewsletterSubscription;
+use App\Post;
+use App\User;
 use Faker\Factory;
+use Illuminate\Database\Seeder;
 
 class DevDatabaseSeeder extends Seeder
 {

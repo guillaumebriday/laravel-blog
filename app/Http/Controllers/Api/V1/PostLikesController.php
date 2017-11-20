@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Post;
+use Illuminate\Http\Request;
 
 class PostLikesController extends Controller
 {
@@ -21,11 +20,11 @@ class PostLikesController extends Controller
     }
 
     /**
-    * Remove the specified resource from storage.
-    *
-    * @param  Post $post
-    * @return \Illuminate\Http\Response
-    */
+     * Remove the specified resource from storage.
+     *
+     * @param  Post $post
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Post $post)
     {
         return $post->dislike();

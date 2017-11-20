@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Api\V1\Auth;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
 use App\Role;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
 {

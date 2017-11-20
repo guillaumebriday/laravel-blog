@@ -2,15 +2,9 @@
 
 namespace Tests\Feature\Api\V1;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use App\Post;
-use App\Comment;
-use App\User;
-use App\Role;
-use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PostLikeTest extends TestCase
 {

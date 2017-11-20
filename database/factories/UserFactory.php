@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator;
 use App\User;
+use Faker\Generator;
 
 $factory->define(User::class, function (Generator $faker) {
     static $password;

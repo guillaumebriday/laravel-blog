@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Post;
+use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     /**
-    * Show the application dashboard.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         return view('posts.index', [
@@ -25,8 +24,8 @@ class PostsController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    */
+     * Display the specified resource.
+     */
     public function show(Request $request, Post $post)
     {
         $post->comments_count = $post->comments()->count();

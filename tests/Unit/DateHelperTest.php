@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use Carbon\Carbon;
+use Tests\TestCase;
 
 class DateHelperTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\User;
-use App\Token;
 use App\Role;
+use App\Token;
+use App\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {

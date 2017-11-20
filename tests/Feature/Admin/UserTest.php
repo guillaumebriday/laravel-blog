@@ -2,13 +2,12 @@
 
 namespace Tests\Feature\Admin;
 
-use Tests\TestCase;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
-use App\User;
 use App\Post;
+
 use App\Role;
+use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {

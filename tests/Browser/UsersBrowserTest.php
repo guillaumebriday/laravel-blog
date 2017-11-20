@@ -2,11 +2,10 @@
 
 namespace Tests\Browser;
 
-use Tests\BrowserKitTest;
+use Faker\Factory;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
-use Faker\Factory;
+use Tests\BrowserKitTest;
 
 class UsersBrowserTest extends BrowserKitTest
 {

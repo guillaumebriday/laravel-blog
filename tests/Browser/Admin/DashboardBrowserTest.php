@@ -2,12 +2,9 @@
 
 namespace Tests\Browser\Admin;
 
-use Tests\BrowserKitTest;
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
-use App\Post;
-use Faker\Factory;
+
+use Tests\BrowserKitTest;
 
 class DashboardBrowserTest extends BrowserKitTest
 {

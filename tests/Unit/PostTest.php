@@ -2,14 +2,14 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use App\Media;
+use App\Post;
+use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use App\Media;
-use App\Post;
-use Faker\Factory;
-use Carbon\Carbon;
+use Tests\TestCase;
 
 class PostTest extends TestCase
 {

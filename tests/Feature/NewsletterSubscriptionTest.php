@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use App\NewsletterSubscription;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\NewsletterSubscription;
+use Tests\TestCase;
 
 class NewsletterSubscriptionTest extends TestCase
 {

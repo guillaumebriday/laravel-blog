@@ -1,9 +1,9 @@
 <?php
 
-use Faker\Generator;
 use App\Post;
 use App\User;
 use Carbon\Carbon;
+use Faker\Generator;
 
 $factory->define(Post::class, function (Generator $faker) {
     return [

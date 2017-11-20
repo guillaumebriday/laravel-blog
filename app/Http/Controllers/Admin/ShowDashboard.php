@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\User;
-use App\Post;
 use App\Comment;
+use App\Http\Controllers\Controller;
+use App\Post;
+use App\User;
 
 class ShowDashboard extends Controller
 {
     /**
-    * Show the application admin dashboard.
-    *
-    * @return \Illuminate\Http\Response
-    */
+     * Show the application admin dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function __invoke()
     {
         return view('admin.dashboard.index', [

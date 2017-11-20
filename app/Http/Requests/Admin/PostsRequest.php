@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
-use App\User;
 use App\Rules\CanBeAuthor;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Http\FormRequest;
 
 class PostsRequest extends FormRequest
 {
