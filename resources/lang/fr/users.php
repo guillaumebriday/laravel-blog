@@ -10,6 +10,8 @@ return [
   'new_users' => 'nouvel utilisateur|nouveaux utilisateurs',
   'count' => ':count utilisateur|:count utilisateurs',
   'empty_api_token' => "Aucune clé d'API disponible.",
+  'api_token' => "Clé d'API",
+  'security' => "Sécurité",
 
   'attributes' => [
     'name' => 'Nom',
