@@ -9,6 +9,10 @@
         <a href="{{ route('users.edit', $user) }}" class="list-group-item {{ ($tab == 'profile') ? 'active' : '' }}">
           <i class="fa fa-user" aria-hidden="true"></i> @lang('users.profile')
         </a>
+
+        <a href="{{ route('users.password', $user) }}" class="list-group-item {{ ($tab == 'security') ? 'active' : '' }}">
+          <i class="fa fa-lock" aria-hidden="true"></i> @lang('users.security')
+        </a>
       </div>
     </div>
   </div>
