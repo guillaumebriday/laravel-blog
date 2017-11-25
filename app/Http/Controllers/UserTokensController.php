@@ -6,8 +6,18 @@ use App\Token;
 use App\User;
 use Illuminate\Http\Request;
 
-class TokensController extends Controller
+class UserTokensController extends Controller
 {
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user)
+    {
+        $this->authorize('api_token', $user);
+
+        return view('users.token', ['user' => $user]);
+    }
+
     /**
      * Generate a personnal access token for the specified resource in storage.
      *
@@ -15,7 +25,7 @@ class TokensController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function update(Request $request, User $user)
     {
         $this->authorize('api_token', $user);
 
@@ -23,6 +33,6 @@ class TokensController extends Controller
             'api_token' => Token::generate()
         ]);
 
-        return redirect()->route('users.edit', $user)->withSuccess(__('tokens.created'));
+        return redirect()->route('users.token', $user)->withSuccess(__('tokens.updated'));
     }
 }
