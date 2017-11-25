@@ -28,6 +28,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->namespace('Admin')->
 
 Route::middleware('auth')->group(function () {
     Route::resource('users', 'UsersController', ['only' => ['edit', 'update']]);
+    Route::get('/users/{user}/password', 'UserPasswordsController@edit')->name('users.password');
+    Route::patch('/users/{user}/password', 'UserPasswordsController@update')->name('users.password.update');
     Route::post('/tokens/{user}', 'TokensController@store')->name('tokens.store');
     Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionsController', ['only' => 'store']);
 });
