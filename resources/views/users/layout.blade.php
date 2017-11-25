@@ -13,6 +13,10 @@
         <a href="{{ route('users.password', $user) }}" class="list-group-item {{ ($tab == 'security') ? 'active' : '' }}">
           <i class="fa fa-lock" aria-hidden="true"></i> @lang('users.security')
         </a>
+
+        <a href="{{ route('users.token', $user) }}" class="list-group-item {{ ($tab == 'api_token') ? 'active' : '' }}">
+          <i class="fa fa-key" aria-hidden="true"></i> @lang('users.api_token')
+        </a>
       </div>
     </div>
   </div>
