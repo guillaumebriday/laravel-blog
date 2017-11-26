@@ -29,7 +29,7 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             {{ link_to_route('users.show', __('users.public_profile'), Auth::user(), ['class' => 'dropdown-item']) }}
-                            {{ link_to_route('users.edit', __('users.settings'), Auth::user(), ['class' => 'dropdown-item']) }}
+                            {{ link_to_route('users.edit', __('users.settings'), [], ['class' => 'dropdown-item']) }}
 
                             <div class="dropdown-divider"></div>
 

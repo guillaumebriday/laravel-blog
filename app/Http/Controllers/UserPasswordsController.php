@@ -10,8 +10,10 @@ class UserPasswordsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit()
     {
+        $user = auth()->user();
+
         $this->authorize('update', $user);
 
         return view('users.password', ['user' => $user]);
@@ -24,12 +26,14 @@ class UserPasswordsController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserPasswordsRequest $request, User $user)
+    public function update(UserPasswordsRequest $request)
     {
+        $user = auth()->user();
+
         $this->authorize('update', $user);
 
         $user->update($request->only('password'));
 
-        return redirect()->route('users.password', $user)->withSuccess(__('users.password_updated'));
+        return redirect()->route('users.password')->withSuccess(__('users.password_updated'));
     }
 }

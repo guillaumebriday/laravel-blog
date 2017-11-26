@@ -6,6 +6,6 @@
   @include ('users/_profile')
 
   @can('update', $user)
-   {{ link_to_route('users.edit', __('users.edit'), ['user' => $user], ['class' => 'btn btn-primary']) }}
+   {{ link_to_route('users.edit', __('users.edit'), [], ['class' => 'btn btn-primary']) }}
   @endcan
 @endsection
