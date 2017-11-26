@@ -3,6 +3,7 @@
 return [
   'profile' => 'Mon profil',
   'public_profile' => 'Mon profil public',
+  'settings' => 'Réglages',
   'nb_of_posts' => "Nombre d'articles",
   'nb_of_comments' => "Nombre de commentaires",
   'edit' => 'Éditer le profil',
