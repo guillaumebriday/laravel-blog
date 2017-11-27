@@ -16,9 +16,11 @@ class UsersController extends Controller
     {
         return view('users.show', [
             'user' => $user,
-            'posts' => $user->posts()->withCount('comments')->latest()->limit(5)->get(),
-            'comments' => $user->comments()->with('post.author')->latest()->limit(5)->get(),
-            'roles' => Role::all()
+            'posts_count' => $user->posts()->count(),
+            'comments_count' => $user->comments()->count(),
+            'likes_count' => $user->likes()->count(),
+            'posts' => $user->posts()->withCount('likes', 'comments')->latest()->limit(5)->get(),
+            'comments' => $user->comments()->with('post.author')->latest()->limit(5)->get()
         ]);
     }
 
