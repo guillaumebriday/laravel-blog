@@ -3,6 +3,7 @@
 return [
   'count' => ':count commentaire|:count commentaires',
   'comment' => 'Commenter',
+  'comments' => 'Commentaires',
   'delete' => 'Supprimer',
   'last_comments' => 'Les derniers commentaires',
   'created' => 'Commentaire créé avec succès',
@@ -13,6 +14,7 @@ return [
   'on_post' => "Commentaire sur l'article : :post",
   'sign_in_to_comment' => 'Vous devez vous connecter pour commenter.',
   'loading_comments' => 'Charger les commentaires',
+  'posted_on' => 'Posté sur',
 
   'attributes' => [
     'content' => 'Contenu',
