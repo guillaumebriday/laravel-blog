@@ -36,8 +36,9 @@ class UserTest extends TestCase
     public function testUserIsNotAdmin()
     {
         $user = factory(User::class)->create();
-        $role_editor = factory(Role::class)->states('editor')->create();
-        $user->roles()->attach($role_editor);
+        $user->roles()->attach(
+            factory(Role::class)->states('editor')->create()
+        );
 
         $this->assertFalse($user->isAdmin());
     }
@@ -102,6 +103,7 @@ class UserTest extends TestCase
         $hasOnlyAuthors = true;
         foreach ($authors as $author) {
             if (! $author->canBeAuthor()) {
+                $hasOnlyAuthors = false;
                 break;
             }
         }

@@ -18,7 +18,7 @@ class PostTest extends TestCase
     public function testLimitLastMonthPosts()
     {
         $limit = 5;
-        $posts = factory(Post::class, 30)->create();
+        factory(Post::class, 6)->create();
         $lastPosts = Post::lastMonth($limit)->get();
 
         $this->assertEquals($limit, $lastPosts->count());
@@ -35,7 +35,7 @@ class PostTest extends TestCase
         $faker = Factory::create();
 
         // Older Posts
-        factory(Post::class, 10)
+        factory(Post::class, 3)
                 ->create()
                 ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(Carbon::now()->subMonths(3), Carbon::now()->subMonths(2));
@@ -67,7 +67,7 @@ class PostTest extends TestCase
         $faker = Factory::create();
 
         // Older Posts
-        factory(Post::class, 10)
+        factory(Post::class, 3)
                 ->create()
                 ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(Carbon::now()->subMonths(3), Carbon::now()->subMonths(2));

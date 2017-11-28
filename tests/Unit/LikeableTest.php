@@ -14,9 +14,9 @@ class LikeableTest extends TestCase
     public function testLikes()
     {
         $post = factory(Post::class)->create();
-        $likes = factory(Like::class, 5)->create(['likeable_id' => $post->id]);
+        factory(Like::class)->create(['likeable_id' => $post->id]);
 
-        $this->assertCount(5, $post->likes);
+        $this->assertCount(1, $post->likes);
     }
 
     public function testLike()

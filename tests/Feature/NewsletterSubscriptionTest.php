@@ -15,24 +15,24 @@ class NewsletterSubscriptionTest extends TestCase
     {
         $params = $this->validParams();
 
-        $response = $this->actingAs($this->user())
-                         ->post('/newsletter-subscriptions', $params);
+        $this->actingAs($this->user())
+            ->post('/newsletter-subscriptions', $params)
+            ->assertStatus(302)
+            ->assertSessionHas('success', 'Email ajouté à la newsletter avec succès');
 
-        $response->assertStatus(302);
-        $response->assertSessionHas('success', 'Email ajouté à la newsletter avec succès');
         $this->assertDatabaseHas('newsletter_subscriptions', $params);
     }
 
     public function testStoreFail()
     {
         $params = $this->validParams();
-        $newsletter = factory(NewsletterSubscription::class)->create($params);
+        factory(NewsletterSubscription::class)->create($params);
 
-        $response = $this->actingAs($this->user())
-                         ->post('/newsletter-subscriptions', $params);
+        $this->actingAs($this->user())
+            ->post('/newsletter-subscriptions', $params)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
 
-        $response->assertStatus(302);
-        $response->assertSessionHas('errors');
         $this->assertEquals(session('errors')->first(), 'La valeur du champ Adresse e-mail est déjà utilisée.');
     }
 
@@ -41,11 +41,11 @@ class NewsletterSubscriptionTest extends TestCase
         $params = $this->validParams();
         $newsletter = factory(NewsletterSubscription::class)->create($params);
 
-        $response = $this->actingAs($this->user())
-                        ->get("newsletter-subscriptions/unsubscribe?email={$newsletter->email}");
+        $this->actingAs($this->user())
+            ->get("newsletter-subscriptions/unsubscribe?email={$newsletter->email}")
+            ->assertStatus(200)
+            ->assertSessionHas('success', 'La demande de désabonnement a bien été prise en compte.');
 
-        $response->assertStatus(200);
-        $response->assertSessionHas('success', 'La demande de désabonnement a bien été prise en compte.');
         $this->assertDatabaseMissing('newsletter_subscriptions', $newsletter->toArray());
     }
 
@@ -53,12 +53,12 @@ class NewsletterSubscriptionTest extends TestCase
     {
         $params = $this->validParams();
 
-        $response = $this->actingAs($this->user())
-                        ->get("newsletter-subscriptions/unsubscribe?email={$params['email']}");
+        $this->actingAs($this->user())
+            ->get("newsletter-subscriptions/unsubscribe?email={$params['email']}")
+            ->assertStatus(302)
+            ->assertRedirect('/')
+            ->assertSessionHas('errors');
 
-        $response->assertStatus(302)
-                 ->assertRedirect('/')
-                 ->assertSessionHas('errors');
         $this->assertEquals(session('errors')->first(), 'Le champ Adresse e-mail sélectionné est invalide.');
     }
 

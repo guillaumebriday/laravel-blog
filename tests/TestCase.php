@@ -17,7 +17,9 @@ abstract class TestCase extends BaseTestCase
     protected function admin($overrides = [])
     {
         $admin = $this->user($overrides);
-        $admin->roles()->attach(factory(Role::class)->states('admin')->create());
+        $admin->roles()->attach(
+            factory(Role::class)->states('admin')->create()
+        );
 
         return $admin;
     }

@@ -17,7 +17,7 @@ class PostTest extends TestCase
 
     public function testPostIndex()
     {
-        $posts = factory(Post::class, 10)->create();
+        factory(Post::class, 2)->create();
 
         $this->json('GET', '/api/v1/posts')
             ->assertStatus(200)
@@ -54,8 +54,7 @@ class PostTest extends TestCase
     public function testUsersPosts()
     {
         $user = factory(User::class)->create();
-        $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
-        $randomPosts = factory(Post::class, 10)->create();
+        factory(Post::class)->create(['author_id' => $user->id]);
 
         $this->json('GET', "/api/v1/users/{$user->id}/posts")
             ->assertStatus(200)
@@ -92,7 +91,7 @@ class PostTest extends TestCase
     public function testUsersPostsFail()
     {
         $user = factory(User::class)->create();
-        $posts = factory(Post::class, 10)->create(['author_id' => $user->id]);
+        factory(Post::class)->create(['author_id' => $user->id]);
 
         $this->json('GET', '/api/v1/users/314/posts')
             ->assertStatus(404)
@@ -107,7 +106,7 @@ class PostTest extends TestCase
             'title' => 'The Empire Strikes Back',
             'content' => 'A Star Wars Story'
         ]);
-        $comment = factory(Comment::class, 5)->create(['post_id' => $post->id]);
+        factory(Comment::class, 2)->create(['post_id' => $post->id]);
 
         $this->json('GET', "/api/v1/posts/{$post->id}")
             ->assertStatus(200)
@@ -134,7 +133,7 @@ class PostTest extends TestCase
                     'author_id' => $post->author_id,
                     'has_thumbnail' => false,
                     'thumbnail_url' => null,
-                    'comments_count' => 5
+                    'comments_count' => 2
                 ],
             ]);
     }
@@ -153,12 +152,12 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
         $params = $this->validParams();
 
-        $response = $this->actingAs($this->admin(), 'api')
-                         ->json('PATCH', "/api/v1/posts/{$post->id}", $params);
+        $this->actingAs($this->admin(), 'api')
+            ->json('PATCH', "/api/v1/posts/{$post->id}", $params)
+            ->assertStatus(200);
 
         $post->refresh();
 
-        $response->assertStatus(200);
         $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
         $this->assertEquals($params['title'], $post->title);
         $this->assertEquals($params['content'], $post->content);
@@ -170,36 +169,34 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $response = $this->actingAs($this->user(), 'api')
-                         ->json('PATCH', "/api/v1/posts/{$post->id}", array_except($this->validParams(), 'thumbnail'))
-                         ->assertStatus(403)
-                         ->assertJson([
-                             'message' => 'This action is unauthorized.'
-                         ]);
+        $this->actingAs($this->user(), 'api')
+            ->json('PATCH', "/api/v1/posts/{$post->id}", array_except($this->validParams(), 'thumbnail'))
+            ->assertStatus(403)
+            ->assertJson([
+                'message' => 'This action is unauthorized.'
+            ]);
     }
 
     public function testStorePost()
     {
         $params = array_except($this->validParams(), 'thumbnail');
 
-        $response = $this->actingAs($this->admin(), 'api')
-                         ->json('POST', '/api/v1/posts/', $params);
+        $this->actingAs($this->admin(), 'api')
+            ->json('POST', '/api/v1/posts/', $params)
+            ->assertStatus(201);
 
         $params['posted_at'] = Carbon::yesterday()->second(0)->toDateTimeString();
-
         $this->assertDatabaseHas('posts', $params);
-        $response->assertStatus(201);
     }
 
     public function testStorePostUnauthorized()
     {
-        $response = $this->actingAs($this->user(), 'api')
-                         ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'));
-
-        $response->assertStatus(403)
-                ->assertJson([
-                    'message' => 'This action is unauthorized.'
-                ]);
+        $this->actingAs($this->user(), 'api')
+            ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'))
+            ->assertStatus(403)
+            ->assertJson([
+                'message' => 'This action is unauthorized.'
+            ]);
     }
 
     public function testUnsetThumbnail()
@@ -208,12 +205,11 @@ class PostTest extends TestCase
         $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
         $filename = $post->thumbnail()->filename;
 
-        $response = $this->actingAs($this->admin(), 'api')
-                         ->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", []);
+        $this->actingAs($this->admin(), 'api')
+            ->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", [])
+            ->assertStatus(200);
 
         $post->refresh();
-
-        $response->assertStatus(200);
         $this->assertFalse($post->hasThumbnail());
 
         Storage::delete($filename);

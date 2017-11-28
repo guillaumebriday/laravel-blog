@@ -15,7 +15,7 @@ class NewsletterMailTest extends TestCase
     public function testNewsletterMail()
     {
         $user = $this->user();
-        $posts = factory(Post::class, 10)->create();
+        $posts = factory(Post::class, 2)->create();
 
         Mail::fake();
 

@@ -14,7 +14,7 @@ class CommentTest extends TestCase
 
     public function testCommentIndex()
     {
-        $comments = factory(Comment::class, 10)->create();
+        factory(Comment::class, 2)->create();
 
         $this->json('GET', '/api/v1/comments')
             ->assertStatus(200)
@@ -47,8 +47,8 @@ class CommentTest extends TestCase
     public function testUsersComments()
     {
         $user = factory(User::class)->create();
-        $comments = factory(Comment::class, 10)->create(['author_id' => $user->id]);
-        $randomComments = factory(Comment::class, 10)->create();
+        factory(Comment::class, 10)->create(['author_id' => $user->id]);
+        factory(Comment::class, 10)->create();
 
         $this->json('GET', "/api/v1/users/{$user->id}/comments")
             ->assertStatus(200)
@@ -89,8 +89,8 @@ class CommentTest extends TestCase
     public function testPostsComments()
     {
         $post = factory(Post::class)->create();
-        $comments = factory(Comment::class, 10)->create(['post_id' => $post->id]);
-        $randomComments = factory(Comment::class, 10)->create();
+        factory(Comment::class, 10)->create(['post_id' => $post->id]);
+        factory(Comment::class, 10)->create();
 
         $this->json('GET', "/api/v1/posts/{$post->id}/comments")
             ->assertStatus(200)
@@ -132,18 +132,15 @@ class CommentTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $response = $this->actingAs($this->user(), 'api')
-                         ->json('POST', "/api/v1/posts/{$post->id}/comments", $this->validParams());
-
-        $response->assertStatus(201);
+        $this->actingAs($this->user(), 'api')
+            ->json('POST', "/api/v1/posts/{$post->id}/comments", $this->validParams())
+            ->assertStatus(201);
     }
 
     public function testStoreFail()
     {
-        $response = $this->actingAs($this->user(), 'api')
-                         ->json('POST', "/api/v1/posts/31415/comments", $this->validParams());
-
-        $response
+        $this->actingAs($this->user(), 'api')
+            ->json('POST', "/api/v1/posts/31415/comments", $this->validParams())
             ->assertStatus(404)
             ->assertJson([
                 'message' => 'No query results for model [App\\Post].'

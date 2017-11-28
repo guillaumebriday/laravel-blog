@@ -18,16 +18,15 @@ class CommentTest extends TestCase
         $anakin = factory(User::class)->states('anakin')->create();
         $comment = factory(Comment::class)->create(['author_id' => $anakin->id]);
 
-        $response = $this->actingAs($this->admin())
-                         ->get('/admin/comments');
-
-        $response->assertStatus(200)
-                 ->assertSee('1 commentaire')
-                 ->assertSee('Anakin')
-                 ->assertSee('Contenu')
-                 ->assertSee('Auteur')
-                 ->assertSee('Posté le')
-                 ->assertSee(e($comment->content));
+        $this->actingAs($this->admin())
+            ->get('/admin/comments')
+            ->assertStatus(200)
+            ->assertSee('1 commentaire')
+            ->assertSee('Anakin')
+            ->assertSee('Contenu')
+            ->assertSee('Auteur')
+            ->assertSee('Posté le')
+            ->assertSee(e($comment->content));
     }
 
     public function testEdit()
@@ -35,18 +34,18 @@ class CommentTest extends TestCase
         $anakin = factory(User::class)->states('anakin')->create();
         $comment = factory(Comment::class)->create(['author_id' => $anakin->id]);
 
-        $response = $this->actingAs($this->admin())->get("/admin/comments/{$comment->id}/edit");
-
-        $response->assertStatus(200)
-                 ->assertSee('Anakin')
-                 ->assertSee("Commentaire sur l'article :")
-                 ->assertSee(e($comment->post->title))
-                 ->assertSee('Contenu')
-                 ->assertSee(e($comment->content))
-                 ->assertSee('Post&eacute; le')
-                 ->assertSee(humanize_date($comment->posted_at, 'Y-m-d\TH:i'))
-                 ->assertSee('Mettre à jour')
-                 ->assertSee('Supprimer');
+        $this->actingAs($this->admin())
+            ->get("/admin/comments/{$comment->id}/edit")
+            ->assertStatus(200)
+            ->assertSee('Anakin')
+            ->assertSee("Commentaire sur l'article :")
+            ->assertSee(e($comment->post->title))
+            ->assertSee('Contenu')
+            ->assertSee(e($comment->content))
+            ->assertSee('Post&eacute; le')
+            ->assertSee(humanize_date($comment->posted_at, 'Y-m-d\TH:i'))
+            ->assertSee('Mettre à jour')
+            ->assertSee('Supprimer');
     }
 
     public function testUpdate()
@@ -58,13 +57,12 @@ class CommentTest extends TestCase
             'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i')
         ]);
 
-        $response = $this->actingAs($this->admin())
-                         ->patch("/admin/comments/{$comment->id}", $params);
+        $this->actingAs($this->admin())
+            ->patch("/admin/comments/{$comment->id}", $params)
+            ->assertStatus(302)
+            ->assertRedirect("/admin/comments/{$comment->id}/edit");
 
         $comment->refresh();
-
-        $response->assertStatus(302);
-        $response->assertRedirect("/admin/comments/{$comment->id}/edit");
         $this->assertDatabaseHas('comments', $params);
         $this->assertEquals($params['content'], $comment->content);
     }
@@ -78,13 +76,12 @@ class CommentTest extends TestCase
             'posted_at' => $post->posted_at->subDay()->format('Y-m-d\TH:i')
         ]);
 
-        $response = $this->actingAs($this->admin())
-                         ->patch("/admin/comments/{$comment->id}", $params);
+        $this->actingAs($this->admin())
+            ->patch("/admin/comments/{$comment->id}", $params)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
 
         $comment->refresh();
-
-        $response->assertStatus(302);
-        $response->assertSessionHas('errors');
         $this->assertDatabaseMissing('comments', $params);
     }
 
@@ -92,10 +89,10 @@ class CommentTest extends TestCase
     {
         $comment = factory(Comment::class)->create();
 
-        $response = $this->actingAs($this->admin())
-                         ->delete("/admin/comments/{$comment->id}");
+        $this->actingAs($this->admin())
+            ->delete("/admin/comments/{$comment->id}")
+            ->assertStatus(302);
 
-        $response->assertStatus(302);
         $this->assertDatabaseMissing('comments', $comment->toArray());
         $this->assertTrue(Comment::all()->isEmpty());
     }

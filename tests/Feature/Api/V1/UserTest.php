@@ -15,11 +15,11 @@ class UserTest extends TestCase
 
     public function testUserIndex()
     {
-        $users = factory(User::class, 10)
-                    ->create()
-                    ->each(function ($user) {
-                        $user->roles()->save(factory(Role::class)->create());
-                    });
+        factory(User::class, 2)
+            ->create()
+            ->each(function ($user) {
+                $user->roles()->save(factory(Role::class)->create());
+            });
 
         $this->json('GET', '/api/v1/users')
             ->assertStatus(200)
@@ -62,8 +62,8 @@ class UserTest extends TestCase
         $role = factory(Role::class)->states('editor')->create();
         $user->roles()->save($role);
 
-        $comments = factory(Comment::class, 2)->create(['author_id' => $user->id]);
-        $posts = factory(Post::class, 5)->create(['author_id' => $user->id]);
+        factory(Comment::class, 2)->create(['author_id' => $user->id]);
+        factory(Post::class, 2)->create(['author_id' => $user->id]);
 
         $this->json('GET', "/api/v1/users/{$user->id}")
             ->assertStatus(200)
@@ -92,7 +92,7 @@ class UserTest extends TestCase
                     'provider_id' => null,
                     'registered_at' => $user->registered_at->toIso8601String(),
                     'comments_count' => 2,
-                    'posts_count' => 5,
+                    'posts_count' => 2,
                     'roles' => [[
                         'id' => $role->id,
                         'name' => 'editor'
@@ -106,11 +106,12 @@ class UserTest extends TestCase
         $user = $this->user();
         $params = $this->validParams();
 
-        $response = $this->actingAs($user, 'api')->json('PATCH', "/api/v1/users/{$user->id}", $params);
+        $this->actingAs($user, 'api')
+            ->json('PATCH', "/api/v1/users/{$user->id}", $params)
+            ->assertStatus(200);
 
         $user->refresh();
 
-        $response->assertStatus(200);
         $this->assertDatabaseHas('users', $params);
         $this->assertEquals($params['email'], $user->email);
         $this->assertEquals($params['name'], $user->name);
