@@ -20,7 +20,7 @@
     <div id="app">
         @include('shared/navbar')
 
-        <div class="container {{ (Request::is('/') || Request::is('posts/*') || Request::is('login') || Request::is('register')) ? '' : 'bg-white' }}">
+        <div class="container">
             @include('shared/alerts')
 
             <div class="row">

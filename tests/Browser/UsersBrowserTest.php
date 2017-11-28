@@ -17,7 +17,7 @@ class UsersBrowserTest extends BrowserKitTest
 
         $this->actingAs($user)
             ->visit('/')
-            ->click('Mon profil')
+            ->click('Mon profil public')
             ->seeRouteIs('users.show', $user);
     }
 
@@ -28,19 +28,49 @@ class UsersBrowserTest extends BrowserKitTest
         $this->actingAs($user)
             ->visit("/users/{$user->id}")
             ->click('Éditer')
-            ->seeRouteIs('users.edit', $user);
+            ->seeRouteIs('users.edit');
     }
 
     public function testUserUpdate()
     {
-        $user = $this->user();
         $faker = Factory::create();
 
-        $this->actingAs($user)
-            ->visit("/users/{$user->id}/edit")
+        $this->actingAs($this->user())
+            ->visit('/settings/account')
             ->type($faker->name, 'name')
             ->press('Sauvegarder')
             ->see('Le profil a bien été mis à jour');
+    }
+
+    public function testPasswordUpdate()
+    {
+        $faker = Factory::create();
+        $current_password = '4_n3w_h0p3';
+        $user = $this->user(['password' => $current_password]);
+        $password = $faker->password;
+
+        $this->actingAs($user)
+            ->visit('/settings/password')
+            ->type($current_password, 'current_password')
+            ->type($password, 'password')
+            ->type($password, 'password_confirmation')
+            ->press('Sauvegarder')
+            ->see('Le mot de passe a bien été mis à jour');
+    }
+
+    public function testPasswordUpdateFail()
+    {
+        $faker = Factory::create();
+        $user = $this->user();
+        $password = $faker->password;
+
+        $this->actingAs($user)
+            ->visit('/settings/password')
+            ->type('4_n3w_h0p3', 'current_password')
+            ->type($password, 'password')
+            ->type($password, 'password_confirmation')
+            ->press('Sauvegarder')
+            ->see("Le mot de passe actuel n'est pas valide.");
     }
 
     public function testUserGenerateApiToken()
@@ -48,21 +78,8 @@ class UsersBrowserTest extends BrowserKitTest
         $user = $this->user(['api_token' => null]);
 
         $this->actingAs($user)
-            ->visit("/users/{$user->id}/edit")
-            ->see("Aucune clé d'API disponible.")
+            ->visit('/settings/token')
             ->press('Générer')
-            ->see("La clé d'API a bien été générée")
-            ->see('Supprimer');
-    }
-
-    public function testUserDestroyApiToken()
-    {
-        $user = $this->user();
-
-        $this->actingAs($user)
-            ->visit("/users/{$user->id}/edit")
-            ->press('Supprimer')
-            ->see("La clé d'API a bien été supprimée")
-            ->see("Aucune clé d'API disponible");
+            ->see("La clé d'API a bien été générée");
     }
 }

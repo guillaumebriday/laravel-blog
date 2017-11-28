@@ -27,8 +27,17 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->namespace('Admin')->
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('users', 'UsersController', ['only' => ['edit', 'update']]);
-    Route::post('/tokens/{user}', 'TokensController@store')->name('tokens.store');
+    Route::prefix('settings')->group(function () {
+        Route::get('account', 'UsersController@edit')->name('users.edit');
+        Route::match(['put', 'patch'], 'account', 'UsersController@update')->name('users.update');
+
+        Route::get('password', 'UserPasswordsController@edit')->name('users.password');
+        Route::match(['put', 'patch'], 'password', 'UserPasswordsController@update')->name('users.password.update');
+
+        Route::get('token', 'UserTokensController@edit')->name('users.token');
+        Route::match(['put', 'patch'], 'token', 'UserTokensController@update')->name('users.token.update');
+    });
+
     Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionsController', ['only' => 'store']);
 });
 

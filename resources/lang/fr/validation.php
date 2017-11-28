@@ -86,6 +86,7 @@ return [
     'uploaded'             => "Le fichier du champ :attribute n'a pu être téléchargé.",
     'url'                  => "Le format de l'URL de :attribute n'est pas valide.",
     'can_be_author'        => "L'utilisateur sélectionné ne peut pas être un auteur.",
+    'current_password'     => "Le mot de passe actuel n'est pas valide.",
 
     /*
     |--------------------------------------------------------------------------
@@ -101,6 +102,9 @@ return [
     'custom' => [
         'can_be_author' => [
             'accepted' => "L'auteur sélectionné n'est pas valide.",
+        ],
+        'current_password' => [
+            'accepted' => "Le mot de passe actuel n'est pas valide.",
         ],
     ],
 
@@ -121,6 +125,7 @@ return [
         'email'                 => 'Adresse e-mail',
         'first_name'            => 'Prénom',
         'last_name'             => 'Nom',
+        'current_password'      => 'Mot de passe actuel',
         'password'              => 'Mot de passe',
         'password_confirmation' => 'Confirmation du mot de passe',
         'city'                  => 'Ville',

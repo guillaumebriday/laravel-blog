@@ -21,8 +21,7 @@ return [
   ],
 
   'tokens' => [
-    'regenerate' => 'Êtes-vous sûr de vouloir regénérer une clé ? Toutes ses API seront deconnectées.',
-    'delete' => 'Êtes-vous sûr de vouloir supprimer cette clé ? Toutes ses API seront deconnectées.',
+    'generate' => 'Êtes-vous sûr de vouloir générer une clé ? Toutes ses API seront déconnectées.',
   ]
 
 ];
