@@ -114,7 +114,7 @@ class PostTest extends TestCase
 
     public function testPostedAtScopeNotApplied()
     {
-        $this->actingAs($this->admin());
+        $this->actingAsAdmin();
 
         factory(Post::class)->create()->update(['posted_at' => Carbon::yesterday()]);
         factory(Post::class)->create()->update(['posted_at' => Carbon::tomorrow()]);

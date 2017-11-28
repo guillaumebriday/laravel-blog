@@ -50,7 +50,7 @@ class PostTest extends TestCase
         factory(Comment::class, 2)->create(['post_id' => $post->id]);
         factory(Comment::class)->create(['post_id' => $post->id]);
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->get("/posts/{$post->slug}")
             ->assertStatus(200)
             ->assertSee(e($post->content))

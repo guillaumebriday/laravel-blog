@@ -15,7 +15,7 @@ class NewsletterSubscriptionTest extends TestCase
     {
         $params = $this->validParams();
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->post('/newsletter-subscriptions', $params)
             ->assertStatus(302)
             ->assertSessionHas('success', 'Email ajouté à la newsletter avec succès');
@@ -28,7 +28,7 @@ class NewsletterSubscriptionTest extends TestCase
         $params = $this->validParams();
         factory(NewsletterSubscription::class)->create($params);
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->post('/newsletter-subscriptions', $params)
             ->assertStatus(302)
             ->assertSessionHas('errors');
@@ -41,7 +41,7 @@ class NewsletterSubscriptionTest extends TestCase
         $params = $this->validParams();
         $newsletter = factory(NewsletterSubscription::class)->create($params);
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->get("newsletter-subscriptions/unsubscribe?email={$newsletter->email}")
             ->assertStatus(200)
             ->assertSessionHas('success', 'La demande de désabonnement a bien été prise en compte.');
@@ -53,7 +53,7 @@ class NewsletterSubscriptionTest extends TestCase
     {
         $params = $this->validParams();
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->get("newsletter-subscriptions/unsubscribe?email={$params['email']}")
             ->assertStatus(302)
             ->assertRedirect('/')

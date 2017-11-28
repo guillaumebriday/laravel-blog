@@ -22,7 +22,7 @@ class PostTest extends TestCase
         factory(Post::class)->create(['author_id' => $anakin->id]);
         factory(Post::class, 3)->create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get("/admin/posts")
             ->assertStatus(200)
             ->assertSee('4 articles')
@@ -34,7 +34,7 @@ class PostTest extends TestCase
 
     public function testCreate()
     {
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get('/admin/posts/create')
             ->assertStatus(200)
             ->assertSee('Ajouter un article')
@@ -49,7 +49,7 @@ class PostTest extends TestCase
     {
         $params = $this->validParams();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->post('/admin/posts', $params)
             ->assertStatus(302);
 
@@ -69,7 +69,7 @@ class PostTest extends TestCase
     {
         $params = $this->validParams(['content' => null]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->post('/admin/posts', $params)
             ->assertStatus(302)
             ->assertSessionHas('errors');
@@ -80,7 +80,7 @@ class PostTest extends TestCase
         $anakin = $this->admin(['name' => 'Anakin', 'email' => 'anakin@skywalker.st']);
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAs($anakin)
             ->get("/admin/posts/{$post->slug}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
@@ -97,7 +97,7 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
         $params = $this->validParams();
 
-        $response = $this->actingAs($this->admin())->patch("/admin/posts/{$post->slug}", $params);
+        $response = $this->actingAsAdmin()->patch("/admin/posts/{$post->slug}", $params);
 
         $post->refresh();
 
@@ -117,7 +117,7 @@ class PostTest extends TestCase
         $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
         $thumbnail = $post->thumbnail();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->delete("/admin/posts/{$post->slug}/thumbnail", [])
             ->assertStatus(302)
             ->assertRedirect("/admin/posts/{$post->slug}/edit");
@@ -138,7 +138,7 @@ class PostTest extends TestCase
                 $comment->save();
             });
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->delete("/admin/posts/{$post->slug}")
             ->assertStatus(302);
 

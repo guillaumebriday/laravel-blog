@@ -35,7 +35,7 @@ class UsersBrowserTest extends BrowserKitTest
     {
         $faker = Factory::create();
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->visit('/settings/account')
             ->type($faker->name, 'name')
             ->press('Sauvegarder')

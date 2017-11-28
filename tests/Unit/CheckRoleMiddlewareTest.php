@@ -11,14 +11,14 @@ class CheckRoleMiddlewareTest extends TestCase
 
     public function testAdminAuthorized()
     {
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get('/admin/dashboard')
             ->assertStatus(200);
     }
 
     public function testAdminForbidden()
     {
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->get('/admin/dashboard')
             ->assertStatus(302)
             ->assertRedirect('/');

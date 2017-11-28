@@ -152,7 +152,7 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
         $params = $this->validParams();
 
-        $this->actingAs($this->admin(), 'api')
+        $this->actingAsAdmin('api')
             ->json('PATCH', "/api/v1/posts/{$post->id}", $params)
             ->assertStatus(200);
 
@@ -169,7 +169,7 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('PATCH', "/api/v1/posts/{$post->id}", array_except($this->validParams(), 'thumbnail'))
             ->assertStatus(403)
             ->assertJson([
@@ -181,7 +181,7 @@ class PostTest extends TestCase
     {
         $params = array_except($this->validParams(), 'thumbnail');
 
-        $this->actingAs($this->admin(), 'api')
+        $this->actingAsAdmin('api')
             ->json('POST', '/api/v1/posts/', $params)
             ->assertStatus(201);
 
@@ -191,7 +191,7 @@ class PostTest extends TestCase
 
     public function testStorePostUnauthorized()
     {
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'))
             ->assertStatus(403)
             ->assertJson([
@@ -205,7 +205,7 @@ class PostTest extends TestCase
         $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
         $filename = $post->thumbnail()->filename;
 
-        $this->actingAs($this->admin(), 'api')
+        $this->actingAsAdmin('api')
             ->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", [])
             ->assertStatus(200);
 
@@ -219,7 +219,7 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->admin(), 'api')
+        $this->actingAsAdmin('api')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
             ->assertStatus(204);
 
@@ -230,7 +230,7 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
             ->assertStatus(403)
             ->assertJson([

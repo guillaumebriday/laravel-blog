@@ -132,14 +132,14 @@ class CommentTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('POST', "/api/v1/posts/{$post->id}/comments", $this->validParams())
             ->assertStatus(201);
     }
 
     public function testStoreFail()
     {
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('POST', "/api/v1/posts/31415/comments", $this->validParams())
             ->assertStatus(404)
             ->assertJson([
@@ -201,7 +201,7 @@ class CommentTest extends TestCase
 
     public function testCommentDeleteNotFound()
     {
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('DELETE', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
@@ -213,7 +213,7 @@ class CommentTest extends TestCase
     {
         $comment = factory(Comment::class)->create();
 
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertStatus(403)
             ->assertJson([

@@ -19,7 +19,7 @@ class DashboardTest extends TestCase
         factory(User::class, 2)->create();
         factory(Comment::class, 2)->create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get('/admin/dashboard')
             ->assertStatus(200)
             ->assertSee('Cette semaine')

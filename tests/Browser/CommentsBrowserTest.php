@@ -29,7 +29,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $post = factory(Post::class)->create();
         $faker = Factory::create();
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
              ->visit("/posts/{$post->slug}")
              ->type($faker->paragraph, 'content')
              ->press('Commenter')

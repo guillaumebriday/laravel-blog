@@ -18,7 +18,7 @@ class CommentTest extends TestCase
         $anakin = factory(User::class)->states('anakin')->create();
         $comment = factory(Comment::class)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get('/admin/comments')
             ->assertStatus(200)
             ->assertSee('1 commentaire')
@@ -34,7 +34,7 @@ class CommentTest extends TestCase
         $anakin = factory(User::class)->states('anakin')->create();
         $comment = factory(Comment::class)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get("/admin/comments/{$comment->id}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
@@ -57,7 +57,7 @@ class CommentTest extends TestCase
             'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i')
         ]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->patch("/admin/comments/{$comment->id}", $params)
             ->assertStatus(302)
             ->assertRedirect("/admin/comments/{$comment->id}/edit");
@@ -76,7 +76,7 @@ class CommentTest extends TestCase
             'posted_at' => $post->posted_at->subDay()->format('Y-m-d\TH:i')
         ]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->patch("/admin/comments/{$comment->id}", $params)
             ->assertStatus(302)
             ->assertSessionHas('errors');
@@ -89,7 +89,7 @@ class CommentTest extends TestCase
     {
         $comment = factory(Comment::class)->create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->delete("/admin/comments/{$comment->id}")
             ->assertStatus(302);
 

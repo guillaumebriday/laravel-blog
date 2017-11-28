@@ -19,7 +19,7 @@ class UserTest extends TestCase
         factory(User::class, 3)->create();
         factory(Post::class, 3)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get('/admin/users')
             ->assertStatus(200)
             ->assertSee('5 utilisateurs')
@@ -35,7 +35,7 @@ class UserTest extends TestCase
     {
         $anakin = factory(User::class)->states('anakin')->create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->get("/admin/users/{$anakin->id}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
@@ -52,7 +52,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
         $params = $this->validParams();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->patch("/admin/users/{$user->id}", $params)
             ->assertStatus(302)
             ->assertRedirect("/admin/users/{$user->id}/edit");
@@ -69,7 +69,7 @@ class UserTest extends TestCase
         $role_editor = factory(Role::class)->states('editor')->create();
         $params = $this->validParams(['roles' => ['editor' => $role_editor->id]]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->patch("/admin/users/{$user->id}", $params)
             ->assertStatus(302)
             ->assertRedirect("/admin/users/{$user->id}/edit");

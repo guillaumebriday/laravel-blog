@@ -20,7 +20,7 @@ class PostsBrowserTest extends BrowserKitTest
     {
         $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit('/admin/posts')
             ->click('The Empire Strikes Back')
             ->seeRouteIs('admin.posts.edit', $post);
@@ -31,7 +31,7 @@ class PostsBrowserTest extends BrowserKitTest
         $anakin = factory(User::class)->states('anakin')->create();
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit('/admin/posts')
             ->click('Anakin')
             ->seeRouteIs('users.show', $post->author);
@@ -44,7 +44,7 @@ class PostsBrowserTest extends BrowserKitTest
         $faker = Factory::create();
         $file = UploadedFile::fake()->image('file.png');
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit("/admin/posts/{$post->slug}/edit")
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
@@ -62,7 +62,7 @@ class PostsBrowserTest extends BrowserKitTest
         $post = factory(Post::class)->create();
         $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit("/admin/posts/{$post->slug}/edit")
             ->press("Supprimer l'image à la une")
             ->seeRouteIs('admin.posts.edit', $post)
@@ -77,7 +77,7 @@ class PostsBrowserTest extends BrowserKitTest
         $file = UploadedFile::fake()->image('file.png');
         $author = $this->admin();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit('/admin/posts/create')
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
@@ -94,7 +94,7 @@ class PostsBrowserTest extends BrowserKitTest
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit("/admin/posts/{$post->slug}/edit")
             ->press('Supprimer')
             ->see('Article supprimé avec succès');
