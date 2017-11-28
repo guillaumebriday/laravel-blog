@@ -14,12 +14,12 @@ class TokenTest extends TestCase
     {
         $user = $this->user(['api_token' => null]);
 
-        $response = $this->actingAs($user)->post("/tokens/{$user->id}", []);
+        $this->actingAs($user)
+            ->patch('/settings/token', [])
+            ->assertStatus(302)
+            ->assertRedirect('/settings/token');
 
         $user->refresh();
-
-        $response->assertStatus(302);
-        $response->assertRedirect("/users/{$user->id}/edit");
         $this->assertNotNull($user->api_token);
     }
 }
