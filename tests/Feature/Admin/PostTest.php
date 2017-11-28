@@ -101,8 +101,7 @@ class PostTest extends TestCase
 
         $post->refresh();
 
-        $response->assertStatus(302)
-                 ->assertRedirect("/admin/posts/{$post->slug}/edit");
+        $response->assertRedirect("/admin/posts/{$post->slug}/edit");
 
         $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
         $this->assertTrue($post->hasThumbnail());
@@ -119,7 +118,6 @@ class PostTest extends TestCase
 
         $this->actingAsAdmin()
             ->delete("/admin/posts/{$post->slug}/thumbnail", [])
-            ->assertStatus(302)
             ->assertRedirect("/admin/posts/{$post->slug}/edit");
 
         $post->refresh();

@@ -58,7 +58,6 @@ class UserTest extends TestCase
 
         $this->actingAs($user)
             ->patch('/settings/account', $params)
-            ->assertStatus(302)
             ->assertRedirect('/settings/account');
 
         $user->refresh();

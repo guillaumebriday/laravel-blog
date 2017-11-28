@@ -55,7 +55,6 @@ class NewsletterSubscriptionTest extends TestCase
 
         $this->actingAsUser()
             ->get("newsletter-subscriptions/unsubscribe?email={$params['email']}")
-            ->assertStatus(302)
             ->assertRedirect('/')
             ->assertSessionHas('errors');
 

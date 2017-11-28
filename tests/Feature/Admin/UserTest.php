@@ -54,7 +54,6 @@ class UserTest extends TestCase
 
         $this->actingAsAdmin()
             ->patch("/admin/users/{$user->id}", $params)
-            ->assertStatus(302)
             ->assertRedirect("/admin/users/{$user->id}/edit");
 
         $user->refresh();
@@ -71,7 +70,6 @@ class UserTest extends TestCase
 
         $this->actingAsAdmin()
             ->patch("/admin/users/{$user->id}", $params)
-            ->assertStatus(302)
             ->assertRedirect("/admin/users/{$user->id}/edit");
 
         $user->refresh();

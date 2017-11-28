@@ -20,7 +20,6 @@ class CheckRoleMiddlewareTest extends TestCase
     {
         $this->actingAsUser()
             ->get('/admin/dashboard')
-            ->assertStatus(302)
             ->assertRedirect('/');
 
         $this->assertEquals(session('errors')->first(), "Cette opération n'est pas autorisée.");

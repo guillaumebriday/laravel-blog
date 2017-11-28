@@ -16,7 +16,6 @@ class TokenTest extends TestCase
 
         $this->actingAs($user)
             ->patch('/settings/token', [])
-            ->assertStatus(302)
             ->assertRedirect('/settings/token');
 
         $user->refresh();

@@ -59,7 +59,6 @@ class CommentTest extends TestCase
 
         $this->actingAsAdmin()
             ->patch("/admin/comments/{$comment->id}", $params)
-            ->assertStatus(302)
             ->assertRedirect("/admin/comments/{$comment->id}/edit");
 
         $comment->refresh();
