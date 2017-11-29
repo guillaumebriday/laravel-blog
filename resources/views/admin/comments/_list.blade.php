@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-striped table-sm">
     <caption>{{ trans_choice('comments.count', $comments->total()) }}</caption>
     <thead>
         <tr>
