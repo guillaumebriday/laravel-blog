@@ -15,21 +15,20 @@ class DashboardTest extends TestCase
 
     public function testDashboard()
     {
-        $posts = factory(Post::class, 25)->create();
-        $users = factory(User::class, 10)->create();
-        $comments = factory(Comment::class, 5)->create();
+        factory(Post::class, 2)->create();
+        factory(User::class, 2)->create();
+        factory(Comment::class, 2)->create();
 
-        $response = $this->actingAs($this->admin())
-                         ->get('/admin/dashboard');
-
-        $response->assertStatus(200)
-                 ->assertSee('Cette semaine')
-                 ->assertSee('Voir en détails')
-                 ->assertSee('30')
-                 ->assertSee('nouveaux articles')
-                 ->assertSee('46')
-                 ->assertSee('nouveaux utilisateurs')
-                 ->assertSee('5')
-                 ->assertSee('nouveaux commentaires');
+        $this->actingAsAdmin()
+            ->get('/admin/dashboard')
+            ->assertStatus(200)
+            ->assertSee('Cette semaine')
+            ->assertSee('Voir en détails')
+            ->assertSee('4')
+            ->assertSee('nouveaux articles')
+            ->assertSee('9')
+            ->assertSee('nouveaux utilisateurs')
+            ->assertSee('2')
+            ->assertSee('nouveaux commentaires');
     }
 }

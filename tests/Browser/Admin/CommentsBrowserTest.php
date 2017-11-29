@@ -8,12 +8,12 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTest;
 
 class CommentsBrowserTest extends BrowserKitTest
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testCommentIndexAuthorLink()
     {
@@ -21,7 +21,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $anakin = factory(User::class)->states('anakin')->create();
         $comment = factory(Comment::class)->create(['author_id' => $anakin->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit('/admin/comments')
             ->click('Anakin')
             ->seeRouteIs('users.show', $anakin);
@@ -33,7 +33,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $comments = factory(Comment::class, 10)->create();
         $comment = factory(Comment::class)->create(['post_id' => $post->id]);
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit('/admin/comments')
             ->click('The Empire Strikes Back')
             ->seeRouteIs('posts.show', $post);
@@ -46,7 +46,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $posted_at = Carbon::parse($comment->post->posted_at)->addDay();
         $faker = Factory::create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit("/admin/comments/{$comment->id}/edit")
             ->type($faker->paragraph, 'content')
             ->type($posted_at->format('Y-m-d\TH:i'), 'posted_at')
@@ -59,7 +59,7 @@ class CommentsBrowserTest extends BrowserKitTest
     {
         $comment = factory(Comment::class)->create();
 
-        $this->actingAs($this->admin())
+        $this->actingAsAdmin()
             ->visit("/admin/comments/{$comment->id}/edit")
             ->press('Supprimer')
             ->see('Commentaire supprimé avec succès');

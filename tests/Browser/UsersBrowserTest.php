@@ -4,12 +4,12 @@ namespace Tests\Browser;
 
 use Faker\Factory;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTest;
 
 class UsersBrowserTest extends BrowserKitTest
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testUserShowLink()
     {
@@ -35,7 +35,7 @@ class UsersBrowserTest extends BrowserKitTest
     {
         $faker = Factory::create();
 
-        $this->actingAs($this->user())
+        $this->actingAsUser()
             ->visit('/settings/account')
             ->type($faker->name, 'name')
             ->press('Sauvegarder')

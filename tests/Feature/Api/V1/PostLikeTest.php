@@ -14,7 +14,7 @@ class PostLikeTest extends TestCase
     {
         $post = factory(Post::class)->create();
 
-        $this->actingAs($this->user(), 'api')
+        $this->actingAsUser('api')
             ->json('POST', "/api/v1/posts/{$post->id}/likes")
             ->assertStatus(200);
 

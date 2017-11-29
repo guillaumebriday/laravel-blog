@@ -14,14 +14,14 @@ class LikeableTest extends TestCase
     public function testLikes()
     {
         $post = factory(Post::class)->create();
-        $likes = factory(Like::class, 5)->create(['likeable_id' => $post->id]);
+        factory(Like::class)->create(['likeable_id' => $post->id]);
 
-        $this->assertCount(5, $post->likes);
+        $this->assertCount(1, $post->likes);
     }
 
     public function testLike()
     {
-        $this->actingAs($this->user());
+        $this->actingAsUser();
         $post = factory(Post::class)->create();
 
         $post->like();
@@ -31,7 +31,7 @@ class LikeableTest extends TestCase
 
     public function testDislike()
     {
-        $this->actingAs($this->user());
+        $this->actingAsUser();
         $post = factory(Post::class)->create();
 
         $post->like();
@@ -42,7 +42,7 @@ class LikeableTest extends TestCase
 
     public function testIsLiked()
     {
-        $this->actingAs($this->user());
+        $this->actingAsUser();
         $post = factory(Post::class)->create();
 
         $post->like();
@@ -52,7 +52,7 @@ class LikeableTest extends TestCase
 
     public function testIsNotLiked()
     {
-        $this->actingAs($this->user());
+        $this->actingAsUser();
         $post = factory(Post::class)->create();
 
         $this->assertFalse($post->isLiked());

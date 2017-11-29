@@ -19,42 +19,44 @@ class PostTest extends TestCase
     public function testIndex()
     {
         $anakin = factory(User::class)->states('anakin')->create();
-        $post = factory(Post::class)->create(['author_id' => $anakin->id]);
-        $posts = factory(Post::class, 24)->create();
+        factory(Post::class)->create(['author_id' => $anakin->id]);
+        factory(Post::class, 3)->create();
 
-        $response = $this->actingAs($this->admin())->get("/admin/posts");
-
-        $response->assertStatus(200)
-                 ->assertSee('25 articles')
-                 ->assertSee('Anakin')
-                 ->assertSee('Auteur')
-                 ->assertSee('Posté le')
-                 ->assertSee('Titre');
+        $this->actingAsAdmin()
+            ->get("/admin/posts")
+            ->assertStatus(200)
+            ->assertSee('4 articles')
+            ->assertSee('Anakin')
+            ->assertSee('Auteur')
+            ->assertSee('Posté le')
+            ->assertSee('Titre');
     }
 
     public function testCreate()
     {
-        $response = $this->actingAs($this->admin())->get('/admin/posts/create');
-
-        $response->assertStatus(200)
-               ->assertSee('Ajouter un article')
-               ->assertSee('Titre')
-               ->assertSee('Auteur')
-               ->assertSee('Post&eacute; le')
-               ->assertSee('Contenu')
-               ->assertSee('Sauvegarder');
+        $this->actingAsAdmin()
+            ->get('/admin/posts/create')
+            ->assertStatus(200)
+            ->assertSee('Ajouter un article')
+            ->assertSee('Titre')
+            ->assertSee('Auteur')
+            ->assertSee('Post&eacute; le')
+            ->assertSee('Contenu')
+            ->assertSee('Sauvegarder');
     }
 
     public function testStore()
     {
         $params = $this->validParams();
 
-        $response = $this->actingAs($this->admin())->post('/admin/posts', $params);
+        $this->actingAsAdmin()
+            ->post('/admin/posts', $params)
+            ->assertStatus(302);
+
         $params['posted_at'] = Carbon::now()->second(0)->toDateTimeString();
 
         $post = Post::first();
 
-        $response->assertStatus(302);
         $this->assertDatabaseHas('posts', array_except($params, ['thumbnail']));
         $this->assertTrue($post->hasThumbnail());
         $this->assertTrue(Storage::disk('local')->exists($post->thumbnail()->filename));
@@ -67,10 +69,10 @@ class PostTest extends TestCase
     {
         $params = $this->validParams(['content' => null]);
 
-        $response = $this->actingAs($this->admin())->post('/admin/posts', $params);
-
-        $response->assertStatus(302)
-                 ->assertSessionHas('errors');
+        $this->actingAsAdmin()
+            ->post('/admin/posts', $params)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
     }
 
     public function testEdit()
@@ -78,16 +80,16 @@ class PostTest extends TestCase
         $anakin = $this->admin(['name' => 'Anakin', 'email' => 'anakin@skywalker.st']);
         $post = factory(Post::class)->create(['author_id' => $anakin->id]);
 
-        $response = $this->actingAs($this->admin())->get("/admin/posts/{$post->slug}/edit");
-
-        $response->assertStatus(200)
-                 ->assertSee('Anakin')
-                 ->assertSee('Voir l&#039;article')
-                 ->assertSee(e($post->title))
-                 ->assertSee(e($post->content))
-                 ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
-                 ->assertSee('Mettre à jour')
-                 ->assertSee('Post&eacute; le');
+        $this->actingAs($anakin)
+            ->get("/admin/posts/{$post->slug}/edit")
+            ->assertStatus(200)
+            ->assertSee('Anakin')
+            ->assertSee('Voir l&#039;article')
+            ->assertSee(e($post->title))
+            ->assertSee(e($post->content))
+            ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
+            ->assertSee('Mettre à jour')
+            ->assertSee('Post&eacute; le');
     }
 
     public function testUpdate()
@@ -95,13 +97,12 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
         $params = $this->validParams();
 
-        $response = $this->actingAs($this->admin())
-                         ->patch("/admin/posts/{$post->slug}", $params);
+        $response = $this->actingAsAdmin()->patch("/admin/posts/{$post->slug}", $params);
 
         $post->refresh();
 
-        $response->assertStatus(302);
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
+
         $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
         $this->assertTrue($post->hasThumbnail());
         $this->assertEquals($params['content'], $post->content);
@@ -115,12 +116,11 @@ class PostTest extends TestCase
         $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
         $thumbnail = $post->thumbnail();
 
-        $response = $this->actingAs($this->admin())->delete("/admin/posts/{$post->slug}/thumbnail", []);
+        $this->actingAsAdmin()
+            ->delete("/admin/posts/{$post->slug}/thumbnail", [])
+            ->assertRedirect("/admin/posts/{$post->slug}/edit");
 
         $post->refresh();
-
-        $response->assertStatus(302);
-        $response->assertRedirect("/admin/posts/{$post->slug}/edit");
         $this->assertFalse($post->hasThumbnail());
 
         Storage::delete($thumbnail->filename);
@@ -129,16 +129,17 @@ class PostTest extends TestCase
     public function testDelete()
     {
         $post = factory(Post::class)->create();
-        $comments = factory(Comment::class, 5)
-                    ->create()
-                    ->each(function ($comment) use ($post) {
-                        $comment->post_id = $post->id;
-                        $comment->save();
-                    });
+        factory(Comment::class, 2)
+            ->create()
+            ->each(function ($comment) use ($post) {
+                $comment->post_id = $post->id;
+                $comment->save();
+            });
 
-        $response = $this->actingAs($this->admin())->delete("/admin/posts/{$post->slug}");
+        $this->actingAsAdmin()
+            ->delete("/admin/posts/{$post->slug}")
+            ->assertStatus(302);
 
-        $response->assertStatus(302);
         $this->assertDatabaseMissing('posts', $post->toArray());
         $this->assertTrue(Comment::all()->isEmpty());
     }
