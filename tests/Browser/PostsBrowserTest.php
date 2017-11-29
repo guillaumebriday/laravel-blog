@@ -6,12 +6,12 @@ use App\Post;
 
 use App\User;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTest;
 
 class PostsBrowserTest extends BrowserKitTest
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testPostIndexShowLink()
     {

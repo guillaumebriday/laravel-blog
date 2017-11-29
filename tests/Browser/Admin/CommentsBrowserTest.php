@@ -8,12 +8,12 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTest;
 
 class CommentsBrowserTest extends BrowserKitTest
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testCommentIndexAuthorLink()
     {

@@ -7,14 +7,14 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\BrowserKitTest;
 
 class PostsBrowserTest extends BrowserKitTest
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testPostIndexEditLink()
     {

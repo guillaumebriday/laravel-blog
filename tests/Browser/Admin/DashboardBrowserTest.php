@@ -2,13 +2,13 @@
 
 namespace Tests\Browser\Admin;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 use Tests\BrowserKitTest;
 
 class DashboardBrowserTest extends BrowserKitTest
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function testDashboardPostsIndexLink()
     {
