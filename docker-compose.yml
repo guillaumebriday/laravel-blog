@@ -9,7 +9,7 @@ services:
       - mysql-test
       - redis
     volumes:
-      - ./:/application
+      - ./:/application:cached
 
   queue-server:
     build: .
@@ -18,7 +18,7 @@ services:
     links:
       - mysql
     volumes:
-      - ./:/application
+      - ./:/application:cached
 
   mysql:
     image: mysql
@@ -28,7 +28,7 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel-blog
     volumes:
-      - ./storage/tmp/db:/var/lib/mysql
+      - ./storage/tmp/db:/var/lib/mysql:cached
 
   mysql-test:
     image: mysql
@@ -38,15 +38,15 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=testing
     volumes:
-      - ./storage/tmp/test:/var/lib/mysql
+      - ./storage/tmp/test:/var/lib/mysql:cached
 
   nginx:
     image: nginx
     ports:
       - '80:80'
     volumes:
-      - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./:/application
+      - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
+      - ./:/application:cached
     links:
       - blog-server
 
@@ -61,7 +61,7 @@ services:
       - 8888:8888
     working_dir: /application
     volumes:
-      - .:/application
+      - .:/application:cached
     links:
       - redis
       - blog-server
