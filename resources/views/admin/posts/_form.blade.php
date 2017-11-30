@@ -11,6 +11,7 @@
     @endif
 </div>
 
+
 <div class="form-row">
     <div class="form-group col-md-6">
         {!! Form::label('author_id', __('posts.attributes.author')) !!}
