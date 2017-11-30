@@ -13,19 +13,23 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
 </head>
-<body class="admin-body bg-light">
+<body class="admin-body bg-dark">
     <div id="app">
-        @include('shared/navbar')
+        @include('admin/shared/navbar')
 
-        <div class="container-fluid {{ Request::is('admin/dashboard') ? '' : 'bg-white' }}">
-            <div class="row">
-                @include('admin/shared/sidebar')
+        <div class="content-wrapper bg-light">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        @include('shared/alerts')
 
-                <main class="col-lg-10 ml-md-auto">
-                    @include('shared/alerts')
-
-                    @yield('content')
-                </main>
+                        <div class="card">
+                            <div class="card-body">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
