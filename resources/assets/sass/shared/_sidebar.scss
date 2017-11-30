@@ -1,22 +1,81 @@
-.sidebar {
-    position: fixed;
-    top: 56px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border-right: 1px solid #eee;
-    padding-left: 0;
-    padding-right: 0;
-    background-color: #3F3F3F;
+.navbar-collapse {
+  overflow: auto;
+  max-height: 75vh;
+}
 
-    .nav-item {
-        width: 100%;
-    }
+.navbar-sidenav-tooltip.show,
+.sidenav-toggler {
+  display: none;
+}
 
-    .nav-link {
-        border-radius: 0;
-        color: #fff;
+@include media-breakpoint-up(lg) {
+  .navbar-collapse {
+    overflow: visible;
+    max-height: none;
+
+    .navbar-sidenav {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex-direction: column;
+
+      margin-top: $navbar-base-height;
     }
   }
+
+  .navbar-sidenav,
+  .sidenav-toggler {
+    & .nav-link {
+      width: $sidenav-base-width;
+      padding: 1em !important;
+    }
+  }
+
+  .navbar-sidenav {
+    height: calc(100vh - #{$navbar-base-height * 2});
+  }
+
+  .sidenav-toggler {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    cursor: pointer;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-direction: column;
+
+    margin-top: calc(100vh - #{$navbar-base-height});
+
+    background-color: $gray-900;
+    a {
+      i {
+        color: $gray-500;
+      }
+    }
+  }
+}
+
+.sidenav-toggled {
+  .nav-link-text {
+    display: none;
+  }
+
+  .navbar-sidenav-tooltip.show {
+    display: flex;
+  }
+
+  .sidenav-toggler i {
+    transform: scaleX(-1);
+  }
+
+  .navbar-sidenav,
+  .sidenav-toggler .nav-link{
+    width: $sidenav-collapsed-width !important;
+  }
+}
