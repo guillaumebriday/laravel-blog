@@ -85,6 +85,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'can_be_author'        => "Selected user can not be an author",
+    'current_password'     => "The current password is invalid.",
 
     /*
     |--------------------------------------------------------------------------
@@ -98,8 +100,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'can_be_author' => [
+            'accepted' => "Selected author is invalid.",
+        ],
+        'current_password' => [
+            'accepted' => "The current password is invalid.",
         ],
     ],
 
@@ -114,6 +119,42 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes'           => [
+        'name'                  => 'Name',
+        'username'              => 'Username',
+        'email'                 => 'Email',
+        'first_name'            => 'First name',
+        'last_name'             => 'Last name',
+        'current_password'      => 'Current password',
+        'password'              => 'Password',
+        'password_confirmation' => 'Password confirmation',
+        'city'                  => 'City',
+        'country'               => 'Country',
+        'address'               => 'Address',
+        'phone'                 => 'Phone',
+        'mobile'                => 'Mobile',
+        'age'                   => 'Age',
+        'sex'                   => 'Sex',
+        'gender'                => 'Gender',
+        'day'                   => 'Day',
+        'month'                 => 'Month',
+        'year'                  => 'Year',
+        'hour'                  => 'Hour',
+        'minute'                => 'Minute',
+        'second'                => 'Second',
+        'title'                 => 'Title',
+        'content'               => 'Content',
+        'description'           => 'Description',
+        'excerpt'               => 'Excerpt',
+        'date'                  => 'Date',
+        'time'                  => 'Time',
+        'available'             => 'Available',
+        'size'                  => 'Size',
+        'posted_at'             => 'Posted at',
+        'author_id'             => 'Author',
+        'post_id'               => 'Post',
+    ],
+
+    'errors' => ":count error :|:count errors : "
 
 ];
