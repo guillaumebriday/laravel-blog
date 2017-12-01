@@ -18,6 +18,7 @@ class DashboardBrowserTest extends BrowserKitTest
             ->seeRouteIs('admin.posts.index');
     }
 
+
     public function testDashboardCommentsIndexLink()
     {
         $this->actingAsAdmin()

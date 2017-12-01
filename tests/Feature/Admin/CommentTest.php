@@ -26,7 +26,7 @@ class CommentTest extends TestCase
             ->assertSee('Contenu')
             ->assertSee('Auteur')
             ->assertSee('Posté le')
-            ->assertSee(e($comment->content));
+            ->assertSee(e(str_limit($comment->content, 50)));
     }
 
     public function testEdit()
@@ -38,8 +38,8 @@ class CommentTest extends TestCase
             ->get("/admin/comments/{$comment->id}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
-            ->assertSee("Commentaire sur l'article :")
-            ->assertSee(e($comment->post->title))
+            ->assertSee("Voir l'article :")
+            ->assertSee(route('posts.show', $comment->post))
             ->assertSee('Contenu')
             ->assertSee(e($comment->content))
             ->assertSee('Post&eacute; le')

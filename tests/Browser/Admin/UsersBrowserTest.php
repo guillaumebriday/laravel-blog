@@ -30,7 +30,7 @@ class UsersBrowserTest extends BrowserKitTest
 
         $this->actingAs($admin)
             ->visit("/admin/users/{$user->id}/edit")
-            ->click('Voir le profil')
+            ->click(route('users.show', $user))
             ->seeRouteIs('users.show', $user);
     }
 
