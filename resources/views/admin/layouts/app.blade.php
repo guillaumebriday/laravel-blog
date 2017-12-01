@@ -7,30 +7,39 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @auth
+        <meta name="api-token" content="{{ auth()->user()->api_token }}">
+    @endauth
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
 </head>
-<body class="admin-body bg-light">
+<body class="admin-body bg-dark">
     <div id="app">
-        @include('shared/navbar')
+        @include('admin/shared/navbar')
 
-        <div class="container-fluid {{ Request::is('admin/dashboard') ? '' : 'bg-white' }}">
-            <div class="row">
-                @include('admin/shared/sidebar')
+        <div class="content-wrapper bg-light">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        @include('shared/alerts')
 
-                <main class="col-lg-10 ml-md-auto">
-                    @include('shared/alerts')
-
-                    @yield('content')
-                </main>
+                        <div class="card">
+                            <div class="card-body">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
+    <script src="//{{ Request::getHost() }}:8888/socket.io/socket.io.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/admin.js"></script>
 </body>

@@ -1,0 +1,13 @@
+.content-wrapper {
+  overflow-x: hidden;
+  min-height: calc(100vh - #{$navbar-base-height});
+  padding: 1rem 0;
+
+  @include media-breakpoint-up(lg) {
+    margin-left: $sidenav-base-width;
+
+    .sidenav-toggled & {
+      margin-left: $sidenav-collapsed-width;
+    }
+  }
+}

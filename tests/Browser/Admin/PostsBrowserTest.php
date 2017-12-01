@@ -16,16 +16,6 @@ class PostsBrowserTest extends BrowserKitTest
 {
     use DatabaseMigrations;
 
-    public function testPostIndexEditLink()
-    {
-        $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
-
-        $this->actingAsAdmin()
-            ->visit('/admin/posts')
-            ->click('The Empire Strikes Back')
-            ->seeRouteIs('admin.posts.edit', $post);
-    }
-
     public function testPostIndexAuthorLink()
     {
         $anakin = factory(User::class)->states('anakin')->create();
@@ -34,7 +24,7 @@ class PostsBrowserTest extends BrowserKitTest
         $this->actingAsAdmin()
             ->visit('/admin/posts')
             ->click('Anakin')
-            ->seeRouteIs('users.show', $post->author);
+            ->seeRouteIs('admin.users.edit', $post->author);
     }
 
     public function testUpdatePost()

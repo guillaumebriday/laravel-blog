@@ -24,7 +24,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $this->actingAsAdmin()
             ->visit('/admin/comments')
             ->click('Anakin')
-            ->seeRouteIs('users.show', $anakin);
+            ->seeRouteIs('admin.users.edit', $anakin);
     }
 
     public function testCommentIndexPostLink()
@@ -36,7 +36,7 @@ class CommentsBrowserTest extends BrowserKitTest
         $this->actingAsAdmin()
             ->visit('/admin/comments')
             ->click('The Empire Strikes Back')
-            ->seeRouteIs('posts.show', $post);
+            ->seeRouteIs('admin.posts.edit', $post);
     }
 
     public function testUpdateComment()

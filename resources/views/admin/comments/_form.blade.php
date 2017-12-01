@@ -29,7 +29,10 @@
         @endif
     </div>
 
-    {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary pull-left']) !!}
+    <div class="pull-left">
+        {{ link_to_route('admin.comments.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
+        {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
+    </div>
 
 {!! Form::close() !!}
 

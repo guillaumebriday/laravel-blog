@@ -84,7 +84,7 @@ class PostTest extends TestCase
             ->get("/admin/posts/{$post->slug}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
-            ->assertSee('Voir l&#039;article')
+            ->assertSee("Voir l'article")
             ->assertSee(e($post->title))
             ->assertSee(e($post->content))
             ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
