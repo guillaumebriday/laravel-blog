@@ -34,7 +34,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="//{{ Request::getHost() }}:8888/socket.io/socket.io.js"></script>
+    @if (Request::is('posts/*'))
+        <script src="//{{ Request::getHost() }}:8888/socket.io/socket.io.js"></script>
+    @endif
     <script src="/js/app.js"></script>
     @stack('inline-scripts')
 </body>
