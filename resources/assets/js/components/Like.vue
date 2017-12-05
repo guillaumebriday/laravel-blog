@@ -4,7 +4,7 @@
        :class="[isLiked ? 'fa-heart text-danger' : 'fa-heart-o']"
        @click="toggleLike"
        style="user-select: none;"
-       :style="{'cursor: pointer;' : isLoggedIn}"
+       :style="[isLoggedIn ? { cursor: 'pointer' } : '']"
        aria-hidden="true"></i> {{ count }}
   </span>
 </template>
