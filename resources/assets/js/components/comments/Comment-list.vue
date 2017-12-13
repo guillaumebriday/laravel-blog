@@ -51,10 +51,8 @@ export default {
       });
     },
 
-    removeComment(comment) {
-      this.comments = this.comments.filter(item => {
-        return item.id !== comment.id;
-      });
+    removeComment({ id }) {
+      this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1)
     },
 
     addComment(comment) {
