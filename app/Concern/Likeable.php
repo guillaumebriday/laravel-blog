@@ -41,7 +41,7 @@ trait Likeable
      */
     public function isLiked(): bool
     {
-        return $this->likes()->where('author_id', auth()->id())->exists();
+        return $this->likes->where('author_id', auth()->id())->isNotEmpty();
     }
 
     /**
