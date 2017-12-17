@@ -4,7 +4,7 @@ services:
   blog-server:
     build: ./provisioning
     image: laravel-blog
-    links:
+    depends_on:
       - mysql
       - mysql-test
       - redis
@@ -15,7 +15,7 @@ services:
     build: .
     image: laravel-blog
     command: php artisan queue:work
-    links:
+    depends_on:
       - mysql
     volumes:
       - ./:/application:cached
@@ -47,7 +47,7 @@ services:
     volumes:
       - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
       - ./:/application:cached
-    links:
+    depends_on:
       - blog-server
 
   redis:
@@ -62,7 +62,7 @@ services:
     working_dir: /application
     volumes:
       - .:/application:cached
-    links:
+    depends_on:
       - redis
       - blog-server
     command: 'npm start'
