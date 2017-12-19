@@ -46,7 +46,7 @@ services:
       - '80:80'
     volumes:
       - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
-      - ./:/application:cached
+      - ./public:/application/public:cached
     depends_on:
       - blog-server
 
