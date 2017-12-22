@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Token;
 use App\User;
-use Carbon\Carbon;
 
 class UserObserver
 {
@@ -16,7 +15,7 @@ class UserObserver
      */
     public function creating(User $user)
     {
-        $user->registered_at = Carbon::now();
+        $user->registered_at = now();
         $user->api_token = Token::generate();
     }
 }

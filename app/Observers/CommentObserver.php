@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Comment;
-use Carbon\Carbon;
 
 class CommentObserver
 {
@@ -15,6 +14,6 @@ class CommentObserver
      */
     public function creating(Comment $comment)
     {
-        $comment->posted_at = Carbon::now();
+        $comment->posted_at = now();
     }
 }

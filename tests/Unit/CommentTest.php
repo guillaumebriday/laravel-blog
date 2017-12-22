@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use App\Comment;
-use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -15,7 +14,7 @@ class CommentTest extends TestCase
     public function testPostedAt()
     {
         $comment = factory(Comment::class)->create();
-        $this->assertEquals($comment->posted_at->toDateTimeString(), Carbon::now()->toDateTimeString());
+        $this->assertEquals($comment->posted_at->toDateTimeString(), now()->toDateTimeString());
     }
 
     public function testGettingOnlyLastWeekComments()
@@ -26,7 +25,7 @@ class CommentTest extends TestCase
         factory(Comment::class, 3)
                 ->create()
                 ->each(function ($comment) use ($faker) {
-                    $comment->posted_at = $faker->dateTimeBetween(Carbon::now()->subMonths(3), Carbon::now()->subMonths(2));
+                    $comment->posted_at = $faker->dateTimeBetween(now()->subMonths(3), now()->subMonths(2));
                     $comment->save();
                 });
 
@@ -34,13 +33,13 @@ class CommentTest extends TestCase
         factory(Comment::class, 3)
                 ->create()
                 ->each(function ($comment) use ($faker) {
-                    $comment->posted_at = $faker->dateTimeBetween(Carbon::now()->subWeek(), Carbon::now());
+                    $comment->posted_at = $faker->dateTimeBetween(now()->subWeek(), now());
                     $comment->save();
                 });
 
         $isDuringLastWeek = true;
         foreach (Comment::lastWeek()->get() as $comment) {
-            $isDuringLastWeek = $comment->posted_at->between(Carbon::now()->subWeek(), Carbon::now());
+            $isDuringLastWeek = $comment->posted_at->between(now()->subWeek(), now());
 
             if (! $isDuringLastWeek) {
                 break;

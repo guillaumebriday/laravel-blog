@@ -6,7 +6,6 @@ use App\Comment;
 
 use App\Post;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -53,7 +52,7 @@ class PostTest extends TestCase
             ->post('/admin/posts', $params)
             ->assertStatus(302);
 
-        $params['posted_at'] = Carbon::now()->second(0)->toDateTimeString();
+        $params['posted_at'] = now()->second(0)->toDateTimeString();
 
         $post = Post::first();
 
@@ -155,7 +154,7 @@ class PostTest extends TestCase
         return array_merge([
             'title' => 'hello world',
             'content' => "I'm a content",
-            'posted_at' => Carbon::now()->format('Y-m-d\TH:i'),
+            'posted_at' => now()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
             'thumbnail' => UploadedFile::fake()->image('file.png'),
         ], $overrides);

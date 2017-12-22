@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -66,7 +65,7 @@ class User extends Authenticatable
      */
     public function scopeLastWeek($query)
     {
-        return $query->whereBetween('registered_at', [Carbon::now()->subWeek(), Carbon::now()])
+        return $query->whereBetween('registered_at', [now()->subWeek(), now()])
                      ->latest();
     }
 

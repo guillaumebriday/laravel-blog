@@ -5,7 +5,6 @@ namespace Tests\Browser\Admin;
 use App\Post;
 
 use App\User;
-use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\UploadedFile;
@@ -72,7 +71,7 @@ class PostsBrowserTest extends BrowserKitTest
             ->type($faker->sentence, 'title')
             ->type($faker->paragraph, 'content')
             ->select($author->id, 'author_id')
-            ->type(Carbon::now()->format('Y-m-d\TH:i'), 'posted_at')
+            ->type(now()->format('Y-m-d\TH:i'), 'posted_at')
             ->attach($file->getPathname(), 'thumbnail')
             ->press('Sauvegarder')
             ->see('Article créé avec succès');

@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\NewsletterSubscription;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -27,6 +26,6 @@ class PrepareNewsletterSubscriptionEmail implements ShouldQueue
             SendNewsletterSubscriptionEmail::dispatch($newsletterSubscription->email);
         });
 
-        PrepareNewsletterSubscriptionEmail::dispatch()->delay(Carbon::now()->addSecond());
+        PrepareNewsletterSubscriptionEmail::dispatch()->delay(now()->addSecond());
     }
 }
