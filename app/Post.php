@@ -5,7 +5,6 @@ namespace App;
 use App\Concern\Likeable;
 use App\Concern\Mediable;
 use App\Scopes\PostedScope;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 
@@ -93,7 +92,7 @@ class Post extends Model
      */
     public function scopeLastMonth($query, $limit = 5)
     {
-        return $query->whereBetween('posted_at', [Carbon::now()->subMonth(), Carbon::now()])
+        return $query->whereBetween('posted_at', [now()->subMonth(), now()])
                      ->latest()
                      ->limit($limit);
     }
@@ -106,7 +105,7 @@ class Post extends Model
      */
     public function scopeLastWeek($query)
     {
-        return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
+        return $query->whereBetween('posted_at', [now()->subWeek(), now()])
                      ->latest();
     }
 

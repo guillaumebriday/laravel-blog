@@ -4,7 +4,6 @@ namespace Tests\Unit;
 
 use App\Role;
 use App\User;
-use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -51,7 +50,7 @@ class UserTest extends TestCase
         factory(User::class, 10)
                 ->create()
                 ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(Carbon::now()->subMonths(3), Carbon::now()->subMonths(2));
+                    $user->registered_at = $faker->dateTimeBetween(now()->subMonths(3), now()->subMonths(2));
                     $user->save();
                 });
 
@@ -59,13 +58,13 @@ class UserTest extends TestCase
         factory(User::class, 3)
                 ->create()
                 ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(Carbon::now()->subWeek(), Carbon::now());
+                    $user->registered_at = $faker->dateTimeBetween(now()->subWeek(), now());
                     $user->save();
                 });
 
         $isDuringLastWeek = true;
         foreach (User::lastWeek()->get() as $user) {
-            $isDuringLastWeek = $user->registered_at->between(Carbon::now()->subWeek(), Carbon::now());
+            $isDuringLastWeek = $user->registered_at->between(now()->subWeek(), now());
 
             if (! $isDuringLastWeek) {
                 break;
@@ -85,7 +84,7 @@ class UserTest extends TestCase
     public function testRegisteredAt()
     {
         $user = factory(User::class)->create();
-        $this->assertEquals($user->registered_at->toDateTimeString(), Carbon::now()->toDateTimeString());
+        $this->assertEquals($user->registered_at->toDateTimeString(), now()->toDateTimeString());
     }
 
     public function testAuthorsScope()

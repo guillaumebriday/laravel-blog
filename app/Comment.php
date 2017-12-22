@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Concern\Likeable;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
@@ -39,7 +38,7 @@ class Comment extends Model
      */
     public function scopeLastWeek($query)
     {
-        return $query->whereBetween('posted_at', [Carbon::now()->subWeek(), Carbon::now()])
+        return $query->whereBetween('posted_at', [now()->subWeek(), now()])
                      ->latest();
     }
 
