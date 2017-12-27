@@ -14,6 +14,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.5",
         "predis/predis": "^1.1",
+        "spatie/laravel-backup": "^5.1",
         "spatie/laravel-cors": "^1.0"
     },
     "require-dev": {
