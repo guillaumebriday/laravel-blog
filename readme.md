@@ -88,6 +88,11 @@ Running php-cs-fixer :
 $ docker-compose run --rm --no-deps blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
 
+Generating backup :
+```
+$ docker-compose run --rm blog-server php artisan backup:run
+```
+
 Generating fake data :
 ```
 $ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
