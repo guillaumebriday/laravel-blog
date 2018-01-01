@@ -12,7 +12,7 @@ services:
       - ./:/application:cached
 
   queue-server:
-    build: .
+    build: ./provisioning
     image: laravel-blog
     command: php artisan queue:work
     depends_on:
