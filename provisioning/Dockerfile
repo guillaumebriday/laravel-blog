@@ -5,7 +5,6 @@ LABEL maintainer="hello@guillaumebriday.fr"
 RUN apt-get update && apt-get install -y \
     build-essential \
     mysql-client \
-    libmcrypt-dev \
     libpng-dev \
     locales \
     zip
