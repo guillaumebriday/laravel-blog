@@ -14,7 +14,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-light">
     <div id="app">
@@ -37,7 +37,7 @@
     @if (Request::is('posts/*'))
         <script src="//{{ Request::getHost() }}:8888/socket.io/socket.io.js"></script>
     @endif
-    <script src="/js/app.js"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
     @stack('inline-scripts')
 </body>
 </html>

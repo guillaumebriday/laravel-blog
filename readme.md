@@ -1,33 +1,33 @@
-# Laravel 5.5 blog
+# Laravel 5.6 blog
 
 [![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's functionalities like :
 
-- [Authentication](https://laravel.com/docs/5.5/authentication)
+- [Authentication](https://laravel.com/docs/5.6/authentication)
 - API
   - Token authentication
-  - [API Resources](https://laravel.com/docs/5.5/eloquent-resources)
+  - [API Resources](https://laravel.com/docs/5.6/eloquent-resources)
   - Versioning
-- [Blade](https://laravel.com/docs/5.5/blade)
-- [Broadcasting](https://laravel.com/docs/5.5/broadcasting)
-- [Cache](https://laravel.com/docs/5.5/cache)
-- [Filesystem](https://laravel.com/docs/5.5/filesystem)
-- [Helpers](https://laravel.com/docs/5.5/helpers)
-- [Jobs & Queues](https://laravel.com/docs/5.5/queues)
-- [Localization](https://laravel.com/docs/5.5/localization)
-- [Mail](https://laravel.com/docs/5.5/mail)
-- [Migrations](https://laravel.com/docs/5.5/migrations)
-- [Policies](https://laravel.com/docs/5.5/authorization)
-- [Providers](https://laravel.com/docs/5.5/providers)
-- [Requests](https://laravel.com/docs/5.5/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/5.5/seeding)
-- [Testing](https://laravel.com/docs/5.5/testing)
+- [Blade](https://laravel.com/docs/5.6/blade)
+- [Broadcasting](https://laravel.com/docs/5.6/broadcasting)
+- [Cache](https://laravel.com/docs/5.6/cache)
+- [Filesystem](https://laravel.com/docs/5.6/filesystem)
+- [Helpers](https://laravel.com/docs/5.6/helpers)
+- [Jobs & Queues](https://laravel.com/docs/5.6/queues)
+- [Localization](https://laravel.com/docs/5.6/localization)
+- [Mail](https://laravel.com/docs/5.6/mail)
+- [Migrations](https://laravel.com/docs/5.6/migrations)
+- [Policies](https://laravel.com/docs/5.6/authorization)
+- [Providers](https://laravel.com/docs/5.6/providers)
+- [Requests](https://laravel.com/docs/5.6/validation#form-request-validation)
+- [Seeding & Factories](https://laravel.com/docs/5.6/seeding)
+- [Testing](https://laravel.com/docs/5.6/testing)
 
 Beside Laravel, this project uses other tools like :
 
-- [Bootstrap 4 Beta](https://getbootstrap.com/)
+- [Bootstrap 4](https://getbootstrap.com/)
 - [PHP-CS-Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
 - [Travis CI](https://travis-ci.org/)
 - [Font Awesome](http://fontawesome.io/)
