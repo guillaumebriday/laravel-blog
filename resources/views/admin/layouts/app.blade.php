@@ -14,8 +14,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/admin.css" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/admin.css') }}" rel="stylesheet">
 </head>
 <body class="admin-body bg-dark">
     <div id="app">
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script src="/js/admin.js"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/admin.js') }}"></script>
 </body>
 </html>
