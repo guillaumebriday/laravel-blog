@@ -43,7 +43,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - '80:80'
+      - '8000:8000'
     volumes:
       - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
       - ./public:/application/public:cached
