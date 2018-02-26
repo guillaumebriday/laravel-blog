@@ -53,7 +53,9 @@ $ docker run --rm -it -v $(pwd):/app -w /app node npm install
 $ docker-compose up -d
 ```
 
-Now you can access the site via [http://localhost](http://localhost) or [http://laravel-blog.app](http://laravel-blog.app) if you added the domain to your hosts file.
+Now you can access the application via [http://localhost:8000](http://localhost:8000).
+
+**There is no need to run ```php artisan serve```. PHP is already running in a dedicated container.**
 
 ## Before starting
 You need to run the migrations :
