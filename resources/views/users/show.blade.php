@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <div class="card mb-2">
         <div class="card-body text-center">
-          <h2 class="card-title mb-0">{{ $user->name }}</h2>
+          <h2 v-pre class="card-title mb-0">{{ $user->name }}</h2>
           <small class="card-subtitle mb-2 text-muted">{{ $user->email }}</small>
 
           <div class="card-text row mt-3">
