@@ -142,6 +142,25 @@ Before using WebSockets, you need to set the `BROADCAST_DRIVER` in your `.env` f
 BROADCAST_DRIVER=redis
 ```
 
+## Xdebug
+
+Before using Xdebug, you need to uncomment the xdebug extension in `provisioning/Dockerfile`
+
+```dockerfile
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+```
+
+then, add an environment variable in `docker-compose.yml`. change the remote_host below with your IP address that is visible from Docker.
+
+```yaml
+environment:
+  XDEBUG_CONFIG:
+    remote_enable=1
+    remote_host=10.0.75.1
+```
+
+If you are using phpstorm, you may also need to configure php parser and mapping.
+
 ## More details
 
 More details are available or to come on [Guillaume Briday's blog](https://blog.guillaumebriday.fr) (French).
