@@ -159,7 +159,13 @@ environment:
     remote_host=10.0.75.1
 ```
 
-If you are using phpstorm, you may also need to configure php parser and mapping.
+> If you are using PhpStorm, you may also need to configure php parser and mapping.
+
+Finally, rebuild
+
+```bash
+docker-compose.exe up -d --build
+```
 
 ## More details
 
