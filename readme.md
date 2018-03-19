@@ -36,6 +36,10 @@ Beside Laravel, this project uses other tools like :
 - [Redis](https://redis.io/)
 - Many more to discover.
 
+## Some screenshots
+
+You can find some screenshots of the application on : [https://imgur.com/a/Jbnwj](https://imgur.com/a/Jbnwj)
+
 ## Installation
 
 Development environment requirements :
