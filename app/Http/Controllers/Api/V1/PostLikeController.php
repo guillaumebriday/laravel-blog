@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 
-class PostLikesController extends Controller
+class PostLikeController extends Controller
 {
 
     /**

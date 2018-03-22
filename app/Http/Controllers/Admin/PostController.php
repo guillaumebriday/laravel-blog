@@ -8,7 +8,7 @@ use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Show the application posts index.

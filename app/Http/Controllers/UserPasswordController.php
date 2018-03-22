@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserPasswordsRequest;
 use App\User;
 
-class UserPasswordsController extends Controller
+class UserPasswordController extends Controller
 {
     /**
      * Show the form for editing the specified resource.

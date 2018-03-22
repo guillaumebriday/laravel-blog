@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Support\Facades\Cache;
 
-class PostsFeedController extends Controller
+class PostFeedController extends Controller
 {
     /**
      * Show the rss feed of posts.

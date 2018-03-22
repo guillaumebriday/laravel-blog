@@ -7,7 +7,7 @@ use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Display the specified resource.

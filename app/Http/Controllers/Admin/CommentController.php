@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CommentsRequest;
 use App\User;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
     /**
      * Show the application comments index.

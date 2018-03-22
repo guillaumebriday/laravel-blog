@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\UsersRequest;
 use App\Role;
 use App\User;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Show the application users index.

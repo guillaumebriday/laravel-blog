@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Post as PostResource;
+use App\Http\Resources\Comment as CommentResource;
 use App\User;
 use Illuminate\Http\Request;
 
-class UserPostsController extends Controller
+class UserCommentController extends Controller
 {
     /**
-     * Return the user's posts.
+     * Return the user's comments.
      *
      * @param  Request $request
      * @param  User $user
@@ -18,8 +18,8 @@ class UserPostsController extends Controller
      */
     public function index(Request $request, User $user)
     {
-        return PostResource::collection(
-            $user->posts()->latest()->paginate($request->input('limit', 20))
+        return CommentResource::collection(
+            $user->comments()->latest()->paginate($request->input('limit', 20))
         );
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Resources\Post as PostResource;
 use App\Post;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     /**
      * Return the posts.

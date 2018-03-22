@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Validator;
 
-class NewsletterSubscriptionsController extends Controller
+class NewsletterSubscriptionController extends Controller
 {
     /**
      * Store a newly created resource in storage.

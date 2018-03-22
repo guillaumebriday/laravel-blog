@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Token;
 use App\User;
 
-class UserTokensController extends Controller
+class UserTokenController extends Controller
 {
     /**
      * Show the form for editing the specified resource.

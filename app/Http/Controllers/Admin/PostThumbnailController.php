@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 
-class PostsThumbnailController extends Controller
+class PostThumbnailController extends Controller
 {
     /**
      * Unset the post's thumbnail.

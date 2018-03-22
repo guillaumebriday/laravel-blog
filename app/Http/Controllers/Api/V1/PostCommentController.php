@@ -10,7 +10,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PostCommentsController extends Controller
+class PostCommentController extends Controller
 {
     /**
      * Return the post's comments.
