@@ -30,9 +30,8 @@ export default {
     this.retrieveComments();
 
     if (window.Echo) {
-      Echo.channel("post." + this.post_id).listen(".comment.posted", e => {
-        this.comments.unshift(e.comment);
-      });
+      Echo.channel("post." + this.post_id)
+        .listen(".comment.posted", e => this.addComment(e.comment));
     }
 
     Event.$on("added", comment => {
@@ -51,12 +50,12 @@ export default {
       });
     },
 
-    removeComment({ id }) {
-      this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1)
-    },
-
     addComment(comment) {
       this.comments.unshift(comment);
+    },
+
+    removeComment({ id }) {
+      this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1)
     }
   }
 }
