@@ -37,7 +37,7 @@ class CommentController extends Controller
      */
     public function update(CommentsRequest $request, Comment $comment)
     {
-        $comment->update($request->only(['content', 'posted_at', 'author_id']));
+        $comment->update($request->validated());
 
         return redirect()->route('admin.comments.edit', $comment)->withSuccess(__('comments.updated'));
     }

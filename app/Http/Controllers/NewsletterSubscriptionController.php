@@ -19,9 +19,7 @@ class NewsletterSubscriptionController extends Controller
      */
     public function store(NewsletterSubscriptionRequest $request)
     {
-        $newsletterSubscription = NewsletterSubscription::create([
-            'email' => $request->input('email')
-        ]);
+        $newsletterSubscription = NewsletterSubscription::create($request->validated());
 
         return back()->withSuccess(__('newsletter.created'));
     }

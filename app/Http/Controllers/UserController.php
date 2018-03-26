@@ -48,7 +48,7 @@ class UserController extends Controller
 
         $this->authorize('update', $user);
 
-        $user->update(array_filter($request->only(['name', 'email'])));
+        $user->update($request->validated());
 
         return redirect()->route('users.edit')->withSuccess(__('users.updated'));
     }
