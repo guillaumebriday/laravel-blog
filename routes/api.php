@@ -14,30 +14,30 @@
 Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::middleware('auth:api')->group(function () {
         // Comments
-        Route::resource('comments', 'CommentController', ['only' => 'destroy']);
-        Route::resource('posts.comments', 'PostCommentController', ['only' => 'store']);
+        Route::apiResource('comments', 'CommentController')->only('destroy');
+        Route::apiResource('posts.comments', 'PostCommentController')->only('store');
 
         // Posts
-        Route::resource('posts', 'PostController', ['only' => ['update', 'store', 'destroy']]);
+        Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
         Route::delete('/posts/{post}/thumbnail', 'PostThumbnailController@destroy')->name('posts.thumbnail.destroy');
         Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
         Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
 
         // Users
-        Route::resource('users', 'UserController', ['only' => 'update']);
+        Route::apiResource('users', 'UserController')->only('update');
     });
 
     Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
 
     // Comments
-    Route::resource('posts.comments', 'PostCommentController', ['only' => 'index']);
-    Route::resource('users.comments', 'UserCommentController', ['only' => 'index']);
-    Route::resource('comments', 'CommentController', ['only' => ['index', 'show']]);
+    Route::apiResource('posts.comments', 'PostCommentController')->only('index');
+    Route::apiResource('users.comments', 'UserCommentController')->only('index');
+    Route::apiResource('comments', 'CommentController')->only(['index', 'show']);
 
     // Posts
-    Route::resource('posts', 'PostController', ['only' => ['index', 'show']]);
-    Route::resource('users.posts', 'UserPostController', ['only' => 'index']);
+    Route::apiResource('posts', 'PostController')->only(['index', 'show']);
+    Route::apiResource('users.posts', 'UserPostController')->only('index');
 
     // Users
-    Route::resource('users', 'UserController', ['only' => ['index', 'show']]);
+    Route::apiResource('users', 'UserController')->only(['index', 'show']);
 });

@@ -22,8 +22,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->namespace('Admin')->
     Route::get('dashboard', 'ShowDashboard')->name('dashboard');
     Route::resource('posts', 'PostController');
     Route::delete('/posts/{post}/thumbnail', 'PostThumbnailController@destroy')->name('posts_thumbnail.destroy');
-    Route::resource('users', 'UserController', ['only' => ['index', 'edit', 'update']]);
-    Route::resource('comments', 'CommentController', ['only' => ['index', 'edit', 'update', 'destroy']]);
+    Route::resource('users', 'UserController')->only(['index', 'edit', 'update']);
+    Route::resource('comments', 'CommentController')->only(['index', 'edit', 'update', 'destroy']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -38,13 +38,13 @@ Route::middleware('auth')->group(function () {
         Route::match(['put', 'patch'], 'token', 'UserTokenController@update')->name('users.token.update');
     });
 
-    Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionController', ['only' => 'store']);
+    Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionController')->only('store');
 });
 
 Route::get('/', 'PostController@index')->name('home');
-Route::resource('media', 'MediaController', ['only' => 'show']);
+Route::resource('media', 'MediaController')->only('show');
 Route::get('/posts/feed', 'PostFeedController@index')->name('posts.feed');
-Route::resource('posts', 'PostController', ['only' => 'show']);
-Route::resource('users', 'UserController', ['only' => 'show']);
+Route::resource('posts', 'PostController')->only('show');
+Route::resource('users', 'UserController')->only('show');
 
 Route::get('newsletter-subscriptions/unsubscribe', 'NewsletterSubscriptionController@unsubscribe')->name('newsletter-subscriptions.unsubscribe');
