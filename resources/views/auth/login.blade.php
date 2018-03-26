@@ -41,15 +41,19 @@
         <hr>
 
         <div class="d-flex justify-content-between flex-wrap">
-            <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-secondary mb-2">
-                @lang('auth.services.github')
-                <i class="fa fa-github" aria-hidden="true"></i>
-            </a>
+            @if (env('GITHUB_ID'))
+                <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-secondary mb-2">
+                    @lang('auth.services.github')
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                </a>
+            @endif
 
-            <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-secondary mb-2">
-                @lang('auth.services.twitter')
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
+            @if (env('TWITTER_ID'))
+                <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-secondary mb-2">
+                    @lang('auth.services.twitter')
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>
+            @endif
         </div>
     </div>
 </div>
