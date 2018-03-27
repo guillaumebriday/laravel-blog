@@ -6,8 +6,10 @@ use App\Comment;
 use App\Observers\CommentObserver;
 use App\Observers\PostObserver;
 use App\Observers\UserObserver;
+use App\Observers\MediaObserver;
 use App\Post;
 use App\User;
+use App\Media;
 use Illuminate\Support\ServiceProvider;
 
 class ObserverServiceProvider extends ServiceProvider
@@ -22,6 +24,7 @@ class ObserverServiceProvider extends ServiceProvider
         Post::observe(PostObserver::class);
         User::observe(UserObserver::class);
         Comment::observe(CommentObserver::class);
+        Media::observe(MediaObserver::class);
     }
 
     /**
