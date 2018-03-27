@@ -23,7 +23,7 @@ return [
     /*
      * The class names of the models that should be used.
      */
-    'media_model' => Spatie\MediaLibrary\Models\Media::class,
+    'media_model' => App\Media::class,
 
     's3' => [
         /*
@@ -123,6 +123,7 @@ return [
      * Should be either `gd` or `imagick`.
      */
     'image_driver' => 'gd',
+
 
     /*
      * FFMPEG & FFProbe binaries paths, only used if you try to generate video

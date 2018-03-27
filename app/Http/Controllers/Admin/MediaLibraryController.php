@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaLibraryRequest;
 use App\MediaLibrary;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\Models\Media;
+use App\Media;
 
 class MediaLibraryController extends Controller
 {
