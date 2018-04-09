@@ -11,16 +11,16 @@
         "start": "laravel-echo-server start"
     },
     "dependencies": {
-        "axios": "^0.17",
-        "bootstrap": "^4.0.0",
-        "cross-env": "^5.1.3",
+        "axios": "^0.18",
+        "bootstrap": "^4.1.0",
+        "cross-env": "^5.1.4",
         "font-awesome": "^4.7.0",
         "jquery": "^3.3.1",
         "laravel-echo": "^1.3.5",
         "laravel-echo-server": "^1.3.6",
-        "laravel-mix": "^2.0",
-        "popper.js": "^1.13.0",
-        "trumbowyg": "^2.9.4",
-        "vue": "^2.5.13"
+        "laravel-mix": "^2.1.11",
+        "popper.js": "^1.14.3",
+        "trumbowyg": "^2.10.0",
+        "vue": "^2.5.16"
     }
 }
