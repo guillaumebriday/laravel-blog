@@ -33,15 +33,6 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('thumbnail', __('posts.attributes.thumbnail')) !!}
-    {!! Form::file('thumbnail', ['accept' => 'image/*', 'class' => 'form-control' . ($errors->has('thumbnail') ? ' is-invalid' : '')]) !!}
-
-    @if ($errors->has('thumbnail'))
-        <span class="invalid-feedback">{{ $errors->first('thumbnail') }}</span>
-    @endif
-</div>
-
-<div class="form-group">
     {!! Form::label('content', __('posts.attributes.content')) !!}
     {!! Form::textarea('content', null, ['class' => 'form-control trumbowyg-form' . ($errors->has('content') ? ' is-invalid' : ''), 'required' => 'required']) !!}
 

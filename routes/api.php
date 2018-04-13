@@ -19,7 +19,6 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
         // Posts
         Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
-        Route::delete('/posts/{post}/thumbnail', 'PostThumbnailController@destroy')->name('posts.thumbnail.destroy');
         Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
         Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
 

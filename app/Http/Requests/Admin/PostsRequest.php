@@ -48,7 +48,6 @@ class PostsRequest extends FormRequest
             'posted_at' => 'required|date',
             'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
             'slug' => 'unique:posts,slug,' . (optional($this->post)->id ?: 'NULL'),
-            'thumbnail' => 'image',
         ];
     }
 }

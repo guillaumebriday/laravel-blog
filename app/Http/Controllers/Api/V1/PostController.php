@@ -36,10 +36,6 @@ class PostController extends Controller
 
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
 
-        if ($request->hasFile('thumbnail')) {
-            $post->storeAndSetThumbnail($request->file('thumbnail'));
-        }
-
         return new PostResource($post);
     }
 
@@ -52,13 +48,9 @@ class PostController extends Controller
     {
         $this->authorize('store', Post::class);
 
-        $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id']));
-
-        if ($request->hasFile('thumbnail')) {
-            $post->storeAndSetThumbnail($request->file('thumbnail'));
-        }
-
-        return new PostResource($post);
+        return new PostResource(
+            Post::create($request->only(['title', 'content', 'posted_at', 'author_id']))
+        );
     }
 
     /**

@@ -54,10 +54,6 @@ class PostController extends Controller
     {
         $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id']));
 
-        if ($request->hasFile('thumbnail')) {
-            $post->storeAndSetThumbnail($request->file('thumbnail'));
-        }
-
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
     }
 
@@ -67,10 +63,6 @@ class PostController extends Controller
     public function update(PostsRequest $request, Post $post)
     {
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
-
-        if ($request->hasFile('thumbnail')) {
-            $post->storeAndSetThumbnail($request->file('thumbnail'));
-        }
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }

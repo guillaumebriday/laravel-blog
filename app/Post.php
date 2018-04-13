@@ -3,14 +3,12 @@
 namespace App;
 
 use App\Concern\Likeable;
-use App\Concern\Mediable;
 use App\Scopes\PostedScope;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
 
 class Post extends Model
 {
-    use Mediable, Likeable;
+    use Likeable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +20,6 @@ class Post extends Model
         'title',
         'content',
         'posted_at',
-        'thumbnail_id',
         'slug',
     ];
 
@@ -107,44 +104,6 @@ class Post extends Model
     {
         return $query->whereBetween('posted_at', [now()->subWeek(), now()])
                      ->latest();
-    }
-
-    /**
-     * Check if the post has a valid thumbnail
-     *
-     * @return boolean
-     */
-    public function hasThumbnail(): bool
-    {
-        return $this->hasMedia($this->thumbnail_id);
-    }
-
-    /**
-     * Retrieve the post's thumbnail
-     *
-     * @return mixed
-     */
-    public function thumbnail()
-    {
-        return $this->media->where('id', $this->thumbnail_id)->first();
-    }
-
-    /**
-     * Store and set the post's thumbnail
-     *
-     * @return void
-     */
-    public function storeAndSetThumbnail(UploadedFile $thumbnail)
-    {
-        $thumbnail_name = $thumbnail->store('/');
-
-        $media = $this->media()->create([
-            'filename' => $thumbnail_name,
-            'original_filename' => $thumbnail->getClientOriginalName(),
-            'mime_type' => $thumbnail->getMimeType()
-        ]);
-
-        $this->update(['thumbnail_id' => $media->id]);
     }
 
     /**

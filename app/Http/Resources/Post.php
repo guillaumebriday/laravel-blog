@@ -21,8 +21,6 @@ class Post extends Resource
             'content' => $this->content,
             'posted_at' => $this->posted_at->toIso8601String(),
             'author_id' => $this->author_id,
-            'has_thumbnail' => $this->hasThumbnail(),
-            'thumbnail_url' => optional($this->thumbnail())->url,
             'comments_count' => $this->comments_count ?? $this->comments()->count()
         ];
     }
