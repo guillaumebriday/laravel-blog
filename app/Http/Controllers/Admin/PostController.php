@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
 use App\Post;
 use App\User;
+use App\MediaLibrary;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -29,7 +30,8 @@ class PostController extends Controller
     {
         return view('admin.posts.edit', [
             'post' => $post,
-            'users' => User::authors()->pluck('name', 'id')
+            'users' => User::authors()->pluck('name', 'id'),
+            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
         ]);
     }
 
@@ -41,7 +43,8 @@ class PostController extends Controller
     public function create(Request $request)
     {
         return view('admin.posts.create', [
-            'users' => User::authors()->pluck('name', 'id')
+            'users' => User::authors()->pluck('name', 'id'),
+            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
         ]);
     }
 
@@ -52,7 +55,7 @@ class PostController extends Controller
      */
     public function store(PostsRequest $request)
     {
-        $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id']));
+        $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
     }
@@ -62,7 +65,7 @@ class PostController extends Controller
      */
     public function update(PostsRequest $request, Post $post)
     {
-        $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
+        $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }

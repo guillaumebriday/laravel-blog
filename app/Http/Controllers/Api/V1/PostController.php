@@ -34,7 +34,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
 
-        $post->update($request->only(['title', 'content', 'posted_at', 'author_id']));
+        $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
         return new PostResource($post);
     }
@@ -49,7 +49,7 @@ class PostController extends Controller
         $this->authorize('store', Post::class);
 
         return new PostResource(
-            Post::create($request->only(['title', 'content', 'posted_at', 'author_id']))
+            Post::create($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']))
         );
     }
 

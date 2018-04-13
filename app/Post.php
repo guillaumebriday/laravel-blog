@@ -21,6 +21,7 @@ class Post extends Model
         'content',
         'posted_at',
         'slug',
+        'thumbnail_id',
     ];
 
     /**
@@ -117,6 +118,16 @@ class Post extends Model
     }
 
     /**
+     * Return the post's thumbnail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function thumbnail()
+    {
+        return $this->belongsTo(Media::class);
+    }
+
+    /**
      * Return the post's comments
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -135,5 +146,15 @@ class Post extends Model
     public function excerpt($length = 50): string
     {
         return str_limit($this->content, $length);
+    }
+
+    /**
+     * return true if the post has a thumbnail
+     *
+     * @return bool
+     */
+    public function hasThumbnail(): bool
+    {
+        return filled($this->thumbnail_id);
     }
 }

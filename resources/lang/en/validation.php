@@ -153,6 +153,7 @@ return [
         'posted_at'             => 'Posted at',
         'author_id'             => 'Author',
         'post_id'               => 'Post',
+        'thumbnail_id'          => 'Thumbnail',
     ],
 
     'errors' => ":count error :|:count errors : "

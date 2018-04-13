@@ -24,10 +24,12 @@ return [
     'author' => 'Author',
     'thumbnail' => 'Post picture',
     'posted_at' => 'Posted at',
+    'thumbnail' => "Thumbnail image",
   ],
 
   'placeholder' => [
     'title' => 'Your title',
-    'content' => 'Your content'
+    'content' => 'Your content',
+    'thumbnail' => 'Choose a thumbnail'
   ]
 ];
