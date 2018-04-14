@@ -3,14 +3,12 @@
 namespace App;
 
 use App\Concern\Likeable;
-use App\Concern\Mediable;
 use App\Scopes\PostedScope;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
 
 class Post extends Model
 {
-    use Mediable, Likeable;
+    use Likeable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,8 +20,8 @@ class Post extends Model
         'title',
         'content',
         'posted_at',
-        'thumbnail_id',
         'slug',
+        'thumbnail_id',
     ];
 
     /**
@@ -110,44 +108,6 @@ class Post extends Model
     }
 
     /**
-     * Check if the post has a valid thumbnail
-     *
-     * @return boolean
-     */
-    public function hasThumbnail(): bool
-    {
-        return $this->hasMedia($this->thumbnail_id);
-    }
-
-    /**
-     * Retrieve the post's thumbnail
-     *
-     * @return mixed
-     */
-    public function thumbnail()
-    {
-        return $this->media->where('id', $this->thumbnail_id)->first();
-    }
-
-    /**
-     * Store and set the post's thumbnail
-     *
-     * @return void
-     */
-    public function storeAndSetThumbnail(UploadedFile $thumbnail)
-    {
-        $thumbnail_name = $thumbnail->store('/');
-
-        $media = $this->media()->create([
-            'filename' => $thumbnail_name,
-            'original_filename' => $thumbnail->getClientOriginalName(),
-            'mime_type' => $thumbnail->getMimeType()
-        ]);
-
-        $this->update(['thumbnail_id' => $media->id]);
-    }
-
-    /**
      * Return the post's author
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -155,6 +115,16 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    /**
+     * Return the post's thumbnail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function thumbnail()
+    {
+        return $this->belongsTo(Media::class);
     }
 
     /**
@@ -176,5 +146,15 @@ class Post extends Model
     public function excerpt($length = 50): string
     {
         return str_limit($this->content, $length);
+    }
+
+    /**
+     * return true if the post has a thumbnail
+     *
+     * @return bool
+     */
+    public function hasThumbnail(): bool
+    {
+        return filled($this->thumbnail_id);
     }
 }

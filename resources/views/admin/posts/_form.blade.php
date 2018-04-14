@@ -11,7 +11,6 @@
     @endif
 </div>
 
-
 <div class="form-row">
     <div class="form-group col-md-6">
         {!! Form::label('author_id', __('posts.attributes.author')) !!}
@@ -33,13 +32,14 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('thumbnail', __('posts.attributes.thumbnail')) !!}
-    {!! Form::file('thumbnail', ['accept' => 'image/*', 'class' => 'form-control' . ($errors->has('thumbnail') ? ' is-invalid' : '')]) !!}
+    {!! Form::label('thumbnail_id', __('posts.attributes.thumbnail')) !!}
+    {!! Form::select('thumbnail_id', $media, null, ['placeholder' => __('posts.placeholder.thumbnail'), 'class' => 'form-control' . ($errors->has('thumbnail_id') ? ' is-invalid' : '')]) !!}
 
-    @if ($errors->has('thumbnail'))
-        <span class="invalid-feedback">{{ $errors->first('thumbnail') }}</span>
+    @if ($errors->has('thumbnail_id'))
+        <span class="invalid-feedback">{{ $errors->first('thumbnail_id') }}</span>
     @endif
 </div>
+
 
 <div class="form-group">
     {!! Form::label('content', __('posts.attributes.content')) !!}

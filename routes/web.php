@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'PostController@index')->name('home');
-Route::resource('media', 'MediaController')->only('show');
 Route::get('/posts/feed', 'PostFeedController@index')->name('posts.feed');
 Route::resource('posts', 'PostController')->only('show');
 Route::resource('users', 'UserController')->only('show');

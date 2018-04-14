@@ -7,8 +7,6 @@ use App\Comment;
 use App\Post;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -56,12 +54,7 @@ class PostTest extends TestCase
 
         $post = Post::first();
 
-        $this->assertDatabaseHas('posts', array_except($params, ['thumbnail']));
-        $this->assertTrue($post->hasThumbnail());
-        $this->assertTrue(Storage::disk('local')->exists($post->thumbnail()->filename));
-        $this->assertEquals($post->thumbnail()->original_filename, 'file.png');
-
-        Storage::delete($post->thumbnail()->filename);
+        $this->assertDatabaseHas('posts', $params);
     }
 
     public function testStoreFail()
@@ -102,27 +95,8 @@ class PostTest extends TestCase
 
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
 
-        $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
-        $this->assertTrue($post->hasThumbnail());
+        $this->assertDatabaseHas('posts', $params);
         $this->assertEquals($params['content'], $post->content);
-
-        Storage::delete($post->thumbnail()->filename);
-    }
-
-    public function testUnsetThumbnail()
-    {
-        $post = factory(Post::class)->create();
-        $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
-        $thumbnail = $post->thumbnail();
-
-        $this->actingAsAdmin()
-            ->delete("/admin/posts/{$post->slug}/thumbnail", [])
-            ->assertRedirect("/admin/posts/{$post->slug}/edit");
-
-        $post->refresh();
-        $this->assertFalse($post->hasThumbnail());
-
-        Storage::delete($thumbnail->filename);
     }
 
     public function testDelete()
@@ -156,7 +130,6 @@ class PostTest extends TestCase
             'content' => "I'm a content",
             'posted_at' => now()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
-            'thumbnail' => UploadedFile::fake()->image('file.png'),
         ], $overrides);
     }
 }

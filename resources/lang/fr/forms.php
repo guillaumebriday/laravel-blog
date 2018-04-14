@@ -22,6 +22,10 @@ return [
 
   'tokens' => [
     'generate' => 'Êtes-vous sûr de vouloir générer une clé ? Toutes ses API seront déconnectées.',
-  ]
+  ],
+
+  'media' => [
+    'delete' => 'Êtes-vous sûr de vouloir supprimer cette image ?',
+  ],
 
 ];

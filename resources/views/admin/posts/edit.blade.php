@@ -5,7 +5,7 @@
 
     @include('admin/posts/_thumbnail')
 
-    {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' =>'PUT', 'files' => true]) !!}
+    {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' =>'PUT']) !!}
         @include('admin/posts/_form')
 
         <div class="pull-left">

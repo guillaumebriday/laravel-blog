@@ -34,6 +34,7 @@ Beside Laravel, this project uses other tools like :
 - [Vue.js](https://vuejs.org/)
 - [axios](https://github.com/mzabriskie/axios)
 - [Redis](https://redis.io/)
+- [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary)
 - Many more to discover.
 
 ## Some screenshots

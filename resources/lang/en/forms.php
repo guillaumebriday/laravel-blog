@@ -22,6 +22,10 @@ return [
 
   'tokens' => [
     'generate' => 'Are you sure you want to generate a key? All of these APIs will be disconnected.',
-  ]
+  ],
+
+  'media' => [
+    'delete' => 'Are you sure you want to delete this thumbnail?',
+  ],
 
 ];

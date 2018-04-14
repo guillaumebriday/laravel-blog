@@ -26,6 +26,14 @@
             <span class="nav-link-text">@lang('dashboard.users')</span>
         </a>
     </li>
+
+    <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.media')">
+        <a class="nav-link {{ Request::is('admin/media') || Request::is('admin/media/*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
+            <i class="fa fa-file" aria-hidden="true"></i>&nbsp;
+            <span class="nav-link-text">@lang('dashboard.media')</span>
+        </a>
+    </li>
+
 </ul>
 
 <ul class="navbar-nav sidenav-toggler">

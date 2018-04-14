@@ -19,12 +19,14 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
         // Posts
         Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
-        Route::delete('/posts/{post}/thumbnail', 'PostThumbnailController@destroy')->name('posts.thumbnail.destroy');
         Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
         Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
 
         // Users
         Route::apiResource('users', 'UserController')->only('update');
+
+        // Media
+        Route::apiResource('media', 'MediaController')->only(['index', 'store', 'destroy']);
     });
 
     Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');

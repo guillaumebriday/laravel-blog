@@ -7,4 +7,5 @@ return [
     'posts' => 'Posts',
     'comments' => 'Comments',
     'users' => 'Users',
+    'media' => 'Gallery',
 ];

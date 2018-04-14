@@ -14,6 +14,7 @@
         "axios": "^0.18",
         "bootstrap": "^4.1.0",
         "cross-env": "^5.1.4",
+        "clipboard": "^2.0.0",
         "font-awesome": "^4.7.0",
         "jquery": "^3.3.1",
         "laravel-echo": "^1.3.5",

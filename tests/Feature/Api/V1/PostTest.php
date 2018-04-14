@@ -7,8 +7,6 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -29,8 +27,6 @@ class PostTest extends TestCase
                         'content',
                         'posted_at',
                         'author_id',
-                        'has_thumbnail',
-                        'thumbnail_url',
                         'comments_count'
                 ]],
                 'links' => [
@@ -66,8 +62,6 @@ class PostTest extends TestCase
                     'content',
                     'posted_at',
                     'author_id',
-                    'has_thumbnail',
-                    'thumbnail_url',
                     'comments_count'
                 ]],
                 'links' => [
@@ -118,8 +112,6 @@ class PostTest extends TestCase
                     'content',
                     'posted_at',
                     'author_id',
-                    'has_thumbnail',
-                    'thumbnail_url',
                     'comments_count'
                 ],
             ])
@@ -131,8 +123,6 @@ class PostTest extends TestCase
                     'content' => 'A Star Wars Story',
                     'posted_at' => $post->posted_at->toIso8601String(),
                     'author_id' => $post->author_id,
-                    'has_thumbnail' => false,
-                    'thumbnail_url' => null,
                     'comments_count' => 2
                 ],
             ]);
@@ -158,11 +148,9 @@ class PostTest extends TestCase
 
         $post->refresh();
 
-        $this->assertDatabaseHas('posts', array_except($params, 'thumbnail'));
+        $this->assertDatabaseHas('posts', $params);
         $this->assertEquals($params['title'], $post->title);
         $this->assertEquals($params['content'], $post->content);
-
-        Storage::delete($post->thumbnail()->filename);
     }
 
     public function testUpdateFail()
@@ -170,7 +158,7 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
 
         $this->actingAsUser('api')
-            ->json('PATCH', "/api/v1/posts/{$post->id}", array_except($this->validParams(), 'thumbnail'))
+            ->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams())
             ->assertStatus(403)
             ->assertJson([
                 'message' => 'This action is unauthorized.'
@@ -179,7 +167,7 @@ class PostTest extends TestCase
 
     public function testStorePost()
     {
-        $params = array_except($this->validParams(), 'thumbnail');
+        $params = $this->validParams();
 
         $this->actingAsAdmin('api')
             ->json('POST', '/api/v1/posts/', $params)
@@ -192,27 +180,11 @@ class PostTest extends TestCase
     public function testStorePostUnauthorized()
     {
         $this->actingAsUser('api')
-            ->json('POST', '/api/v1/posts/', array_except($this->validParams(), 'thumbnail'))
+            ->json('POST', '/api/v1/posts/', $this->validParams())
             ->assertStatus(403)
             ->assertJson([
                 'message' => 'This action is unauthorized.'
             ]);
-    }
-
-    public function testUnsetThumbnail()
-    {
-        $post = factory(Post::class)->create();
-        $post->storeAndSetThumbnail(UploadedFile::fake()->image('file.png'));
-        $filename = $post->thumbnail()->filename;
-
-        $this->actingAsAdmin('api')
-            ->json('DELETE', "/api/v1/posts/{$post->id}/thumbnail", [])
-            ->assertStatus(200);
-
-        $post->refresh();
-        $this->assertFalse($post->hasThumbnail());
-
-        Storage::delete($filename);
     }
 
     public function testPostDelete()
@@ -253,7 +225,6 @@ class PostTest extends TestCase
             'content' => 'Star Wars.',
             'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
-            'thumbnail' => UploadedFile::fake()->image('file.png')
         ], $overrides);
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Comment;
+use App\Media;
 use App\Observers\CommentObserver;
+use App\Observers\MediaObserver;
 use App\Observers\PostObserver;
 use App\Observers\UserObserver;
 use App\Post;
@@ -22,6 +24,7 @@ class ObserverServiceProvider extends ServiceProvider
         Post::observe(PostObserver::class);
         User::observe(UserObserver::class);
         Comment::observe(CommentObserver::class);
+        Media::observe(MediaObserver::class);
     }
 
     /**

@@ -2,40 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\Models\Media as BaseMedia;
 
-class Media extends Model
+class Media extends BaseMedia
 {
     /**
-     * The attributes that are mass assignable.
+     * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $fillable = [
-        'filename',
-        'original_filename',
-        'mime_type',
-        'mediable_id',
-        'mediable_type'
-    ];
-
-    /**
-     * Get the media's url.
-     *
-     * @return string
-     */
-    public function getUrlAttribute(): string
-    {
-        return route('media.show', ['medium' => $this->filename]);
-    }
-
-    /**
-     * Get the media's storage path.
-     *
-     * @return string
-     */
-    public function getPath(): string
-    {
-        return storage_path('app/') . $this->filename;
-    }
+    protected $dates = [
+      'posted_at'
+  ];
 }

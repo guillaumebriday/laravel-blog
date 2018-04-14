@@ -4,6 +4,7 @@
 /public/css
 /public/fonts
 /public/js
+public/media/
 /vendor
 /.idea
 /.vagrant
@@ -11,4 +12,5 @@
 .php_cs.cache
 /storage/debugbar
 /storage/tmp
+/storage/medialibrary
 /log

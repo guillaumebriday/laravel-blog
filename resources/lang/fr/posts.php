@@ -24,10 +24,12 @@ return [
     'author' => 'Auteur',
     'thumbnail' => 'Image à la une',
     'posted_at' => 'Posté le',
+    'thumbnail' => "L'image de couverture",
   ],
 
   'placeholder' => [
     'title' => 'Votre titre',
-    'content' => 'Votre contenu'
+    'content' => 'Votre contenu',
+    'thumbnail' => 'Choisissez une image à la une...'
   ]
 ];

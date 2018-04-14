@@ -6,6 +6,9 @@
 
 window.$ = window.jQuery = require('jquery');
 window.Popper = require('popper.js').default;
+import Clipboard from 'clipboard';
+
+new Clipboard('[data-clipboard-target]');
 
 require('bootstrap');
 

@@ -7,4 +7,5 @@ return [
     'posts' => 'Articles',
     'comments' => 'Commentaires',
     'users' => 'Utilisateurs',
+    'media' => 'Galerie',
 ];

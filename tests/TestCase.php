@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\MediaLibrary;
 use App\Role;
 use App\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -9,6 +10,17 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
+
+    /**
+     * Setup the test environment.
+     *
+     * @return void
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        MediaLibrary::firstOrCreate([]);
+    }
 
     /**
      * Return an admin user
