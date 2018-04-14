@@ -24,6 +24,9 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
         // Users
         Route::apiResource('users', 'UserController')->only('update');
+
+        // Media
+        Route::apiResource('media', 'MediaController')->only(['index', 'store', 'destroy']);
     });
 
     Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
