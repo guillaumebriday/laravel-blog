@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use App\Media;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use App\Media;
 
 class RouteServiceProvider extends ServiceProvider
 {

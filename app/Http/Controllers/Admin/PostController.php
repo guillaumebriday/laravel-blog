@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
+use App\MediaLibrary;
 use App\Post;
 use App\User;
-use App\MediaLibrary;
 use Illuminate\Http\Request;
 
 class PostController extends Controller

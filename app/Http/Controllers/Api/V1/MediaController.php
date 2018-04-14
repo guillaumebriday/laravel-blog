@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\MediaLibrary;
-use App\Media;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Media as MediaResource;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\MediaLibraryRequest;
+use App\Http\Resources\Media as MediaResource;
+use App\Media;
+use App\MediaLibrary;
+use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {

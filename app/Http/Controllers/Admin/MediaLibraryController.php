@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaLibraryRequest;
+use App\Media;
 use App\MediaLibrary;
 use Illuminate\Http\Request;
-use App\Media;
 
 class MediaLibraryController extends Controller
 {

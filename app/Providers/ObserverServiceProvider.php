@@ -3,13 +3,13 @@
 namespace App\Providers;
 
 use App\Comment;
+use App\Media;
 use App\Observers\CommentObserver;
+use App\Observers\MediaObserver;
 use App\Observers\PostObserver;
 use App\Observers\UserObserver;
-use App\Observers\MediaObserver;
 use App\Post;
 use App\User;
-use App\Media;
 use Illuminate\Support\ServiceProvider;
 
 class ObserverServiceProvider extends ServiceProvider
