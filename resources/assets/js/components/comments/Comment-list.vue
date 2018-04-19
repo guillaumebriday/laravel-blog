@@ -31,7 +31,7 @@ export default {
 
     if (window.Echo) {
       Echo.channel("post." + this.post_id)
-        .listen(".comment.posted", e => this.addComment(e.comment));
+        .listen(".comment.posted", e => Event.$emit("added", e.comment));
     }
 
     Event.$on("added", comment => {
