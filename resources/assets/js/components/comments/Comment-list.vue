@@ -62,7 +62,7 @@ export default {
     },
 
     removeComment({ id }) {
-      console.table('del', this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1))
+      this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1)
     }
   }
 }
