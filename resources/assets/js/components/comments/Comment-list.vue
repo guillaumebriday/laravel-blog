@@ -32,10 +32,17 @@ export default {
     if (window.Echo) {
       Echo.channel("post." + this.post_id)
         .listen(".comment.posted", e => Event.$emit("added", e.comment));
+
+      Echo.channel("post." + this.post_id)
+        .listen(".comment.removed", e => Event.$emit("removed", e.comment));
     }
 
     Event.$on("added", comment => {
       this.addComment(comment);
+    });
+
+    Event.$on("removed", comment => {
+      this.removeComment(comment);
     });
   },
 
@@ -55,7 +62,7 @@ export default {
     },
 
     removeComment({ id }) {
-      this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1)
+      console.table('del', this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1))
     }
   }
 }

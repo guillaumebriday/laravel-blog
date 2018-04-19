@@ -26,10 +26,14 @@
 
     mounted() {
       Event.$on("added", comment => this.addCommentEvent(comment));
+      Event.$on("removed", comment => this.removeCommentEvent(comment));
     },
     methods: {
       addCommentEvent(comment) {
         this.count++
+      },
+      removeCommentEvent(comment) {
+        this.count > 0 && this.count--;
       }
     }
   }

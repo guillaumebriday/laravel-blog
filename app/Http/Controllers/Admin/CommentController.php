@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Comment;
+use App\Events\CommentRemoved;
+use App\Http\Resources\Comment as CommentResource;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CommentsRequest;
 use App\User;
@@ -45,12 +47,14 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Comment  $comment
+     * @param  Comment $comment
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Comment $comment)
     {
         $comment->delete();
+        event(new CommentRemoved(new CommentResource($comment), $comment->post));
 
         return redirect()->route('admin.comments.index')->withSuccess(__('comments.deleted'));
     }
