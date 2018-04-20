@@ -4,6 +4,14 @@ php:
   - 7.1
   - 7.2
 
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
 services:
   - mysql
 
