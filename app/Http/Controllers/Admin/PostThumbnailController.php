@@ -15,8 +15,6 @@ class PostThumbnailController extends Controller
      */
     public function destroy(Post $post)
     {
-        $this->authorize('update', $post);
-
         $post->update(['thumbnail_id' => null]);
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
