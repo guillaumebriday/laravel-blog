@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Comment;
 use App\Events\CommentRemoved;
 use App\Http\Resources\Comment as CommentResource;
 use App\Http\Controllers\Controller;
