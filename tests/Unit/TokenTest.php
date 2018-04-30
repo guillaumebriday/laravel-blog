@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Token;
-use App\User;
+use App\Models\Token;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

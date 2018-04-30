@@ -1,9 +1,9 @@
 <?php
 
-use App\MediaLibrary;
-use App\Role;
-use App\Token;
-use App\User;
+use App\Models\MediaLibrary;
+use App\Models\Role;
+use App\Models\Token;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

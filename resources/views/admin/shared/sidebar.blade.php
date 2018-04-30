@@ -1,34 +1,34 @@
 <ul class="navbar-nav navbar-sidenav">
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.dashboard')">
-        <a class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+        <a class="nav-link {{ request()->route()->named('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
             <i class="fa fa-tachometer" aria-hidden="true"></i>&nbsp;
             <span class="nav-link-text">@lang('dashboard.dashboard')</span>
         </a>
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.posts')">
-        <a class="nav-link {{ Request::is('admin/posts') || Request::is('admin/posts/*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
+        <a class="nav-link {{ request()->route()->named('admin.posts.*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
             <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;
             <span class="nav-link-text">@lang('dashboard.posts')</span>
         </a>
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.comments')">
-        <a class="nav-link {{ Request::is('admin/comments') || Request::is('admin/comments/*') ? 'active' : '' }}" href="{{ route('admin.comments.index') }}">
+        <a class="nav-link {{ request()->route()->named('admin.comments.*') ? 'active' : '' }}" href="{{ route('admin.comments.index') }}">
             <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;
             <span class="nav-link-text">@lang('dashboard.comments')</span>
         </a>
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.users')">
-        <a class="nav-link {{ Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+        <a class="nav-link {{ request()->route()->named('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
             <i class="fa fa-users" aria-hidden="true"></i>&nbsp;
             <span class="nav-link-text">@lang('dashboard.users')</span>
         </a>
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.media')">
-        <a class="nav-link {{ Request::is('admin/media') || Request::is('admin/media/*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
+        <a class="nav-link {{ request()->route()->named('admin.media.*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
             <i class="fa fa-file" aria-hidden="true"></i>&nbsp;
             <span class="nav-link-text">@lang('dashboard.media')</span>
         </a>

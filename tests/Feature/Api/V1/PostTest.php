@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\V1;
 
-use App\Comment;
-use App\Post;
-use App\User;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -90,7 +90,7 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/users/314/posts')
             ->assertStatus(404)
             ->assertJson([
-                'message' => 'No query results for model [App\\User].'
+                'message' => 'No query results for model [App\\Models\\User].'
             ]);
     }
 
@@ -133,7 +133,7 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/posts/31415')
             ->assertStatus(404)
             ->assertJson([
-                'message' => 'No query results for model [App\\Post].'
+                'message' => 'No query results for model [App\\Models\\Post].'
             ]);
     }
 

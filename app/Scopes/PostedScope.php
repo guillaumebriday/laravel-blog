@@ -11,11 +11,8 @@ class PostedScope implements Scope
 {
     /**
      * Apply the scope to a given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @return void
      */
-    public function apply(Builder $builder, Model $model)
+    public function apply(Builder $builder, Model $model): void
     {
         $user = Auth::user() ?? Auth::guard('api')->user();
 

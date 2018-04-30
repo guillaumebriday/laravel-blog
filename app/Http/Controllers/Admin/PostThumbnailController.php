@@ -3,20 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Post;
+use App\Models\Post;
+use Illuminate\Http\Response;
 
 class PostThumbnailController extends Controller
 {
     /**
      * Unset the post's thumbnail.
-     *
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): Response
     {
-        $this->authorize('update', $post);
-
         $post->update(['thumbnail_id' => null]);
 
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));

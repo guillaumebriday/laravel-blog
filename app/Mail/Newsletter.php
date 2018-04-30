@@ -15,8 +15,6 @@ class Newsletter extends Mailable
 
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
     public function __construct($posts, $email)
     {
@@ -26,10 +24,8 @@ class Newsletter extends Mailable
 
     /**
      * Build the message.
-     *
-     * @return $this
      */
-    public function build()
+    public function build(): Newsletter
     {
         return $this->from('hello@app.com', config('app.name', 'Laravel'))
                     ->subject(__('newsletter.email.subject'))

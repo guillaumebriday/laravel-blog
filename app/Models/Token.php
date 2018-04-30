@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,8 +8,6 @@ class Token extends Model
 {
     /**
      * Return a unique personnal access token.
-     *
-     * @var String
      */
     public static function generate(): string
     {

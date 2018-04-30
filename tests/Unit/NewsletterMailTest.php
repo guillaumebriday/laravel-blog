@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Mail\Newsletter;
-use App\Post;
+use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;

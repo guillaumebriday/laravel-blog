@@ -10,10 +10,8 @@ class BladeServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Blade::if('admin', function () {
             return Auth::check() && Auth::user()->isAdmin();
@@ -22,15 +20,5 @@ class BladeServiceProvider extends ServiceProvider
         Blade::if('profile', function ($user) {
             return Auth::check() && Auth::user()->id == $user->id;
         });
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }

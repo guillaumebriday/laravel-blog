@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Comment;
+use App\Models\Comment;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -21,10 +21,6 @@ class UserPolicy
 
     /**
      * Determine whether the user can update the user.
-     *
-     * @param  \App\User  $user
-     * @param  \App\User  $user
-     * @return boolean
      */
     public function update(User $current_user, User $user): bool
     {
@@ -33,10 +29,6 @@ class UserPolicy
 
     /**
      * Determine whether the user can generate a personnal access token.
-     *
-     * @param  \App\User $current_user
-     * @param  \App\User $user
-     * @return bool
      */
     public function api_token(User $current_user, User $user): bool
     {

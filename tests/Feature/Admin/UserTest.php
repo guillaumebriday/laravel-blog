@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Post;
+use App\Models\Post;
 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -22,13 +22,13 @@ class UserTest extends TestCase
         $this->actingAsAdmin()
             ->get('/admin/users')
             ->assertStatus(200)
-            ->assertSee('5 utilisateurs')
+            ->assertSee('5 users')
             ->assertSee('3')
             ->assertSee('anakin@skywalker.st')
             ->assertSee('Anakin')
-            ->assertSee('Nom')
+            ->assertSee('Name')
             ->assertSee('Email')
-            ->assertSee('Enregistré le');
+            ->assertSee('Registered at');
     }
 
     public function testEdit()
@@ -39,12 +39,12 @@ class UserTest extends TestCase
             ->get("/admin/users/{$anakin->id}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
-            ->assertSee('Voir le profil')
+            ->assertSee('Show profile')
             ->assertSee('anakin@skywalker.st')
-            ->assertSee('Confirmation du mot de passe')
-            ->assertSee('R&ocirc;les')
-            ->assertSee('Mettre à jour')
-            ->assertSee('Administrateur');
+            ->assertSee('Password confirmation')
+            ->assertSee('Roles')
+            ->assertSee('Update')
+            ->assertSee('Administrator');
     }
 
     public function testUpdate()
@@ -56,9 +56,8 @@ class UserTest extends TestCase
             ->patch("/admin/users/{$user->id}", $params)
             ->assertRedirect("/admin/users/{$user->id}/edit");
 
-        $user->refresh();
         $this->assertDatabaseHas('users', $params);
-        $this->assertEquals($params['email'], $user->email);
+        $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
     public function testUpdateRoles()
@@ -72,8 +71,7 @@ class UserTest extends TestCase
             ->patch("/admin/users/{$user->id}", $params)
             ->assertRedirect("/admin/users/{$user->id}/edit");
 
-        $user->refresh();
-        $this->assertTrue($user->roles->pluck('id')->contains($role_editor->id));
+        $this->assertTrue($user->refresh()->roles->pluck('id')->contains($role_editor->id));
     }
 
     /**

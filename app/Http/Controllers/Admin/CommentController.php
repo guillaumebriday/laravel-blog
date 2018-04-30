@@ -7,16 +7,17 @@ use App\Events\CommentRemoved;
 use App\Http\Resources\Comment as CommentResource;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CommentsRequest;
-use App\User;
+use App\Models\Comment;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class CommentController extends Controller
 {
     /**
      * Show the application comments index.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.comments.index', [
             'comments' => Comment::with('post', 'author')->latest()->paginate(50)
@@ -26,7 +27,7 @@ class CommentController extends Controller
     /**
      * Display the specified resource edit form.
      */
-    public function edit(Comment $comment)
+    public function edit(Comment $comment): View
     {
         return view('admin.comments.edit', [
             'comment' => $comment,
@@ -37,7 +38,7 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CommentsRequest $request, Comment $comment)
+    public function update(CommentsRequest $request, Comment $comment): RedirectResponse
     {
         $comment->update($request->validated());
 
@@ -46,12 +47,8 @@ class CommentController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Comment $comment
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment): RedirectResponse
     {
         $comment->delete();
         event(new CommentRemoved(new CommentResource($comment), $comment->post));

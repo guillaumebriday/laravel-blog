@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\User;
 use App\Rules\CanBeAuthor;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,10 +21,8 @@ class PostsRequest extends FormRequest
 
     /**
      * Prepare the data for validation.
-     *
-     * @return void
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
             'slug' => str_slug($this->input('title'))
@@ -37,10 +35,8 @@ class PostsRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => 'required',

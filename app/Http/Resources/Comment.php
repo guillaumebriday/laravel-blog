@@ -9,16 +9,13 @@ class Comment extends Resource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request
-     * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
-        // We need to create an App\Comment because the registred policy in
-        // AuthServiceProvider is App\Comment and not App\Http\Resources\Comment.
+        // We need to create an App\Models\Comment because the registred policy in
+        // AuthServiceProvider is App\Models\Comment and not App\Http\Resources\Comment.
         // I didn't find another way to make this cleaner.
-        $comment = new \App\Comment($this->getAttributes());
+        $comment = new \App\Models\Comment($this->getAttributes());
         $user = Auth::guard('api')->user();
 
         return [

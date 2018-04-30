@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Comment;
 use App\Http\Controllers\Controller;
-use App\Post;
-use App\User;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\View\View;
 
 class ShowDashboard extends Controller
 {
     /**
      * Show the application admin dashboard.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function __invoke(): View
     {
         return view('admin.dashboard.index', [
             'comments' =>  Comment::lastWeek()->get(),

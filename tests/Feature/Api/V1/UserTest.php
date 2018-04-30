@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Api\V1;
 
-use App\Comment;
-use App\Post;
-use App\Role;
-use App\User;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

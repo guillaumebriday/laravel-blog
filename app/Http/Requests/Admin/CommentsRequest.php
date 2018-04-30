@@ -19,10 +19,8 @@ class CommentsRequest extends FormRequest
 
     /**
      * Prepare the data for validation.
-     *
-     * @return void
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
             'posted_at' => Carbon::parse($this->input('posted_at'))
@@ -31,10 +29,8 @@ class CommentsRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'content' => 'required',

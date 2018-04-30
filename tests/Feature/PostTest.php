@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Comment;
+use App\Models\Comment;
 
-use App\Post;
-use App\User;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -23,8 +23,7 @@ class PostTest extends TestCase
 
         $this->get('/')
             ->assertStatus(200)
-            ->assertSee('Les derniers articles')
-            ->assertSee(e($post->content))
+            ->assertSee('Latest posts')
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('3')
@@ -38,8 +37,7 @@ class PostTest extends TestCase
 
         $this->get('/?q=Hello')
             ->assertStatus(200)
-            ->assertSee('1 article trouvé')
-            ->assertSee(e($post->content))
+            ->assertSee('1 post found')
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at));
     }
@@ -56,8 +54,8 @@ class PostTest extends TestCase
             ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
-            ->assertSee('3 commentaires')
-            ->assertSee('Commenter');
+            ->assertSee('3 comments')
+            ->assertSee('Comment');
     }
 
     public function testShowUnauthenticated()
@@ -66,6 +64,6 @@ class PostTest extends TestCase
 
         $this->get("/posts/{$post->slug}")
             ->assertStatus(200)
-            ->assertSee('Vous devez vous connecter pour commenter.');
+            ->assertSee('You must be signed in to comment.');
     }
 }

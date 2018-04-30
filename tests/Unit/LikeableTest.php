@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Like;
-use App\Post;
+use App\Models\Like;
+use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

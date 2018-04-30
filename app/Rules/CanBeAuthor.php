@@ -2,17 +2,13 @@
 
 namespace App\Rules;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
 class CanBeAuthor implements Rule
 {
     /**
      * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value)
     {
@@ -22,10 +18,8 @@ class CanBeAuthor implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
-    public function message()
+    public function message(): string
     {
         return trans('validation.can_be_author');
     }

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Comment;
+use App\Models\Comment;
 
-use App\Post;
-use App\User;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -21,11 +21,11 @@ class CommentTest extends TestCase
         $this->actingAsAdmin()
             ->get('/admin/comments')
             ->assertStatus(200)
-            ->assertSee('1 commentaire')
+            ->assertSee('1 comment')
             ->assertSee('Anakin')
-            ->assertSee('Contenu')
-            ->assertSee('Auteur')
-            ->assertSee('Posté le')
+            ->assertSee('Content')
+            ->assertSee('Author')
+            ->assertSee('Posted at')
             ->assertSee(e(str_limit($comment->content, 50)));
     }
 
@@ -38,14 +38,14 @@ class CommentTest extends TestCase
             ->get("/admin/comments/{$comment->id}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
-            ->assertSee("Voir l'article :")
+            ->assertSee('Show post :')
             ->assertSee(route('posts.show', $comment->post))
-            ->assertSee('Contenu')
+            ->assertSee('Content')
             ->assertSee(e($comment->content))
-            ->assertSee('Post&eacute; le')
+            ->assertSee('Posted at')
             ->assertSee(humanize_date($comment->posted_at, 'Y-m-d\TH:i'))
-            ->assertSee('Mettre à jour')
-            ->assertSee('Supprimer');
+            ->assertSee('Update')
+            ->assertSee('Delete');
     }
 
     public function testUpdate()
@@ -61,9 +61,8 @@ class CommentTest extends TestCase
             ->patch("/admin/comments/{$comment->id}", $params)
             ->assertRedirect("/admin/comments/{$comment->id}/edit");
 
-        $comment->refresh();
         $this->assertDatabaseHas('comments', $params);
-        $this->assertEquals($params['content'], $comment->content);
+        $this->assertEquals($params['content'], $comment->refresh()->content);
     }
 
     public function testUpdateFail()
@@ -80,7 +79,6 @@ class CommentTest extends TestCase
             ->assertStatus(302)
             ->assertSessionHas('errors');
 
-        $comment->refresh();
         $this->assertDatabaseMissing('comments', $params);
     }
 
