@@ -59,9 +59,8 @@ class UserTest extends TestCase
             ->patch('/settings/account', $params)
             ->assertRedirect('/settings/account');
 
-        $user->refresh();
         $this->assertDatabaseHas('users', $params);
-        $this->assertEquals($params['email'], $user->email);
+        $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
     public function testUpdatePassword()
@@ -74,8 +73,7 @@ class UserTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('/settings/password');
 
-        $user->refresh();
-        $this->assertTrue(Hash::check($params['password'], $user->password));
+        $this->assertTrue(Hash::check($params['password'], $user->refresh()->password));
     }
 
     public function testUpdatePasswordFail()
@@ -87,8 +85,7 @@ class UserTest extends TestCase
             ->patch('/settings/password', $params)
             ->assertStatus(302);
 
-        $user->refresh();
-        $this->assertFalse(Hash::check($params['password'], $user->password));
+        $this->assertFalse(Hash::check($params['password'], $user->refresh()->password));
     }
 
     /**

@@ -56,9 +56,8 @@ class UserTest extends TestCase
             ->patch("/admin/users/{$user->id}", $params)
             ->assertRedirect("/admin/users/{$user->id}/edit");
 
-        $user->refresh();
         $this->assertDatabaseHas('users', $params);
-        $this->assertEquals($params['email'], $user->email);
+        $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
     public function testUpdateRoles()
@@ -72,8 +71,7 @@ class UserTest extends TestCase
             ->patch("/admin/users/{$user->id}", $params)
             ->assertRedirect("/admin/users/{$user->id}/edit");
 
-        $user->refresh();
-        $this->assertTrue($user->roles->pluck('id')->contains($role_editor->id));
+        $this->assertTrue($user->refresh()->roles->pluck('id')->contains($role_editor->id));
     }
 
     /**

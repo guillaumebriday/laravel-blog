@@ -61,9 +61,8 @@ class CommentTest extends TestCase
             ->patch("/admin/comments/{$comment->id}", $params)
             ->assertRedirect("/admin/comments/{$comment->id}/edit");
 
-        $comment->refresh();
         $this->assertDatabaseHas('comments', $params);
-        $this->assertEquals($params['content'], $comment->content);
+        $this->assertEquals($params['content'], $comment->refresh()->content);
     }
 
     public function testUpdateFail()
@@ -80,7 +79,6 @@ class CommentTest extends TestCase
             ->assertStatus(302)
             ->assertSessionHas('errors');
 
-        $comment->refresh();
         $this->assertDatabaseMissing('comments', $params);
     }
 

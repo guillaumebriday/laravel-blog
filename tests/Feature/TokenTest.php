@@ -18,7 +18,6 @@ class TokenTest extends TestCase
             ->patch('/settings/token', [])
             ->assertRedirect('/settings/token');
 
-        $user->refresh();
-        $this->assertNotNull($user->api_token);
+        $this->assertNotNull($user->refresh()->api_token);
     }
 }
