@@ -22,6 +22,6 @@ class CheckRoleMiddlewareTest extends TestCase
             ->get('/admin/dashboard')
             ->assertRedirect('/');
 
-        $this->assertEquals(session('errors')->first(), "Cette opération n'est pas autorisée.");
+        $this->assertEquals(session('errors')->first(), "Not authorized.");
     }
 }

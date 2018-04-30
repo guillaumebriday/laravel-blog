@@ -22,11 +22,11 @@ class PostTest extends TestCase
         $this->actingAsAdmin()
             ->get("/admin/posts")
             ->assertStatus(200)
-            ->assertSee('4 articles')
+            ->assertSee('4 posts')
             ->assertSee('Anakin')
-            ->assertSee('Auteur')
-            ->assertSee('Posté le')
-            ->assertSee('Titre');
+            ->assertSee('Author')
+            ->assertSee('Posted at')
+            ->assertSee('Title');
     }
 
     public function testCreate()
@@ -34,12 +34,12 @@ class PostTest extends TestCase
         $this->actingAsAdmin()
             ->get('/admin/posts/create')
             ->assertStatus(200)
-            ->assertSee('Ajouter un article')
-            ->assertSee('Titre')
-            ->assertSee('Auteur')
-            ->assertSee('Post&eacute; le')
-            ->assertSee('Contenu')
-            ->assertSee('Sauvegarder');
+            ->assertSee('Create post')
+            ->assertSee('Title')
+            ->assertSee('Author')
+            ->assertSee('Posted at')
+            ->assertSee('Content')
+            ->assertSee('Save');
     }
 
     public function testStore()
@@ -76,12 +76,12 @@ class PostTest extends TestCase
             ->get("/admin/posts/{$post->slug}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
-            ->assertSee("Voir l'article")
+            ->assertSee('Show post')
             ->assertSee(e($post->title))
             ->assertSee(e($post->content))
             ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
-            ->assertSee('Mettre à jour')
-            ->assertSee('Post&eacute; le');
+            ->assertSee('Update')
+            ->assertSee('Posted at');
     }
 
     public function testUpdate()

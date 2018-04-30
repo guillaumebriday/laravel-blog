@@ -22,13 +22,13 @@ class UserTest extends TestCase
         $this->actingAsAdmin()
             ->get('/admin/users')
             ->assertStatus(200)
-            ->assertSee('5 utilisateurs')
+            ->assertSee('5 users')
             ->assertSee('3')
             ->assertSee('anakin@skywalker.st')
             ->assertSee('Anakin')
-            ->assertSee('Nom')
+            ->assertSee('Name')
             ->assertSee('Email')
-            ->assertSee('Enregistré le');
+            ->assertSee('Registered at');
     }
 
     public function testEdit()
@@ -39,12 +39,12 @@ class UserTest extends TestCase
             ->get("/admin/users/{$anakin->id}/edit")
             ->assertStatus(200)
             ->assertSee('Anakin')
-            ->assertSee('Voir le profil')
+            ->assertSee('Show profile')
             ->assertSee('anakin@skywalker.st')
-            ->assertSee('Confirmation du mot de passe')
-            ->assertSee('R&ocirc;les')
-            ->assertSee('Mettre à jour')
-            ->assertSee('Administrateur');
+            ->assertSee('Password confirmation')
+            ->assertSee('Roles')
+            ->assertSee('Update')
+            ->assertSee('Administrator');
     }
 
     public function testUpdate()

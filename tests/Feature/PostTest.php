@@ -23,7 +23,7 @@ class PostTest extends TestCase
 
         $this->get('/')
             ->assertStatus(200)
-            ->assertSee('Les derniers articles')
+            ->assertSee('Latest posts')
             ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
@@ -38,7 +38,7 @@ class PostTest extends TestCase
 
         $this->get('/?q=Hello')
             ->assertStatus(200)
-            ->assertSee('1 article trouvé')
+            ->assertSee('1 post found')
             ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at));
@@ -56,8 +56,8 @@ class PostTest extends TestCase
             ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
-            ->assertSee('3 commentaires')
-            ->assertSee('Commenter');
+            ->assertSee('3 comments')
+            ->assertSee('Comment');
     }
 
     public function testShowUnauthenticated()
@@ -66,6 +66,6 @@ class PostTest extends TestCase
 
         $this->get("/posts/{$post->slug}")
             ->assertStatus(200)
-            ->assertSee('Vous devez vous connecter pour commenter.');
+            ->assertSee('You must be signed in to comment.');
     }
 }

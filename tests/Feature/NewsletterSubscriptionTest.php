@@ -18,7 +18,7 @@ class NewsletterSubscriptionTest extends TestCase
         $this->actingAsUser()
             ->post('/newsletter-subscriptions', $params)
             ->assertStatus(302)
-            ->assertSessionHas('success', 'Email ajouté à la newsletter avec succès');
+            ->assertSessionHas('success', 'Email added to the newsletter successfully');
 
         $this->assertDatabaseHas('newsletter_subscriptions', $params);
     }
@@ -33,7 +33,7 @@ class NewsletterSubscriptionTest extends TestCase
             ->assertStatus(302)
             ->assertSessionHas('errors');
 
-        $this->assertEquals(session('errors')->first(), 'La valeur du champ Adresse e-mail est déjà utilisée.');
+        $this->assertEquals(session('errors')->first(), 'The Email has already been taken.');
     }
 
     public function testUnsubscribe()
@@ -44,7 +44,7 @@ class NewsletterSubscriptionTest extends TestCase
         $this->actingAsUser()
             ->get("newsletter-subscriptions/unsubscribe?email={$newsletter->email}")
             ->assertStatus(200)
-            ->assertSessionHas('success', 'La demande de désabonnement a bien été prise en compte.');
+            ->assertSessionHas('success', 'The request for unsubscription has been taken into account.');
 
         $this->assertDatabaseMissing('newsletter_subscriptions', $newsletter->toArray());
     }
@@ -58,7 +58,7 @@ class NewsletterSubscriptionTest extends TestCase
             ->assertRedirect('/')
             ->assertSessionHas('errors');
 
-        $this->assertEquals(session('errors')->first(), 'Le champ Adresse e-mail sélectionné est invalide.');
+        $this->assertEquals(session('errors')->first(), 'The selected Email is invalid.');
     }
 
     /**
