@@ -24,7 +24,6 @@ class PostTest extends TestCase
         $this->get('/')
             ->assertStatus(200)
             ->assertSee('Latest posts')
-            ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('3')
@@ -39,7 +38,6 @@ class PostTest extends TestCase
         $this->get('/?q=Hello')
             ->assertStatus(200)
             ->assertSee('1 post found')
-            ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at));
     }
