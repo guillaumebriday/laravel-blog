@@ -12,9 +12,6 @@ class AuthenticateController extends Controller
 {
     /**
      * Return the user's access token.
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
      */
     public function authenticate(Request $request)
     {

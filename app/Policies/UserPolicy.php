@@ -21,10 +21,6 @@ class UserPolicy
 
     /**
      * Determine whether the user can update the user.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $user
-     * @return boolean
      */
     public function update(User $current_user, User $user): bool
     {
@@ -33,10 +29,6 @@ class UserPolicy
 
     /**
      * Determine whether the user can generate a personnal access token.
-     *
-     * @param  \App\Models\User $current_user
-     * @param  \App\Models\User $user
-     * @return bool
      */
     public function api_token(User $current_user, User $user): bool
     {

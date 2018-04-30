@@ -7,17 +7,16 @@ use App\Http\Requests\Admin\MediaLibraryRequest;
 use App\Http\Resources\Media as MediaResource;
 use App\Models\Media;
 use App\Models\MediaLibrary;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class MediaController extends Controller
 {
     /**
      * Return the comments.
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): ResourceCollection
     {
         return MediaResource::collection(
             MediaLibrary::first()->media()->paginate($request->input('limit', 20))
@@ -26,11 +25,8 @@ class MediaController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  MediaLibraryRequest $request
-     * @return Response
      */
-    public function store(MediaLibraryRequest $request)
+    public function store(MediaLibraryRequest $request): MediaResource
     {
         $this->authorize('store', Media::class);
 
@@ -51,11 +47,8 @@ class MediaController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Media $medium
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $medium)
+    public function destroy(Media $medium): JsonResponse
     {
         $this->authorize('delete', $medium);
 

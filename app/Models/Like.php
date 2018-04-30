@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Like extends Model
 {
@@ -19,20 +21,16 @@ class Like extends Model
 
     /**
      * Get all of the owning likeable models.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function likeable()
+    public function likeable(): MorphTo
     {
         return $this->morphTo();
     }
 
     /**
      * Return the like's author
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }

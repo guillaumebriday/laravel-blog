@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPasswordsRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class UserPasswordController extends Controller
 {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(): View
     {
         $user = auth()->user();
 
@@ -21,12 +23,8 @@ class UserPasswordController extends Controller
 
     /**
      * Generate a personnal access token for the specified resource in storage.
-     *
-     * @param  UserPasswordsRequest $request
-     * @param  User $user
-     * @return \Illuminate\Http\Response
      */
-    public function update(UserPasswordsRequest $request)
+    public function update(UserPasswordsRequest $request): RedirectResponse
     {
         $user = auth()->user();
 

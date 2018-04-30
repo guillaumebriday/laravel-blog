@@ -30,8 +30,6 @@ class CommentPosted implements ShouldBroadcast
 
     /**
      * Create a new event instance.
-     *
-     * @return void
      */
     public function __construct(CommentResource $comment, Post $post)
     {
@@ -41,20 +39,16 @@ class CommentPosted implements ShouldBroadcast
 
     /**
      * Get the channels the event should broadcast on.
-     *
-     * @return array|Channel
      */
-    public function broadcastOn()
+    public function broadcastOn(): Channel
     {
         return new Channel('post.' . $this->post->id);
     }
 
     /**
      * The event's broadcast name.
-     *
-     * @return string
      */
-    public function broadcastAs()
+    public function broadcastAs(): string
     {
         return 'comment.posted';
     }

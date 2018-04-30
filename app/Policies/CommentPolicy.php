@@ -22,10 +22,6 @@ class CommentPolicy
 
     /**
      * Determine whether the user can delete the comment.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Comment  $comment
-     * @return boolean
      */
     public function delete(User $user, Comment $comment): bool
     {

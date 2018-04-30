@@ -18,10 +18,8 @@ class NewsletterSubscriptionRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'email' => 'required|email|unique:newsletter_subscriptions',

@@ -6,7 +6,7 @@
       <h1>@lang('users.profile')</h1>
       <hr class="my-4">
 
-      {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user]]) !!}
+      {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update']]) !!}
 
         <div class="form-group row">
           {!! Form::label('name', __('users.attributes.name'), ['class' => 'col-sm-2 col-form-label']) !!}

@@ -9,11 +9,8 @@ class Comment extends Resource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request
-     * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         // We need to create an App\Models\Comment because the registred policy in
         // AuthServiceProvider is App\Models\Comment and not App\Http\Resources\Comment.

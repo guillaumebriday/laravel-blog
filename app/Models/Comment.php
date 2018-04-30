@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Concern\Likeable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
@@ -32,11 +34,8 @@ class Comment extends Model
 
     /**
      * Scope a query to only include comments posted last week.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLastWeek($query)
+    public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('posted_at', [now()->subWeek(), now()])
                      ->latest();
@@ -44,31 +43,24 @@ class Comment extends Model
 
     /**
      * Scope a query to order comments by latest posted.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLatest($query)
+    public function scopeLatest(Builder $query): Builder
     {
         return $query->orderBy('posted_at', 'desc');
     }
 
     /**
      * Return the comment's author
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
      * Return the comment's post
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post()
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
     }

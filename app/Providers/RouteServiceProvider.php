@@ -19,10 +19,8 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         parent::boot();
 
@@ -31,10 +29,8 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define the routes for the application.
-     *
-     * @return void
      */
-    public function map()
+    public function map(): void
     {
         $this->mapApiRoutes();
 
@@ -49,10 +45,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapWebRoutes(): void
     {
         Route::middleware('web')
              ->namespace($this->namespace)
@@ -63,10 +57,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "api" routes for the application.
      *
      * These routes are typically stateless.
-     *
-     * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiRoutes(): void
     {
         Route::prefix('api')
              ->middleware('api')
@@ -78,10 +70,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "admin" routes for the application.
      *
      * These routes are typically stateless.
-     *
-     * @return void
      */
-    protected function mapAdminRoutes()
+    protected function mapAdminRoutes(): void
     {
         Route::prefix('admin')
              ->middleware(['web', 'auth', 'role:admin'])
@@ -94,10 +84,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "auth" routes for the application.
      *
      * These routes are typically stateless.
-     *
-     * @return void
      */
-    protected function mapAuthRoutes()
+    protected function mapAuthRoutes(): void
     {
         Route::middleware('web')
              ->namespace($this->namespace)

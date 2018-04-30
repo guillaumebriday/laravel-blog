@@ -7,15 +7,14 @@ use App\Http\Requests\UsersRequest;
 use App\Http\Resources\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UserController extends Controller
 {
     /**
      * Return the users.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): ResourceCollection
     {
         return UserResource::collection(
             User::withCount(['comments', 'posts'])->with('roles')->latest()->paginate($request->input('limit', 20))
@@ -24,11 +23,8 @@ class UserController extends Controller
 
     /**
      * Return the specified resource.
-     *
-     * @param  User $user
-     * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user): UserResource
     {
         return new UserResource($user);
     }
@@ -36,7 +32,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UsersRequest $request, User $user)
+    public function update(UsersRequest $request, User $user): UserResource
     {
         $this->authorize('update', $user);
 

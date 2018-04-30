@@ -4,7 +4,10 @@ namespace App\Models;
 
 use App\Concern\Likeable;
 use App\Scopes\PostedScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
@@ -35,10 +38,8 @@ class Post extends Model
 
     /**
      * The "booting" method of the model.
-     *
-     * @return void
      */
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
         static::addGlobalScope(new PostedScope);
@@ -46,8 +47,6 @@ class Post extends Model
 
     /**
      * Get the route key for the model.
-     *
-     * @return string
      */
     public function getRouteKeyName(): string
     {
@@ -60,11 +59,8 @@ class Post extends Model
 
     /**
      * Scope a query to search posts
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearch($query, $search)
+    public function scopeSearch(Builder $query, ?string $search)
     {
         if ($search) {
             return $query->where('title', 'LIKE', "%{$search}%");
@@ -73,22 +69,16 @@ class Post extends Model
 
     /**
      * Scope a query to order posts by latest posted
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLatest($query)
+    public function scopeLatest(Builder $query): Builder
     {
         return $query->orderBy('posted_at', 'desc');
     }
 
     /**
      * Scope a query to only include posts posted last month.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLastMonth($query, $limit = 5)
+    public function scopeLastMonth(Builder $query, int $limit = 5): Builder
     {
         return $query->whereBetween('posted_at', [now()->subMonth(), now()])
                      ->latest()
@@ -97,11 +87,8 @@ class Post extends Model
 
     /**
      * Scope a query to only include posts posted last week.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLastWeek($query)
+    public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('posted_at', [now()->subWeek(), now()])
                      ->latest();
@@ -109,49 +96,38 @@ class Post extends Model
 
     /**
      * Return the post's author
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
      * Return the post's thumbnail
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function thumbnail()
+    public function thumbnail(): BelongsTo
     {
         return $this->belongsTo(Media::class);
     }
 
     /**
      * Return the post's comments
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
     /**
      * return the excerpt of the post content
-     *
-     * @param  $length
-     * @return string
      */
-    public function excerpt($length = 50): string
+    public function excerpt(int $length = 50): string
     {
         return str_limit($this->content, $length);
     }
 
     /**
      * return true if the post has a thumbnail
-     *
-     * @return bool
      */
     public function hasThumbnail(): bool
     {

@@ -8,11 +8,8 @@ class MediaObserver
 {
     /**
      * Listen to the Media creating event.
-     *
-     * @param  Media $medium
-     * @return void
      */
-    public function creating(Media $medium)
+    public function creating(Media $medium): void
     {
         $medium->posted_at = now();
     }

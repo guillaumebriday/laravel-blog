@@ -8,8 +8,6 @@ class Token extends Model
 {
     /**
      * Return a unique personnal access token.
-     *
-     * @var String
      */
     public static function generate(): string
     {

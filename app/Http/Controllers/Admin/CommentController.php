@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CommentsRequest;
 use App\Models\Comment;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class CommentController extends Controller
 {
     /**
      * Show the application comments index.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.comments.index', [
             'comments' => Comment::with('post', 'author')->latest()->paginate(50)
@@ -24,7 +24,7 @@ class CommentController extends Controller
     /**
      * Display the specified resource edit form.
      */
-    public function edit(Comment $comment)
+    public function edit(Comment $comment): View
     {
         return view('admin.comments.edit', [
             'comment' => $comment,
@@ -35,7 +35,7 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CommentsRequest $request, Comment $comment)
+    public function update(CommentsRequest $request, Comment $comment): RedirectResponse
     {
         $comment->update($request->validated());
 
@@ -44,11 +44,8 @@ class CommentController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Comment  $comment
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Comment $comment): RedirectResponse
     {
         $comment->delete();
 

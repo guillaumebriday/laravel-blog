@@ -22,9 +22,6 @@ class MediaPolicy
 
     /**
      * Determine whether the user can store a medium.
-     *
-     * @param  User $user
-     * @return bool
      */
     public function store(User $user): bool
     {
@@ -33,12 +30,8 @@ class MediaPolicy
 
     /**
      * Determine whether the user can delete the medium.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Media  $medium
-     * @return mixed
      */
-    public function delete(User $user, Media $medium)
+    public function delete(User $user, Media $medium): bool
     {
         return $user->isAdmin();
     }

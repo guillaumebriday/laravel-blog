@@ -3,15 +3,14 @@
 namespace App\Concern;
 
 use App\Models\Like;
+use Illuminate\Database\Eloquent\Relations\morphMany;
 
 trait Likeable
 {
     /**
      * The "booting" method of the trait.
-     *
-     * @return void
      */
-    protected static function bootLikeable()
+    protected static function bootLikeable(): void
     {
         static::deleting(function ($resource) {
             $resource->likes->each->delete();
@@ -21,7 +20,7 @@ trait Likeable
     /**
      * Get all of the resource's likes.
      */
-    public function likes()
+    public function likes(): morphMany
     {
         return $this->morphMany(Like::class, 'likeable');
     }

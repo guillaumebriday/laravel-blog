@@ -6,17 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MediaLibraryRequest;
 use App\Models\Media;
 use App\Models\MediaLibrary;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class MediaLibraryController extends Controller
 {
     /**
      * Return the media library.
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('admin.media.index', [
             'media' => MediaLibrary::first()->media()->get()
@@ -25,33 +25,24 @@ class MediaLibraryController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  Media $medium
-     * @return \Illuminate\Http\Response
      */
-    public function show(Media $medium)
+    public function show(Media $medium): Response
     {
         return $medium;
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @param  Request $request
-     * @return Response
      */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         return view('admin.media.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  MediaLibraryRequest $request
-     * @return Response
      */
-    public function store(MediaLibraryRequest $request)
+    public function store(MediaLibraryRequest $request): RedirectResponse
     {
         $image = $request->file('image');
         $name = $image->getClientOriginalName();
@@ -70,11 +61,8 @@ class MediaLibraryController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Media $medium
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $medium)
+    public function destroy(Media $medium): RedirectResponse
     {
         $medium->delete();
 

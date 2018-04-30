@@ -4,16 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Http\Response;
 
 class PostThumbnailController extends Controller
 {
     /**
      * Unset the post's thumbnail.
-     *
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): Response
     {
         $post->update(['thumbnail_id' => null]);
 
