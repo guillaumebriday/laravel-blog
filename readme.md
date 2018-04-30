@@ -63,14 +63,9 @@ Now you can access the application via [http://localhost:8000](http://localhost:
 **There is no need to run ```php artisan serve```. PHP is already running in a dedicated container.**
 
 ## Before starting
-You need to run the migrations :
+You need to run the migrations with the seeds :
 ```
-$ docker-compose run --rm blog-server php artisan migrate
-```
-
-Seed the database :
-```
-$ docker-compose run --rm blog-server php artisan db:seed
+$ docker-compose run --rm blog-server php artisan migrate --seed
 ```
 
 This will create a new user that you can use to sign in :
@@ -85,6 +80,11 @@ $ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
 ```
 
 ## Useful commands
+Seeding the database :
+```
+$ docker-compose run --rm blog-server php artisan db:seed
+```
+
 Running tests :
 ```
 $ docker-compose run --rm blog-server ./vendor/bin/phpunit
@@ -114,6 +114,11 @@ $ docker-compose run blog-server php artisan tinker
 Discover package
 ```
 $ docker-compose run --rm --no-deps blog-server php artisan package:discover
+```
+
+In development environnement, rebuild the database :
+```
+$ docker-compose run --rm blog-server php artisan migrate:fresh --seed
 ```
 
 ## Accessing the API
