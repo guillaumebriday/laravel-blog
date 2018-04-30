@@ -8,11 +8,8 @@ class PostObserver
 {
     /**
      * Listen to the Post saving event.
-     *
-     * @param  Post $post
-     * @return void
      */
-    public function saving(Post $post)
+    public function saving(Post $post): void
     {
         $post->slug = str_slug($post->title, '-');
     }

@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersRequest;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, User $user)
+    public function show(Request $request, User $user): View
     {
         return view('users.show', [
             'user' => $user,
@@ -27,7 +29,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(): View
     {
         $user = auth()->user();
 
@@ -42,7 +44,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UsersRequest $request)
+    public function update(UsersRequest $request): RedirectResponse
     {
         $user = auth()->user();
 

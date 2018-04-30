@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\belongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -38,8 +41,6 @@ class User extends Authenticatable
 
     /**
      * Get the user's fullname titleized.
-     *
-     * @return string
      */
     public function getFullnameAttribute(): string
     {
@@ -48,22 +49,16 @@ class User extends Authenticatable
 
     /**
      * Encrypt the user's password.
-     *
-     * @param string $passwword
-     * @return void
      */
-    public function setPasswordAttribute($password)
+    public function setPasswordAttribute(string $password): void
     {
         $this->attributes['password'] = bcrypt($password);
     }
 
     /**
      * Scope a query to only include users registered last week.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLastWeek($query)
+    public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('registered_at', [now()->subWeek(), now()])
                      ->latest();
@@ -71,22 +66,16 @@ class User extends Authenticatable
 
     /**
      * Scope a query to order users by latest registered.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeLatest($query)
+    public function scopeLatest(Builder $query): Builder
     {
         return $query->orderBy('registered_at', 'desc');
     }
 
     /**
      * Scope a query to filter available author users.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAuthors($query)
+    public function scopeAuthors(Builder $query): Builder
     {
         return $query->whereHas('roles', function ($query) {
             $query->where('roles.name', Role::ROLE_ADMIN)
@@ -96,8 +85,6 @@ class User extends Authenticatable
 
     /**
      * Check if the user can be an author
-     *
-     * @return boolean
      */
     public function canBeAuthor(): bool
     {
@@ -106,19 +93,14 @@ class User extends Authenticatable
 
     /**
      * Check if the user has a role
-     *
-     * @param string $role
-     * @return boolean
      */
-    public function hasRole($role): bool
+    public function hasRole(string $role): bool
     {
         return $this->roles->where('name', $role)->isNotEmpty();
     }
 
     /**
      * Check if the user has role admin
-     *
-     * @return boolean
      */
     public function isAdmin(): bool
     {
@@ -127,8 +109,6 @@ class User extends Authenticatable
 
     /**
      * Check if the user has role editor
-     *
-     * @return boolean
      */
     public function isEditor(): bool
     {
@@ -137,40 +117,32 @@ class User extends Authenticatable
 
     /**
      * Return the user's posts
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_id');
     }
 
     /**
      * Return the user's comments
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class, 'author_id');
     }
 
     /**
      * Return the user's likes
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function likes()
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class, 'author_id');
     }
 
     /**
      * Return the user's roles
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function roles()
+    public function roles(): belongsToMany
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }

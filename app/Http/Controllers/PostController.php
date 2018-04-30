@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('posts.index', [
             'posts' => Post::search($request->input('q'))
@@ -26,7 +25,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, Post $post)
+    public function show(Request $request, Post $post): View
     {
         $post->comments_count = $post->comments()->count();
         $post->likes_count = $post->likes()->count();

@@ -16,24 +16,12 @@ class ObserverServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Post::observe(PostObserver::class);
         User::observe(UserObserver::class);
         Comment::observe(CommentObserver::class);
         Media::observe(MediaObserver::class);
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }

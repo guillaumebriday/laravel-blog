@@ -22,10 +22,6 @@ class PostPolicy
 
     /**
      * Determine whether the user can update the post.
-     *
-     * @param  User $user
-     * @param  Post $post
-     * @return bool
      */
     public function update(User $user, Post $post): bool
     {
@@ -34,9 +30,6 @@ class PostPolicy
 
     /**
      * Determine whether the user can store a post.
-     *
-     * @param  User $user
-     * @return bool
      */
     public function store(User $user): bool
     {
@@ -45,12 +38,8 @@ class PostPolicy
 
     /**
      * Determine whether the user can delete the post.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Post  $post
-     * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, Post $post): bool
     {
         return $user->isAdmin();
     }

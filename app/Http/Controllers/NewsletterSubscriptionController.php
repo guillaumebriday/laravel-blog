@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewsletterSubscriptionRequest;
 use App\Jobs\UnsubscribeEmailNewsletter;
 use App\Models\NewsletterSubscription;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 use Validator;
 
 class NewsletterSubscriptionController extends Controller
 {
     /**
      * Store a newly created resource in storage.
-     *
-     * @return Response
      */
-    public function store(NewsletterSubscriptionRequest $request)
+    public function store(NewsletterSubscriptionRequest $request): RedirectResponse
     {
         $newsletterSubscription = NewsletterSubscription::create($request->validated());
 
@@ -26,9 +26,6 @@ class NewsletterSubscriptionController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
      */
     public function unsubscribe(Request $request)
     {

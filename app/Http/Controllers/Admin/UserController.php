@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UsersRequest;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
     /**
      * Show the application users index.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.users.index', [
             'users' => User::latest()->paginate(50)
@@ -24,7 +24,7 @@ class UserController extends Controller
     /**
      * Display the specified resource edit form.
      */
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         return view('admin.users.edit', [
             'user' => $user,
@@ -35,7 +35,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UsersRequest $request, User $user)
+    public function update(UsersRequest $request, User $user): RedirectResponse
     {
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 

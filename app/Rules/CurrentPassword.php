@@ -9,10 +9,6 @@ class CurrentPassword implements Rule
 {
     /**
      * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value)
     {
@@ -21,10 +17,8 @@ class CurrentPassword implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
-    public function message()
+    public function message(): string
     {
         return trans('validation.current_password');
     }

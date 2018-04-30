@@ -6,17 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
 use App\Http\Resources\Post as PostResource;
 use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PostController extends Controller
 {
     /**
      * Return the posts.
-     *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request): ResourceCollection
     {
         return PostResource::collection(
             Post::search($request->input('q'))->withCount('comments')->latest()->paginate($request->input('limit', 20))
@@ -25,12 +24,8 @@ class PostController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  App\Http\Requests\Admin\PostsRequest $request
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
      */
-    public function update(PostsRequest $request, Post $post)
+    public function update(PostsRequest $request, Post $post): PostResource
     {
         $this->authorize('update', $post);
 
@@ -41,10 +36,8 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return Response
      */
-    public function store(PostsRequest $request)
+    public function store(PostsRequest $request): PostResource
     {
         $this->authorize('store', Post::class);
 
@@ -55,22 +48,16 @@ class PostController extends Controller
 
     /**
      * Return the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post): PostResource
     {
         return new PostResource($post);
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Post $post
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): JsonResponse
     {
         $this->authorize('delete', $post);
 
