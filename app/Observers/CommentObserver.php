@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Comment;
+use App\Models\Comment;
 
 class CommentObserver
 {

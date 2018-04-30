@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Token;
-use App\User;
+use App\Models\Token;
+use App\Models\User;
 
 class UserObserver
 {

@@ -2,7 +2,7 @@
 
 namespace App\Concern;
 
-use App\Like;
+use App\Models\Like;
 
 trait Likeable
 {

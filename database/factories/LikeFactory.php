@@ -1,13 +1,13 @@
 <?php
 
-use App\Like;
-use App\Post;
-use App\User;
+use App\Models\Like;
+use App\Models\Post;
+use App\Models\User;
 use Faker\Generator;
 
 $factory->define(Like::class, function (Generator $faker) {
     return [
-      'likeable_type' => 'App\Post',
+      'likeable_type' => 'App\Models\Post',
       'likeable_id' => function () {
           return factory(Post::class)->create()->id;
       },

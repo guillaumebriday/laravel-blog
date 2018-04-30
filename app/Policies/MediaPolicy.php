@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Media;
-use App\User;
+use App\Models\Media;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MediaPolicy
@@ -34,8 +34,8 @@ class MediaPolicy
     /**
      * Determine whether the user can delete the medium.
      *
-     * @param  \App\User  $user
-     * @param  \App\Media  $medium
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Media  $medium
      * @return mixed
      */
     public function delete(User $user, Media $medium)

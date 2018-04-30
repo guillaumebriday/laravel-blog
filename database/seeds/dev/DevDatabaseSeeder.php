@@ -1,8 +1,8 @@
 <?php
 
-use App\Comment;
-use App\NewsletterSubscription;
-use App\Post;
+use App\Models\Comment;
+use App\Models\NewsletterSubscription;
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 
 class DevDatabaseSeeder extends Seeder

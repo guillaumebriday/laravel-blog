@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Comment;
-use App\User;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CommentPolicy
@@ -23,8 +23,8 @@ class CommentPolicy
     /**
      * Determine whether the user can delete the comment.
      *
-     * @param  \App\User  $user
-     * @param  \App\Comment  $comment
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Comment  $comment
      * @return boolean
      */
     public function delete(User $user, Comment $comment): bool

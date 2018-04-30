@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use App\MediaLibrary;
-use App\Role;
-use App\User;
+use App\Models\MediaLibrary;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase

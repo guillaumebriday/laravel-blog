@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Post;
+use App\Models\Post;
 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

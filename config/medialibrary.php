@@ -23,7 +23,7 @@ return [
     /*
      * The class names of the models that should be used.
      */
-    'media_model' => App\Media::class,
+    'media_model' => App\Models\Media::class,
 
     's3' => [
         /*

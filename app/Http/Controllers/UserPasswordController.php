@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPasswordsRequest;
-use App\User;
+use App\Models\User;
 
 class UserPasswordController extends Controller
 {

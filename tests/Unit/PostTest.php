@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Post;
+use App\Models\Post;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;

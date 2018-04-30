@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsletterSubscriptionRequest;
 use App\Jobs\UnsubscribeEmailNewsletter;
-use App\NewsletterSubscription;
+use App\Models\NewsletterSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;

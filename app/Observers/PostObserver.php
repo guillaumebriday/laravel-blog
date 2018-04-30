@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Post;
+use App\Models\Post;
 
 class PostObserver
 {

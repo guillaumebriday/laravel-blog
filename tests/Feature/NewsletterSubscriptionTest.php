@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\NewsletterSubscription;
+use App\Models\NewsletterSubscription;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

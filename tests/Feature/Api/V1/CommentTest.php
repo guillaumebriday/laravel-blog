@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api\V1;
 
-use App\Comment;
-use App\Post;
-use App\User;
+use App\Models\Comment;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -143,7 +143,7 @@ class CommentTest extends TestCase
             ->json('POST', "/api/v1/posts/31415/comments", $this->validParams())
             ->assertStatus(404)
             ->assertJson([
-                'message' => 'No query results for model [App\\Post].'
+                'message' => 'No query results for model [App\\Models\\Post].'
             ]);
     }
 
@@ -186,7 +186,7 @@ class CommentTest extends TestCase
         $this->json('GET', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
-                'message' => 'No query results for model [App\\Comment].'
+                'message' => 'No query results for model [App\\Models\\Comment].'
             ]);
     }
 
@@ -205,7 +205,7 @@ class CommentTest extends TestCase
             ->json('DELETE', '/api/v1/comments/31415')
             ->assertStatus(404)
             ->assertJson([
-                'message' => 'No query results for model [App\\Comment].'
+                'message' => 'No query results for model [App\\Models\\Comment].'
             ]);
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Media;
+use App\Models\Media;
 
 class MediaObserver
 {

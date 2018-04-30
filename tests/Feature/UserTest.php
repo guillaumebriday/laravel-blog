@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Comment;
+use App\Models\Comment;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
