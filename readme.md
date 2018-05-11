@@ -108,7 +108,7 @@ $ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSee
 Starting job for newsletter :
 ```
 $ docker-compose run blog-server php artisan tinker
-> App\Jobs\PrepareNewsletterSubscriptionEmail::dispatch();
+> PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 Discover package
@@ -143,13 +143,6 @@ To list all the available routes for API :
 
 ```bash
 $ docker-compose run --rm --no-deps blog-server php artisan route:list --path=api
-```
-
-## Broadcasting & WebSockets
-Before using WebSockets, you need to set the `BROADCAST_DRIVER` in your `.env` file for Redis :
-
-```txt
-BROADCAST_DRIVER=redis
 ```
 
 ## More details
