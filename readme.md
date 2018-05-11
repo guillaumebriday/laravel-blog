@@ -81,6 +81,12 @@ And then, compile the assets :
 $ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
 ```
 
+Starting job for newsletter :
+```
+$ docker-compose run blog-server php artisan tinker
+> PrepareNewsletterSubscriptionEmail::dispatch();
+```
+
 ## Useful commands
 Seeding the database :
 ```
@@ -105,12 +111,6 @@ $ docker-compose run --rm blog-server php artisan backup:run
 Generating fake data :
 ```
 $ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
-```
-
-Starting job for newsletter :
-```
-$ docker-compose run blog-server php artisan tinker
-> PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 Discover package
