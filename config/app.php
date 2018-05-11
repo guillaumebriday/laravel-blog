@@ -162,6 +162,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
+        App\Providers\HorizonServiceProvider::class,
         App\Providers\ResponseServiceProvider::class,
         App\Providers\ObserverServiceProvider::class,
 
