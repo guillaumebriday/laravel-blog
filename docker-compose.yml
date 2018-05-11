@@ -23,7 +23,7 @@ services:
   mysql:
     image: mysql:5.7
     ports:
-      - '3306:3306'
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel-blog
@@ -33,7 +33,7 @@ services:
   mysql-test:
     image: mysql:5.7
     ports:
-      - '3307:3306'
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=testing
@@ -41,7 +41,7 @@ services:
   nginx:
     image: nginx
     ports:
-      - '8000:8000'
+      - "8000:8000"
     volumes:
       - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
       - ./public:/application/public:cached
@@ -51,12 +51,12 @@ services:
   redis:
     image: redis
     ports:
-      - '6379:6379'
+      - "6379:6379"
 
   echo-server:
     image: node
     ports:
-      - 8888:8888
+      - "8888:8888"
     working_dir: /application
     volumes:
       - .:/application:cached
