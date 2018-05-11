@@ -15,7 +15,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Cache](https://laravel.com/docs/5.6/cache)
 - [Filesystem](https://laravel.com/docs/5.6/filesystem)
 - [Helpers](https://laravel.com/docs/5.6/helpers)
-- [Jobs & Queues](https://laravel.com/docs/5.6/queues)
+- [Horizon](https://laravel.com/docs/5.6/horizon)
 - [Localization](https://laravel.com/docs/5.6/localization)
 - [Mail](https://laravel.com/docs/5.6/mail)
 - [Migrations](https://laravel.com/docs/5.6/migrations)
@@ -54,6 +54,8 @@ $ cd laravel-blog
 $ cp .env.example .env
 $ docker-compose run --rm --no-deps blog-server composer install
 $ docker-compose run --rm --no-deps blog-server php artisan key:generate
+$ docker-compose run --rm --no-deps blog-server php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
+$ docker-compose run --rm --no-deps blog-server php artisan storage:link
 $ docker run --rm -it -v $(pwd):/app -w /app node npm install
 $ docker-compose up -d
 ```
@@ -77,6 +79,12 @@ Password : 4nak1n
 And then, compile the assets :
 ```
 $ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
+```
+
+Starting job for newsletter :
+```
+$ docker-compose run blog-server php artisan tinker
+> PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Useful commands
@@ -103,12 +111,6 @@ $ docker-compose run --rm blog-server php artisan backup:run
 Generating fake data :
 ```
 $ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
-```
-
-Starting job for newsletter :
-```
-$ docker-compose run blog-server php artisan tinker
-> App\Jobs\PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 Discover package
@@ -143,13 +145,6 @@ To list all the available routes for API :
 
 ```bash
 $ docker-compose run --rm --no-deps blog-server php artisan route:list --path=api
-```
-
-## Broadcasting & WebSockets
-Before using WebSockets, you need to set the `BROADCAST_DRIVER` in your `.env` file for Redis :
-
-```txt
-BROADCAST_DRIVER=redis
 ```
 
 ## More details

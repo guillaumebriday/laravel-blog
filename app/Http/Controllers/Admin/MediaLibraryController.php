@@ -8,7 +8,6 @@ use App\Models\Media;
 use App\Models\MediaLibrary;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class MediaLibraryController extends Controller
@@ -26,7 +25,7 @@ class MediaLibraryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Media $medium): Response
+    public function show(Media $medium): Media
     {
         return $medium;
     }

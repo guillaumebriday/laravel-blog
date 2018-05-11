@@ -11,10 +11,10 @@ services:
     volumes:
       - ./:/application:cached
 
-  queue-server:
+  horizon:
     build: ./provisioning
     image: laravel-blog
-    command: php artisan queue:work
+    command: php artisan horizon
     depends_on:
       - mysql
     volumes:
@@ -44,7 +44,7 @@ services:
       - "8000:8000"
     volumes:
       - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
-      - ./public:/application/public:cached
+      - ./:/application:cached
     depends_on:
       - blog-server
 
