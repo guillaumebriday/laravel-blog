@@ -48,14 +48,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Encrypt the user's password.
-     */
-    public function setPasswordAttribute(string $password): void
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
-    /**
      * Scope a query to only include users registered last week.
      */
     public function scopeLastWeek(Builder $query): Builder

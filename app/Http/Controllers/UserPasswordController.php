@@ -22,13 +22,17 @@ class UserPasswordController extends Controller
     }
 
     /**
-     * Generate a personnal access token for the specified resource in storage.
+     * Update password for the specified resource in storage.
      */
     public function update(UserPasswordsRequest $request): RedirectResponse
     {
         $user = auth()->user();
 
         $this->authorize('update', $user);
+
+        $request->merge([
+            'password' => bcrypt($request->input('password'))
+        ]);
 
         $user->update($request->only('password'));
 

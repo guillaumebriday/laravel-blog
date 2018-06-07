@@ -13,7 +13,7 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticate()
     {
-        $user = factory(User::class)->states('anakin')->create(['password' => '4nak1n']);
+        $user = factory(User::class)->states('anakin')->create(['password' => bcrypt('4nak1n')]);
         $role = factory(Role::class)->states('editor')->create();
         $user->roles()->save($role);
 
@@ -45,7 +45,7 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticateFail()
     {
-        $user = factory(User::class)->states('anakin')->create(['password' => '4nak1n']);
+        $user = factory(User::class)->states('anakin')->create(['password' => bcrypt('4nak1n')]);
         $user->roles()->save(
             factory(Role::class)->states('editor')->create()
         );

@@ -37,6 +37,12 @@ class UserController extends Controller
      */
     public function update(UsersRequest $request, User $user): RedirectResponse
     {
+        if ($request->filled('password')) {
+            $request->merge([
+                'password' => bcrypt($request->input('password'))
+            ]);
+        }
+
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
         $role_ids = array_values($request->get('roles', []));

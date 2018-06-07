@@ -36,6 +36,12 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
+        if ($request->filled('password')) {
+            $request->merge([
+                'password' => bcrypt($request->input('password'))
+            ]);
+        }
+
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
         return new UserResource($user);
