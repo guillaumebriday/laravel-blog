@@ -1,5 +1,5 @@
 <table class="table table-striped table-sm table-responsive-md">
-    <caption>{{ trans_choice('comments.count', $comments->total()) }}</caption>
+    <caption>{{ $comments->total() }}{{ trans_choice('comments.count', $comments->total()) }}</caption>
     <thead>
         <tr>
             <th>@lang('comments.attributes.content')</th>

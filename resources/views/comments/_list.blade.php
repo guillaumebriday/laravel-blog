@@ -1,5 +1,6 @@
-<h2 class="mt-2">{{ trans_choice('comments.count', $post->comments_count) }}</h2>
-
+<h2 class="mt-2">
+    <comment-count :initial_count="{{ $post->comments_count }}" text="{{ trans_choice('comments.count', $post->comments_count) }}"></comment-count>
+</h2>
 @include ('comments/_form')
 
 <comment-list

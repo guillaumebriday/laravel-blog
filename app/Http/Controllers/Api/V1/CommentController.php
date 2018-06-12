@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Events\CommentRemoved;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Comment as CommentResource;
 use App\Models\Comment;
@@ -37,6 +38,8 @@ class CommentController extends Controller
         $this->authorize('delete', $comment);
 
         $comment->delete();
+
+        broadcast(new CommentRemoved(new CommentResource($comment), $comment->post));
 
         return response()->noContent();
     }

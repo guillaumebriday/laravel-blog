@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CommentRemoved;
+use App\Http\Resources\Comment as CommentResource;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CommentsRequest;
 use App\Models\Comment;
@@ -48,6 +50,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment): RedirectResponse
     {
         $comment->delete();
+        event(new CommentRemoved(new CommentResource($comment), $comment->post));
 
         return redirect()->route('admin.comments.index')->withSuccess(__('comments.deleted'));
     }
