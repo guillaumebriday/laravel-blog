@@ -19,6 +19,7 @@ return [
     'after_or_equal'       => 'Le champ :attribute doit être une date postérieure ou égale au :date.',
     'alpha'                => 'Le champ :attribute doit seulement contenir des lettres.',
     'alpha_dash'           => 'Le champ :attribute doit seulement contenir des lettres, des chiffres et des tirets.',
+    'alpha_name'           => "Le champ :attribute doit être du format d'un nom sans caractères spéciaux ou de ponctuation.",
     'alpha_num'            => 'Le champ :attribute doit seulement contenir des chiffres et des lettres.',
     'array'                => 'Le champ :attribute doit être un tableau.',
     'before'               => 'Le champ :attribute doit être une date antérieure au :date.',
