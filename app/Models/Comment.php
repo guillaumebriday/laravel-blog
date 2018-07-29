@@ -37,7 +37,7 @@ class Comment extends Model
      */
     public function scopeLastWeek(Builder $query): Builder
     {
-        return $query->whereBetween('posted_at', [now()->subWeek(), now()])
+        return $query->whereBetween('posted_at', [carbon('1 week ago'), now()])
                      ->latest();
     }
 

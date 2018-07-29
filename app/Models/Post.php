@@ -80,7 +80,7 @@ class Post extends Model
      */
     public function scopeLastMonth(Builder $query, int $limit = 5): Builder
     {
-        return $query->whereBetween('posted_at', [now()->subMonth(), now()])
+        return $query->whereBetween('posted_at', [carbon('1 month ago'), now()])
                      ->latest()
                      ->limit($limit);
     }
@@ -90,7 +90,7 @@ class Post extends Model
      */
     public function scopeLastWeek(Builder $query): Builder
     {
-        return $query->whereBetween('posted_at', [now()->subWeek(), now()])
+        return $query->whereBetween('posted_at', [carbon('1 week ago'), now()])
                      ->latest();
     }
 
