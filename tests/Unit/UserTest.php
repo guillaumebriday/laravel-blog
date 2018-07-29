@@ -50,7 +50,7 @@ class UserTest extends TestCase
         factory(User::class, 10)
                 ->create()
                 ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(now()->subMonths(3), now()->subMonths(2));
+                    $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
                     $user->save();
                 });
 
@@ -58,13 +58,13 @@ class UserTest extends TestCase
         factory(User::class, 3)
                 ->create()
                 ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(now()->subWeek(), now());
+                    $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
                     $user->save();
                 });
 
         $isDuringLastWeek = true;
         foreach (User::lastWeek()->get() as $user) {
-            $isDuringLastWeek = $user->registered_at->between(now()->subWeek(), now());
+            $isDuringLastWeek = $user->registered_at->between(carbon('1 week ago'), now());
 
             if (! $isDuringLastWeek) {
                 break;

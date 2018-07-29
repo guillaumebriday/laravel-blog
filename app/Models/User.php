@@ -52,7 +52,7 @@ class User extends Authenticatable
      */
     public function scopeLastWeek(Builder $query): Builder
     {
-        return $query->whereBetween('registered_at', [now()->subWeek(), now()])
+        return $query->whereBetween('registered_at', [carbon('1 week ago'), now()])
                      ->latest();
     }
 

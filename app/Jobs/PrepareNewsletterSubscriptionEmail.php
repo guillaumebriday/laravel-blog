@@ -24,6 +24,6 @@ class PrepareNewsletterSubscriptionEmail implements ShouldQueue
             SendNewsletterSubscriptionEmail::dispatch($newsletterSubscription->email);
         });
 
-        PrepareNewsletterSubscriptionEmail::dispatch()->delay(now()->addMonth());
+        PrepareNewsletterSubscriptionEmail::dispatch()->delay(carbon('next month'));
     }
 }

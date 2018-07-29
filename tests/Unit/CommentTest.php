@@ -25,7 +25,7 @@ class CommentTest extends TestCase
         factory(Comment::class, 3)
                 ->create()
                 ->each(function ($comment) use ($faker) {
-                    $comment->posted_at = $faker->dateTimeBetween(now()->subMonths(3), now()->subMonths(2));
+                    $comment->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
                     $comment->save();
                 });
 
@@ -33,13 +33,13 @@ class CommentTest extends TestCase
         factory(Comment::class, 3)
                 ->create()
                 ->each(function ($comment) use ($faker) {
-                    $comment->posted_at = $faker->dateTimeBetween(now()->subWeek(), now());
+                    $comment->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
                     $comment->save();
                 });
 
         $isDuringLastWeek = true;
         foreach (Comment::lastWeek()->get() as $comment) {
-            $isDuringLastWeek = $comment->posted_at->between(now()->subWeek(), now());
+            $isDuringLastWeek = $comment->posted_at->between(carbon('1 week ago'), now());
 
             if (! $isDuringLastWeek) {
                 break;
