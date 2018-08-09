@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
 
-The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's functionalities like :
+The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's features like:
 
 - [Authentication](https://laravel.com/docs/5.6/authentication)
 - API
@@ -25,7 +25,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Seeding & Factories](https://laravel.com/docs/5.6/seeding)
 - [Testing](https://laravel.com/docs/5.6/testing)
 
-Beside Laravel, this project uses other tools like :
+Beside Laravel, this project uses other tools like:
 
 - [Bootstrap 4](https://getbootstrap.com/)
 - [PHP-CS-Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
@@ -125,7 +125,7 @@ $ docker-compose run --rm blog-server php artisan migrate:fresh --seed
 
 ## Accessing the API
 
-Clients can access to the REST API. API requests require authentication via token. You can create a new token in your user profil.
+Clients can access to the REST API. API requests require authentication via token. You can create a new token in your user profile.
 
 Then, you can use this token either as url parameter or in Authorization header :
 
