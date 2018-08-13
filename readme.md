@@ -95,7 +95,7 @@ $ docker-compose run --rm blog-server php artisan db:seed
 
 Running tests :
 ```
-$ docker-compose run --rm blog-server ./vendor/bin/phpunit --stop-on-failure
+$ docker-compose run --rm blog-server ./vendor/bin/phpunit --cache-result --order-by=defects --stop-on-defect
 ```
 
 Running php-cs-fixer :
