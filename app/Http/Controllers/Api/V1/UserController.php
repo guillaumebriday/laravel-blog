@@ -8,6 +8,7 @@ use App\Http\Resources\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -38,7 +39,7 @@ class UserController extends Controller
 
         if ($request->filled('password')) {
             $request->merge([
-                'password' => bcrypt($request->input('password'))
+                'password' => Hash::make($request->input('password'))
             ]);
         }
 

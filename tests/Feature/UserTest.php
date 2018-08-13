@@ -65,7 +65,7 @@ class UserTest extends TestCase
 
     public function testUpdatePassword()
     {
-        $user = $this->user(['password' => bcrypt('4_n3w_h0p3')]);
+        $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
         $params = $this->validPasswordParams();
 
         $this->actingAs($user)
@@ -78,7 +78,7 @@ class UserTest extends TestCase
 
     public function testUpdatePasswordFail()
     {
-        $user = $this->user(['password' => bcrypt('4_n3w_h0p3')]);
+        $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
         $params = $this->validPasswordParams(['current_password' => '7h3_l457_j3d1']);
 
         $this->actingAs($user)
