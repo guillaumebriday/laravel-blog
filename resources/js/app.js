@@ -1,2 +1,2 @@
-require('./bootstrap');
-require('./vue');
+require('./bootstrap')
+require('./vue')

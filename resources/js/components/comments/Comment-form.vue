@@ -29,34 +29,34 @@ export default {
       content: "",
       isLoading: false,
       errors: []
-    };
+    }
   },
 
   computed: {
     isDisabled() {
-      return this.isLoading || this.content.length === 0;
+      return this.isLoading || this.content.length === 0
     }
   },
 
   methods: {
     sendComment() {
-      this.isLoading = true;
+      this.isLoading = true
 
       axios
         .post("/api/v1/posts/" + this.post_id + "/comments", {
           content: this.content
         })
         .then(response => {
-          Event.$emit("added", response.data.data);
+          Event.$emit("added", response.data.data)
 
-          this.content = "";
-          this.isLoading = false;
-          this.errors = [];
+          this.content = ""
+          this.isLoading = false
+          this.errors = []
         })
         .catch(error => {
-          this.isLoading = false;
-          this.errors = error.response.data.errors;
-        });
+          this.isLoading = false
+          this.errors = error.response.data.errors
+        })
     }
   }
 }
