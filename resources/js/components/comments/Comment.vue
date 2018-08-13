@@ -29,11 +29,11 @@ export default {
         axios
           .delete("/api/v1/comments/" + this.comment.id)
           .then(response => {
-            this.$emit("deleted", this);
+            this.$emit("deleted", this)
           })
           .catch(error => {
-            console.log(error);
-          });
+            console.log(error)
+          })
       }
     }
   }

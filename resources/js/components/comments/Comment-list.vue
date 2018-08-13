@@ -23,35 +23,35 @@ export default {
       comments: [],
       isLoading: false,
       endpoint: "/api/v1/posts/" + this.post_id + "/comments/"
-    };
+    }
   },
 
   mounted() {
-    this.retrieveComments();
+    this.retrieveComments()
 
     if (window.Echo) {
       Echo.channel("post." + this.post_id)
-        .listen(".comment.posted", e => this.addComment(e.comment));
+        .listen(".comment.posted", e => this.addComment(e.comment))
     }
 
     Event.$on("added", comment => {
-      this.addComment(comment);
-    });
+      this.addComment(comment)
+    })
   },
 
   methods: {
     retrieveComments() {
-      this.isLoading = true;
+      this.isLoading = true
 
       axios.get(this.endpoint).then(response => {
-        this.comments.push(...response.data.data);
-        this.isLoading = false;
-        this.endpoint = response.data.links.next;
-      });
+        this.comments.push(...response.data.data)
+        this.isLoading = false
+        this.endpoint = response.data.links.next
+      })
     },
 
     addComment(comment) {
-      this.comments.unshift(comment);
+      this.comments.unshift(comment)
     },
 
     removeComment({ id }) {
