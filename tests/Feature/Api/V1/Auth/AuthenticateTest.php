@@ -5,6 +5,7 @@ namespace Tests\Feature\Api\V1\Auth;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
@@ -13,7 +14,7 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticate()
     {
-        $user = factory(User::class)->states('anakin')->create(['password' => bcrypt('4nak1n')]);
+        $user = factory(User::class)->states('anakin')->create(['password' => Hash::make('4nak1n')]);
         $role = factory(Role::class)->states('editor')->create();
         $user->roles()->save($role);
 
@@ -45,7 +46,7 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticateFail()
     {
-        $user = factory(User::class)->states('anakin')->create(['password' => bcrypt('4nak1n')]);
+        $user = factory(User::class)->states('anakin')->create(['password' => Hash::make('4nak1n')]);
         $user->roles()->save(
             factory(Role::class)->states('editor')->create()
         );

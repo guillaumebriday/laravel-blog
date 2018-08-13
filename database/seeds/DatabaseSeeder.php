@@ -7,11 +7,12 @@ use App\Models\Role;
 use App\Models\Token;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the application's database.
      */
     public function run(): void
     {
@@ -27,7 +28,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'darthvader@deathstar.ds'],
             [
                 'name' => 'anakin',
-                'password' => bcrypt('4nak1n')
+                'password' => Hash::make('4nak1n')
             ]
         );
 

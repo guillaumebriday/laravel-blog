@@ -14,3 +14,4 @@ public/media/
 /storage/tmp
 /storage/medialibrary
 /log
+.phpunit.result.cache

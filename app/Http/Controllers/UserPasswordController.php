@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPasswordsRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserPasswordController extends Controller
@@ -30,7 +31,7 @@ class UserPasswordController extends Controller
         $this->authorize('update', $user);
 
         $request->merge([
-            'password' => bcrypt($request->input('password'))
+            'password' => Hash::make($request->input('password'))
         ]);
 
         $user->update($request->only('password'));
