@@ -13,6 +13,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Blade](https://laravel.com/docs/5.7/blade)
 - [Broadcasting](https://laravel.com/docs/5.7/broadcasting)
 - [Cache](https://laravel.com/docs/5.7/cache)
+- [Email Verification](https://laravel.com/docs/5.7/verification)
 - [Filesystem](https://laravel.com/docs/5.7/filesystem)
 - [Helpers](https://laravel.com/docs/5.7/helpers)
 - [Horizon](https://laravel.com/docs/5.7/horizon)

@@ -12,7 +12,7 @@
 */
 
 Route::prefix('v1')->namespace('Api\V1')->group(function () {
-    Route::middleware('auth:api')->group(function () {
+    Route::middleware(['auth:api', 'verified'])->group(function () {
         // Comments
         Route::apiResource('comments', 'CommentController')->only('destroy');
         Route::apiResource('posts.comments', 'PostCommentController')->only('store');
