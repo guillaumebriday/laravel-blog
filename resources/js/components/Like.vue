@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: ["liked", "likes_count", "item_type", "item_id", "logged_in"],
 
