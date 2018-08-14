@@ -3,14 +3,17 @@
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
-
-window.$ = window.jQuery = require('jquery')
-window.Popper = require('popper.js').default
+import axios from 'axios'
+import 'bootstrap'
 import Clipboard from 'clipboard'
+import jquery from 'jquery'
+import Echo from 'laravel-echo'
+import PopperJs from 'popper.js'
+
+window.$ = window.jQuery = jquery
+window.PopperJs = PopperJs.default
 
 new Clipboard('[data-clipboard-target]')
-
-require('bootstrap')
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -18,9 +21,7 @@ require('bootstrap')
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios')
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -31,7 +32,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 let token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
 }
@@ -51,8 +52,6 @@ if (api_token) {
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
-import Echo from "laravel-echo"
 
 if (typeof io !== 'undefined') {
   window.Echo = new Echo({

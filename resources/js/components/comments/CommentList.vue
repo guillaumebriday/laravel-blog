@@ -15,8 +15,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+import Comment from './Comment.vue'
+
 export default {
   props: ["post_id", "loading_comments", "data_confirm"],
+
+  components: { Comment },
 
   data() {
     return {
@@ -32,11 +37,9 @@ export default {
     if (window.Echo) {
       Echo.channel("post." + this.post_id)
         .listen(".comment.posted", e => this.addComment(e.comment))
+    } else {
+      Event.$on("added", comment => this.addComment(comment))
     }
-
-    Event.$on("added", comment => {
-      this.addComment(comment)
-    })
   },
 
   methods: {

@@ -1,17 +1,20 @@
-window.Vue = require('vue')
+import CommentForm from './components/comments/CommentForm.vue'
+import CommentList from './components/comments/CommentList.vue'
+import Like from './components/Like.vue'
+import Vue from 'vue'
 
 Vue.config.productionTip = false
 
-Vue.component('comment', require('./components/comments/Comment.vue'))
-Vue.component('comment-list', require('./components/comments/Comment-list.vue'))
-Vue.component('comment-form', require('./components/comments/Comment-form.vue'))
-
-Vue.component('like', require('./components/Like.vue'))
-
 window.Event = new Vue()
 
-const app = new Vue({
+new Vue({
   el: '#app',
+
+  components: {
+    CommentForm,
+    CommentList,
+    Like
+  },
 
   mounted() {
     $('[data-confirm]').on('click', function () {
