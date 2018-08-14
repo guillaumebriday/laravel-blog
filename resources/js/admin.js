@@ -1,4 +1,4 @@
-require('trumbowyg')
+import 'trumbowyg'
 
 $('.trumbowyg-form').trumbowyg({
   svgPath: '/js/ui/icons.svg'
