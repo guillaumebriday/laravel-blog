@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        $user->roles()->sync([$role_admin->id]);
+
         // Posts
         $post = Post::firstOrCreate(
             [
