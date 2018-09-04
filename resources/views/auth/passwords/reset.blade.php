@@ -9,7 +9,7 @@
         {!! Form::hidden('token', $token) !!}
             <div class="form-group">
                 {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
-                {!! Form::email('email', $email or old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
+                {!! Form::email('email', $email ?? old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
 
                 @if ($errors->has('email'))
                     <span class="invalid-feedback">{{ $errors->first('email') }}</span>

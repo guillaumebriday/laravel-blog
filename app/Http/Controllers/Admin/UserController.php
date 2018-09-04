@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\UsersRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -39,7 +40,7 @@ class UserController extends Controller
     {
         if ($request->filled('password')) {
             $request->merge([
-                'password' => bcrypt($request->input('password'))
+                'password' => Hash::make($request->input('password'))
             ]);
         }
 
