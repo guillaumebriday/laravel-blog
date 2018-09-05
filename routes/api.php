@@ -26,7 +26,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::apiResource('users', 'UserController')->only('update');
 
         // Media
-        Route::apiResource('media', 'MediaController')->only(['index', 'store', 'destroy']);
+        Route::apiResource('media', 'MediaController')->only(['store', 'destroy']);
     });
 
     Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
@@ -42,4 +42,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
     // Users
     Route::apiResource('users', 'UserController')->only(['index', 'show']);
+
+    // Media
+    Route::apiResource('media', 'MediaController')->only('index');
 });
