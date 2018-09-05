@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             ['email' => 'darthvader@deathstar.ds'],
             [
                 'name' => 'anakin',
-                'password' => Hash::make('4nak1n')
+                'password' => Hash::make('4nak1n'),
+                'email_verified_at' => now()
             ]
         );
 

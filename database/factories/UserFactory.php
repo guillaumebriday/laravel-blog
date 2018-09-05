@@ -12,6 +12,7 @@ $factory->define(User::class, function (Generator $faker) {
         'password' => $password ?: $password = 'secret',
         'api_token' => str_random(60),
         'remember_token' => str_random(10),
+        'email_verified_at' => now(),
     ];
 });
 
