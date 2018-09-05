@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Comment as CommentResource;
 use App\Models\Comment;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 
 class CommentController extends Controller
 {
@@ -32,7 +32,7 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comment $comment): JsonResponse
+    public function destroy(Comment $comment): Response
     {
         $this->authorize('delete', $comment);
 

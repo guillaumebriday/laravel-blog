@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
 use App\Http\Resources\Post as PostResource;
 use App\Models\Post;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -57,7 +57,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post): JsonResponse
+    public function destroy(Post $post): Response
     {
         $this->authorize('delete', $post);
 

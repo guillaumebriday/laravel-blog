@@ -7,9 +7,9 @@ use App\Http\Requests\Admin\MediaLibraryRequest;
 use App\Http\Resources\Media as MediaResource;
 use App\Models\Media;
 use App\Models\MediaLibrary;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Response;
 
 class MediaController extends Controller
 {
@@ -48,7 +48,7 @@ class MediaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Media $medium): JsonResponse
+    public function destroy(Media $medium): Response
     {
         $this->authorize('delete', $medium);
 
