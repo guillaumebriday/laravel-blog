@@ -31,15 +31,13 @@ export default {
     }
   },
 
-  mounted() {
+  mounted () {
     this.retrieveComments()
 
-    if (window.Echo) {
-      Echo.channel("post." + this.post_id)
-        .listen(".comment.posted", e => this.addComment(e.comment))
-    } else {
-      Event.$on("added", comment => this.addComment(comment))
-    }
+    Event.$on("added", comment => this.addComment(comment))
+
+    window.Echo.channel("post." + this.post_id)
+      .listen(".comment.posted", e => this.addComment(e.comment))
   },
 
   methods: {
