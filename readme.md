@@ -57,7 +57,7 @@ $ docker-compose run --rm --no-deps blog-server composer install
 $ docker-compose run --rm --no-deps blog-server php artisan key:generate
 $ docker-compose run --rm --no-deps blog-server php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
 $ docker-compose run --rm --no-deps blog-server php artisan storage:link
-$ docker run --rm -it -v $(pwd):/app -w /app node npm install
+$ docker run --rm -it -v $(pwd):/app -w /app node yarn
 $ docker-compose up -d
 ```
 
@@ -79,7 +79,7 @@ Password : 4nak1n
 
 And then, compile the assets :
 ```
-$ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
+$ docker run --rm -it -v $(pwd):/app -w /app node yarn dev
 ```
 
 Starting job for newsletter :

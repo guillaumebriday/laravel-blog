@@ -3,7 +3,7 @@ namespace :node do
   task :install do
     on roles(:app) do
       within release_path do
-        execute :docker , :run, '--rm', '-i', '-u 1000', '-v $(pwd):/data', '-v /var/www/node_modules:/data/node_modules', '-w /data', 'node', 'npm install'
+        execute :docker , :run, '--rm', '-i', '-u 1000', '-v $(pwd):/data', '-v /var/www/node_modules:/data/node_modules', '-w /data', 'node', 'yarn'
       end
     end
   end
@@ -12,7 +12,7 @@ namespace :node do
   task :build do
     on roles(:app) do
       within release_path do
-        execute :docker , :run, '--rm', '-i', '-u 1000', '-v $(pwd):/data', '-v /var/www/node_modules:/data/node_modules', '-w /data', 'node', 'npm run production'
+        execute :docker , :run, '--rm', '-i', '-u 1000', '-v $(pwd):/data', '-v /var/www/node_modules:/data/node_modules', '-w /data', 'node', 'yarn production'
       end
     end
   end
