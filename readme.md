@@ -49,7 +49,7 @@ Development environment requirements :
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 Setting up your development environment on your local machine :
-```
+```bash
 $ git clone https://github.com/guillaumebriday/laravel-blog.git
 $ cd laravel-blog
 $ cp .env.example .env
@@ -67,60 +67,60 @@ Now you can access the application via [http://localhost:8000](http://localhost:
 
 ## Before starting
 You need to run the migrations with the seeds :
-```
+```bash
 $ docker-compose run --rm blog-server php artisan migrate --seed
 ```
 
 This will create a new user that you can use to sign in :
-```
-Email : darthvader@deathstar.ds
-Password : 4nak1n
+```yml
+email: darthvader@deathstar.ds
+password: 4nak1n
 ```
 
 And then, compile the assets :
-```
+```bash
 $ docker run --rm -it -v $(pwd):/app -w /app node yarn dev
 ```
 
 Starting job for newsletter :
-```
+```bash
 $ docker-compose run blog-server php artisan tinker
 > PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Useful commands
 Seeding the database :
-```
+```bash
 $ docker-compose run --rm blog-server php artisan db:seed
 ```
 
 Running tests :
-```
+```bash
 $ docker-compose run --rm blog-server ./vendor/bin/phpunit --cache-result --order-by=defects --stop-on-defect
 ```
 
 Running php-cs-fixer :
-```
+```bash
 $ docker-compose run --rm --no-deps blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
 
 Generating backup :
-```
+```bash
 $ docker-compose run --rm blog-server php artisan backup:run
 ```
 
 Generating fake data :
-```
+```bash
 $ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
 ```
 
 Discover package
-```
+```bash
 $ docker-compose run --rm --no-deps blog-server php artisan package:discover
 ```
 
 In development environnement, rebuild the database :
-```
+```bash
 $ docker-compose run --rm blog-server php artisan migrate:fresh --seed
 ```
 
@@ -130,7 +130,7 @@ Clients can access to the REST API. API requests require authentication via toke
 
 Then, you can use this token either as url parameter or in Authorization header :
 
-```
+```bash
 # Url parameter
 GET http://laravel-blog.app/api/v1/posts?api_token=your_private_token_here
 
