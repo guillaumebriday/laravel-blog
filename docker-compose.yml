@@ -2,7 +2,7 @@ version: '3'
 
 services:
   blog-server:
-    build: ./provisioning
+    build: .cloud/docker
     image: laravel-blog
     depends_on:
       - mysql
@@ -12,7 +12,7 @@ services:
       - ./:/application:cached
 
   horizon:
-    build: ./provisioning
+    build: .cloud/docker
     image: laravel-blog
     command: php artisan horizon
     depends_on:
@@ -43,7 +43,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./provisioning/nginx.conf:/etc/nginx/conf.d/default.conf:cached
+      - .cloud/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:cached
       - ./:/application:cached
     depends_on:
       - blog-server
