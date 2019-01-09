@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 LABEL maintainer="hello@guillaumebriday.fr"
 
 # Installing dependencies
@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
+    libzip-dev \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle
@@ -25,9 +26,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Setting locales
 RUN echo fr_FR.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
-
-# Allow container to write on host
-RUN usermod -u 1000 www-data
 
 # Changing Workdir
 WORKDIR /application
