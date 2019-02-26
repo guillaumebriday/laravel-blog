@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Token extends Model
 {
@@ -12,7 +13,7 @@ class Token extends Model
     public static function generate(): string
     {
         do {
-            $api_token = str_random(60);
+            $api_token = Str::random(60);
         } while (User::where('api_token', $api_token)->exists());
 
         return $api_token;

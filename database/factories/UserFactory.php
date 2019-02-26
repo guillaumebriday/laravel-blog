@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Faker\Generator;
+use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Generator $faker) {
     static $password;
@@ -9,9 +10,9 @@ $factory->define(User::class, function (Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = 'secret',
-        'api_token' => str_random(60),
-        'remember_token' => str_random(10),
+        'password' => $password ?: $password = 'password',
+        'api_token' => Str::random(60),
+        'remember_token' => Str::random(10),
         'email_verified_at' => now(),
     ];
 });

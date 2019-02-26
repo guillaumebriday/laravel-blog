@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -123,7 +124,7 @@ class Post extends Model
      */
     public function excerpt(int $length = 50): string
     {
-        return str_limit($this->content, $length);
+        return Str::limit($this->content, $length);
     }
 
     /**

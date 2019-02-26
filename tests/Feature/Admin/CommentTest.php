@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class CommentTest extends TestCase
@@ -26,7 +27,7 @@ class CommentTest extends TestCase
             ->assertSee('Content')
             ->assertSee('Author')
             ->assertSee('Posted at')
-            ->assertSee(e(str_limit($comment->content, 50)));
+            ->assertSee(e(Str::limit($comment->content, 50)));
     }
 
     public function testEdit()

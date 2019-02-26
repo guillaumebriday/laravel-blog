@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Rules\CanBeAuthor;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class PostsRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class PostsRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'slug' => str_slug($this->input('title'))
+            'slug' => Str::slug($this->input('title'))
         ]);
 
         $this->merge([
