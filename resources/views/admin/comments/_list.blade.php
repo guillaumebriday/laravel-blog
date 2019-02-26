@@ -12,7 +12,7 @@
     <tbody>
         @foreach($comments as $comment)
             <tr>
-                <td>{{ str_limit($comment->content, 50) }}</td>
+                <td>{{ Str::limit($comment->content, 50) }}</td>
                 <td>{{ link_to_route('admin.posts.edit', $comment->post->title, $comment->post) }}</td>
                 <td>{{ link_to_route('admin.users.edit', $comment->author->fullname, $comment->author) }}</td>
                 <td>{{ humanize_date($comment->posted_at, 'd/m/Y H:i:s') }}</td>
