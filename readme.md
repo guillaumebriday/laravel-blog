@@ -1,30 +1,30 @@
-# Laravel 5.7 blog
+# Laravel 5.8 blog
 
 [![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's features like:
 
-- [Authentication](https://laravel.com/docs/5.7/authentication)
+- [Authentication](https://laravel.com/docs/5.8/authentication)
 - API
   - Token authentication
-  - [API Resources](https://laravel.com/docs/5.7/eloquent-resources)
+  - [API Resources](https://laravel.com/docs/5.8/eloquent-resources)
   - Versioning
-- [Blade](https://laravel.com/docs/5.7/blade)
-- [Broadcasting](https://laravel.com/docs/5.7/broadcasting)
-- [Cache](https://laravel.com/docs/5.7/cache)
-- [Email Verification](https://laravel.com/docs/5.7/verification)
-- [Filesystem](https://laravel.com/docs/5.7/filesystem)
-- [Helpers](https://laravel.com/docs/5.7/helpers)
-- [Horizon](https://laravel.com/docs/5.7/horizon)
-- [Localization](https://laravel.com/docs/5.7/localization)
-- [Mail](https://laravel.com/docs/5.7/mail)
-- [Migrations](https://laravel.com/docs/5.7/migrations)
-- [Policies](https://laravel.com/docs/5.7/authorization)
-- [Providers](https://laravel.com/docs/5.7/providers)
-- [Requests](https://laravel.com/docs/5.7/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/5.7/seeding)
-- [Testing](https://laravel.com/docs/5.7/testing)
+- [Blade](https://laravel.com/docs/5.8/blade)
+- [Broadcasting](https://laravel.com/docs/5.8/broadcasting)
+- [Cache](https://laravel.com/docs/5.8/cache)
+- [Email Verification](https://laravel.com/docs/5.8/verification)
+- [Filesystem](https://laravel.com/docs/5.8/filesystem)
+- [Helpers](https://laravel.com/docs/5.8/helpers)
+- [Horizon](https://laravel.com/docs/5.8/horizon)
+- [Localization](https://laravel.com/docs/5.8/localization)
+- [Mail](https://laravel.com/docs/5.8/mail)
+- [Migrations](https://laravel.com/docs/5.8/migrations)
+- [Policies](https://laravel.com/docs/5.8/authorization)
+- [Providers](https://laravel.com/docs/5.8/providers)
+- [Requests](https://laravel.com/docs/5.8/validation#form-request-validation)
+- [Seeding & Factories](https://laravel.com/docs/5.8/seeding)
+- [Testing](https://laravel.com/docs/5.8/testing)
 
 Beside Laravel, this project uses other tools like:
 
