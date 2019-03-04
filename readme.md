@@ -55,7 +55,8 @@ $ cd laravel-blog
 $ cp .env.example .env
 $ docker-compose run --rm --no-deps blog-server composer install
 $ docker-compose run --rm --no-deps blog-server php artisan key:generate
-$ docker-compose run --rm --no-deps blog-server php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
+$ docker-compose run --rm --no-deps blog-server php artisan horizon:install
+$ docker-compose run --rm --no-deps blog-server php artisan telescope:install
 $ docker-compose run --rm --no-deps blog-server php artisan storage:link
 $ docker run --rm -it -v $(pwd):/app -w /app node yarn
 $ docker-compose up -d
@@ -106,6 +107,7 @@ $ docker-compose run --rm --no-deps blog-server ./vendor/bin/php-cs-fixer fix --
 
 Generating backup :
 ```bash
+$ docker-compose run --rm blog-server php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
 $ docker-compose run --rm blog-server php artisan backup:run
 ```
 
