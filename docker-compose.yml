@@ -28,7 +28,7 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel-blog
     volumes:
-      - ./storage/tmp/db:/var/lib/mysql:cached
+      - db-data:/var/lib/mysql:cached
 
   mysql-test:
     image: mysql:5.7
@@ -39,7 +39,7 @@ services:
       - MYSQL_DATABASE=testing
 
   nginx:
-    image: nginx
+    image: nginx:alpine
     ports:
       - "8000:8000"
     volumes:
@@ -49,6 +49,9 @@ services:
       - blog-server
 
   redis:
-    image: redis
+    image: redis:alpine
     ports:
       - "6379:6379"
+
+volumes:
+  db-data:
