@@ -4,6 +4,7 @@
 /public/css
 /public/fonts
 /public/js
+/public/mix-manifest.json
 public/media/
 /vendor
 /.idea
