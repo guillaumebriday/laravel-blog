@@ -16,9 +16,9 @@
                 {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
                 {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
 
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-                @endif
+                @error('email')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">

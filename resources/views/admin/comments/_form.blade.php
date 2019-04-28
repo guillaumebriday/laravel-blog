@@ -5,18 +5,18 @@
             {!! Form::label('author_id', __('comments.attributes.author')) !!}
             {!! Form::select('author_id', $users, null, ['class' => 'form-control' . ($errors->has('author_id') ? ' is-invalid' : ''), 'required']) !!}
 
-            @if ($errors->has('author_id'))
-                <span class="invalid-feedback">{{ $errors->first('author_id') }}</span>
-            @endif
+            @error('author_id')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group col-md-6">
             {!! Form::label('posted_at', __('comments.attributes.posted_at')) !!}
             <input type="datetime-local" name="posted_at" class="form-control {{ ($errors->has('posted_at') ? ' is-invalid' : '') }}" required value="{{ old('posted_at') ?? $comment->posted_at->format('Y-m-d\TH:i') }}">
 
-            @if ($errors->has('posted_at'))
-                <span class="invalid-feedback">{{ $errors->first('posted_at') }}</span>
-            @endif
+            @error('posted_at')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -24,9 +24,9 @@
         {!! Form::label('content', __('comments.attributes.content')) !!}
         {!! Form::textarea('content', null, ['class' => 'form-control' . ($errors->has('content') ? ' is-invalid' : ''), 'required']) !!}
 
-        @if ($errors->has('content'))
-            <span class="invalid-feedback">{{ $errors->first('content') }}</span>
-        @endif
+        @error('content')
+            <span class="invalid-feedback">{{ $message }}</span>
+        @enderror
     </div>
 
     <div class="pull-left">

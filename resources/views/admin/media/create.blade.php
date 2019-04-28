@@ -8,18 +8,18 @@
             {!! Form::label('image', __('media.attributes.image')) !!}
             {!! Form::file('image', ['accept' => 'image/*', 'class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : ''), 'required']) !!}
 
-            @if ($errors->has('image'))
-                <span class="invalid-feedback">{{ $errors->first('image') }}</span>
-            @endif
+            @error('image')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="form-group">
             {!! Form::label('name', __('media.attributes.name')) !!}
             {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : '')]) !!}
 
-            @if ($errors->has('name'))
-                <span class="invalid-feedback">{{ $errors->first('name') }}</span>
-            @endif
+            @error('name')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
 
 

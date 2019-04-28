@@ -5,18 +5,18 @@
       {!! Form::label('name', __('users.attributes.name')) !!}
       {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.name'), 'required']) !!}
 
-      @if ($errors->has('name'))
-        <span class="invalid-feedback">{{ $errors->first('name') }}</span>
-      @endif
+      @error('name')
+        <span class="invalid-feedback">{{ $message }}</span>
+      @enderror
     </div>
 
     <div class="form-group col-md-6">
       {!! Form::label('email', __('users.attributes.email')) !!}
       {!! Form::text('email', null, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.email'), 'required']) !!}
 
-      @if ($errors->has('email'))
-        <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-      @endif
+      @error('email')
+        <span class="invalid-feedback">{{ $message }}</span>
+      @enderror
     </div>
   </div>
 
@@ -25,18 +25,18 @@
       {!! Form::label('password', __('users.attributes.password')) !!}
       {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password')]) !!}
 
-      @if ($errors->has('password'))
-        <span class="invalid-feedback">{{ $errors->first('password') }}</span>
-      @endif
+      @error('password')
+        <span class="invalid-feedback">{{ $message }}</span>
+      @enderror
     </div>
 
     <div class="form-group col-md-6">
       {!! Form::label('password_confirmation', __('users.attributes.password_confirmation')) !!}
       {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password_confirmation')]) !!}
 
-      @if ($errors->has('password_confirmation'))
-        <span class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
-      @endif
+      @error('password_confirmation')
+        <span class="invalid-feedback">{{ $message }}</span>
+      @enderror
     </div>
   </div>
 

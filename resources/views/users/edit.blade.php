@@ -14,9 +14,9 @@
           <div class="col-sm-5">
             {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.name'), 'required']) !!}
 
-            @if ($errors->has('name'))
-                <span class="invalid-feedback">{{ $errors->first('name') }}</span>
-            @endif
+            @error('name')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
           </div>
         </div>
 
@@ -26,9 +26,9 @@
           <div class="col-sm-5">
             {!! Form::text('email', null, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.email'), 'required']) !!}
 
-            @if ($errors->has('email'))
-                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-            @endif
+            @error('email')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
           </div>
         </div>
 

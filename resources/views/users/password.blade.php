@@ -14,9 +14,9 @@
           <div class="col-sm-8">
             {!! Form::password('current_password', ['class' => 'form-control' . ($errors->has('current_password') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.current_password'), 'required']) !!}
 
-            @if ($errors->has('current_password'))
-                <span class="invalid-feedback">{{ $errors->first('current_password') }}</span>
-            @endif
+            @error('current_password')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
           </div>
         </div>
 
@@ -26,9 +26,9 @@
           <div class="col-sm-8">
             {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password'), 'required']) !!}
 
-            @if ($errors->has('password'))
-                <span class="invalid-feedback">{{ $errors->first('password') }}</span>
-            @endif
+            @error('password')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
           </div>
         </div>
 
@@ -38,9 +38,9 @@
           <div class="col-sm-8">
             {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password_confirmation'), 'required']) !!}
 
-            @if ($errors->has('password_confirmation'))
-                <span class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
-            @endif
+            @error('password_confirmation')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
           </div>
         </div>
 
