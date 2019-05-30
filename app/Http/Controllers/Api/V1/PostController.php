@@ -18,7 +18,7 @@ class PostController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return PostResource::collection(
-            Post::search($request->input('q'))->withCount('comments')->latest()->paginate($request->input('limit', 20))
+            Post::search($request->input('q'))->published()->withCount('comments')->latest()->paginate($request->input('limit', 20))
         );
     }
 
@@ -51,6 +51,10 @@ class PostController extends Controller
      */
     public function show(Post $post): PostResource
     {
+        if ($post->isPublished() === false) {
+            abort(404);
+        }
+
         return new PostResource($post);
     }
 

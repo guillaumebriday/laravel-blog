@@ -23,6 +23,16 @@
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                     </a>
 
+                    {!! Form::model($post, ['method' => 'PUT', 'route' => ['admin.posts_publish.update', $post], 'class' => 'form-inline', 'data-confirm' => __('forms.posts_publish.update')]) !!}
+                    @if($post->published === 0)
+                        {!! Form::hidden('published', 1) !!}
+                        {!! Form::button('<i class="fa fa-eye" aria-hidden="true"></i>', ['class' => 'btn btn-primary btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
+                    @else
+                        {!! Form::hidden('published', 0) !!}
+                        {!! Form::button('<i class="fa fa-eye-slash" aria-hidden="true"></i>', ['class' => 'btn btn-primary btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
+                    @endif
+                    {!! Form::close() !!}
+
                     {!! Form::model($post, ['method' => 'DELETE', 'route' => ['admin.posts.destroy', $post], 'class' => 'form-inline', 'data-confirm' => __('forms.posts.delete')]) !!}
                         {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
                     {!! Form::close() !!}

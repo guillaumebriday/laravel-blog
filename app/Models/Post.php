@@ -26,6 +26,7 @@ class Post extends Model
         'posted_at',
         'slug',
         'thumbnail_id',
+        'published',
     ];
 
     /**
@@ -96,6 +97,14 @@ class Post extends Model
     }
 
     /**
+     * Scope a query to only include posts that are published.
+     */
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where('published', 1);
+    }
+
+    /**
      * Return the post's author
      */
     public function author(): BelongsTo
@@ -134,4 +143,13 @@ class Post extends Model
     {
         return filled($this->thumbnail_id);
     }
+
+    /**
+     * return true if the post has been published
+     */
+    public function isPublished(): bool
+    {
+        return ($this->published === 1);
+    }
+
 }
