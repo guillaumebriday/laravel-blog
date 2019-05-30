@@ -14,7 +14,7 @@ class PostFeedController extends Controller
     public function index(): Response
     {
         $posts = Cache::remember('feed-posts', now()->addHour(), function () {
-            return Post::latest()->limit(20)->get();
+            return Post::published()->latest()->limit(20)->get();
         });
 
         return response()->view('posts_feed.index', [

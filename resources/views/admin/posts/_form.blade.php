@@ -1,5 +1,6 @@
 @php
     $posted_at = old('posted_at') ?? (isset($post) ? $post->posted_at->format('Y-m-d\TH:i') : null);
+    $published = old('published') ?? (isset($post) &&  $post->published == 1 ? true : false);
 @endphp
 
 <div class="form-group">
@@ -40,6 +41,15 @@
     @enderror
 </div>
 
+<div class="form-group form-check">
+    {!! Form::hidden('published',0) !!}
+    {!! Form::checkbox('published', '1', $published, ['class' => 'form-check-input ' . ($errors->has('published') ? ' is-invalid' : '')]) !!}
+    {!! Form::label('published', __('posts.attributes.published'), ['class' => 'form-check-label']) !!}
+
+    @error('published')
+        <span class="invalid-feedback">{{ $message }}</span>
+    @enderror
+</div>
 
 <div class="form-group">
     {!! Form::label('content', __('posts.attributes.content')) !!}

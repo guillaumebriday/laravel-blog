@@ -39,6 +39,7 @@ class PostTest extends TestCase
             ->assertSee('Author')
             ->assertSee('Posted at')
             ->assertSee('Content')
+            ->assertSee('Published')
             ->assertSee('Save');
     }
 
@@ -81,7 +82,8 @@ class PostTest extends TestCase
             ->assertSee(e($post->content))
             ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
             ->assertSee('Update')
-            ->assertSee('Posted at');
+            ->assertSee('Posted at')
+            ->assertSee('Published');
     }
 
     public function testUpdate()
@@ -130,6 +132,7 @@ class PostTest extends TestCase
             'content' => "I'm a content",
             'posted_at' => now()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
+            'published' => 1
         ], $overrides);
     }
 }

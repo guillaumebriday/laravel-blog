@@ -16,6 +16,7 @@ class PostController extends Controller
         return view('posts.index', [
             'posts' => Post::search($request->input('q'))
                              ->with('author', 'likes')
+                             ->published()
                              ->withCount('comments', 'thumbnail', 'likes')
                              ->latest()
                              ->paginate(20)
@@ -29,6 +30,10 @@ class PostController extends Controller
     {
         $post->comments_count = $post->comments()->count();
         $post->likes_count = $post->likes()->count();
+
+        if ($post->isPublished() === false && (auth()->user() === null || auth()->user()->isAdmin() !== true)) {
+            abort(404);
+        }
 
         return view('posts.show', [
             'post' => $post

@@ -27,7 +27,8 @@ class PostTest extends TestCase
                         'content',
                         'posted_at',
                         'author_id',
-                        'comments_count'
+                        'comments_count',
+                        'published'
                 ]],
                 'links' => [
                     'first',
@@ -62,7 +63,8 @@ class PostTest extends TestCase
                     'content',
                     'posted_at',
                     'author_id',
-                    'comments_count'
+                    'comments_count',
+                    'published'
                 ]],
                 'links' => [
                     'first',
@@ -98,7 +100,8 @@ class PostTest extends TestCase
     {
         $post = factory(Post::class)->create([
             'title' => 'The Empire Strikes Back',
-            'content' => 'A Star Wars Story'
+            'content' => 'A Star Wars Story',
+            'published' => 1
         ]);
         factory(Comment::class, 2)->create(['post_id' => $post->id]);
 
@@ -112,7 +115,8 @@ class PostTest extends TestCase
                     'content',
                     'posted_at',
                     'author_id',
-                    'comments_count'
+                    'comments_count',
+                    'published'
                 ],
             ])
             ->assertJson([
@@ -123,7 +127,8 @@ class PostTest extends TestCase
                     'content' => 'A Star Wars Story',
                     'posted_at' => $post->posted_at->toIso8601String(),
                     'author_id' => $post->author_id,
-                    'comments_count' => 2
+                    'comments_count' => 2,
+                    'published' => 1
                 ],
             ]);
     }
@@ -225,6 +230,7 @@ class PostTest extends TestCase
             'content' => 'Star Wars.',
             'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
+            'published' => 1
         ], $overrides);
     }
 }

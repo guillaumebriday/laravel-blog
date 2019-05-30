@@ -9,6 +9,9 @@
     <h1 v-pre>{{ $post->title }}</h1>
 
     <div class="mb-3">
+      @if (!$post->isPublished())
+        <span class="badge badge-info">Unpublished</span>
+      @endif
       <small v-pre class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small>,
       <small class="text-muted">{{ humanize_date($post->posted_at) }}</small>
     </div>

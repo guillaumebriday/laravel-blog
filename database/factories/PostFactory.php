@@ -11,6 +11,7 @@ $factory->define(Post::class, function (Generator $faker) {
         'posted_at' => now(),
         'author_id' => function () {
             return factory(User::class)->create()->id;
-        }
+        },
+        'published' => 1
     ];
 });

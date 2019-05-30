@@ -20,7 +20,8 @@ class Post extends Resource
             'author_id' => $this->author_id,
             'comments_count' => $this->comments_count ?? $this->comments()->count(),
             'thumbnail_url' => $this->when($this->hasThumbnail(), url(optional($this->thumbnail)->getUrl())),
-            'thumb_thumbnail_url' => $this->when($this->hasThumbnail(), url(optional($this->thumbnail)->getUrl('thumb')))
+            'thumb_thumbnail_url' => $this->when($this->hasThumbnail(), url(optional($this->thumbnail)->getUrl('thumb'))),
+            'published' => $this->published
         ];
     }
 }
