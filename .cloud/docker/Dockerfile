@@ -1,5 +1,5 @@
-FROM php:7.3-fpm
-LABEL maintainer="hello@guillaumebriday.fr"
+FROM php:7.3-fpm-stretch
+LABEL maintainer="guillaumebriday@gmail.com"
 
 # Installing dependencies
 RUN apt-get update && apt-get install -y \
