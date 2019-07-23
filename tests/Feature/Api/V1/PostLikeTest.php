@@ -29,7 +29,7 @@ class PostLikeTest extends TestCase
 
         $this->actingAs($user, 'api')
             ->json('DELETE', "/api/v1/posts/{$post->id}/likes")
-            ->assertStatus(200);
+            ->assertOk();
 
         $this->assertCount(0, $post->likes);
     }

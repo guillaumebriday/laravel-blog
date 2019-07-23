@@ -21,7 +21,7 @@ class PostTest extends TestCase
 
         $this->actingAsAdmin()
             ->get("/admin/posts")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('4 posts')
             ->assertSee('Anakin')
             ->assertSee('Author')
@@ -33,7 +33,7 @@ class PostTest extends TestCase
     {
         $this->actingAsAdmin()
             ->get('/admin/posts/create')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('Create post')
             ->assertSee('Title')
             ->assertSee('Author')
@@ -74,7 +74,7 @@ class PostTest extends TestCase
 
         $this->actingAs($anakin)
             ->get("/admin/posts/{$post->slug}/edit")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('Anakin')
             ->assertSee('Show post')
             ->assertSee(e($post->title))

@@ -21,7 +21,7 @@ class CommentTest extends TestCase
 
         $this->actingAsAdmin()
             ->get('/admin/comments')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('1 comment')
             ->assertSee('Anakin')
             ->assertSee('Content')
@@ -37,7 +37,7 @@ class CommentTest extends TestCase
 
         $this->actingAsAdmin()
             ->get("/admin/comments/{$comment->id}/edit")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('Anakin')
             ->assertSee('Show post :')
             ->assertSee(route('posts.show', $comment->post))

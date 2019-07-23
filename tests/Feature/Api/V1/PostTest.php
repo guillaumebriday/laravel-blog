@@ -18,7 +18,7 @@ class PostTest extends TestCase
         factory(Post::class, 2)->create();
 
         $this->json('GET', '/api/v1/posts')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
                         'id',
@@ -53,7 +53,7 @@ class PostTest extends TestCase
         factory(Post::class)->create(['author_id' => $user->id]);
 
         $this->json('GET', "/api/v1/users/{$user->id}/posts")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
                     'id',
@@ -88,9 +88,9 @@ class PostTest extends TestCase
         factory(Post::class)->create(['author_id' => $user->id]);
 
         $this->json('GET', '/api/v1/users/314/posts')
-            ->assertStatus(404)
+            ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\User].'
+                'message' => 'No query results for model [App\\Models\\User] 314'
             ]);
     }
 
@@ -103,7 +103,7 @@ class PostTest extends TestCase
         factory(Comment::class, 2)->create(['post_id' => $post->id]);
 
         $this->json('GET', "/api/v1/posts/{$post->id}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     'id',
@@ -131,9 +131,9 @@ class PostTest extends TestCase
     public function testPostShowFail()
     {
         $this->json('GET', '/api/v1/posts/31415')
-            ->assertStatus(404)
+            ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Post].'
+                'message' => 'No query results for model [App\\Models\\Post] 31415'
             ]);
     }
 
@@ -144,7 +144,7 @@ class PostTest extends TestCase
 
         $this->actingAsAdmin('api')
             ->json('PATCH', "/api/v1/posts/{$post->id}", $params)
-            ->assertStatus(200);
+            ->assertOk();
 
         $post->refresh();
 
@@ -159,7 +159,7 @@ class PostTest extends TestCase
 
         $this->actingAsUser('api')
             ->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams())
-            ->assertStatus(403)
+            ->assertForbidden()
             ->assertJson([
                 'message' => 'This action is unauthorized.'
             ]);
@@ -181,7 +181,7 @@ class PostTest extends TestCase
     {
         $this->actingAsUser('api')
             ->json('POST', '/api/v1/posts/', $this->validParams())
-            ->assertStatus(403)
+            ->assertForbidden()
             ->assertJson([
                 'message' => 'This action is unauthorized.'
             ]);
@@ -204,7 +204,7 @@ class PostTest extends TestCase
 
         $this->actingAsUser('api')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
-            ->assertStatus(403)
+            ->assertForbidden()
             ->assertJson([
                 'message' => 'This action is unauthorized.'
             ]);

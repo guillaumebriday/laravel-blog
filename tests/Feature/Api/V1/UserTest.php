@@ -22,7 +22,7 @@ class UserTest extends TestCase
             });
 
         $this->json('GET', '/api/v1/users')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
                     'id',
@@ -66,7 +66,7 @@ class UserTest extends TestCase
         factory(Post::class, 2)->create(['author_id' => $user->id]);
 
         $this->json('GET', "/api/v1/users/{$user->id}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     'id',
@@ -108,7 +108,7 @@ class UserTest extends TestCase
 
         $this->actingAs($user, 'api')
             ->json('PATCH', "/api/v1/users/{$user->id}", $params)
-            ->assertStatus(200);
+            ->assertOk();
 
         $user->refresh();
 

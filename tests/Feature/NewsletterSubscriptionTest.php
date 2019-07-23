@@ -43,7 +43,7 @@ class NewsletterSubscriptionTest extends TestCase
 
         $this->actingAsUser()
             ->get("newsletter-subscriptions/unsubscribe?email={$newsletter->email}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSessionHas('success', 'The request for unsubscription has been taken into account.');
 
         $this->assertDatabaseMissing('newsletter_subscriptions', $newsletter->toArray());

@@ -17,7 +17,7 @@ class CommentTest extends TestCase
         factory(Comment::class, 2)->create();
 
         $this->json('GET', '/api/v1/comments')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
                     'id',
@@ -51,7 +51,7 @@ class CommentTest extends TestCase
         factory(Comment::class, 10)->create();
 
         $this->json('GET', "/api/v1/users/{$user->id}/comments")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
                     'id',
@@ -93,7 +93,7 @@ class CommentTest extends TestCase
         factory(Comment::class, 10)->create();
 
         $this->json('GET', "/api/v1/posts/{$post->id}/comments")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
                     'id',
@@ -141,9 +141,9 @@ class CommentTest extends TestCase
     {
         $this->actingAsUser('api')
             ->json('POST', "/api/v1/posts/31415/comments", $this->validParams())
-            ->assertStatus(404)
+            ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Post].'
+                'message' => 'No query results for model [App\\Models\\Post] 31415'
             ]);
     }
 
@@ -154,7 +154,7 @@ class CommentTest extends TestCase
         ]);
 
         $this->json('GET', "/api/v1/comments/{$comment->id}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     'id',
@@ -184,9 +184,9 @@ class CommentTest extends TestCase
     public function testCommentShowFail()
     {
         $this->json('GET', '/api/v1/comments/31415')
-            ->assertStatus(404)
+            ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Comment].'
+                'message' => 'No query results for model [App\\Models\\Comment] 31415'
             ]);
     }
 
@@ -203,9 +203,9 @@ class CommentTest extends TestCase
     {
         $this->actingAsUser('api')
             ->json('DELETE', '/api/v1/comments/31415')
-            ->assertStatus(404)
+            ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Comment].'
+                'message' => 'No query results for model [App\\Models\\Comment] 31415'
             ]);
     }
 
@@ -215,7 +215,7 @@ class CommentTest extends TestCase
 
         $this->actingAsUser('api')
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
-            ->assertStatus(403)
+            ->assertForbidden()
             ->assertJson([
                 'message' => 'This action is unauthorized.'
             ]);
@@ -225,7 +225,7 @@ class CommentTest extends TestCase
     {
         $comment = factory(Comment::class)->create();
         $this->json('DELETE', "/api/v1/comments/{$comment->id}")
-            ->assertStatus(401)
+            ->assertUnauthorized()
             ->assertJson([
                 'message' => 'Unauthenticated.'
             ]);

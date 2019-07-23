@@ -22,7 +22,7 @@ class AuthenticateTest extends TestCase
                 'email' => 'anakin@skywalker.st',
                 'password' => '4nak1n'
             ])
-            ->assertStatus(200)
+            ->assertOk()
             ->assertJsonStructure([
                 'data' => [
                     'id',
@@ -55,7 +55,7 @@ class AuthenticateTest extends TestCase
                 'email' => 'anakin@skywalker.st',
                 'password' => 'Luk3'
             ])
-            ->assertStatus(401)
+            ->assertUnauthorized()
             ->assertJson([
                 'message' => 'This action is unauthorized.'
             ]);

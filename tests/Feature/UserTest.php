@@ -21,7 +21,7 @@ class UserTest extends TestCase
 
         $this->actingAs($user)
             ->get("/users/{$user->id}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee(e($user->name))
             ->assertSee(e($user->email))
             ->assertSee('Comments')
@@ -41,7 +41,7 @@ class UserTest extends TestCase
 
         $this->actingAs($user)
             ->get('/settings/account')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('My profile')
             ->assertSee('My public profile')
             ->assertSee($user->name)

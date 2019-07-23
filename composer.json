@@ -14,7 +14,8 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
-        "pusher/pusher-php-server": "^3.3.1",
+        "nunomaduro/collision": "^3.0",
+        "pusher/pusher-php-server": "^4.0",
         "spatie/laravel-backup": "^6.1.1",
         "spatie/laravel-cors": "^1.4",
         "spatie/laravel-medialibrary": "^7.6"
@@ -26,7 +27,6 @@
         "fzaninotto/faker": "^1.4",
         "laravel/telescope": "^2.0",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.5"
     },
     "autoload": {

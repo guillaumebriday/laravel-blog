@@ -22,7 +22,7 @@ class PostTest extends TestCase
         factory(Comment::class, 3)->create(['post_id' => $post->id]);
 
         $this->get('/')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('Latest posts')
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
@@ -36,7 +36,7 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create(['title' => 'Hello Obiwan']);
 
         $this->get('/?q=Hello')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('1 post found')
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at));
@@ -50,7 +50,7 @@ class PostTest extends TestCase
 
         $this->actingAsUser()
             ->get("/posts/{$post->slug}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee(e($post->content))
             ->assertSee(e($post->title))
             ->assertSee(humanize_date($post->posted_at))
@@ -63,7 +63,7 @@ class PostTest extends TestCase
         $post = factory(Post::class)->create();
 
         $this->get("/posts/{$post->slug}")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('You must be signed in to comment.');
     }
 }

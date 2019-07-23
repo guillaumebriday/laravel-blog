@@ -21,7 +21,7 @@ class DashboardTest extends TestCase
 
         $this->actingAsAdmin()
             ->get('/admin/dashboard')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('This week')
             ->assertSee('Details')
             ->assertSee('4')

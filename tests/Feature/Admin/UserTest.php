@@ -21,7 +21,7 @@ class UserTest extends TestCase
 
         $this->actingAsAdmin()
             ->get('/admin/users')
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('5 users')
             ->assertSee('3')
             ->assertSee('anakin@skywalker.st')
@@ -37,7 +37,7 @@ class UserTest extends TestCase
 
         $this->actingAsAdmin()
             ->get("/admin/users/{$anakin->id}/edit")
-            ->assertStatus(200)
+            ->assertOk()
             ->assertSee('Anakin')
             ->assertSee('Show profile')
             ->assertSee('anakin@skywalker.st')
