@@ -19,13 +19,13 @@
         "laravel-echo": "^1.5.4",
         "laravel-mix": "^4.1.2",
         "popper.js": "^1.15.0",
-        "pusher-js": "^4.4.0",
+        "pusher-js": "^5.0.0",
         "trumbowyg": "^2.18.0",
         "vue": "^2.6.10"
     },
     "devDependencies": {
         "resolve-url-loader": "3.1.0",
-        "sass": "^1.22.5",
+        "sass": "^1.22.7",
         "sass-loader": "7.*",
         "vue-template-compiler": "^2.6.10"
     }
