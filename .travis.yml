@@ -29,6 +29,7 @@ before_script:
 script:
   - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
   - vendor/bin/phpunit --testdox
+  - yarn lint
 
 notifications:
   email: false
