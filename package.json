@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "lint": "eslint --ext .js,.vue resources/js",
         "dev": "yarn development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "yarn development -- --watch",
@@ -24,6 +25,13 @@
         "vue": "^2.6.10"
     },
     "devDependencies": {
+        "eslint": "^6.1.0",
+        "eslint-config-standard": "^13.0.1",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-node": "^9.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "eslint-plugin-vue": "^5.2.3",
         "resolve-url-loader": "3.1.0",
         "sass": "^1.22.7",
         "sass-loader": "7.*",
