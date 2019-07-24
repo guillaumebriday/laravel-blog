@@ -1,6 +1,6 @@
-import CommentForm from './components/comments/CommentForm.vue'
-import CommentList from './components/comments/CommentList.vue'
-import Like from './components/Like.vue'
+import CommentForm from './components/comments/CommentForm'
+import CommentList from './components/comments/CommentList'
+import Like from './components/Like'
 import Vue from 'vue'
 
 Vue.config.productionTip = false
@@ -16,8 +16,8 @@ new Vue({
     Like
   },
 
-  mounted() {
-    $('[data-confirm]').on('click', function () {
+  mounted () {
+    $('[data-confirm]').on('click', () => {
       return confirm($(this).data('confirm'))
     })
   }

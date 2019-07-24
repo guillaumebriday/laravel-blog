@@ -2,18 +2,28 @@
   <div>
     <div class="form-group">
       <textarea
+        v-model="content"
         class="form-control"
-        :class="{ 'is-invalid' : this.errors['content'] }"
+        :class="{ 'is-invalid' : errors['content'] }"
         :placeholder="placeholder"
-        v-model="content">
-      </textarea>
+      />
 
-      <span v-if="this.errors['content']" class="invalid-feedback">{{ this.errors['content'][0] }}</span>
+      <span
+        v-if="errors['content']"
+        class="invalid-feedback"
+      >{{ errors['content'][0] }}</span>
     </div>
 
     <div class="form-group text-right">
-      <button class="btn btn-primary" @click="sendComment" :disabled="this.isDisabled">
-        <i v-if="isLoading" class="fa fa-spinner fa-spin fa-fw"></i>
+      <button
+        class="btn btn-primary"
+        :disabled="isDisabled"
+        @click="sendComment"
+      >
+        <i
+          v-if="isLoading"
+          class="fa fa-spinner fa-spin fa-fw"
+        />
         {{ button }}
       </button>
     </div>
@@ -24,34 +34,49 @@
 import axios from 'axios'
 
 export default {
-  props: ["post_id", "placeholder", "button"],
+  props: {
+    postId: {
+      type: Number,
+      required: true
+    },
 
-  data() {
+    placeholder: {
+      type: String,
+      default: null
+    },
+
+    button: {
+      type: String,
+      required: true
+    }
+  },
+
+  data () {
     return {
-      content: "",
+      content: '',
       isLoading: false,
       errors: []
     }
   },
 
   computed: {
-    isDisabled() {
+    isDisabled () {
       return this.isLoading || this.content.length === 0
     }
   },
 
   methods: {
-    sendComment() {
+    sendComment () {
       this.isLoading = true
 
       axios
-        .post("/api/v1/posts/" + this.post_id + "/comments", {
+        .post(`/api/v1/posts/${this.postId}/comments`, {
           content: this.content
         })
-        .then(response => {
-          Event.$emit("added", response.data.data)
+        .then(({ data }) => {
+          Event.$emit('added', data.data)
 
-          this.content = ""
+          this.content = ''
           this.isLoading = false
           this.errors = []
         })

@@ -1,2 +1,2 @@
-require('./bootstrap')
-require('./vue')
+import './bootstrap'
+import './vue'

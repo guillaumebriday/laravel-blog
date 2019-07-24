@@ -3,7 +3,7 @@
 @include ('comments/_form')
 
 <comment-list
-    post_id="{{ $post->id }}"
-    loading_comments="@lang('comments.loading_comments')"
-    data_confirm="@lang('forms.comments.delete')">
+    :post-id="{{ $post->id }}"
+    loading-comments="@lang('comments.loading_comments')"
+    data-confirm="@lang('forms.comments.delete')">
 </comment-list>

@@ -1,6 +1,6 @@
 @auth
   <comment-form
-      post_id="{{ $post->id }}"
+      :post-id="{{ $post->id }}"
       placeholder="@lang('comments.placeholder.content')"
       button="@lang('comments.comment')">
   </comment-form>

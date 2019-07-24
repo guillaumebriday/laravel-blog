@@ -5,9 +5,9 @@ $('.trumbowyg-form').trumbowyg({
 })
 
 // Toggle the side navigation
-$("#sidenavToggler").click(function(e) {
+$('#sidenavToggler').click(function (e) {
   e.preventDefault()
-  $("body").toggleClass("sidenav-toggled")
+  $('body').toggleClass('sidenav-toggled')
 })
 
 // Configure tooltips for collapsed side navigation

@@ -9,7 +9,7 @@ import Clipboard from 'clipboard'
 import jquery from 'jquery'
 import Echo from 'laravel-echo'
 import PopperJs from 'popper.js'
-import Pusher from 'pusher-js'
+import 'pusher-js'
 
 window.$ = window.jQuery = jquery
 window.PopperJs = PopperJs.default
@@ -31,7 +31,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]')
+const token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
@@ -43,10 +43,10 @@ if (token) {
  * API Token as common header
  */
 
-let api_token = document.head.querySelector('meta[name="api-token"]')
+const apiToken = document.head.querySelector('meta[name="api-token"]')
 
-if (api_token) {
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content
+if (apiToken) {
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + apiToken.content
 }
 
 /**

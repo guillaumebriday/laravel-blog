@@ -1,61 +1,85 @@
 <template>
   <div>
-    <comment v-for="comment in comments"
-              :key="comment.id"
-              :comment="comment"
-              :data_confirm="data_confirm"
-              @deleted="removeComment(comment)">
-    </comment>
+    <comment
+      v-for="comment in comments"
+      :key="comment.id"
+      :comment="comment"
+      :data-confirm="dataConfirm"
+      @deleted="removeComment(comment)"
+    />
 
-    <button v-if="endpoint" @click="retrieveComments" :disabled="isLoading" class="btn btn-outline-primary btn-block">
-      <i v-if="isLoading" class="fa fa-spinner fa-spin fa-fw"></i>
-      {{ loading_comments }}
+    <button
+      v-if="endpoint"
+      :disabled="isLoading"
+      class="btn btn-outline-primary btn-block"
+      @click="retrieveComments"
+    >
+      <i
+        v-if="isLoading"
+        class="fa fa-spinner fa-spin fa-fw"
+      />
+      {{ loadingComments }}
     </button>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Comment from './Comment.vue'
+import Comment from './Comment'
 
 export default {
-  props: ["post_id", "loading_comments", "data_confirm"],
-
   components: { Comment },
 
-  data() {
+  props: {
+    postId: {
+      type: Number,
+      required: true
+    },
+
+    loadingComments: {
+      type: String,
+      required: true
+    },
+
+    dataConfirm: {
+      type: String,
+      required: true
+    }
+  },
+
+  data () {
     return {
       comments: [],
       isLoading: false,
-      endpoint: "/api/v1/posts/" + this.post_id + "/comments/"
+      endpoint: `/api/v1/posts/${this.postId}/comments/`
     }
   },
 
   mounted () {
     this.retrieveComments()
 
-    Event.$on("added", comment => this.addComment(comment))
+    Event.$on('added', comment => this.addComment(comment))
 
-    window.Echo.channel("post." + this.post_id)
-      .listen(".comment.posted", e => this.addComment(e.comment))
+    window.Echo.channel(`post.${this.postId}`)
+      .listen('.comment.posted', e => this.addComment(e.comment))
   },
 
   methods: {
-    retrieveComments() {
+    retrieveComments () {
       this.isLoading = true
 
-      axios.get(this.endpoint).then(response => {
-        this.comments.push(...response.data.data)
+      axios.get(this.endpoint).then(({ data }) => {
+        this.comments.push(...data.data)
         this.isLoading = false
-        this.endpoint = response.data.links.next
+        this.endpoint = data.links.next
       })
     },
 
-    addComment(comment) {
+    addComment (comment) {
       this.comments.unshift(comment)
     },
 
-    removeComment({ id }) {
+    removeComment ({ id }) {
       this.comments.splice(this.comments.findIndex(comment => comment.id === id), 1)
     }
   }

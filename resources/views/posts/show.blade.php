@@ -19,12 +19,12 @@
 
     <p class="mt-3">
       <like
-        likes_count="{{ $post->likes_count }}"
-        liked="{{ $post->isLiked() }}"
-        item_id="{{ $post->id }}"
-        item_type="posts"
-        logged_in="{{ Auth::check() }}"
-      ></like>
+        :likes-count="{{ $post->likes_count }}"
+        :liked="{{ json_encode($post->isLiked()) }}"
+        :item-id="{{ $post->id }}"
+        item-type="posts"
+        :logged-in="{{ json_encode(Auth::check()) }}"
+      />
     </p>
   </div>
 
