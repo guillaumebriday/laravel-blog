@@ -1,7 +1,7 @@
 {
-    "name": "laravel 5.8 blog",
+    "name": "guillaumebriday/laravel-blog",
     "description": "Laravel 5.8 blog.",
-    "keywords": ["framework", "laravel", "blog", "exemple"],
+    "keywords": ["framework", "laravel", "blog", "example"],
     "license": "MIT",
     "type": "project",
     "require": {
