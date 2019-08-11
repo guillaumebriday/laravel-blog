@@ -17,9 +17,7 @@ class UserTest extends TestCase
     {
         factory(User::class, 2)
             ->create()
-            ->each(function ($user) {
-                $user->roles()->save(factory(Role::class)->create());
-            });
+            ->each(fn ($user) => $user->roles()->save(factory(Role::class)->create()));
 
         $this->json('GET', '/api/v1/users')
             ->assertOk()
