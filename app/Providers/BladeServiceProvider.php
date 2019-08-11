@@ -13,12 +13,8 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Blade::if('admin', function () {
-            return Auth::check() && Auth::user()->isAdmin();
-        });
+        Blade::if('admin', fn () => Auth::check() && Auth::user()->isAdmin());
 
-        Blade::if('profile', function ($user) {
-            return Auth::check() && Auth::user()->id == $user->id;
-        });
+        Blade::if('profile', fn ($user) => Auth::check() && Auth::user()->id == $user->id);
     }
 }

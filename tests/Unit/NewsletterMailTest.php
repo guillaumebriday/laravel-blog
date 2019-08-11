@@ -21,8 +21,6 @@ class NewsletterMailTest extends TestCase
 
         Mail::to($user->email)->send(new Newsletter($posts, $user->email));
 
-        Mail::assertSent(Newsletter::class, function ($mailable) use ($user) {
-            return $mailable->hasTo($user->email);
-        });
+        Mail::assertSent(Newsletter::class, fn ($mailable) => $mailable->hasTo($user->email));
     }
 }
