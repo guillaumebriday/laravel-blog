@@ -2,7 +2,7 @@ FROM php:7.3-fpm-stretch
 LABEL maintainer="guillaumebriday@gmail.com"
 
 # Installing dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     mysql-client \
     libpng-dev \
