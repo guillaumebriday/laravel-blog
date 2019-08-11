@@ -1,15 +1,16 @@
-FROM php:7.3-fpm-stretch
+FROM php:7.4-fpm
 LABEL maintainer="guillaumebriday@gmail.com"
 
 # Installing dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    mysql-client \
+    default-mysql-client \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     libmagickwand-dev \
     libzip-dev \
+    libonig-dev \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle \
