@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-stretch
+FROM php:7.4-rc-fpm-stretch
 LABEL maintainer="guillaumebriday@gmail.com"
 
 # Installing dependencies
@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     libzip-dev \
+    libonig-dev \
     locales \
     zip \
     jpegoptim optipng pngquant gifsicle
