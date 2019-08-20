@@ -21,7 +21,8 @@ services:
       - ./:/application:cached
 
   mysql:
-    image: mysql:5.7
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     environment:
@@ -31,7 +32,8 @@ services:
       - db-data:/var/lib/mysql:cached
 
   mysql-test:
-    image: mysql:5.7
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3307:3306"
     environment:
