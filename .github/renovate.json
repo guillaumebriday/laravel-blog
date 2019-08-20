@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "config:base",
+    ":automergeDigest",
+    ":automergePatch",
+    ":automergeMinor",
+    ":prHourlyLimitNone",
+    ":skipStatusChecks"
+  ]
+}
