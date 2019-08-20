@@ -46,7 +46,7 @@ if (token) {
 const apiToken = document.head.querySelector('meta[name="api-token"]')
 
 if (apiToken) {
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + apiToken.content
+  window.axios.defaults.headers.common.Authorization = 'Bearer ' + apiToken.content
 }
 
 /**
