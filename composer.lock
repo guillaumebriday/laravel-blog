@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b28b340e59ab3565d7772b1e7d3fb7ca",
+    "content-hash": "57ee2c97f65271a637032b9ebace2bd8",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.2.6",
+            "version": "v3.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "bf19d9362d0efd1e97c67a76f13f8085953bbbbd"
+                "reference": "8794e7a3b7f3a0e7222bcd088f5f44b2b6ff8e61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/bf19d9362d0efd1e97c67a76f13f8085953bbbbd",
-                "reference": "bf19d9362d0efd1e97c67a76f13f8085953bbbbd",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/8794e7a3b7f3a0e7222bcd088f5f44b2b6ff8e61",
+                "reference": "8794e7a3b7f3a0e7222bcd088f5f44b2b6ff8e61",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2019-08-22T07:52:30+00:00"
+            "time": "2019-08-22T14:29:54+00:00"
         },
         {
             "name": "cakephp/chronos",
