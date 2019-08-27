@@ -10,7 +10,7 @@
         "doctrine/dbal": "2.9.2",
         "fideloper/proxy": "4.2.0",
         "laravel/framework": "5.8.34",
-        "laravel/horizon": "3.3.1",
+        "laravel/horizon": "3.3.2",
         "laravel/socialite": "4.1.4",
         "laravel/tinker": "1.0.10",
         "laravelcollective/html": "5.8.0",

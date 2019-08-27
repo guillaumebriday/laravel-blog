@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8411cc3d78784af4a387170f14587e84",
+    "content-hash": "32ac2d62bd5e24db2c96110f81f2382d",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1291,16 +1291,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v3.3.1",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "30528b0a1de4870b53ece136ae4944affb38c7d7"
+                "reference": "692d3649a9c1bd13a3340ecc10036c1d3b55155b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/30528b0a1de4870b53ece136ae4944affb38c7d7",
-                "reference": "30528b0a1de4870b53ece136ae4944affb38c7d7",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/692d3649a9c1bd13a3340ecc10036c1d3b55155b",
+                "reference": "692d3649a9c1bd13a3340ecc10036c1d3b55155b",
                 "shasum": ""
             },
             "require": {
@@ -1308,9 +1308,9 @@
                 "ext-json": "*",
                 "ext-pcntl": "*",
                 "ext-posix": "*",
-                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0",
-                "illuminate/queue": "~5.7.0|~5.8.0|^6.0",
-                "illuminate/support": "~5.7.0|~5.8.0|^6.0",
+                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/queue": "~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.7.0|~5.8.0|^6.0|^7.0",
                 "php": ">=7.1.0",
                 "predis/predis": "^1.1",
                 "ramsey/uuid": "^3.5",
@@ -1319,8 +1319,8 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^3.7",
-                "phpunit/phpunit": "^7.0"
+                "orchestra/testbench": "^3.7|^4.0|^5.0",
+                "phpunit/phpunit": "^7.0|^8.0"
             },
             "type": "library",
             "extra": {
@@ -1356,7 +1356,7 @@
                 "laravel",
                 "queue"
             ],
-            "time": "2019-08-20T18:05:14+00:00"
+            "time": "2019-08-27T14:30:05+00:00"
         },
         {
             "name": "laravel/socialite",
