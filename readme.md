@@ -150,10 +150,6 @@ To list all the available routes for API :
 $ docker-compose run --rm --no-deps blog-server php artisan route:list --path=api
 ```
 
-## More details
-
-More details are available or to come on [Guillaume Briday's blog](https://blog.guillaumebriday.fr) (French).
-
 ## Contributing
 
 Do not hesitate to contribute to the project by adapting or adding features ! Bug reports or pull requests are welcome.
