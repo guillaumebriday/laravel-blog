@@ -5,6 +5,7 @@
     ":automergePatch",
     ":automergeMinor",
     ":prHourlyLimitNone",
+    ":automergeBranchPush",
     ":skipStatusChecks"
   ]
 }
