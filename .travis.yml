@@ -21,7 +21,7 @@ cache:
     - node_modules
 
 before_script:
-  - yarn install && yarn production
+  - yarn install
   - sudo mysql -e 'CREATE DATABASE homestead;'
   - composer install --no-progress --no-interaction --prefer-dist --no-suggest
   - cp .env.travis .env.testing
@@ -29,6 +29,7 @@ before_script:
 script:
   - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
   - vendor/bin/phpunit --testdox
+  - yarn production
   - yarn lint
 
 notifications:
