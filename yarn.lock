@@ -6884,10 +6884,10 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-trumbowyg@2.18.0:
-  version "2.18.0"
-  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.18.0.tgz#623f2743796549926655c3476bf7230627ef4950"
-  integrity sha512-0C6J3uYE3a9JO1IZdlOVQqTEvzvPA798jHM1Wxiixsr+UIFQNP+fFVYSZqTlO5i3WIiWHJzk3klRczyhHDUnKA==
+trumbowyg@2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.19.0.tgz#54fbbd09d86f38dcb51cc6e4592c1947bcc4f47b"
+  integrity sha512-+o1iqijLHmmGZfFkzimwaTEkWa7SI+jMdvr3O5FC8uWpev/ynWTpBRIt0t3gbj8EAMHTfXt54FLEDJP9/ftFYw==
 
 tslib@^1.9.0:
   version "1.9.3"
