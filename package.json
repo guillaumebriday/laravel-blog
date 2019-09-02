@@ -20,7 +20,7 @@
         "laravel-echo": "1.5.4",
         "laravel-mix": "4.1.2",
         "popper.js": "1.15.0",
-        "pusher-js": "5.0.0",
+        "pusher-js": "5.0.1",
         "trumbowyg": "2.19.0",
         "vue": "2.6.10"
     },
