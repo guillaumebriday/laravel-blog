@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fad3edb1ddb038cb523baca7da84cf55",
+    "content-hash": "8afe7d86c41fd752eda0d29a7bca0cb8",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3210,26 +3210,26 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.11.0",
+            "version": "7.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a96b243de2199066c9084b91970fe4fd64c2ff65"
+                "reference": "49340036359996c61e767fb2617461c3098130e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a96b243de2199066c9084b91970fe4fd64c2ff65",
-                "reference": "a96b243de2199066c9084b91970fe4fd64c2ff65",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/49340036359996c61e767fb2617461c3098130e0",
+                "reference": "49340036359996c61e767fb2617461c3098130e0",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "ext-imagick": "*",
-                "illuminate/bus": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/database": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/pipeline": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/bus": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/database": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/pipeline": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
                 "league/flysystem": "^1.0.8",
                 "maennchen/zipstream-php": "^0.4|^1.0",
                 "php": "^7.2",
@@ -3246,7 +3246,7 @@
                 "guzzlehttp/guzzle": "^6.3",
                 "league/flysystem-aws-s3-v3": "^1.0.13",
                 "mockery/mockery": "^1.0.0",
-                "orchestra/testbench": "~3.8.0",
+                "orchestra/testbench": "~3.8.0|^4.0",
                 "phpunit/phpunit": "^8.0",
                 "spatie/phpunit-snapshot-assertions": "^2.0"
             },
@@ -3291,7 +3291,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-09-02T08:13:41+00:00"
+            "time": "2019-09-04T12:47:00+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
