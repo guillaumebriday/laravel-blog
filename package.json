@@ -21,7 +21,7 @@
         "laravel-mix": "4.1.2",
         "popper.js": "1.15.0",
         "pusher-js": "5.0.1",
-        "trumbowyg": "2.19.0",
+        "trumbowyg": "2.19.1",
         "vue": "2.6.10"
     },
     "devDependencies": {
