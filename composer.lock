@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd06b4cca35d747cb009f9b91297dc8a",
+    "content-hash": "e9310136cac88810d914dc34d3fc75b8",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2923,20 +2923,20 @@
         },
         {
             "name": "spatie/db-dumper",
-            "version": "2.14.2",
+            "version": "2.14.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/db-dumper.git",
-                "reference": "093750d69c383fb14d9e7cd6caa052ea7b35e5b5"
+                "reference": "0ea605041373dce22cd0a387bca598050c7d033b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/093750d69c383fb14d9e7cd6caa052ea7b35e5b5",
-                "reference": "093750d69c383fb14d9e7cd6caa052ea7b35e5b5",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/0ea605041373dce22cd0a387bca598050c7d033b",
+                "reference": "0ea605041373dce22cd0a387bca598050c7d033b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.3",
+                "php": "^7.2",
                 "symfony/process": "^4.2"
             },
             "require-dev": {
@@ -2969,7 +2969,7 @@
                 "mysqldump",
                 "spatie"
             ],
-            "time": "2019-06-28T08:23:04+00:00"
+            "time": "2019-08-21T16:39:54+00:00"
         },
         {
             "name": "spatie/image",
@@ -3076,25 +3076,25 @@
         },
         {
             "name": "spatie/laravel-backup",
-            "version": "6.3.1",
+            "version": "6.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-backup.git",
-                "reference": "cc37760ba75e9e07433b6314f37f438a91f7dea4"
+                "reference": "933c90957932dabf43b33bf91661bf3c8db8bc6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/cc37760ba75e9e07433b6314f37f438a91f7dea4",
-                "reference": "cc37760ba75e9e07433b6314f37f438a91f7dea4",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/933c90957932dabf43b33bf91661bf3c8db8bc6a",
+                "reference": "933c90957932dabf43b33bf91661bf3c8db8bc6a",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "~5.8.0",
-                "illuminate/contracts": "~5.8.0",
-                "illuminate/events": "~5.8.0",
-                "illuminate/filesystem": "~5.8.0",
-                "illuminate/notifications": "~5.8.0",
-                "illuminate/support": "~5.8.0",
+                "illuminate/console": "~5.8.0|^6.0",
+                "illuminate/contracts": "~5.8.0|^6.0",
+                "illuminate/events": "~5.8.0|^6.0",
+                "illuminate/filesystem": "~5.8.0|^6.0",
+                "illuminate/notifications": "~5.8.0|^6.0",
+                "illuminate/support": "~5.8.0|^6.0",
                 "league/flysystem": "^1.0.49",
                 "php": "^7.2",
                 "spatie/db-dumper": "^2.12",
@@ -3103,8 +3103,9 @@
             },
             "require-dev": {
                 "laravel/slack-notification-channel": "^1.0",
+                "league/flysystem-aws-s3-v3": "^1.0",
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.8.0",
+                "orchestra/testbench": "~3.8.0|^4.0",
                 "phpunit/phpunit": "^8.0"
             },
             "suggest": {
@@ -3133,9 +3134,9 @@
             "authors": [
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "A Laravel package to backup your application",
@@ -3146,7 +3147,7 @@
                 "laravel-backup",
                 "spatie"
             ],
-            "time": "2019-07-16T20:56:47+00:00"
+            "time": "2019-09-04T06:42:31+00:00"
         },
         {
             "name": "spatie/laravel-cors",
@@ -3190,9 +3191,9 @@
             "authors": [
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "Send CORS headers in a Laravel or Lumen application",
