@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9310136cac88810d914dc34d3fc75b8",
+    "content-hash": "e94ab15784686fa6d21f43d6ddb6a2ae",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3151,24 +3151,24 @@
         },
         {
             "name": "spatie/laravel-cors",
-            "version": "1.5.2",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-cors.git",
-                "reference": "8f822676376bac76dd791d13252062e3bcc22a43"
+                "reference": "d74099d57821d5a72ae21416c0be0dcd58779355"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-cors/zipball/8f822676376bac76dd791d13252062e3bcc22a43",
-                "reference": "8f822676376bac76dd791d13252062e3bcc22a43",
+                "url": "https://api.github.com/repos/spatie/laravel-cors/zipball/d74099d57821d5a72ae21416c0be0dcd58779355",
+                "reference": "d74099d57821d5a72ae21416c0be0dcd58779355",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0",
                 "php": "^7.2"
             },
             "require-dev": {
-                "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*",
+                "orchestra/testbench": "3.5.*|3.6.*|3.7.*|3.8.*|^4.0",
                 "phpunit/phpunit": "^8.0"
             },
             "type": "library",
@@ -3206,7 +3206,7 @@
                 "request",
                 "spatie"
             ],
-            "time": "2019-07-19T13:46:27+00:00"
+            "time": "2019-09-04T06:55:15+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
