@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8afe7d86c41fd752eda0d29a7bca0cb8",
+    "content-hash": "250ef440b009c67ed58f5a0f5ea5ca0b",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1488,16 +1488,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.8.0",
+            "version": "v5.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "0e360143d3476fe4141d267a260c140569fa207b"
+                "reference": "3a1c9974ea629eed96e101a24e3852ced382eb29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/0e360143d3476fe4141d267a260c140569fa207b",
-                "reference": "0e360143d3476fe4141d267a260c140569fa207b",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/3a1c9974ea629eed96e101a24e3852ced382eb29",
+                "reference": "3a1c9974ea629eed96e101a24e3852ced382eb29",
                 "shasum": ""
             },
             "require": {
@@ -1542,17 +1542,17 @@
             ],
             "authors": [
                 {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                },
-                {
                     "name": "Adam Engebretson",
                     "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
                 }
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2019-03-01T22:53:41+00:00"
+            "time": "2019-09-05T12:32:25+00:00"
         },
         {
             "name": "league/flysystem",
