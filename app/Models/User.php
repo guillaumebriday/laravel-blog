@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\belongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -46,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      */
     public function getFullnameAttribute(): string
     {
-        return title_case($this->name);
+        return Str::title($this->name);
     }
 
     /**
