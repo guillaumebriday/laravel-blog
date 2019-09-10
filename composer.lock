@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f63b752827e745616610aa3cdebe59d1",
+    "content-hash": "b58f1ab9cc875eb225218d6e518f7459",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1144,16 +1144,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.0.1",
+            "version": "v6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f38711564c642ee88a58bf180010a0c7a7ab062e"
+                "reference": "d9b24caa67eacd22d917a5fd3b3601937112a329"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f38711564c642ee88a58bf180010a0c7a7ab062e",
-                "reference": "f38711564c642ee88a58bf180010a0c7a7ab062e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d9b24caa67eacd22d917a5fd3b3601937112a329",
+                "reference": "d9b24caa67eacd22d917a5fd3b3601937112a329",
                 "shasum": ""
             },
             "require": {
@@ -1285,7 +1285,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-05T20:31:10+00:00"
+            "time": "2019-09-10T14:47:28+00:00"
         },
         {
             "name": "laravel/horizon",
