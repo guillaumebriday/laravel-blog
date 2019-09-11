@@ -34,7 +34,7 @@
         "eslint-plugin-vue": "5.2.3",
         "resolve-url-loader": "3.1.0",
         "sass": "1.22.12",
-        "sass-loader": "7.3.1",
+        "sass-loader": "8.0.0",
         "vue-template-compiler": "2.6.10"
     }
 }
