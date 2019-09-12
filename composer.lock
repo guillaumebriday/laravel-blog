@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "219f31d34cb5c38d38958a131f94339e",
+    "content-hash": "9602df1c50805ba759ae072f6cf8359f",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3210,21 +3210,20 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.12.0",
+            "version": "7.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "49340036359996c61e767fb2617461c3098130e0"
+                "reference": "8c4adaeb16985a108da4e0dab186bc7561bbbf8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/49340036359996c61e767fb2617461c3098130e0",
-                "reference": "49340036359996c61e767fb2617461c3098130e0",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/8c4adaeb16985a108da4e0dab186bc7561bbbf8f",
+                "reference": "8c4adaeb16985a108da4e0dab186bc7561bbbf8f",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
-                "ext-imagick": "*",
                 "illuminate/bus": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
                 "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
                 "illuminate/database": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
@@ -3291,7 +3290,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-09-04T12:47:00+00:00"
+            "time": "2019-09-12T22:01:47+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
