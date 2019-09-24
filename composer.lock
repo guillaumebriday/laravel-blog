@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21cde574209ee58927005bb87bb54fb6",
+    "content-hash": "392d048efc1f6996b420c90c37a32944",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3061,9 +3061,9 @@
             "authors": [
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "Easily optimize images using PHP",
@@ -3210,16 +3210,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.12.1",
+            "version": "7.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "8c4adaeb16985a108da4e0dab186bc7561bbbf8f"
+                "reference": "43fbf653dbb2abee55529ecc494fe0f9549252d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/8c4adaeb16985a108da4e0dab186bc7561bbbf8f",
-                "reference": "8c4adaeb16985a108da4e0dab186bc7561bbbf8f",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/43fbf653dbb2abee55529ecc494fe0f9549252d9",
+                "reference": "43fbf653dbb2abee55529ecc494fe0f9549252d9",
                 "shasum": ""
             },
             "require": {
@@ -3290,7 +3290,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-09-12T22:01:47+00:00"
+            "time": "2019-09-24T07:11:53+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
