@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffcfffde23d81e49023f5037e5483fd4",
+    "content-hash": "0bcc1f23ba65b62adc28e8748bf814ac",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3210,16 +3210,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.14.0",
+            "version": "7.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "af0505b7e1f4c5c92b616aa30e5253f2c98fc647"
+                "reference": "34f3700a2dc58032d0ab443dcb09c2be72d2a826"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/af0505b7e1f4c5c92b616aa30e5253f2c98fc647",
-                "reference": "af0505b7e1f4c5c92b616aa30e5253f2c98fc647",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/34f3700a2dc58032d0ab443dcb09c2be72d2a826",
+                "reference": "34f3700a2dc58032d0ab443dcb09c2be72d2a826",
                 "shasum": ""
             },
             "require": {
@@ -3290,7 +3290,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-09-25T09:51:20+00:00"
+            "time": "2019-09-26T22:59:00+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
