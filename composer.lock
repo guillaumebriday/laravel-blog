@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b1c7a7da6ea81ef8e94046a0a54946d",
+    "content-hash": "f21ae89a5e4d14e4bbb918befd0bf18d",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1485,28 +1485,28 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v6.0.2",
+            "version": "v6.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "2f181aba73390eec13d398bf57877b1cc3bc2588"
+                "reference": "bcc317d21a7e04eebcc81c4109fa84feaab63590"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/2f181aba73390eec13d398bf57877b1cc3bc2588",
-                "reference": "2f181aba73390eec13d398bf57877b1cc3bc2588",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/bcc317d21a7e04eebcc81c4109fa84feaab63590",
+                "reference": "bcc317d21a7e04eebcc81c4109fa84feaab63590",
                 "shasum": ""
             },
             "require": {
-                "illuminate/http": "6.0.*",
-                "illuminate/routing": "6.0.*",
-                "illuminate/session": "6.0.*",
-                "illuminate/support": "6.0.*",
-                "illuminate/view": "6.0.*",
+                "illuminate/http": "^6.0",
+                "illuminate/routing": "^6.0",
+                "illuminate/session": "^6.0",
+                "illuminate/support": "^6.0",
+                "illuminate/view": "^6.0",
                 "php": ">=7.2"
             },
             "require-dev": {
-                "illuminate/database": "6.0.*",
+                "illuminate/database": "^6.0",
                 "mockery/mockery": "~1.0",
                 "phpunit/phpunit": "~7.1"
             },
@@ -1549,7 +1549,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2019-09-23T06:16:50+00:00"
+            "time": "2019-10-02T00:37:39+00:00"
         },
         {
             "name": "league/flysystem",
