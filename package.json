@@ -17,7 +17,7 @@
         "cross-env": "6.0.3",
         "font-awesome": "4.7.0",
         "jquery": "3.4.1",
-        "laravel-echo": "1.6.0",
+        "laravel-echo": "1.6.1",
         "laravel-mix": "5.0.0",
         "popper.js": "1.15.0",
         "pusher-js": "5.0.2",

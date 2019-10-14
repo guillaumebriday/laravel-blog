@@ -4209,10 +4209,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
-laravel-echo@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.6.0.tgz#fd938f0d9ec43a8c987def385dfb36ffc7e5cc63"
-  integrity sha512-LYteXGJHMCrUuRV0BW0v7XX4Oxk4sfxKhh4OV14u4dSW+VJ5z285C6DKOTHuAg0u7Vysh/Qqs095zZDLxHw/nw==
+laravel-echo@1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.6.1.tgz#7360a48782f606acd0e6cf6fd429905b59606ae6"
+  integrity sha512-Nj+vg6IwnXh65Oe+HrIrjOFX5xwR1ln9YgdxPWzuYNOuvT4ZimhkmIe5jb7D3muBPVRUoOY9W4c6YgJ4L0L6+Q==
 
 laravel-mix@5.0.0:
   version "5.0.0"
