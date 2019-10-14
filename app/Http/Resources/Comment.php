@@ -12,10 +12,6 @@ class Comment extends Resource
      */
     public function toArray($request): array
     {
-        // We need to create an App\Models\Comment because the registred policy in
-        // AuthServiceProvider is App\Models\Comment and not App\Http\Resources\Comment.
-        // I didn't find another way to make this cleaner.
-        $comment = new \App\Models\Comment($this->getAttributes());
         $user = Auth::guard('api')->user();
 
         return [
@@ -27,7 +23,7 @@ class Comment extends Resource
             'post_id' => $this->post_id,
             'author_name' => $this->author->name,
             'author_url' => route('users.show', $this->author),
-            'can_delete' => $user ? $user->can('delete', $comment) : false
+            'can_delete' => $user ? $user->can('delete', $this->resource) : false
         ];
     }
 }
