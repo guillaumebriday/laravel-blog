@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e6f79be3da134f50001f803a722013da",
+    "content-hash": "f48151497b2e272f400bf238a1a0c788",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1553,16 +1553,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.56",
+            "version": "1.0.57",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518"
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/90e3f83cb10ef6b058d70f95267030e7a6236518",
-                "reference": "90e3f83cb10ef6b058d70f95267030e7a6236518",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
+                "reference": "0e9db7f0b96b9f12dcf6f65bc34b72b1a30ea55a",
                 "shasum": ""
             },
             "require": {
@@ -1633,7 +1633,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-10-12T13:05:59+00:00"
+            "time": "2019-10-16T21:01:05+00:00"
         },
         {
             "name": "league/glide",
@@ -3210,16 +3210,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.14.1",
+            "version": "7.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "34f3700a2dc58032d0ab443dcb09c2be72d2a826"
+                "reference": "f96fd75f70e893b1b2c85224526e6d4a2c235ef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/34f3700a2dc58032d0ab443dcb09c2be72d2a826",
-                "reference": "34f3700a2dc58032d0ab443dcb09c2be72d2a826",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/f96fd75f70e893b1b2c85224526e6d4a2c235ef8",
+                "reference": "f96fd75f70e893b1b2c85224526e6d4a2c235ef8",
                 "shasum": ""
             },
             "require": {
@@ -3290,7 +3290,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-09-26T22:59:00+00:00"
+            "time": "2019-10-16T13:46:56+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
