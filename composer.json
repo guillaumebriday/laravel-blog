@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.2",
         "barryvdh/laravel-debugbar": "3.2.8",
-        "doctrine/dbal": "2.9.2",
+        "doctrine/dbal": "2.9.3",
         "fideloper/proxy": "4.2.1",
         "laravel/framework": "6.4.0",
         "laravel/horizon": "3.3.2",
