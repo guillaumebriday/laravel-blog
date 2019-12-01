@@ -9,7 +9,7 @@
         "barryvdh/laravel-debugbar": "3.2.8",
         "doctrine/dbal": "2.9.3",
         "fideloper/proxy": "4.2.1",
-        "laravel/framework": "6.4.0",
+        "laravel/framework": "6.4.1",
         "laravel/horizon": "3.3.2",
         "laravel/socialite": "4.2.0",
         "laravel/tinker": "1.0.10",
