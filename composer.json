@@ -12,7 +12,7 @@
         "laravel/framework": "6.4.1",
         "laravel/horizon": "3.3.2",
         "laravel/socialite": "4.2.0",
-        "laravel/tinker": "1.0.10",
+        "laravel/tinker": "2.0.0",
         "laravelcollective/html": "6.0.3",
         "nunomaduro/collision": "3.0.1",
         "predis/predis": "1.1.1",
