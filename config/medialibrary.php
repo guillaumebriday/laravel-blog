@@ -122,7 +122,7 @@ return [
      * The engine that should perform the image conversions.
      * Should be either `gd` or `imagick`.
      */
-    'image_driver' => 'gd',
+    'image_driver' => 'imagick',
 
 
     /*
