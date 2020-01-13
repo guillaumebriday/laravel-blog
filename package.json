@@ -11,30 +11,30 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "dependencies": {
-        "axios": "0.19.0",
-        "bootstrap": "4.3.1",
+        "axios": "0.19.1",
+        "bootstrap": "4.4.1",
         "clipboard": "2.0.4",
         "cross-env": "6.0.3",
         "font-awesome": "4.7.0",
         "jquery": "3.4.1",
         "laravel-echo": "1.6.1",
         "laravel-mix": "5.0.1",
-        "popper.js": "1.15.0",
-        "pusher-js": "5.0.2",
-        "trumbowyg": "2.19.1",
-        "vue": "2.6.10"
+        "popper.js": "1.16.0",
+        "pusher-js": "5.0.3",
+        "trumbowyg": "2.21.0",
+        "vue": "2.6.11"
     },
     "devDependencies": {
-        "eslint": "6.6.0",
+        "eslint": "6.8.0",
         "eslint-config-standard": "14.1.0",
-        "eslint-plugin-import": "2.18.2",
-        "eslint-plugin-node": "10.0.0",
+        "eslint-plugin-import": "2.20.0",
+        "eslint-plugin-node": "11.0.0",
         "eslint-plugin-promise": "4.2.1",
         "eslint-plugin-standard": "4.0.1",
-        "eslint-plugin-vue": "5.2.3",
-        "resolve-url-loader": "3.1.0",
-        "sass": "1.22.12",
-        "sass-loader": "8.0.0",
-        "vue-template-compiler": "2.6.10"
+        "eslint-plugin-vue": "6.1.2",
+        "resolve-url-loader": "3.1.1",
+        "sass": "1.24.4",
+        "sass-loader": "8.0.2",
+        "vue-template-compiler": "2.6.11"
     }
 }
