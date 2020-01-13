@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "barryvdh/laravel-debugbar": "3.2.8",
         "doctrine/dbal": "2.10.1",
         "fideloper/proxy": "4.2.2",

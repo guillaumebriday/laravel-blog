@@ -12,9 +12,7 @@ trait Likeable
      */
     protected static function bootLikeable(): void
     {
-        static::deleting(function ($resource) {
-            $resource->likes->each->delete();
-        });
+        static::deleting(fn ($resource) => $resource->likes->each->delete());
     }
 
     /**
