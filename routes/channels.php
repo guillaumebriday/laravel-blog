@@ -1,6 +1,7 @@
 <?php
 
 use App\Broadcasting\PostChannel;
+use Illuminate\Support\Facades\Broadcast;
 
 /*
 |--------------------------------------------------------------------------

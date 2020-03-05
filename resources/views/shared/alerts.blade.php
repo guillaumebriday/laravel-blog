@@ -1,11 +1,11 @@
 @if (Session::has('success'))
-    @component('components.alerts.dismissible', ['type' => 'success'])
-      {{ Session::get('success') }}
-    @endcomponent
+    <x-alert type="success" :dismissible="true">
+        {{ Session::get('success') }}
+    </x-alert>
 @endif
 
 @if (Session::has('errors'))
-    @component('components.alerts.dismissible', ['type' => 'danger'])
+    <x-alert type="danger" :dismissible="true">
         @if ($errors->count() > 1)
             {{ trans_choice('validation.errors', $errors->count()) }}
             <ul>
@@ -16,5 +16,5 @@
         @else
             {{ $errors->first() }}
         @endif
-    @endcomponent
+    </x-alert>
 @endif

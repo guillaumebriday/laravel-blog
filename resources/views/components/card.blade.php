@@ -1,4 +1,5 @@
-<div class="card {{ $class ?? '' }}">
+<div {{ $attributes->merge(['class' => 'card']) }}>
+
     @if (isset($title))
         <div class="card-header">
             {{ $title }}

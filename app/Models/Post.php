@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concern\Likeable;
 use App\Scopes\PostedScope;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,6 +45,14 @@ class Post extends Model
     {
         parent::boot();
         static::addGlobalScope(new PostedScope);
+    }
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     */
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 
     /**

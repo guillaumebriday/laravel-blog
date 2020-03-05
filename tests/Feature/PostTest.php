@@ -24,7 +24,7 @@ class PostTest extends TestCase
         $this->get('/')
             ->assertOk()
             ->assertSee('Latest posts')
-            ->assertSee(e($post->title))
+            ->assertSee($post->title)
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('3')
             ->assertSee('Anakin');
@@ -38,7 +38,7 @@ class PostTest extends TestCase
         $this->get('/?q=Hello')
             ->assertOk()
             ->assertSee('1 post found')
-            ->assertSee(e($post->title))
+            ->assertSee($post->title)
             ->assertSee(humanize_date($post->posted_at));
     }
 
@@ -51,8 +51,8 @@ class PostTest extends TestCase
         $this->actingAsUser()
             ->get("/posts/{$post->slug}")
             ->assertOk()
-            ->assertSee(e($post->content))
-            ->assertSee(e($post->title))
+            ->assertSee($post->content)
+            ->assertSee($post->title)
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('3 comments')
             ->assertSee('Comment');

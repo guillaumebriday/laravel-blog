@@ -6,9 +6,9 @@
         <h1>@lang('auth.reset_password')</h1>
 
         @if (session('status'))
-            @component('components.alerts.dismissible', ['type' => 'success'])
+            <x-alert type="success" :dismissible="true">
                 {{ session('status') }}
-            @endcomponent
+            </x-alert>
         @endif
 
         {!! Form::open(['route' => 'password.email', 'role' => 'form', 'method' => 'POST']) !!}

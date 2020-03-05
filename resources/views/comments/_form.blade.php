@@ -5,7 +5,7 @@
       button="@lang('comments.comment')">
   </comment-form>
 @else
-  @component('components.alerts.default', ['type' => 'warning'])
+  <x-alert type="warning">
     @lang('comments.sign_in_to_comment')
-  @endcomponent
+  </x-alert>
 @endauth
