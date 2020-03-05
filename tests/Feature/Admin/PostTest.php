@@ -77,8 +77,8 @@ class PostTest extends TestCase
             ->assertOk()
             ->assertSee('Anakin')
             ->assertSee('Show post')
-            ->assertSee(e($post->title))
-            ->assertSee(e($post->content))
+            ->assertSee($post->title)
+            ->assertSee($post->content)
             ->assertSee(humanize_date($post->posted_at, 'Y-m-d\TH:i'))
             ->assertSee('Update')
             ->assertSee('Posted at');

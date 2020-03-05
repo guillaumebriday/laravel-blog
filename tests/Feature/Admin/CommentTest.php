@@ -27,7 +27,7 @@ class CommentTest extends TestCase
             ->assertSee('Content')
             ->assertSee('Author')
             ->assertSee('Posted at')
-            ->assertSee(e(Str::limit($comment->content, 50)));
+            ->assertSee(Str::limit($comment->content, 50));
     }
 
     public function testEdit()
@@ -42,7 +42,7 @@ class CommentTest extends TestCase
             ->assertSee('Show post :')
             ->assertSee(route('posts.show', $comment->post))
             ->assertSee('Content')
-            ->assertSee(e($comment->content))
+            ->assertSee($comment->content)
             ->assertSee('Posted at')
             ->assertSee(humanize_date($comment->posted_at, 'Y-m-d\TH:i'))
             ->assertSee('Update')
