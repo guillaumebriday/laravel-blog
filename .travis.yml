@@ -3,6 +3,9 @@ language: php
 php:
   - '7.4'
 
+before_install:
+  - nvm install --lts
+
 addons:
   apt:
     sources:
