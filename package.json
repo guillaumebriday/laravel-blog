@@ -16,7 +16,7 @@
         "clipboard": "2.0.6",
         "cross-env": "7.0.2",
         "font-awesome": "4.7.0",
-        "jquery": "3.4.1",
+        "jquery": "3.5.0",
         "laravel-echo": "1.6.1",
         "laravel-mix": "5.0.1",
         "popper.js": "1.16.1",
