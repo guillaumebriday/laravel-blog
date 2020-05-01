@@ -7,7 +7,7 @@
     "require": {
         "php": "^7.4",
         "barryvdh/laravel-debugbar": "3.2.9",
-        "doctrine/dbal": "2.10.1",
+        "doctrine/dbal": "2.10.2",
         "fideloper/proxy": "4.3.0",
         "fruitcake/laravel-cors": "1.0.4",
         "laravel/framework": "7.0.4",
