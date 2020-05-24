@@ -16,7 +16,7 @@ class PostLikeTest extends TestCase
 
         $this->actingAsUser('api')
             ->json('POST', "/api/v1/posts/{$post->id}/likes")
-            ->assertStatus(201);
+            ->assertCreated();
 
         $this->assertCount(1, $post->likes);
     }

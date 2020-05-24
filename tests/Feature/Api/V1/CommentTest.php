@@ -134,7 +134,7 @@ class CommentTest extends TestCase
 
         $this->actingAsUser('api')
             ->json('POST', "/api/v1/posts/{$post->id}/comments", $this->validParams())
-            ->assertStatus(201);
+            ->assertCreated();
     }
 
     public function testStoreFail()
@@ -196,7 +196,7 @@ class CommentTest extends TestCase
 
         $this->actingAs($comment->author, 'api')
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
-            ->assertStatus(204);
+            ->assertNoContent();
     }
 
     public function testCommentDeleteNotFound()

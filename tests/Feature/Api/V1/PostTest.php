@@ -171,7 +171,7 @@ class PostTest extends TestCase
 
         $this->actingAsAdmin('api')
             ->json('POST', '/api/v1/posts/', $params)
-            ->assertStatus(201);
+            ->assertCreated();
 
         $params['posted_at'] = Carbon::yesterday()->second(0)->toDateTimeString();
         $this->assertDatabaseHas('posts', $params);
@@ -193,7 +193,7 @@ class PostTest extends TestCase
 
         $this->actingAsAdmin('api')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
-            ->assertStatus(204);
+            ->assertNoContent();
 
         $this->assertDatabaseMissing('posts', $post->toArray());
     }
