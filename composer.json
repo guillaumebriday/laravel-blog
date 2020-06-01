@@ -9,7 +9,7 @@
         "barryvdh/laravel-debugbar": "3.3.3",
         "doctrine/dbal": "2.10.2",
         "fideloper/proxy": "4.3.0",
-        "fruitcake/laravel-cors": "2.0.0",
+        "fruitcake/laravel-cors": "2.0.1",
         "laravel/framework": "7.12.0",
         "laravel/horizon": "4.3.2",
         "laravel/socialite": "4.3.2",
