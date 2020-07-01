@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3417e4a5794522add86ae92293803687",
+    "content-hash": "c7a396965d39d861cf264c9beae44cbc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -186,16 +186,16 @@
         },
         {
             "name": "cakephp/chronos",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "7e77b7d43e23b78363b6a1dc592de1c3d557347b"
+                "reference": "9309d85c33c65917c0e582c0a6b07df56fe27dd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/7e77b7d43e23b78363b6a1dc592de1c3d557347b",
-                "reference": "7e77b7d43e23b78363b6a1dc592de1c3d557347b",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/9309d85c33c65917c0e582c0a6b07df56fe27dd9",
+                "reference": "9309d85c33c65917c0e582c0a6b07df56fe27dd9",
                 "shasum": ""
             },
             "require": {
@@ -237,7 +237,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-04-21T14:14:05+00:00"
+            "time": "2020-05-26T01:27:20+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1466,16 +1466,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v4.3.2",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "203e1a75a8811dcb0285ca00c51cba042e752f3e"
+                "reference": "0172084dd26f93fc3521b9118f4e3a330a36eda8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/203e1a75a8811dcb0285ca00c51cba042e752f3e",
-                "reference": "203e1a75a8811dcb0285ca00c51cba042e752f3e",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/0172084dd26f93fc3521b9118f4e3a330a36eda8",
+                "reference": "0172084dd26f93fc3521b9118f4e3a330a36eda8",
                 "shasum": ""
             },
             "require": {
@@ -1535,7 +1535,7 @@
                 "laravel",
                 "queue"
             ],
-            "time": "2020-04-28T15:54:04+00:00"
+            "time": "2020-05-26T18:27:29+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -4253,7 +4253,7 @@
         },
         {
             "name": "symfony/error-handler",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
@@ -5955,7 +5955,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",

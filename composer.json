@@ -11,7 +11,7 @@
         "fideloper/proxy": "4.3.0",
         "fruitcake/laravel-cors": "2.0.1",
         "laravel/framework": "7.12.0",
-        "laravel/horizon": "4.3.2",
+        "laravel/horizon": "4.3.3",
         "laravel/socialite": "4.3.2",
         "laravel/tinker": "2.4.0",
         "laravel/ui": "2.0.3",
