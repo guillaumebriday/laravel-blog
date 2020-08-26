@@ -90,7 +90,7 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/users/314/posts')
             ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\User] 314'
+                'message' => sprintf('No query results for model [%s] 314', User::class)
             ]);
     }
 
@@ -133,7 +133,7 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/posts/31415')
             ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Post] 31415'
+                'message' => sprintf('No query results for model [%s] 31415', Post::class)
             ]);
     }
 

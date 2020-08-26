@@ -143,7 +143,7 @@ class CommentTest extends TestCase
             ->json('POST', "/api/v1/posts/31415/comments", $this->validParams())
             ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Post] 31415'
+                'message' => sprintf('No query results for model [%s] 31415', Post::class)
             ]);
     }
 
@@ -186,7 +186,7 @@ class CommentTest extends TestCase
         $this->json('GET', '/api/v1/comments/31415')
             ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Comment] 31415'
+                'message' => sprintf('No query results for model [%s] 31415', Comment::class)
             ]);
     }
 
@@ -205,7 +205,7 @@ class CommentTest extends TestCase
             ->json('DELETE', '/api/v1/comments/31415')
             ->assertNotFound()
             ->assertJson([
-                'message' => 'No query results for model [App\\Models\\Comment] 31415'
+                'message' => sprintf('No query results for model [%s] 31415', Comment::class)
             ]);
     }
 
