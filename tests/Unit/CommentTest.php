@@ -14,7 +14,7 @@ class CommentTest extends TestCase
     public function testPostedAt()
     {
         $comment = factory(Comment::class)->create();
-        $this->assertEquals($comment->posted_at->toDateTimeString(), now()->toDateTimeString());
+        $this->assertEqualsWithDelta($comment->posted_at->timestamp, now()->timestamp, 1);
     }
 
     public function testGettingOnlyLastWeekComments()
