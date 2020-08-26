@@ -84,7 +84,7 @@ class UserTest extends TestCase
     public function testRegisteredAt()
     {
         $user = factory(User::class)->create();
-        $this->assertEquals($user->registered_at->toDateTimeString(), now()->toDateTimeString());
+        $this->assertEqualsWithDelta($user->registered_at->timestamp, now()->timestamp, 1);
     }
 
     public function testAuthorsScope()
