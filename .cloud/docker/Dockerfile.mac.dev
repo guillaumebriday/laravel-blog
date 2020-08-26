@@ -1,0 +1,46 @@
+FROM php:7.4-fpm
+LABEL maintainer="guillaumebriday@gmail.com"
+
+# Installing dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    default-mysql-client \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libmagickwand-dev \
+    libzip-dev \
+    libonig-dev \
+    locales \
+    zip \
+    vim \
+    jpegoptim optipng pngquant gifsicle \
+    nodejs npm \
+    && pecl install imagick \
+    pecl install xdebug
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install yarn(optional)
+npm install -g yarn
+
+# Installing extensions
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath opcache gd
+RUN docker-php-ext-enable imagick
+RUN docker-php-ext-enable xdebug; \
+    echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+    echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+    echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+    echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini; \
+    echo "xdebug.remote_port = 9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini;
+
+
+# Installing composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Setting locales
+RUN echo fr_FR.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
+
+# Changing Workdir
+WORKDIR /application

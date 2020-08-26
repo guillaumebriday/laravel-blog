@@ -83,6 +83,12 @@ And then, compile the assets :
 $ docker run --rm -it -v $(pwd):/app -w /app node yarn dev
 ```
 
+Note: When developing on Mac, your file sync sometimes gets corrupted.
+You should run `yarn watch` directly inside the` blog-server` container and  the Dockerfile.dev file.
+```bash
+$ docker-compose run --rm blog-server yarn watch
+```
+
 Starting job for newsletter :
 ```bash
 $ docker-compose run blog-server php artisan tinker
