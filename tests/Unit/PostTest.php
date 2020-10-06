@@ -15,7 +15,7 @@ class PostTest extends TestCase
     public function testLimitLastMonthPosts()
     {
         $limit = 5;
-        factory(Post::class, 6)->create();
+        Post::factory()->count(6)->create();
         $lastPosts = Post::lastMonth($limit)->get();
 
         $this->assertEquals($limit, $lastPosts->count());
@@ -23,7 +23,7 @@ class PostTest extends TestCase
 
     public function testSlug()
     {
-        $post = factory(Post::class)->create(['title' => 'The Empire Strikes Back']);
+        $post = Post::factory()->create(['title' => 'The Empire Strikes Back']);
         $this->assertEquals($post->slug, 'the-empire-strikes-back');
     }
 
@@ -32,7 +32,8 @@ class PostTest extends TestCase
         $faker = Factory::create();
 
         // Older Posts
-        factory(Post::class, 3)
+        Post::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
@@ -40,7 +41,8 @@ class PostTest extends TestCase
                 });
 
         // Newer Posts
-        factory(Post::class, 3)
+        Post::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(carbon('3 weeks ago'), carbon('1 weeks ago'));
@@ -64,7 +66,8 @@ class PostTest extends TestCase
         $faker = Factory::create();
 
         // Older Posts
-        factory(Post::class, 3)
+        Post::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
@@ -72,7 +75,8 @@ class PostTest extends TestCase
                 });
 
         // Newer Posts
-        factory(Post::class, 3)
+        Post::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($post) use ($faker) {
                     $post->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
@@ -93,8 +97,8 @@ class PostTest extends TestCase
 
     public function testPostedAtScopeApplied()
     {
-        factory(Post::class)->create()->update(['posted_at' => carbon('yesterday')]);
-        factory(Post::class)->create()->update(['posted_at' => carbon('tomorrow')]);
+        Post::factory()->create()->update(['posted_at' => carbon('yesterday')]);
+        Post::factory()->create()->update(['posted_at' => carbon('tomorrow')]);
 
         $isBeforeNow = true;
         foreach (Post::all() as $post) {
@@ -113,8 +117,8 @@ class PostTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        factory(Post::class)->create()->update(['posted_at' => carbon('yesterday')]);
-        factory(Post::class)->create()->update(['posted_at' => carbon('tomorrow')]);
+        Post::factory()->create()->update(['posted_at' => carbon('yesterday')]);
+        Post::factory()->create()->update(['posted_at' => carbon('tomorrow')]);
 
         $isBeforeNow = true;
         foreach (Post::all() as $post) {
@@ -131,8 +135,8 @@ class PostTest extends TestCase
 
     public function testSearch()
     {
-        factory(Post::class)->create(['title' => 'Hello Luke']);
-        factory(Post::class)->create(['title' => 'Hello Leia']);
+        Post::factory()->create(['title' => 'Hello Luke']);
+        Post::factory()->create(['title' => 'Hello Leia']);
 
         $this->assertCount(0, Post::search('Hi Anakin')->get());
         $this->assertCount(1, Post::search('Hello Lu')->get());

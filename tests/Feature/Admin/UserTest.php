@@ -15,9 +15,9 @@ class UserTest extends TestCase
 
     public function testIndex()
     {
-        $anakin = factory(User::class)->states('anakin')->create();
-        factory(User::class, 3)->create();
-        factory(Post::class, 3)->create(['author_id' => $anakin->id]);
+        $anakin = User::factory()->anakin()->create();
+        User::factory()->count(3)->create();
+        Post::factory()->count(3)->create(['author_id' => $anakin->id]);
 
         $this->actingAsAdmin()
             ->get('/admin/users')
@@ -33,7 +33,7 @@ class UserTest extends TestCase
 
     public function testEdit()
     {
-        $anakin = factory(User::class)->states('anakin')->create();
+        $anakin = User::factory()->anakin()->create();
 
         $this->actingAsAdmin()
             ->get("/admin/users/{$anakin->id}/edit")
@@ -49,7 +49,7 @@ class UserTest extends TestCase
 
     public function testUpdate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $params = $this->validParams();
 
         $this->actingAsAdmin()
@@ -62,9 +62,9 @@ class UserTest extends TestCase
 
     public function testUpdateRoles()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $role_editor = factory(Role::class)->states('editor')->create();
+        $role_editor = Role::factory()->editor()->create();
         $params = $this->validParams(['roles' => ['editor' => $role_editor->id]]);
 
         $this->actingAsAdmin()

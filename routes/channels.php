@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.User.{id}', fn ($user, $id) => (int) $user->id === (int) $id);
+Broadcast::channel('App.Models.User.{id}', fn ($user, $id) => (int) $user->id === (int) $id);
 
 Broadcast::channel('post.{post}', PostChannel::class);

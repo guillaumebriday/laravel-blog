@@ -14,8 +14,8 @@ class UserTest extends TestCase
 
     public function testUserHasRole()
     {
-        $user = factory(User::class)->create();
-        $role = factory(Role::class)->create();
+        $user = User::factory()->create();
+        $role = Role::factory()->create();
         $user->roles()->attach($role);
 
         $this->assertTrue($user->hasRole($role->name));
@@ -23,9 +23,9 @@ class UserTest extends TestCase
 
     public function testUserIsAdmin()
     {
-        $admin = factory(User::class)->create();
-        $role_editor = factory(Role::class)->states('editor')->create();
-        $role_admin = factory(Role::class)->states('admin')->create();
+        $admin = User::factory()->create();
+        $role_editor = Role::factory()->editor()->create();
+        $role_admin = Role::factory()->admin()->create();
 
         $admin->roles()->sync([$role_admin->id, $role_editor->id]);
 
@@ -34,9 +34,9 @@ class UserTest extends TestCase
 
     public function testUserIsNotAdmin()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->roles()->attach(
-            factory(Role::class)->states('editor')->create()
+            Role::factory()->editor()->create()
         );
 
         $this->assertFalse($user->isAdmin());
@@ -47,7 +47,8 @@ class UserTest extends TestCase
         $faker = Factory::create();
 
         // Older Users
-        factory(User::class, 10)
+        User::factory()
+                ->count(10)
                 ->create()
                 ->each(function ($user) use ($faker) {
                     $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
@@ -55,7 +56,8 @@ class UserTest extends TestCase
                 });
 
         // Newer Users
-        factory(User::class, 3)
+        User::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($user) use ($faker) {
                     $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
@@ -76,22 +78,23 @@ class UserTest extends TestCase
 
     public function testFullnameAttribute()
     {
-        $user = factory(User::class)->create(['name' => 'LEIA']);
+        $user = User::factory()->create(['name' => 'LEIA']);
 
         $this->assertEquals('Leia', $user->fullname);
     }
 
     public function testRegisteredAt()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $this->assertEqualsWithDelta($user->registered_at->timestamp, now()->timestamp, 1);
     }
 
     public function testAuthorsScope()
     {
-        $editor = factory(Role::class)->states('editor')->create();
-        factory(User::class, 10)->create();
-        factory(User::class, 3)
+        $editor = Role::factory()->editor()->create();
+        User::factory()->count(10)->create();
+        User::factory()
+            ->count(3)
             ->create()
             ->each(function ($user) use ($editor) {
                 $user->roles()->attach($editor);

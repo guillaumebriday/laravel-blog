@@ -15,9 +15,9 @@ class DashboardTest extends TestCase
 
     public function testDashboard()
     {
-        factory(Post::class, 2)->create();
-        factory(User::class, 2)->create();
-        factory(Comment::class, 2)->create();
+        Post::factory()->count(2)->create();
+        User::factory()->count(2)->create();
+        Comment::factory()->count(2)->create();
 
         $this->actingAsAdmin()
             ->get('/admin/dashboard')

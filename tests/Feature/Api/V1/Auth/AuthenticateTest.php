@@ -14,8 +14,8 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticate()
     {
-        $user = factory(User::class)->states('anakin')->create(['password' => Hash::make('4nak1n')]);
-        $role = factory(Role::class)->states('editor')->create();
+        $user = User::factory()->anakin()->create(['password' => Hash::make('4nak1n')]);
+        $role = Role::factory()->editor()->create();
         $user->roles()->save($role);
 
         $res = $this->json('POST', '/api/v1/authenticate', [
@@ -46,9 +46,9 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticateFail()
     {
-        $user = factory(User::class)->states('anakin')->create(['password' => Hash::make('4nak1n')]);
+        $user = User::factory()->anakin()->create(['password' => Hash::make('4nak1n')]);
         $user->roles()->save(
-            factory(Role::class)->states('editor')->create()
+            Role::factory()->editor()->create()
         );
 
         $this->json('POST', '/api/v1/authenticate', [

@@ -26,7 +26,7 @@ class NewsletterSubscriptionTest extends TestCase
     public function testStoreFail()
     {
         $params = $this->validParams();
-        factory(NewsletterSubscription::class)->create($params);
+        NewsletterSubscription::factory()->create($params);
 
         $this->actingAsUser()
             ->post('/newsletter-subscriptions', $params)
@@ -39,7 +39,7 @@ class NewsletterSubscriptionTest extends TestCase
     public function testUnsubscribe()
     {
         $params = $this->validParams();
-        $newsletter = factory(NewsletterSubscription::class)->create($params);
+        $newsletter = NewsletterSubscription::factory()->create($params);
 
         $this->actingAsUser()
             ->get("newsletter-subscriptions/unsubscribe?email={$newsletter->email}")
