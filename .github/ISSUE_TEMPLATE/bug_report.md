@@ -7,7 +7,7 @@ assignees: guillaumebriday
 
 ---
 
-**Please read the README before considering opening an issue and be sure to check that the bug is not related to your development environment. It's ok if you don't want to use Docker but you must know what you're doing.** 
+**Please read the README before considering opening an issue and be sure to check that the bug is not related to your development environment.**
 
 ## Describe the bug
 A clear and concise description of what the bug is.

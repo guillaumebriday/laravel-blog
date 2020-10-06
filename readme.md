@@ -25,6 +25,7 @@ The purpose of this repository is to show good development practices on [Laravel
 - [Requests](https://laravel.com/docs/7.x/validation#form-request-validation)
 - [Seeding & Factories](https://laravel.com/docs/7.x/seeding)
 - [Testing](https://laravel.com/docs/7.x/testing)
+- [Homestead](https://laravel.com/docs/7.x/homestead)
 
 Beside Laravel, this project uses other tools like:
 
@@ -45,31 +46,37 @@ You can find some screenshots of the application on : [https://imgur.com/a/Jbnwj
 ## Installation
 
 Development environment requirements :
-- [Docker](https://www.docker.com) >= 17.06 CE
-- [Docker Compose](https://docs.docker.com/compose/install/)
+- [VirtualBox](https://www.virtualbox.org/)
+- [Vagrant](https://www.vagrantup.com/)
 
 Setting up your development environment on your local machine :
 ```bash
 $ git clone https://github.com/guillaumebriday/laravel-blog.git
 $ cd laravel-blog
 $ cp .env.example .env
-$ docker-compose run --rm --no-deps blog-server composer install
-$ docker-compose run --rm --no-deps blog-server php artisan key:generate
-$ docker-compose run --rm --no-deps blog-server php artisan horizon:install
-$ docker-compose run --rm --no-deps blog-server php artisan telescope:install
-$ docker-compose run --rm --no-deps blog-server php artisan storage:link
-$ docker run --rm -it -v $(pwd):/app -w /app node yarn
-$ docker-compose up -d
+$ composer install
+$ vagrant up
+$ vagrant ssh
+```
+
+All following commands must be run inside the VM:
+```bash
+$ cd code
+$ yarn install
+$ artisan key:generate
+$ artisan horizon:install
+$ artisan telescope:install
+$ artisan storage:link
 ```
 
 Now you can access the application via [http://localhost:8000](http://localhost:8000).
 
-**There is no need to run ```php artisan serve```. PHP is already running in a dedicated container.**
+**There is no need to run `php artisan serve`. PHP is already running in the dedicated virtual machine.**
 
 ## Before starting
 You need to run the migrations with the seeds :
 ```bash
-$ docker-compose run --rm blog-server php artisan migrate --seed
+$ artisan migrate --seed
 ```
 
 This will create a new user that you can use to sign in :
@@ -80,50 +87,50 @@ password: 4nak1n
 
 And then, compile the assets :
 ```bash
-$ docker run --rm -it -v $(pwd):/app -w /app node yarn dev
+$ yarn dev # or yarn watch
 ```
 
 Starting job for newsletter :
 ```bash
-$ docker-compose run blog-server php artisan tinker
+$ artisan tinker
 > PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Useful commands
 Seeding the database :
 ```bash
-$ docker-compose run --rm blog-server php artisan db:seed
+$ artisan db:seed
 ```
 
 Running tests :
 ```bash
-$ docker-compose run --rm blog-server ./vendor/bin/phpunit --cache-result --order-by=defects --stop-on-defect
+$ ./vendor/bin/phpunit --cache-result --order-by=defects --stop-on-defect
 ```
 
 Running php-cs-fixer :
 ```bash
-$ docker-compose run --rm --no-deps blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
+$ ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 ```
 
 Generating backup :
 ```bash
-$ docker-compose run --rm blog-server php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
-$ docker-compose run --rm blog-server php artisan backup:run
+$ artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
+$ artisan backup:run
 ```
 
 Generating fake data :
 ```bash
-$ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
+$ artisan db:seed --class=DevDatabaseSeeder
 ```
 
 Discover package
 ```bash
-$ docker-compose run --rm --no-deps blog-server php artisan package:discover
+$ artisan package:discover
 ```
 
 In development environnement, rebuild the database :
 ```bash
-$ docker-compose run --rm blog-server php artisan migrate:fresh --seed
+$ artisan migrate:fresh --seed
 ```
 
 ## Accessing the API
@@ -140,14 +147,14 @@ GET http://laravel-blog.app/api/v1/posts?api_token=your_private_token_here
 curl --header "Authorization: Bearer your_private_token_here" http://laravel-blog.app/api/v1/posts
 ```
 
-API are prefixed by ```api``` and the API version number like so ```v1```.
+API are prefixed by `api` and the API version number like so `v1`.
 
-Do not forget to set the ```X-Requested-With``` header to ```XMLHttpRequest```. Otherwise, Laravel won't recognize the call as an AJAX request.
+Do not forget to set the `X-Requested-With` header to `XMLHttpRequest`. Otherwise, Laravel won't recognize the call as an AJAX request.
 
 To list all the available routes for API :
 
 ```bash
-$ docker-compose run --rm --no-deps blog-server php artisan route:list --path=api
+$ artisan route:list --path=api
 ```
 
 ## Contributing

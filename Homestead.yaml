@@ -1,0 +1,20 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 2
+provider: virtualbox
+folders:
+  -
+    map: '.'
+    to: /home/vagrant/code
+sites:
+  -
+    map: homestead.test
+    to: /home/vagrant/code/public
+databases:
+  - homestead
+  - test
+ports:
+  - send: 8080
+    to: 8080
+name: laravel-blog
+hostname: laravel-blog
