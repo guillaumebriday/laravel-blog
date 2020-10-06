@@ -1,18 +1,30 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
-use Faker\Generator;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Like::class, function (Generator $faker) {
-    return [
-      'likeable_type' => 'App\Models\Post',
-      'likeable_id' => function () {
-          return factory(Post::class)->create()->id;
-      },
-      'author_id' => function () {
-          return factory(User::class)->create()->id;
-      }
-    ];
-});
+class LikeFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Like::class;
+
+    /**
+     * Define the model's default state.
+     */
+    public function definition(): array
+    {
+        return [
+            'likeable_type' => 'App\Models\Post',
+            'likeable_id' => Post::factory(),
+            'author_id' => User::factory()
+        ];
+    }
+}

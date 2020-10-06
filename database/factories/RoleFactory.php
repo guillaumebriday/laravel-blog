@@ -1,22 +1,50 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Role;
-use Faker\Generator;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Role::class, function (Generator $faker) {
-    return [
-        'name' => $faker->word
-    ];
-});
+class RoleFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Role::class;
 
-$factory->state(Role::class, 'admin', function ($faker) {
-    return [
-        'name' => 'admin'
-    ];
-});
+    /**
+     * Define the model's default state.
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => $this->faker->word
+        ];
+    }
 
-$factory->state(Role::class, 'editor', function ($faker) {
-    return [
-        'name' => 'editor'
-    ];
-});
+    /**
+     * Indicate that the user is admin.
+     */
+    public function admin(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'name' => 'admin'
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the user is editor.
+     */
+    public function editor(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'name' => 'editor'
+            ];
+        });
+    }
+}

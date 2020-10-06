@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MediaLibraryRequest extends FormRequest

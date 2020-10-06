@@ -1,25 +1,48 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\User;
-use Faker\Generator;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-$factory->define(User::class, function (Generator $faker) {
-    static $password;
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
 
-    return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = 'password',
-        'api_token' => Str::random(60),
-        'remember_token' => Str::random(10),
-        'email_verified_at' => now(),
-    ];
-});
 
-$factory->state(User::class, 'anakin', function (Generator $faker) {
-    return [
-        'name' => 'Anakin',
-        'email' => 'anakin@skywalker.st'
-    ];
-});
+    /**
+     * Define the model's default state.
+     */
+    public function definition(): array
+    {
+        static $password;
+
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'password' => $password ?: $password = 'password',
+            'api_token' => Str::random(60),
+            'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+        ];
+    }
+
+    /**
+     * Indicate that the user is anakin.
+     */
+    public function anakin(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'name' => 'Anakin',
+                'email' => 'anakin@skywalker.st'
+            ];
+        });
+    }
+}

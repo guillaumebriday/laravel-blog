@@ -13,7 +13,7 @@ class TokenTest extends TestCase
 
     public function testGenerate()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->assertNotEquals($user->api_token, Token::generate());
     }

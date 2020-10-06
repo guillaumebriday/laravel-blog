@@ -6,6 +6,7 @@ use App\Concern\Likeable;
 use App\Scopes\PostedScope;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use Likeable;
+    use HasFactory, Likeable;
 
     /**
      * The attributes that are mass assignable.

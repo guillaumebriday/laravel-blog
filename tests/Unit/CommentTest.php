@@ -13,7 +13,7 @@ class CommentTest extends TestCase
 
     public function testPostedAt()
     {
-        $comment = factory(Comment::class)->create();
+        $comment = Comment::factory()->create();
         $this->assertEqualsWithDelta($comment->posted_at->timestamp, now()->timestamp, 1);
     }
 
@@ -22,7 +22,8 @@ class CommentTest extends TestCase
         $faker = Factory::create();
 
         // Older Comments
-        factory(Comment::class, 3)
+        Comment::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($comment) use ($faker) {
                     $comment->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
@@ -30,7 +31,8 @@ class CommentTest extends TestCase
                 });
 
         // Newer Comments
-        factory(Comment::class, 3)
+        Comment::factory()
+                ->count(3)
                 ->create()
                 ->each(function ($comment) use ($faker) {
                     $comment->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());

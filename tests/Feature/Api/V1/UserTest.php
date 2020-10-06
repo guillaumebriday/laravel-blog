@@ -15,9 +15,10 @@ class UserTest extends TestCase
 
     public function testUserIndex()
     {
-        factory(User::class, 2)
+        User::factory()
+            ->count(2)
             ->create()
-            ->each(fn ($user) => $user->roles()->save(factory(Role::class)->create()));
+            ->each(fn ($user) => $user->roles()->save(Role::factory()->create()));
 
         $this->json('GET', '/api/v1/users')
             ->assertOk()
@@ -56,12 +57,12 @@ class UserTest extends TestCase
 
     public function testUserShow()
     {
-        $user = factory(User::class)->states('anakin')->create();
-        $role = factory(Role::class)->states('editor')->create();
+        $user = User::factory()->anakin()->create();
+        $role = Role::factory()->editor()->create();
         $user->roles()->save($role);
 
-        factory(Comment::class, 2)->create(['author_id' => $user->id]);
-        factory(Post::class, 2)->create(['author_id' => $user->id]);
+        Comment::factory()->count(2)->create(['author_id' => $user->id]);
+        Post::factory()->count(2)->create(['author_id' => $user->id]);
 
         $this->json('GET', "/api/v1/users/{$user->id}")
             ->assertOk()
