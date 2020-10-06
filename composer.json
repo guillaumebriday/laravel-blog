@@ -27,6 +27,7 @@
         "filp/whoops": "2.7.3",
         "friendsofphp/php-cs-fixer": "2.16.4",
         "fzaninotto/faker": "1.9.1",
+        "laravel/homestead": "11.2",
         "laravel/telescope": "3.5.1",
         "mockery/mockery": "1.4.0",
         "phpunit/phpunit": "9.1.5"
