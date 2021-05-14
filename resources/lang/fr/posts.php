@@ -25,6 +25,7 @@ return [
     'thumbnail' => 'Image à la une',
     'posted_at' => 'Posté le',
     'thumbnail' => "L'image de couverture",
+    'language' => "Langue",
   ],
 
   'placeholder' => [

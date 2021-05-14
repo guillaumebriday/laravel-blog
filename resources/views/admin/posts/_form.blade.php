@@ -1,5 +1,6 @@
 @php
     $posted_at = old('posted_at') ?? (isset($post) ? $post->posted_at->format('Y-m-d\TH:i') : null);
+    $language = old('language') ?? (isset($post) ? $post->language : null);
 @endphp
 
 <div class="form-group">
@@ -27,6 +28,21 @@
 
         @error('posted_at')
             <span class="invalid-feedback">{{ $message }}</span>
+        @enderror
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-12">
+        {!! Form::label('language', __('posts.attributes.language')) !!}
+        <select name="language" class="form-control {{ ($errors->has('language') ? ' is-invalid' : '') }}">
+            @foreach(config('laravellocalization.supportedLocales') as $key => $country)
+                <option value="{{ $key }}" @if($language == $key) selected @endif>{{ $country['name'] }}</option>
+            @endforeach
+        </select>
+
+        @error('language')
+        <span class="invalid-feedback">{{ $message }}</span>
         @enderror
     </div>
 </div>

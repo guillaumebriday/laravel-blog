@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -15,6 +16,7 @@ class PostController extends Controller
     {
         return view('posts.index', [
             'posts' => Post::search($request->input('q'))
+                             ->where('language', App::getLocale())
                              ->with('author', 'likes')
                              ->withCount('comments', 'thumbnail', 'likes')
                              ->latest()

@@ -16,6 +16,7 @@
         "laravel/tinker": "2.4.2",
         "laravel/ui": "3.0.0",
         "laravelcollective/html": "6.2.0",
+        "mcamara/laravel-localization": "^1.6",
         "nunomaduro/collision": "5.0.2",
         "predis/predis": "1.1.6",
         "pusher/pusher-php-server": "4.1.4",

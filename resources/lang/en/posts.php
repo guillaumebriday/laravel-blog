@@ -25,6 +25,7 @@ return [
     'thumbnail' => 'Post picture',
     'posted_at' => 'Posted at',
     'thumbnail' => "Thumbnail image",
+    'language' => "Language",
   ],
 
   'placeholder' => [
