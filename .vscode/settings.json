@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "vscode://vscode.github-authentication/did-authenticate?windowid=3&code=a7896d47c37da8bfd4a2&state=5885bfd2-8f5a-41cf-bfd5-522cbdb281ea"
+    ]
+}
