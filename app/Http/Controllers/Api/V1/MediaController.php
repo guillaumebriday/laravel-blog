@@ -41,7 +41,7 @@ class MediaController extends Controller
             MediaLibrary::first()
                         ->addMedia($image)
                         ->usingName($name)
-//                        ->toMediaCollection()
+                        ->toCollection('media')
         );
     }
 
