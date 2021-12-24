@@ -1,7 +1,7 @@
 <div class="card mb-2">
   @if ($post->hasThumbnail())
     <a href="{{ route('posts.show', $post)}}">
-      {{ Html::image($post->thumbnail->getUrl('thumb'), $post->thumbnail->name, ['class' => 'card-img-top']) }}
+      {{ Html::image($post->getUrl(), $post->name, ['class' => 'card-img-top']) }}
     </a>
   @endif
 
