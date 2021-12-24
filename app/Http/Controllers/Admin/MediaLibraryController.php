@@ -53,7 +53,8 @@ class MediaLibraryController extends Controller
         MediaLibrary::first()
             ->addMedia($image)
             ->usingName($name)
-            ->toMediaCollection();
+//            ->toMediaCollection()
+        ;
 
         return redirect()->route('admin.media.index')->withSuccess(__('media.created'));
     }
