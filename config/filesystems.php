@@ -90,7 +90,9 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+//        public_path('storage') => storage_path('app/public'),
+//        public_path('media') => storage_path('upload/media'),
+        '/home/pardisa2/blog.pardisania.ir/media' => storage_path('media')
     ],
 
 ];
