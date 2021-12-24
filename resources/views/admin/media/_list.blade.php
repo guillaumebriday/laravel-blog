@@ -15,7 +15,7 @@
                 <td>
                     <a href="{{ $medium->getUrl() }}" target="_blank">
 {{--                        $medium->getUrl(''thumb) --}}
-                        <img src="{{ $medium->getKey() }}" alt="{{ $medium->name }}" width="100">
+                        <img src="{{ $medium->getUrl() }}" alt="{{ $medium->name }}" width="100">
                     </a>
                 </td>
                 <td>{{ $medium->name }}</td>
