@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'parswebserver' => [
+            'driver' => 'local',
+            'root' => env('STORAGE_PATH').'/app',
+            'url' => env('APP_URL').'/app',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
