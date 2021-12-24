@@ -38,6 +38,6 @@ class CustomPathGenerator implements PathGenerator
      */
     protected function getBasePath(Media $media): string
     {
-        return $media->file_name;
+        return $media->getKey();
     }
 }
