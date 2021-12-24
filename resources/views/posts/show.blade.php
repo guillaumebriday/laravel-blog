@@ -3,7 +3,7 @@
 @section('content')
   <div class="bg-white p-3 post-card">
     @if ($post->hasThumbnail())
-      {{ Html::image($post->getUrl(), $post->name, ['class' => 'card-img-top']) }}
+      {{ Html::image($post->thumbnail->getUrl(), $post->name, ['class' => 'card-img-top']) }}
     @endif
 
     <h1 v-pre>{{ $post->title }}</h1>
