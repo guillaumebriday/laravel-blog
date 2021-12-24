@@ -14,7 +14,7 @@ class CustomPathGenerator implements PathGenerator
      */
     public function getPath(Media $media): string
     {
-        return '/media/'. $this->getBasePath($media).'/';
+        return '/media/' . $this->getBasePath($media) . '/';
     }
 
     /*
@@ -22,7 +22,7 @@ class CustomPathGenerator implements PathGenerator
      */
     public function getPathForConversions(Media $media): string
     {
-        return $this->getBasePath($media).'/conversions/';
+        return '/media/' . $this->getBasePath($media) . '/conversions/';
     }
 
     /*
@@ -30,7 +30,7 @@ class CustomPathGenerator implements PathGenerator
      */
     public function getPathForResponsiveImages(Media $media): string
     {
-        return $this->getBasePath($media).'/responsive-images/';
+        return $this->getBasePath($media) . '/responsive-images/';
     }
 
     /*
@@ -38,6 +38,6 @@ class CustomPathGenerator implements PathGenerator
      */
     protected function getBasePath(Media $media): string
     {
-        return $media->getKey();
+        return $media->file_name;
     }
 }
