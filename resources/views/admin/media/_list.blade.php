@@ -13,9 +13,9 @@
         @foreach($media as $medium)
             <tr>
                 <td>
-                    <a href="{{ $medium->getUrl() }}" target="_blank">
+                    <a href="{{ $medium->getUrl('thumb') }}" target="_blank">
 {{--                        $medium->getUrl('thumb') --}}
-                        <img src="{{ $medium->getUrl('thumb') }}" alt="{{ $medium->name }}" width="100">
+                        <img src="{{ $medium->getUrl() }}" alt="{{ $medium->name }}" width="100">
                     </a>
                 </td>
                 <td>{{ $medium->name }}</td>
