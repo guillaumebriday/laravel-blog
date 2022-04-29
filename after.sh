@@ -20,4 +20,4 @@ sudo rm -rf /etc/apt/sources.list.d/nodesource.list
 # Install Node.js Version desired (i.e. v16)
 # More info: https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodej
+sudo apt-get install -y nodejs
