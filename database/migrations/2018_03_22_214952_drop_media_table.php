@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropMediaTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -44,4 +43,4 @@ class DropMediaTable extends Migration
             $table->foreign('thumbnail_id')->references('id')->on('media');
         });
     }
-}
+};

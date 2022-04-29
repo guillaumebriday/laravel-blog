@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddThumbnailIdToPostsTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -31,4 +30,4 @@ class AddThumbnailIdToPostsTable extends Migration
             $table->dropColumn('thumbnail_id');
         });
     }
-}
+};

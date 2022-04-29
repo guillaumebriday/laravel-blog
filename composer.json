@@ -1,6 +1,6 @@
 {
     "name": "guillaumebriday/laravel-blog",
-    "description": "Laravel 8.0 blog.",
+    "description": "Laravel 9.0 blog.",
     "keywords": ["framework", "laravel", "blog", "example"],
     "license": "MIT",
     "type": "project",
@@ -8,19 +8,17 @@
         "php": "^8.1",
         "barryvdh/laravel-debugbar": "3.6.7",
         "doctrine/dbal": "3.3.5",
-        "fideloper/proxy": "4.4.1",
-        "fruitcake/laravel-cors": "3.0.0",
-        "laravel/framework": "8.83.10",
+        "laravel/framework": "9.10.1",
         "laravel/horizon": "5.9.7",
         "laravel/socialite": "5.5.2",
         "laravel/tinker": "2.7.2",
         "laravel/ui": "3.4.5",
         "laravelcollective/html": "6.3.0",
-        "nunomaduro/collision": "5.11.0",
+        "nunomaduro/collision": "6.2.0",
         "predis/predis": "1.1.10",
         "pusher/pusher-php-server": "7.0.2",
-        "spatie/laravel-backup": "6.16.5",
-        "spatie/laravel-medialibrary": "9.12.3"
+        "spatie/laravel-backup": "8.1.2",
+        "spatie/laravel-medialibrary": "10.3.2"
     },
     "require-dev": {
         "filp/whoops": "2.14.5",
