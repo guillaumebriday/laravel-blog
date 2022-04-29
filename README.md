@@ -109,7 +109,7 @@ $ ./vendor/bin/phpunit --cache-result --order-by=defects --stop-on-defect
 
 Running php-cs-fixer :
 ```bash
-$ ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
+$ ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --verbose --dry-run --diff
 ```
 
 Generating backup :

@@ -24,8 +24,8 @@ class UserFactory extends Factory
         static $password;
 
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'password' => $password ?: $password = 'password',
             'api_token' => Str::random(60),
             'remember_token' => Str::random(10),
@@ -38,7 +38,7 @@ class UserFactory extends Factory
      */
     public function anakin(): Factory
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function () {
             return [
                 'name' => 'Anakin',
                 'email' => 'anakin@skywalker.st'

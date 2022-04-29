@@ -1,7 +1,9 @@
-ip: 192.168.10.10
+ip: "192.168.56.56"
 memory: 2048
 cpus: 2
 provider: virtualbox
+name: laravel-blog
+hostname: laravel-blog
 folders:
   -
     map: '.'
@@ -10,11 +12,15 @@ sites:
   -
     map: homestead.test
     to: /home/vagrant/code/public
+    php: "8.1"
 databases:
   - homestead
   - test
 ports:
   - send: 8080
     to: 8080
-name: laravel-blog
-hostname: laravel-blog
+features:
+  - mysql: true
+services:
+  - enabled:
+    - "mysql"

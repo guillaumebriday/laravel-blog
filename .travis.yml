@@ -31,7 +31,7 @@ before_script:
 script:
   - yarn production
   - yarn lint
-  - vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
+  - vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --verbose --dry-run --diff
   - vendor/bin/phpunit --testdox
 
 notifications:

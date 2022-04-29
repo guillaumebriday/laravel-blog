@@ -7,15 +7,17 @@ $finder = Finder::create()
     ->exclude('bootstrap/cache')
     ->exclude('storage')
     ->exclude('vendor')
+    ->exclude('node_modules')
     ->in(__DIR__)
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return Config::create()
+$config = new PhpCsFixer\Config();
+return $config
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'no_unused_imports' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,

@@ -20,6 +20,7 @@ module.exports = {
     'vue'
   ],
   rules: {
-    'no-new': 'off'
+    'no-new': 'off',
+    'vue/multi-word-component-names': 'off'
   }
 }
