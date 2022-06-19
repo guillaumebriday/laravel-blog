@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f834add2a6f983dbb990415ebf8e898",
+    "content-hash": "1c07a819e36f9007f481725a527e9650",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -7109,6 +7109,71 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.4"
             },
             "time": "2021-12-08T09:12:39+00:00"
+        },
+        {
+            "name": "tonysm/turbo-laravel",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tonysm/turbo-laravel.git",
+                "reference": "b0393986181a73ec9ab0d9e376c04f0da1f5b5b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tonysm/turbo-laravel/zipball/b0393986181a73ec9ab0d9e376c04f0da1f5b5b3",
+                "reference": "b0393986181a73ec9ab0d9e376c04f0da1f5b5b3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.0",
+                "php": "^8.0|^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\Tonysm\\TurboLaravel\\TurboServiceProvider"
+                    ],
+                    "aliases": {
+                        "Turbo": "\\Tonysm\\TurboLaravel\\Facades\\Turbo"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Tonysm\\TurboLaravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tony Messias",
+                    "email": "tonysm@hey.com",
+                    "homepage": "https://tonysm.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Turbo Laravel gives you a set of conventions to make the most out of the Hotwire stack (inspired by turbo-rails gem).",
+            "homepage": "https://github.com/tonysm/turbo-laravel",
+            "keywords": [
+                "tonysm",
+                "turbo-laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/tonysm/turbo-laravel/issues",
+                "source": "https://github.com/tonysm/turbo-laravel/tree/1.4.0"
+            },
+            "time": "2022-06-19T00:30:08+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

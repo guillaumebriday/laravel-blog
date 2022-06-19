@@ -11,6 +11,7 @@
         "production": "mix --production"
     },
     "dependencies": {
+        "@hotwired/turbo": "^7.1.0",
         "axios": "0.27.2",
         "bootstrap": "^4.6.1",
         "clipboard": "2.0.10",

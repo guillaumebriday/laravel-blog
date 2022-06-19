@@ -37,6 +37,7 @@ Beside Laravel, this project uses other tools like:
 - [axios](https://github.com/mzabriskie/axios)
 - [Redis](https://redis.io/)
 - [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary)
+- [tonysm/turbo-laravel](https://github.com/tonysm/turbo-laravel)
 - Many more to discover.
 
 ## Some screenshots
