@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\NewsletterSubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
