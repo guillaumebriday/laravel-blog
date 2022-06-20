@@ -17,15 +17,9 @@
       {!! $post->content !!}
     </div>
 
-    <p class="mt-3">
-      <like
-        :likes-count="{{ $post->likes_count }}"
-        :liked="{{ json_encode($post->isLiked()) }}"
-        :item-id="{{ $post->id }}"
-        item-type="posts"
-        :logged-in="{{ json_encode(Auth::check()) }}"
-      />
-    </p>
+    <div class="mt-3">
+      @include('likes/_likes')
+    </div>
   </div>
 
   @include ('comments/_list')

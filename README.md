@@ -33,10 +33,10 @@ Beside Laravel, this project uses other tools like:
 - [PHP-CS-Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
 - [Travis CI](https://travis-ci.org/)
 - [Font Awesome](http://fontawesome.io/)
-- [Vue.js](https://vuejs.org/)
-- [axios](https://github.com/mzabriskie/axios)
+- [Hotwired](https://hotwired.dev/)
 - [Redis](https://redis.io/)
 - [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary)
+- [tonysm/turbo-laravel](https://github.com/tonysm/turbo-laravel)
 - Many more to discover.
 
 ## Some screenshots

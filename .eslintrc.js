@@ -4,23 +4,18 @@ module.exports = {
     es6: true
   },
   extends: [
-    'plugin:vue/recommended',
     'standard'
   ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    '$': false
+    $: false
   },
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: [
-    'vue'
-  ],
   rules: {
-    'no-new': 'off',
-    'vue/multi-word-component-names': 'off'
+    'no-new': 'off'
   }
 }

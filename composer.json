@@ -18,7 +18,8 @@
         "predis/predis": "1.1.10",
         "pusher/pusher-php-server": "7.0.2",
         "spatie/laravel-backup": "8.1.2",
-        "spatie/laravel-medialibrary": "10.3.2"
+        "spatie/laravel-medialibrary": "10.3.2",
+        "tonysm/turbo-laravel": "^1.4"
     },
     "require-dev": {
         "filp/whoops": "2.14.5",
