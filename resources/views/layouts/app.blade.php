@@ -15,6 +15,10 @@
 
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="{{ mix('/js/app.js') }}" defer></script>
+    @stack('inline-scripts')
 </head>
 <body class="bg-light">
     <div id="app">
@@ -32,9 +36,5 @@
 
         @include('shared/footer')
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}"></script>
-    @stack('inline-scripts')
 </body>
 </html>

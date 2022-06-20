@@ -16,6 +16,10 @@
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('/css/admin.css') }}" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="{{ mix('/js/app.js') }}" defer></script>
+    <script src="{{ mix('/js/admin.js') }}" defer></script>
 </head>
 <body class="admin-body bg-dark">
     @include('admin/shared/navbar')
@@ -35,9 +39,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}"></script>
-    <script src="{{ mix('/js/admin.js') }}"></script>
 </body>
 </html>
