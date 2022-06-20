@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "lint": "eslint --ext .js,.vue resources/js",
+        "lint": "eslint --ext .js resources/js",
         "dev": "yarn development",
         "development": "mix",
         "watch": "mix watch",
@@ -12,7 +12,6 @@
     },
     "dependencies": {
         "@hotwired/turbo": "^7.1.0",
-        "axios": "0.27.2",
         "bootstrap": "^4.6.1",
         "clipboard": "2.0.10",
         "cross-env": "7.0.3",
@@ -22,8 +21,7 @@
         "laravel-mix": "6.0.43",
         "popper.js": "1.16.1",
         "pusher-js": "7.1.0-beta",
-        "trumbowyg": "2.25.1",
-        "vue": "2.6.14"
+        "trumbowyg": "2.25.1"
     },
     "devDependencies": {
         "eslint": "8.14.0",
@@ -33,11 +31,8 @@
         "eslint-plugin-node": "11.1.0",
         "eslint-plugin-promise": "6.0.0",
         "eslint-plugin-standard": "5.0.0",
-        "eslint-plugin-vue": "8.7.1",
         "resolve-url-loader": "5.0.0",
         "sass": "1.51.0",
-        "sass-loader": "12.6.0",
-        "vue-loader": "15.9.8",
-        "vue-template-compiler": "2.6.14"
+        "sass-loader": "12.6.0"
     }
 }
