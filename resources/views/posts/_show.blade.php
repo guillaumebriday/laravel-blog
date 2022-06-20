@@ -10,18 +10,12 @@
 
     <p class="card-text"><small v-pre class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small></p>
 
-    <p class="card-text">
+    <div class="card-text">
       <small class="text-muted">{{ humanize_date($post->posted_at) }}</small><br>
       <small class="text-muted">
         <i class="fa fa-comments-o" aria-hidden="true"></i> {{ $post->comments_count }}
-        <like
-          :likes-count="{{ $post->likes_count }}"
-          :liked="{{ json_encode($post->isLiked()) }}"
-          :item-id="{{ $post->id }}"
-          item-type="posts"
-          :logged-in="{{ json_encode(Auth::check()) }}"
-        />
+        @include('likes/_likes')
       </small>
-    </p>
+    </div>
   </div>
 </div>
