@@ -68,7 +68,7 @@ class UserTest extends TestCase
         foreach (User::lastWeek()->get() as $user) {
             $isDuringLastWeek = $user->registered_at->between(carbon('1 week ago'), now());
 
-            if (! $isDuringLastWeek) {
+            if (!$isDuringLastWeek) {
                 break;
             }
         }
@@ -104,7 +104,7 @@ class UserTest extends TestCase
 
         $hasOnlyAuthors = true;
         foreach ($authors as $author) {
-            if (! $author->canBeAuthor()) {
+            if (!$author->canBeAuthor()) {
                 $hasOnlyAuthors = false;
                 break;
             }

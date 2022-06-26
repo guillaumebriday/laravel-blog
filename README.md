@@ -30,7 +30,7 @@ The purpose of this repository is to show good development practices on [Laravel
 Beside Laravel, this project uses other tools like:
 
 - [Bootstrap 4](https://getbootstrap.com/)
-- [PHP-CS-Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
+- [Pint](https://github.com/laravel/pint)
 - [Travis CI](https://travis-ci.org/)
 - [Font Awesome](http://fontawesome.io/)
 - [Hotwired](https://hotwired.dev/)
@@ -107,9 +107,9 @@ Running tests :
 $ artisan test
 ```
 
-Running php-cs-fixer :
+Running Laravel Pint :
 ```bash
-$ ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --verbose --dry-run --diff
+$ ./vendor/bin/pint --verbose --test
 ```
 
 Generating backup :

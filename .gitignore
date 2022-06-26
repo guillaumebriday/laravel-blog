@@ -16,3 +16,4 @@ public/media/
 /storage/medialibrary
 /log
 .phpunit.result.cache
+pint.json

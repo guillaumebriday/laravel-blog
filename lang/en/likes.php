@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'likes' => "Likes",
+    'likes' => 'Likes',
 ];

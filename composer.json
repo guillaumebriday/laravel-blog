@@ -23,9 +23,9 @@
     },
     "require-dev": {
         "filp/whoops": "2.14.5",
-        "friendsofphp/php-cs-fixer": "3.8.0",
         "fzaninotto/faker": "dev-master",
         "laravel/homestead": "^13.2",
+        "laravel/pint": "^0.2.0",
         "laravel/telescope": "4.9.0",
         "mockery/mockery": "1.5.0",
         "phpunit/phpunit": "9.5.20"

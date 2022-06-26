@@ -11,6 +11,7 @@ class Newsletter extends Mailable
     use Queueable, SerializesModels;
 
     protected $posts;
+
     protected $email;
 
     /**

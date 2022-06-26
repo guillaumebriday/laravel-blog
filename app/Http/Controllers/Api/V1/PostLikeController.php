@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class PostLikeController extends Controller
 {
-
     /**
      * Store a newly created resource in storage.
      *
@@ -22,7 +21,7 @@ class PostLikeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Post $post
+     * @param  Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

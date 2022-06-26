@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -14,7 +15,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        if (! Schema::hasColumn('media', 'generated_conversions')) {
+        if (!Schema::hasColumn('media', 'generated_conversions')) {
             Schema::table('media', function (Blueprint $table) {
                 $table->json('generated_conversions')->nullable();
             });
@@ -26,7 +27,7 @@ return new class extends Migration {
                     ->orWhere('generated_conversions', '')
                     ->orWhereRaw("JSON_TYPE(generated_conversions) = 'NULL'");
             })
-            ->whereRaw("JSON_LENGTH(custom_properties) > 0")
+            ->whereRaw('JSON_LENGTH(custom_properties) > 0')
             ->update([
                 'generated_conversions' => DB::raw('custom_properties->"$.generated_conversions"'),
                 // OPTIONAL: Remove the generated conversions from the custom_properties field as well:

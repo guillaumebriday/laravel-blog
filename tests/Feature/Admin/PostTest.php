@@ -3,7 +3,6 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Comment;
-
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,7 +19,7 @@ class PostTest extends TestCase
         Post::factory()->count(3)->create();
 
         $this->actingAsAdmin()
-            ->get("/admin/posts")
+            ->get('/admin/posts')
             ->assertOk()
             ->assertSee('4 posts')
             ->assertSee('Anakin')
@@ -121,7 +120,7 @@ class PostTest extends TestCase
     /**
      * Valid params for updating or creating a resource
      *
-     * @param  array $overrides new params
+     * @param  array  $overrides new params
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])

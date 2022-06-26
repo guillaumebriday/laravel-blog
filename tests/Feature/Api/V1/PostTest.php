@@ -21,13 +21,13 @@ class PostTest extends TestCase
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [[
-                        'id',
-                        'title',
-                        'slug',
-                        'content',
-                        'posted_at',
-                        'author_id',
-                        'comments_count'
+                    'id',
+                    'title',
+                    'slug',
+                    'content',
+                    'posted_at',
+                    'author_id',
+                    'comments_count'
                 ]],
                 'links' => [
                     'first',
@@ -215,7 +215,7 @@ class PostTest extends TestCase
     /**
      * Valid params for updating or creating a resource
      *
-     * @param  array $overrides new params
+     * @param  array  $overrides new params
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])

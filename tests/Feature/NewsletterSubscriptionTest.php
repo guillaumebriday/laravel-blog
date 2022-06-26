@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\NewsletterSubscription;
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -64,7 +63,7 @@ class NewsletterSubscriptionTest extends TestCase
     /**
      * Valid params for updating or creating a resource
      *
-     * @param  array $overrides new params
+     * @param  array  $overrides new params
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
