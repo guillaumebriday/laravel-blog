@@ -3,7 +3,6 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Comment;
-
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -98,7 +97,7 @@ class CommentTest extends TestCase
     /**
      * Valid params for updating or creating a resource
      *
-     * @param  array $overrides new params
+     * @param  array  $overrides new params
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
@@ -106,7 +105,7 @@ class CommentTest extends TestCase
         $post = Post::factory()->create();
 
         return array_merge([
-            'content' => "Great article ! Thanks for sharing it with us.",
+            'content' => 'Great article ! Thanks for sharing it with us.',
             'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i'),
             'post_id' => $post->id,
             'author_id' => User::factory()->create()->id,

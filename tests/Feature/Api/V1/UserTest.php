@@ -119,7 +119,7 @@ class UserTest extends TestCase
     /**
      * Valid params for updating or creating a resource
      *
-     * @param  array $overrides new params
+     * @param  array  $overrides new params
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])

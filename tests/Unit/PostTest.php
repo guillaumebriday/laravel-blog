@@ -52,7 +52,7 @@ class PostTest extends TestCase
         foreach (Post::lastMonth()->get() as $post) {
             $isDuringLastMonth = $post->posted_at->between(carbon('1 month ago'), now());
 
-            if (! $isDuringLastMonth) {
+            if (!$isDuringLastMonth) {
                 break;
             }
         }
@@ -86,7 +86,7 @@ class PostTest extends TestCase
         foreach (Post::lastWeek()->get() as $post) {
             $isDuringLastWeek = $post->posted_at->between(carbon('1 week ago'), now());
 
-            if (! $isDuringLastWeek) {
+            if (!$isDuringLastWeek) {
                 break;
             }
         }
@@ -103,7 +103,7 @@ class PostTest extends TestCase
         foreach (Post::all() as $post) {
             $isBeforeNow = $post->posted_at->lt(now());
 
-            if (! $isBeforeNow) {
+            if (!$isBeforeNow) {
                 break;
             }
         }
@@ -123,7 +123,7 @@ class PostTest extends TestCase
         foreach (Post::all() as $post) {
             $isBeforeNow = $post->posted_at->lt(now());
 
-            if (! $isBeforeNow) {
+            if (!$isBeforeNow) {
                 break;
             }
         }

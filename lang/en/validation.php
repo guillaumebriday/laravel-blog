@@ -113,8 +113,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-    'can_be_author'        => "Selected user can not be an author",
-    'current_password'     => "The current password is invalid.",
+    'can_be_author'        => 'Selected user can not be an author',
+    'current_password'     => 'The current password is invalid.',
 
     /*
     |--------------------------------------------------------------------------
@@ -129,10 +129,10 @@ return [
 
     'custom' => [
         'can_be_author' => [
-            'accepted' => "Selected author is invalid.",
+            'accepted' => 'Selected author is invalid.',
         ],
         'current_password' => [
-            'accepted' => "The current password is invalid.",
+            'accepted' => 'The current password is invalid.',
         ],
     ],
 
@@ -184,6 +184,6 @@ return [
         'thumbnail_id'          => 'Thumbnail',
     ],
 
-    'errors' => ":count error :|:count errors : "
+    'errors' => ':count error :|:count errors : '
 
 ];

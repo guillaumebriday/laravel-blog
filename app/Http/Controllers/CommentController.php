@@ -14,7 +14,7 @@ class CommentController extends Controller
      */
     public function store(CommentsRequest $request): MultiplePendingTurboStreamResponse
     {
-        $comment =  Auth::user()->comments()->create($request->validated());
+        $comment = Auth::user()->comments()->create($request->validated());
 
         return response()->turboStream([
             response()->turboStream()->prepend('comments')->view('comments._comment', ['comment' => $comment]),

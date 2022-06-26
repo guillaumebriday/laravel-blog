@@ -19,9 +19,9 @@ class AuthenticateTest extends TestCase
         $user->roles()->save($role);
 
         $res = $this->json('POST', '/api/v1/authenticate', [
-                'email' => 'anakin@skywalker.st',
-                'password' => '4nak1n'
-            ])
+            'email' => 'anakin@skywalker.st',
+            'password' => '4nak1n'
+        ])
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
@@ -52,9 +52,9 @@ class AuthenticateTest extends TestCase
         );
 
         $this->json('POST', '/api/v1/authenticate', [
-                'email' => 'anakin@skywalker.st',
-                'password' => 'Luk3'
-            ])
+            'email' => 'anakin@skywalker.st',
+            'password' => 'Luk3'
+        ])
             ->assertUnauthorized()
             ->assertJson([
                 'message' => 'This action is unauthorized.'

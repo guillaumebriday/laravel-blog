@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Comment;
-
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

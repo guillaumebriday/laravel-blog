@@ -12,7 +12,7 @@ class HorizonServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (! app()->environment('local')) {
+        if (!app()->environment('local')) {
             Horizon::auth(fn ($request) => auth()->check() && auth()->user()->isAdmin());
         }
     }

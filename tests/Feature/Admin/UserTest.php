@@ -3,7 +3,6 @@
 namespace Tests\Feature\Admin;
 
 use App\Models\Post;
-
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

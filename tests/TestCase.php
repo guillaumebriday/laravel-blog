@@ -24,6 +24,7 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Return an admin user
+     *
      * @return User $admin
      */
     protected function admin($overrides = [])
@@ -38,6 +39,7 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Return an user
+     *
      * @return User
      */
     protected function user($overrides = [])

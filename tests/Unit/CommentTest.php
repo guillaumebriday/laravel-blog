@@ -43,7 +43,7 @@ class CommentTest extends TestCase
         foreach (Comment::lastWeek()->get() as $comment) {
             $isDuringLastWeek = $comment->posted_at->between(carbon('1 week ago'), now());
 
-            if (! $isDuringLastWeek) {
+            if (!$isDuringLastWeek) {
                 break;
             }
         }

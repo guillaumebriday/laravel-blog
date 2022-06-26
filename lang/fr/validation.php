@@ -157,6 +157,6 @@ return [
         'thumbnail_id'          => 'Image de couverture',
     ],
 
-    'errors' => ":count erreur :|:count erreurs : "
+    'errors' => ':count erreur :|:count erreurs : '
 
 ];
