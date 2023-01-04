@@ -60,13 +60,14 @@ $ vagrant ssh
 ```
 
 All following commands must be run inside the VM:
+
+$ cd code???
 ```bash
-$ cd code
 $ yarn install
-$ artisan key:generate
-$ artisan horizon:install
-$ artisan telescope:install
-$ artisan storage:link
+$ php artisan key:generate
+$ php artisan horizon:install
+$ php artisan telescope:install
+$ php artisan storage:link
 ```
 
 Now you can access the application via [http://localhost:8000](http://localhost:8000).
@@ -76,7 +77,7 @@ Now you can access the application via [http://localhost:8000](http://localhost:
 ## Before starting
 You need to run the migrations with the seeds :
 ```bash
-$ artisan migrate --seed
+$ php artisan migrate --seed
 ```
 
 This will create a new user that you can use to sign in :
@@ -92,14 +93,14 @@ $ yarn dev # or yarn watch
 
 Starting job for newsletter :
 ```bash
-$ artisan tinker
+$ php artisan tinker
 > PrepareNewsletterSubscriptionEmail::dispatch();
 ```
 
 ## Useful commands
 Seeding the database :
 ```bash
-$ artisan db:seed
+$ php artisan db:seed
 ```
 
 Running tests :
@@ -114,23 +115,23 @@ $ ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
 
 Generating backup :
 ```bash
-$ artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
-$ artisan backup:run
+$ php artisan vendor:publish --provider="Spatie\Backup\BackupServiceProvider"
+$ php artisan backup:run
 ```
 
 Generating fake data :
 ```bash
-$ artisan db:seed --class=DevDatabaseSeeder
+$ php artisan db:seed --class=DevDatabaseSeeder
 ```
 
 Discover package
 ```bash
-$ artisan package:discover
+$ php artisan package:discover
 ```
 
 In development environnement, rebuild the database :
 ```bash
-$ artisan migrate:fresh --seed
+$ php artisan migrate:fresh --seed
 ```
 
 ## Accessing the API
@@ -154,7 +155,7 @@ Do not forget to set the `X-Requested-With` header to `XMLHttpRequest`. Otherwis
 To list all the available routes for API :
 
 ```bash
-$ artisan route:list --path=api
+$ php artisan route:list --path=api
 ```
 
 ## Contributing
