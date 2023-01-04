@@ -12,3 +12,5 @@ public/media/
 /storage/medialibrary
 /log
 .phpunit.result.cache
+/public/vendor/telescope/*
+/resources/lang/vendor/backup/*
