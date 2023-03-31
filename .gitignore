@@ -14,3 +14,4 @@ public/media/
 .phpunit.result.cache
 /public/vendor/telescope/*
 /resources/lang/vendor/backup/*
+/public/vendor/horizon/*
