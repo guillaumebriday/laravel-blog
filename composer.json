@@ -11,6 +11,7 @@
         "fideloper/proxy": "^4.4.0",
         "fruitcake/laravel-cors": "^2.0.2",
         "laravel/framework": "^8.9",
+        "laravel/horizon": "^5.15",
         "laravel/socialite": "^5.0.1",
         "laravel/tinker": "^2.4.2",
         "laravel/ui": "^3.0.0",
@@ -67,7 +68,11 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "platform": {
+            "ext-pcntl": "8.0",
+            "ext-posix": "8.0"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
