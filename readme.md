@@ -79,7 +79,7 @@ Now you can access the application via [http://localhost:8000](http://localhost:
  - gd
  - mbstring
  - exif
-
+ - zip
 ```
 extension=gd
 extension=mbstring

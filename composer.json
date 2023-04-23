@@ -17,16 +17,16 @@
         "laravel/ui": "^3.0.0",
         "laravelcollective/html": "^6.2.0",
         "nunomaduro/collision": "^5.0.2",
-        "orangehill/iseed": "^3.0",
         "predis/predis": "^1.1.6",
         "pusher/pusher-php-server": "^4.1.4",
         "spatie/laravel-backup": "^6.11.4",
-        "spatie/laravel-medialibrary": "^9.7"
+        "spatie/laravel-medialibrary": "^9.7",
+        "tio/laravel": "^1.23"
     },
     "require-dev": {
         "filp/whoops": "^2.7.3",
+        "orangehill/iseed": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.16.4",
-        "fzaninotto/faker": "^1.9.1",
         "laravel/homestead": "^11.2.2",
         "laravel/telescope": "^4.1.0",
         "mockery/mockery": "^1.4.2",
