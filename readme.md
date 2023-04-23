@@ -74,6 +74,18 @@ Now you can access the application via [http://localhost:8000](http://localhost:
 
 **There is no need to run `php artisan serve`. PHP is already running in the dedicated virtual machine.**
 
+## install extensions:
+
+ - gd
+ - mbstring
+ - exif
+
+```
+extension=gd
+extension=mbstring
+extension=exif
+```
+
 ## Before starting
 You need to run the migrations with the seeds :
 ```bash
