@@ -6,17 +6,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class AddGeneratedConversionsToMediaTable extends Migration {
+class AddGeneratedConversionsToMediaTable extends Migration
+{
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
-        if ( ! Schema::hasColumn( 'media', 'generated_conversions' ) ) {
-            Schema::table( 'media', function ( Blueprint $table ) {
-                $table->json( 'generated_conversions' );
-            } );
+    public function up()
+    {
+        if (!Schema::hasColumn('media', 'generated_conversions')) {
+            Schema::table('media', function (Blueprint $table) {
+                $table->json('generated_conversions')->nullable();
+            });
         }
 
         Media::query()
@@ -38,7 +40,8 @@ class AddGeneratedConversionsToMediaTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         /* Restore the 'generated_conversions' field in the 'custom_properties' column if you removed them in this migration
         Media::query()
                 ->whereRaw("JSON_TYPE(generated_conversions) != 'NULL'")
@@ -47,8 +50,8 @@ class AddGeneratedConversionsToMediaTable extends Migration {
                 ]);
         */
 
-        Schema::table( 'media', function ( Blueprint $table ) {
-            $table->dropColumn( 'generated_conversions' );
-        } );
+        Schema::table('media', function (Blueprint $table) {
+            $table->dropColumn('generated_conversions');
+        });
     }
 }
