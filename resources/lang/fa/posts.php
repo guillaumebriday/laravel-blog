@@ -1,10 +1,37 @@
 <?php
 return [
-    'attributes' => [
+    'publish'           => 'انتشار',
+    'posts'             => 'نوشته ها',
+    'delete'            => 'حذف',
+    'delete_thumbnail'  => 'عکس رو پاک کن',
+    'edit'              => 'ویرایش کنید',
+    'last_posts'        => 'آخرین نوشته ها',
+    'create'            => 'پست ایجاد کنید',
+    'created'           => 'پست ایجاد شد',
+    'updated'           => 'پست به روز شد',
+    'deleted'           => 'پست حذف شد',
+    'empty'             => 'در حال حاضر هیچ پستی وجود ندارد.',
+    'new_posts'         => 'پست جدید|پست جدید',
+    'count'             => 'پست :count|پست های :count',
+    'show'              => 'نمایش پست',
+    'search'            => 'جستجو ...',
+    'search_results'    => 'پست :count پیدا شد|پست :count پیدا شد',
+    'attributes'        => [
         'title'     => 'عنوان',
         'content'   => 'محتوا',
         'author'    => 'نویسنده',
         'thumbnail' => 'تصویر بند انگشتی',
         'posted_at' => 'ارسال شده در',
     ],
+    'placeholder'       => [
+        'title'     => 'عنوان شما',
+        'content'   => 'مطالب شما',
+        'thumbnail' => 'یک تصویر کوچک انتخاب کنید',
+    ],
+    'Made with'         => 'ساخته شده با',
+    'by'                => 'توسط',
+    'Say Hi on Twitter' => 'در توییتر سلام کنید!',
+    'Fork me on'        => 'پروزه من رو فورک بگیر',
+    'GitHub'            => 'گیت هاب',
+    'Saber Tabatabaee'  => 'صابر طباطبایی',
 ];
