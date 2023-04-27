@@ -4531,7 +4531,7 @@ input[type=button].btn-block {
 .navbar-nav {
   display: flex;
   flex-direction: column;
-  padding-left: 0;
+  padding-right: 0;
   margin-bottom: 0;
   list-style: none;
 }
@@ -14045,7 +14045,7 @@ body > #app > .container-xl {
   .navbar-collapse .navbar-sidenav {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     overflow-x: hidden;
     overflow-y: auto;
     flex-direction: column;
@@ -14120,11 +14120,11 @@ body > #app > .container-xl {
 
 @media (min-width: 992px) {
   .content-wrapper {
-    margin-left: 250px;
+    margin-right: 250px;
   }
 
   .sidenav-toggled .content-wrapper {
-    margin-left: 55px;
+    margin-right: 55px;
   }
 }
 

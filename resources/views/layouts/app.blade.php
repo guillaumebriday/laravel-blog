@@ -16,7 +16,7 @@
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body class="bg-light" dir="rtl">
     <div id="app">
         @include('shared/navbar')
 
