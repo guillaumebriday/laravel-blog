@@ -36,7 +36,7 @@ Beside Laravel, this project uses other tools like:
 - [Hotwired](https://hotwired.dev/)
 - [Redis](https://redis.io/)
 - [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary)
-- [tonysm/turbo-laravel](https://github.com/tonysm/turbo-laravel)
+- [hotwired-laravel/turbo-laravel](https://github.com/hotwired-laravel/turbo-laravel)
 - Many more to discover.
 
 ## Some screenshots
