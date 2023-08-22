@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
-use function Tonysm\TurboLaravel\dom_id;
 use Tonysm\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
+
+use function Tonysm\TurboLaravel\dom_id;
 
 class PostLikeController extends Controller
 {

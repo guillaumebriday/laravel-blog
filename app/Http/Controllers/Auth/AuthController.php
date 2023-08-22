@@ -42,7 +42,6 @@ class AuthController extends Controller
     /**
      * Return user if exists; create and return if doesn't
      *
-     * @param $user
      * @return User
      */
     private function findOrCreateUser($user, $provider)

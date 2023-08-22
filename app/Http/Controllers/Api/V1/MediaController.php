@@ -39,9 +39,9 @@ class MediaController extends Controller
 
         return new MediaResource(
             MediaLibrary::first()
-                        ->addMedia($image)
-                        ->usingName($name)
-                        ->toMediaCollection()
+                ->addMedia($image)
+                ->usingName($name)
+                ->toMediaCollection()
         );
     }
 

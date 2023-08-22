@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes(): void
     {
         Route::middleware('web')
-             ->group(base_path('routes/web.php'));
+            ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -72,8 +72,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes(): void
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->group(base_path('routes/api.php'));
     }
 
     /**
@@ -84,9 +84,9 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes(): void
     {
         Route::prefix('admin')
-             ->middleware(['web', 'auth', 'role:admin', 'verified'])
-             ->as('admin.')
-             ->group(base_path('routes/admin.php'));
+            ->middleware(['web', 'auth', 'role:admin', 'verified'])
+            ->as('admin.')
+            ->group(base_path('routes/admin.php'));
     }
 
     /**
@@ -97,7 +97,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAuthRoutes(): void
     {
         Route::middleware('web')
-             ->group(base_path('routes/auth.php'));
+            ->group(base_path('routes/auth.php'));
     }
 
     /**

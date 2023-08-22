@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('registered_at', [carbon('1 week ago'), now()])
-                     ->latest();
+            ->latest();
     }
 
     /**
@@ -74,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->whereHas('roles', function ($query) {
             $query->where('roles.name', Role::ROLE_ADMIN)
-                  ->orWhere('roles.name', Role::ROLE_EDITOR);
+                ->orWhere('roles.name', Role::ROLE_EDITOR);
         });
     }
 

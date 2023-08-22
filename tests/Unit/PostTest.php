@@ -32,21 +32,21 @@ class PostTest extends TestCase
 
         // Older Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $post->save();
+            });
 
         // Newer Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('3 weeks ago'), carbon('1 weeks ago'));
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('3 weeks ago'), carbon('1 weeks ago'));
+                $post->save();
+            });
 
         $isDuringLastMonth = true;
         foreach (Post::lastMonth()->get() as $post) {
@@ -66,21 +66,21 @@ class PostTest extends TestCase
 
         // Older Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $post->save();
+            });
 
         // Newer Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+                $post->save();
+            });
 
         $isDuringLastWeek = true;
         foreach (Post::lastWeek()->get() as $post) {

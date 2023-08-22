@@ -19,9 +19,9 @@ class AuthenticateController extends Controller
             $user = User::where('email', $request->input('email'))->first();
 
             return (new UserResource($user))
-                    ->additional(['meta' => [
-                        'access_token' => $user->api_token
-                    ]]);
+                ->additional(['meta' => [
+                    'access_token' => $user->api_token
+                ]]);
         }
 
         return response()->json(['message' => 'This action is unauthorized.'], 401);

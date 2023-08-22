@@ -48,21 +48,21 @@ class UserTest extends TestCase
 
         // Older Users
         User::factory()
-                ->count(10)
-                ->create()
-                ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $user->save();
-                });
+            ->count(10)
+            ->create()
+            ->each(function ($user) use ($faker) {
+                $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $user->save();
+            });
 
         // Newer Users
         User::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                    $user->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($user) use ($faker) {
+                $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+                $user->save();
+            });
 
         $isDuringLastWeek = true;
         foreach (User::lastWeek()->get() as $user) {
