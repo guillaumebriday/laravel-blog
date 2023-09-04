@@ -5,8 +5,8 @@
             <th>@lang('posts.attributes.title')</th>
             <th>@lang('posts.attributes.author')</th>
             <th>@lang('posts.attributes.posted_at')</th>
-            <th><i class="fa fa-comments" aria-hidden="true"></i></th>
-            <th><i class="fa fa-heart" aria-hidden="true"></i></th>
+            <th><i class="fa-regular fa-comments" aria-hidden="true"></i></th>
+            <th><i class="fa-regular fa-heart" aria-hidden="true"></i></th>
             <th></th>
         </tr>
     </thead>
@@ -20,11 +20,11 @@
                 <td><span class="badge badge-pill badge-secondary">{{ $post->likes_count }}</span></td>
                 <td>
                     <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                     </a>
 
                     {!! Form::model($post, ['method' => 'DELETE', 'route' => ['admin.posts.destroy', $post], 'class' => 'form-inline', 'data-confirm' => __('forms.posts.delete')]) !!}
-                        {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
+                        {!! Form::button('<i class="fa-solid fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
                     {!! Form::close() !!}
                 </td>
             </tr>

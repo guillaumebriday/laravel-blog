@@ -18,11 +18,11 @@
                 <td>{{ humanize_date($comment->posted_at, 'd/m/Y H:i:s') }}</td>
                 <td>
                     <a href="{{ route('admin.comments.edit', $comment) }}" class="btn btn-primary btn-sm">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                     </a>
 
                     {!! Form::model($comment, ['method' => 'DELETE', 'route' => ['admin.comments.destroy', $comment], 'class' => 'form-inline', 'data-confirm' => __('forms.comments.delete')]) !!}
-                        {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
+                        {!! Form::button('<i class="fa-solid fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
                     {!! Form::close() !!}
                 </td>
             </tr>

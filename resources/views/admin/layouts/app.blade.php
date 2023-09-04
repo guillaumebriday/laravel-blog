@@ -13,13 +13,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ mix('/css/admin.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}" defer></script>
-    <script src="{{ mix('/js/admin.js') }}" defer></script>
+    @vite([
+        'resources/sass/app.scss',
+        'resources/sass/admin.scss',
+        'resources/js/app.js',
+        'resources/js/admin.js'
+    ])
 </head>
 <body class="admin-body bg-dark">
     @include('admin/shared/navbar')

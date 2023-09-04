@@ -4,6 +4,6 @@
   </div>
 
   <button type="submit" class="btn btn-primary">
-    <i class="fa fa-search" aria-hidden="true"></i>
+    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
   </button>
 {!! Form::close() !!}
