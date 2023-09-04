@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-group offset-sm-4">
-          {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-success']) !!}
+          {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-primary']) !!}
         </div>
 
       {!! Form::close() !!}

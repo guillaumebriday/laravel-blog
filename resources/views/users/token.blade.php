@@ -13,7 +13,7 @@
 
       <div class="d-flex justify-content-start">
         {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.token.update', $user], 'class' => 'ml-auto']) !!}
-          {!! Form::submit(__('forms.actions.generate'), ['class'=> 'btn btn-success', 'data-confirm' => __('forms.tokens.generate')]) !!}
+          {!! Form::submit(__('forms.actions.generate'), ['class'=> 'btn btn-primary', 'data-confirm' => __('forms.tokens.generate')]) !!}
         {!! Form::close() !!}
       </div>
     </div>

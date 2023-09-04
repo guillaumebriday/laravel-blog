@@ -13,11 +13,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}" defer></script>
+    @vite([
+        'resources/sass/app.scss',
+        'resources/js/app.js'
+    ])
     @stack('inline-scripts')
 </head>
 <body class="bg-light">
