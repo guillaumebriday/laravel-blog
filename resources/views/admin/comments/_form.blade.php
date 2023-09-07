@@ -2,7 +2,9 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            {!! Form::label('author_id', __('comments.attributes.author')) !!}
+            <label for="author_id">
+                @lang('comments.attributes.author')
+            </label>
             {!! Form::select('author_id', $users, null, ['class' => 'form-control' . ($errors->has('author_id') ? ' is-invalid' : ''), 'required']) !!}
 
             @error('author_id')
@@ -11,7 +13,9 @@
         </div>
 
         <div class="form-group col-md-6">
-            {!! Form::label('posted_at', __('comments.attributes.posted_at')) !!}
+            <label for="posted_at">
+                @lang('comments.attributes.posted_at')
+            </label>
             <input type="datetime-local" name="posted_at" class="form-control {{ ($errors->has('posted_at') ? ' is-invalid' : '') }}" required value="{{ old('posted_at') ?? $comment->posted_at->format('Y-m-d\TH:i') }}">
 
             @error('posted_at')
@@ -21,7 +25,9 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('content', __('comments.attributes.content')) !!}
+        <label for="content">
+            @lang('comments.attributes.content')
+        </label>
         {!! Form::textarea('content', null, ['class' => 'form-control' . ($errors->has('content') ? ' is-invalid' : ''), 'required']) !!}
 
         @error('content')

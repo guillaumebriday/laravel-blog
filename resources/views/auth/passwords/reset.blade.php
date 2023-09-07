@@ -8,7 +8,9 @@
         {!! Form::open(['route' => 'password.request', 'role' => 'form', 'method' => 'POST']) !!}
         {!! Form::hidden('token', $token) !!}
             <div class="form-group">
-                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
+                <label for="email" class="control-label">
+                    @lang('validation.attributes.email')
+                </label>
                 {!! Form::email('email', $email ?? old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
 
                 @error('email')
@@ -17,7 +19,9 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('password', __('validation.attributes.password'), ['class' => 'control-label']) !!}
+                <label for="password" class="control-label">
+                    @lang('validation.attributes.password')
+                </label>
                 {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'required']) !!}
 
                 @error('password')
@@ -26,7 +30,9 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('password_confirmation', __('validation.attributes.password_confirmation'), ['class' => 'control-label']) !!}
+                <label for="password_confirmation" class="control-label">
+                    @lang('validation.attributes.password_confirmation')
+                </label>
                 {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'required']) !!}
 
                 @error('password_confirmation')

@@ -7,7 +7,9 @@
 
         {!! Form::open(['route' => 'login', 'role' => 'form', 'method' => 'POST']) !!}
             <div class="form-group">
-                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
+                <label for="email" class="control-label">
+                    @lang('validation.attributes.email')
+                </label>
                 {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required', 'autofocus']) !!}
 
                 @error('email')
@@ -16,7 +18,9 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('password', __('validation.attributes.password'), ['class' => 'control-label']) !!}
+                <label for="password" class="control-label">
+                    @lang('validation.attributes.password')
+                </label>
                 {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'required']) !!}
 
                 @error('password')

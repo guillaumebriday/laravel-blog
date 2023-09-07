@@ -9,7 +9,9 @@
       {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.password.update', $user]]) !!}
 
         <div class="form-group row">
-          {!! Form::label('current_password', __('users.attributes.current_password'), ['class' => 'col-sm-4 col-form-label']) !!}
+          <label for="current_password" class="col-sm-4 col-form-label">
+              @lang('users.attributes.current_password')
+          </label>
 
           <div class="col-sm-8">
             {!! Form::password('current_password', ['class' => 'form-control' . ($errors->has('current_password') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.current_password'), 'required']) !!}
@@ -21,7 +23,9 @@
         </div>
 
         <div class="form-group row">
-          {!! Form::label('password', __('users.attributes.password'), ['class' => 'col-sm-4 col-form-label']) !!}
+          <label for="password" class="col-sm-4 col-form-label">
+              @lang('users.attributes.password')
+          </label>
 
           <div class="col-sm-8">
             {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password'), 'required']) !!}
@@ -33,7 +37,9 @@
         </div>
 
         <div class="form-group row">
-          {!! Form::label('password_confirmation', __('users.attributes.password_confirmation'), ['class' => 'col-sm-4 col-form-label']) !!}
+          <label for="password_confirmation" class="col-sm-4 col-form-label">
+              @lang('users.attributes.password_confirmation')
+          </label>
 
           <div class="col-sm-8">
             {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password_confirmation'), 'required']) !!}

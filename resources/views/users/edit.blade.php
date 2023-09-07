@@ -9,7 +9,9 @@
       {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update']]) !!}
 
         <div class="form-group row">
-          {!! Form::label('name', __('users.attributes.name'), ['class' => 'col-sm-2 col-form-label']) !!}
+          <label for="name" class="col-sm-2 col-form-label">
+            @lang('users.attributes.name')
+          </label>
 
           <div class="col-sm-5">
             {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.name'), 'required']) !!}
@@ -21,7 +23,9 @@
         </div>
 
         <div class="form-group row">
-          {!! Form::label('email', __('users.attributes.email'), ['class' => 'col-sm-2 col-form-label']) !!}
+          <label for="email" class="col-sm-2 col-form-label">
+            @lang('users.attributes.email')
+          </label>
 
           <div class="col-sm-5">
             {!! Form::text('email', null, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.email'), 'required']) !!}

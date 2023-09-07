@@ -13,7 +13,9 @@
 
         {!! Form::open(['route' => 'password.email', 'role' => 'form', 'method' => 'POST']) !!}
             <div class="form-group">
-                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
+                <label for="email" class="control-label">
+                    @lang('validation.attributes.email')
+                </label>
                 {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
 
                 @error('email')

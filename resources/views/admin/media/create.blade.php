@@ -5,7 +5,9 @@
 
     {!! Form::open(['route' => ['admin.media.store'], 'method' =>'POST', 'files' => true]) !!}
         <div class="form-group">
-            {!! Form::label('image', __('media.attributes.image')) !!}
+            <label for="image">
+                @lang('media.attributes.image')
+            </label>
             {!! Form::file('image', ['accept' => 'image/*', 'class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : ''), 'required']) !!}
 
             @error('image')
@@ -14,7 +16,9 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('name', __('media.attributes.name')) !!}
+            <label for="name">
+                @lang('media.attributes.name')
+            </label>
             {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : '')]) !!}
 
             @error('name')

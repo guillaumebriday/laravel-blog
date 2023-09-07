@@ -7,7 +7,9 @@
       <hr class="my-4">
 
       <div class="form-group">
-        {!! Form::label('api_token', __('users.attributes.api_token')) !!}
+        <label for="api_token">
+            @lang('users.attributes.api_token')
+        </label>
         {!! Form::text('api_token', $user->api_token ?? __('users.empty_api_token'), ['class' => 'form-control', 'readonly']) !!}
       </div>
 
