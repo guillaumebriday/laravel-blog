@@ -30,7 +30,10 @@
     </div>
 
     <div class="pull-left">
-        {{ link_to_route('admin.comments.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
+        <a href="{{ route('admin.comments.index') }}" class="btn btn-secondary">
+            @lang('forms.actions.back')
+        </a>
+
         {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
     </div>
 

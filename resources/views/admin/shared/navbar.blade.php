@@ -1,7 +1,9 @@
 <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
     <div class="container">
         <!-- Branding Image -->
-        {{ link_to_route('home', config('app.name', 'Laravel'), [], ['class' => 'navbar-brand']) }}
+        <a href="{{ route('home') }}" class="navbar-brand">
+            {{ config('app.name', 'Laravel') }}
+        </a>
 
         <!-- Collapsed Hamburger -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,8 +20,13 @@
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        {{ link_to_route('users.show', __('users.public_profile'), Auth::user(), ['class' => 'dropdown-item']) }}
-                        {{ link_to_route('users.edit', __('users.settings'), [], ['class' => 'dropdown-item']) }}
+                        <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">
+                            @lang('users.public_profile')
+                        </a>
+
+                        <a href="{{ route('users.edit') }}" class="dropdown-item">
+                            @lang('users.settings')
+                        </a>
 
                         <div class="dropdown-divider"></div>
 

@@ -23,7 +23,10 @@
         </div>
 
 
-        {{ link_to_route('admin.media.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
+        <a href="{{ route('admin.media.index') }}" class="btn btn-secondary">
+            @lang('forms.actions.back')
+        </a>
+
         {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 @endsection

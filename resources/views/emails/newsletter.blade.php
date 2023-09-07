@@ -6,7 +6,11 @@
 
 <ul>
     @foreach($posts as $post)
-        <li>{{ link_to_route('posts.show', $post->title, $post) }}</li>
+        <li>
+            <a href="{{ route('posts.show', $post) }}">
+                {{ $post->title }}
+            </a>
+        </li>
     @endforeach
 </ul>
 
@@ -15,5 +19,7 @@
 </p>
 
 <p>
-    {{ link_to_route('newsletter-subscriptions.unsubscribe', __('newsletter.email.unsubscribe'), ['email' => $email]) }}
+    <a href="{{ route('newsletter-subscriptions.unsubscribe', ['email' => $email]) }}">
+        @lang('newsletter.email.unsubscribe')
+    </a>
 </p>

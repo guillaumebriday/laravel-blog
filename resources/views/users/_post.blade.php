@@ -7,7 +7,9 @@
 
   <div class="card-body">
     <h4 v-pre class="card-title">
-      {{ link_to_route('posts.show', $post->title, $post) }}
+      <a href="{{ route('posts.show', $post) }}">
+        {{ $post->title }}
+      </a>
     </h4>
 
     <p class="card-text">
