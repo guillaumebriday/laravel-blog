@@ -2,7 +2,9 @@
     <div class="card-body">
       <div class="card-title d-flex justify-content-between">
         <h6>
-            {{ link_to_route('users.show', $comment->author->name, $comment->author) }}
+            <a href="{{ route('users.show', $comment->author) }}">
+              {{ $comment->author->name }}
+            </a>
         </h6>
 
         @can('delete', $comment)

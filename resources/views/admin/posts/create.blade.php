@@ -6,7 +6,10 @@
     {!! Form::open(['route' => ['admin.posts.store'], 'method' =>'POST']) !!}
         @include('admin/posts/_form')
 
-        {{ link_to_route('admin.posts.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
+        <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
+            @lang('forms.actions.back')
+        </a>
+
         {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 @endsection

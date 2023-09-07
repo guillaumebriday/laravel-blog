@@ -26,7 +26,9 @@
           </div>
 
           @profile($user)
-            {{ link_to_route('users.edit', __('users.edit'), [], ['class' => 'btn btn-primary btn-sm float-right']) }}
+            <a href="{{ route('users.edit') }}" class="btn btn-primary btn-sm float-right">
+              @lang('users.edit')
+            </a>
           @endprofile
         </div>
       </div>

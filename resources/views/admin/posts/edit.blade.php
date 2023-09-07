@@ -1,7 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <p>@lang('posts.show') : {{ link_to_route('posts.show', route('posts.show', $post), $post) }}</p>
+    <p>
+        @lang('posts.show') :
+
+        <a href="{{ route('posts.show', $post) }}">
+            {{ route('posts.show', $post) }}
+        </a>
+    </p>
 
     @include('admin/posts/_thumbnail')
 
@@ -9,7 +15,10 @@
         @include('admin/posts/_form')
 
         <div class="pull-left">
-            {{ link_to_route('admin.posts.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
+            <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
+                @lang('forms.actions.back')
+            </a>
+
             {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
         </div>
     {!! Form::close() !!}

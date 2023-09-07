@@ -57,7 +57,10 @@
     @endforeach
   </div>
 
-  {{ link_to_route('admin.users.index', __('forms.actions.back'), [], ['class' => 'btn btn-secondary']) }}
+  <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
+      @lang('forms.actions.back')
+  </a>
+
   {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
 
 {!! Form::close() !!}
