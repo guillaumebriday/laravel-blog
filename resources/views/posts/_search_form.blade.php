@@ -13,6 +13,6 @@
   </div>
 
   <button type="submit" class="btn btn-primary">
-    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+    <x-icon name="magnifying-glass" />
   </button>
 </form>

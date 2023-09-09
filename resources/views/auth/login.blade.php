@@ -71,14 +71,16 @@
             @if (env('GITHUB_ID'))
                 <a href="{{ route('auth.provider', ['provider' => 'github']) }}" class="btn btn-secondary mb-2">
                     @lang('auth.services.github')
-                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+
+                    <x-icon name="github" prefix="fa-brands" />
                 </a>
             @endif
 
             @if (env('TWITTER_ID'))
                 <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-secondary mb-2">
                     @lang('auth.services.twitter')
-                    <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+
+                    <x-icon name="twitter" prefix="fa-brands" />
                 </a>
             @endif
         </div>

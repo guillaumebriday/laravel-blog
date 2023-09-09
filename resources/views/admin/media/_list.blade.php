@@ -30,7 +30,7 @@
 
                         <div class="input-group-append">
                             <button class="input-group-text btn" data-clipboard-target="#medium-{{ $medium->id }}">
-                                <i class="fa-regular fa-clipboard"></i>
+                                <x-icon name="clipboard" prefix="fa-regular" />
                             </button>
                         </div>
                     </div>
@@ -38,11 +38,11 @@
                 <td>{{ humanize_date($medium->posted_at, 'd/m/Y H:i:s') }}</td>
                 <td>
                     <a href="{{ $medium->getUrl() }}" title="{{ __('media.show') }}" class="btn btn-primary btn-sm" target="_blank">
-                        <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                        <x-icon name="eye" prefix="fa-regular" />
                     </a>
 
                     <a href="{{ route('admin.media.show', $medium) }}" title="{{ __('media.download') }}" class="btn btn-primary btn-sm">
-                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                        <x-icon name="download" />
                     </a>
 
                     <form action="{{ route('admin.media.destroy', $medium) }}" method="POST" class="form-inline" data-confirm="@lang('forms.media.delete')">
@@ -50,7 +50,7 @@
                         @csrf
 
                         <button type="submit" name="submit" class="btn btn-danger btn-sm" title="@lang('media.delete')">
-                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            <x-icon name="trash" />
                         </button>
                     </form>
                 </td>

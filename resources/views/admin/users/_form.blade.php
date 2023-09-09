@@ -103,8 +103,14 @@
   </div>
 
   <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
+      <x-icon name="chevron-left" />
+
       @lang('forms.actions.back')
   </a>
 
-  <input type="submit" class="btn btn-primary" value="@lang('forms.actions.update')">
+  <button type="submit" class="btn btn-primary">
+      <x-icon name="save" />
+
+      @lang('forms.actions.update')
+  </button>
 </form>

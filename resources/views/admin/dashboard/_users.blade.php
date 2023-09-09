@@ -1,6 +1,7 @@
 <x-card class="bg-warning text-light m-2">
     <div class="row justify-content-between">
-        <i class="fa-solid fa-users fa-5x" aria-hidden="true"></i>
+        <x-icon name="users" class="fa-5x" />
+
         <div class="text-right">
             <div class="huge">{{ $users->count() }}</div>
             <div>{{ trans_choice('users.new_users', $users->count()) }}</div>
@@ -10,7 +11,8 @@
     <x-slot name="footer">
         <a href="{{ route('admin.users.index') }}" class="d-flex justify-content-between text-light">
             <span>@lang('dashboard.details')</span>
-            <span><i class="fa-solid fa-arrow-circle-right"></i></span>
+
+            <span><x-icon name="arrow-circle-right" /></span>
         </a>
     </x-slot>
 </x-card>

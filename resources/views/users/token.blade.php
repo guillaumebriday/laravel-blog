@@ -26,7 +26,11 @@
           @method('PATCH')
           @csrf
 
-          <input type="submit" class="btn btn-primary" data-confirm="@lang('forms.tokens.generate')" value="@lang('forms.actions.generate')">
+          <button type="submit" class="btn btn-primary" data-confirm="@lang('forms.tokens.generate')">
+              <x-icon name="arrows-rotate" />
+
+              @lang('forms.actions.generate')
+          </button>
         </form>
       </div>
     </div>

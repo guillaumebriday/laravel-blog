@@ -6,7 +6,7 @@
                 @csrf
 
                 <button type="submit" name="submit" class="btn btn-link p-0">
-                    <i class="fa-regular ml-2 fa-heart text-danger" aria-hidden="true"></i>
+                    <x-icon name="heart" prefix="fa-regular" class="ml-2 text-danger" />
                 </button>
             </form>
         @else
@@ -14,7 +14,7 @@
                 @csrf
 
                 <button type="submit" name="submit" class="btn btn-link p-0">
-                    <i class="fa-regular ml-2 fa-heart" aria-hidden="true"></i>
+                    <x-icon name="heart" prefix="fa-regular" class="ml-2" />
                 </button>
             </form>
         @endif

@@ -9,6 +9,10 @@
             placeholder="@lang('newsletter.placeholder')"
         >
 
-        <input type="submit" class="btn btn-outline-secondary mb-1" value="@lang('newsletter.subscribe')">
+        <button type="submit" class="btn btn-outline-secondary mb-1">
+            <x-icon name="paper-plane" />
+
+            @lang('newsletter.subscribe')
+        </button>
     </form>
 @endauth

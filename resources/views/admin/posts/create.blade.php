@@ -9,9 +9,15 @@
         @include('admin/posts/_form')
 
         <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
+            <x-icon name="chevron-left" />
+
             @lang('forms.actions.back')
         </a>
 
-        <input type="submit" class="btn btn-primary" value="@lang('forms.actions.save')">
+        <button type="submit" class="btn btn-primary">
+            <x-icon name="save" />
+
+            @lang('forms.actions.save')
+        </button>
     </form>
 @endsection
