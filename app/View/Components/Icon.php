@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\View\View;
 
 class Icon extends Component
 {
@@ -22,7 +23,7 @@ class Icon extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): \Illuminate\Contracts\View\View|\Closure|string
+    public function render(): View
     {
         return view('components.icon');
     }
