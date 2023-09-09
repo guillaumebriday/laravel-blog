@@ -11,7 +11,10 @@
 
     @include('admin/posts/_thumbnail')
 
-    {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' =>'PUT']) !!}
+    <form action="{{ route('admin.posts.update', $post) }}" method="POST">
+        @method('PUT')
+        @csrf
+
         @include('admin/posts/_form')
 
         <div class="pull-left">
@@ -19,11 +22,17 @@
                 @lang('forms.actions.back')
             </a>
 
-            {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
+            <input type="submit" class="btn btn-primary" value="@lang('forms.actions.update')">
         </div>
-    {!! Form::close() !!}
+    </form>
 
-    {!! Form::model($post, ['method' => 'DELETE', 'route' => ['admin.posts.destroy', $post], 'class' => 'form-inline pull-right', 'data-confirm' => __('forms.posts.delete')]) !!}
-        {!! Form::button('<i class="fa-solid fa-trash" aria-hidden="true"></i> ' . __('posts.delete'), ['class' => 'btn btn-link text-danger', 'name' => 'submit', 'type' => 'submit']) !!}
-    {!! Form::close() !!}
+    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="form-inline pull-right" data-confirm="@lang('forms.posts.delete')">
+        @method('DELETE')
+        @csrf
+
+        <button type="submit" name="submit" class="btn btn-link text-danger">
+            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+            @lang('posts.delete')
+        </button>
+    </form>
 @endsection

@@ -11,10 +11,22 @@
             </x-alert>
         @endif
 
-        {!! Form::open(['route' => 'password.email', 'role' => 'form', 'method' => 'POST']) !!}
+        <form action="{{ route('password.email') }}" method="POST" role="form">
+            @csrf
+
             <div class="form-group">
-                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
-                {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
+                <label for="email" class="control-label">
+                    @lang('validation.attributes.email')
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    @class(['form-control', 'is-invalid' => $errors->has('email')])
+                    required
+                    value="{{ old('email') }}"
+                >
 
                 @error('email')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -22,10 +34,9 @@
             </div>
 
             <div class="form-group">
-                {!! Form::submit(__('auth.send_password_reset_link'), ['class' => 'btn btn-primary']) !!}
+                <input type="submit" class="btn btn-primary" value="@lang('auth.send_password_reset_link')">
             </div>
-
-        {!! Form::close() !!}
+        </form>
     </div>
 </div>
 @endsection

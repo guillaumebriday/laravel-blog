@@ -3,13 +3,15 @@
 @section('content')
     <h1>@lang('posts.create')</h1>
 
-    {!! Form::open(['route' => ['admin.posts.store'], 'method' =>'POST']) !!}
+    <form action="{{ route('admin.posts.store') }}" method="POST">
+        @csrf
+
         @include('admin/posts/_form')
 
         <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
             @lang('forms.actions.back')
         </a>
 
-        {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
+        <input type="submit" class="btn btn-primary" value="@lang('forms.actions.save')">
+    </form>
 @endsection

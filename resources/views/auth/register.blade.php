@@ -5,10 +5,23 @@
     <div class="col-md-6">
         <h1>@lang('auth.register')</h1>
 
-        {!! Form::open(['route' => 'register', 'role' => 'form', 'method' => 'POST']) !!}
+        <form action="{{ route('register') }}" method="POST" role="form">
+            @csrf
+
             <div class="form-group">
-                {!! Form::label('name', __('validation.attributes.name'), ['class' => 'control-label']) !!}
-                {!! Form::text('name', old('name'), ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'required', 'autofocus']) !!}
+                <label for="name" class="control-label">
+                    @lang('validation.attributes.name')
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    @class(['form-control', 'is-invalid' => $errors->has('name')])
+                    required
+                    autofocus
+                >
+
 
                 @error('name')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -16,8 +29,17 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
-                {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required']) !!}
+                <label for="email" class="control-label">
+                    @lang('validation.attributes.email')
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    @class(['form-control', 'is-invalid' => $errors->has('email')])
+                    required
+                >
 
                 @error('email')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -25,8 +47,17 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('password', __('validation.attributes.password'), ['class' => 'control-label']) !!}
-                {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'required']) !!}
+                <label for="password" class="control-label">
+                    @lang('validation.attributes.password')
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    @class(['form-control', 'is-invalid' => $errors->has('password')])
+                    required
+                >
 
                 @error('password')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -34,8 +65,17 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('password_confirmation', __('validation.attributes.password_confirmation'), ['class' => 'control-label']) !!}
-                {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'required']) !!}
+                <label for="password_confirmation" class="control-label">
+                    @lang('validation.attributes.password_confirmation')
+                </label>
+
+                <input
+                    type="password"
+                    id="password_confirmation"
+                    name="password_confirmation"
+                    @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')])
+                    required
+                >
 
                 @error('password_confirmation')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -43,10 +83,9 @@
             </div>
 
             <div class="form-group">
-                {!! Form::submit(__('auth.register'), ['class' => 'btn btn-primary']) !!}
+                <input type="submit" class="btn btn-primary" value="@lang('auth.register')">
             </div>
-
-        {!! Form::close() !!}
+        </form>
     </div>
 </div>
 @endsection

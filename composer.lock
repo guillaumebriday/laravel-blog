@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d5f26081ac3cc822feaf5821127af59",
+    "content-hash": "5438a797b749147873ba74215ddacc14",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2213,79 +2213,6 @@
                 "source": "https://github.com/laravel/ui/tree/v3.4.5"
             },
             "time": "2022-02-21T14:59:16+00:00"
-        },
-        {
-            "name": "laravelcollective/html",
-            "version": "v6.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "64ddfdcaeeb8d332bd98bef442bef81e39c3910b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/64ddfdcaeeb8d332bd98bef442bef81e39c3910b",
-                "reference": "64ddfdcaeeb8d332bd98bef442bef81e39c3910b",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/http": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/routing": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/session": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "illuminate/view": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "php": ">=7.2.5"
-            },
-            "require-dev": {
-                "illuminate/database": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~8.5|^9.5.10"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Collective\\Html\\HtmlServiceProvider"
-                    ],
-                    "aliases": {
-                        "Form": "Collective\\Html\\FormFacade",
-                        "Html": "Collective\\Html\\HtmlFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Collective\\Html\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adam Engebretson",
-                    "email": "adam@laravelcollective.com"
-                },
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "HTML and Form Builders for the Laravel Framework",
-            "homepage": "https://laravelcollective.com",
-            "support": {
-                "issues": "https://github.com/LaravelCollective/html/issues",
-                "source": "https://github.com/LaravelCollective/html"
-            },
-            "abandoned": "spatie/laravel-html",
-            "time": "2023-04-25T02:46:11+00:00"
         },
         {
             "name": "league/commonmark",

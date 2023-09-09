@@ -3,10 +3,22 @@
 @section('content')
     <h1>@lang('media.create')</h1>
 
-    {!! Form::open(['route' => ['admin.media.store'], 'method' =>'POST', 'files' => true]) !!}
+    <form action="{{ route('admin.media.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
         <div class="form-group">
-            {!! Form::label('image', __('media.attributes.image')) !!}
-            {!! Form::file('image', ['accept' => 'image/*', 'class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : ''), 'required']) !!}
+            <label for="image">
+                @lang('media.attributes.image')
+            </label>
+
+            <input
+                type="file"
+                name="image"
+                id="image"
+                accept="image/*"
+                @class(['form-control', 'is-invalid' => $errors->has('image')])
+                required
+            >
 
             @error('image')
                 <span class="invalid-feedback">{{ $message }}</span>
@@ -14,8 +26,17 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('name', __('media.attributes.name')) !!}
-            {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : '')]) !!}
+            <label for="name">
+                @lang('media.attributes.name')
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                @class(['form-control', 'is-invalid' => $errors->has('name')])
+                value="{{ old('name') }}"
+            >
 
             @error('name')
                 <span class="invalid-feedback">{{ $message }}</span>
@@ -27,6 +48,6 @@
             @lang('forms.actions.back')
         </a>
 
-        {!! Form::submit(__('forms.actions.save'), ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
+        <input type="submit" class="btn btn-primary" value="@lang('forms.actions.save')">
+    </form>
 @endsection

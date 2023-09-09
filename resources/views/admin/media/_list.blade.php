@@ -20,7 +20,14 @@
                 <td>{{ $medium->name }}</td>
                 <td>
                     <div class="input-group">
-                        {{ Form::text(null, url($medium->getUrl()), ['class' => 'form-control', 'readonly' => true, 'id' => "medium-{$medium->id}"]) }}
+                        <input
+                            id="medium-{{ $medium->id }}"
+                            type="text"
+                            class="form-control"
+                            readonly
+                            value="{{ url($medium->getUrl()) }}"
+                        >
+
                         <div class="input-group-append">
                             <button class="input-group-text btn" data-clipboard-target="#medium-{{ $medium->id }}">
                                 <i class="fa-regular fa-clipboard"></i>
@@ -35,12 +42,17 @@
                     </a>
 
                     <a href="{{ route('admin.media.show', $medium) }}" title="{{ __('media.download') }}" class="btn btn-primary btn-sm">
-                        <i class="fa-regular fa-download" aria-hidden="true"></i>
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
                     </a>
 
-                    {!! Form::model($medium, ['method' => 'DELETE', 'route' => ['admin.media.destroy', $medium], 'class' => 'form-inline', 'data-confirm' => __('forms.media.delete')]) !!}
-                        {!! Form::button('<i class="fa-solid fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit', 'title' => __('media.delete')]) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('admin.media.destroy', $medium) }}" method="POST" class="form-inline" data-confirm="@lang('forms.media.delete')">
+                        @method('DELETE')
+                        @csrf
+
+                        <button type="submit" name="submit" class="btn btn-danger btn-sm" title="@lang('media.delete')">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

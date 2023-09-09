@@ -33,9 +33,14 @@
                         <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                     </a>
 
-                    {!! Form::model($comment, ['method' => 'DELETE', 'route' => ['admin.comments.destroy', $comment], 'class' => 'form-inline', 'data-confirm' => __('forms.comments.delete')]) !!}
-                        {!! Form::button('<i class="fa-solid fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('admin.comments.destroy', $comment) }}" method="POST" class="form-inline" data-confirm="@lang('forms.comments.delete')">
+                        @method('DELETE')
+                        @csrf
+
+                        <button type="submit" name="submit" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach
