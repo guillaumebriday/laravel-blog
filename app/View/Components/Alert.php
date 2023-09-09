@@ -8,22 +8,14 @@ use Illuminate\View\View;
 class Alert extends Component
 {
     /**
-     * The alert type.
-     */
-    public string $type;
-
-    /**
-     * The alert type.
-     */
-    public ?string $dismissible;
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $type, string $dismissible = null)
-    {
+    public function __construct(
+        public string $type,
+        public ?string $dismissible = null
+    ) {
         $this->type = $type;
         $this->dismissible = $dismissible;
     }

@@ -15,13 +15,12 @@ class SendNewsletterSubscriptionEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $email;
-
     /**
      * Create a new job instance.
      */
-    public function __construct($email)
-    {
+    public function __construct(
+        protected string $email
+    ) {
         $this->email = $email;
     }
 

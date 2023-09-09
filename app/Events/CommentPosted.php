@@ -15,24 +15,12 @@ class CommentPosted implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * Comment details
-     *
-     * @var CommentResource
-     */
-    public $comment;
-
-    /**
-     * Post details
-     *
-     * @var Post
-     */
-    private $post;
-
-    /**
      * Create a new event instance.
      */
-    public function __construct(CommentResource $comment, Post $post)
-    {
+    public function __construct(
+        public CommentResource $comment,
+        private Post $post
+    ) {
         $this->comment = $comment;
         $this->post = $post;
     }

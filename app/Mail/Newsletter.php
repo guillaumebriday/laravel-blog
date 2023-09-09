@@ -10,15 +10,13 @@ class Newsletter extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $posts;
-
-    protected $email;
-
     /**
      * Create a new message instance.
      */
-    public function __construct($posts, $email)
-    {
+    public function __construct(
+        protected $posts,
+        protected string $email
+    ) {
         $this->posts = $posts;
         $this->email = $email;
     }
