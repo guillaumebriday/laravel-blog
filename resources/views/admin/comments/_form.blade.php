@@ -62,10 +62,16 @@
 
     <div class="pull-left">
         <a href="{{ route('admin.comments.index') }}" class="btn btn-secondary">
+            <x-icon name="chevron-left" />
+
             @lang('forms.actions.back')
         </a>
 
-        <input type="submit" class="btn btn-primary" value="@lang('forms.actions.update')">
+        <button type="submit" class="btn btn-primary">
+            <x-icon name="save" />
+
+            @lang('forms.actions.update')
+        </button>
     </div>
 </form>
 
@@ -74,7 +80,8 @@
     @csrf
 
     <button type="submit" name="submit" class="btn btn-link text-danger">
-        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+        <x-icon name="trash" />
+
         @lang('comments.delete')
     </button>
 </form>

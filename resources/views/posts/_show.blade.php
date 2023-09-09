@@ -23,7 +23,8 @@
     <div class="card-text">
       <small class="text-muted">{{ humanize_date($post->posted_at) }}</small><br>
       <small class="text-muted">
-        <i class="fa-regular fa-comments" aria-hidden="true"></i> {{ $post->comments_count }}
+        <x-icon name="comments" prefix="fa-regular" /> {{ $post->comments_count }}
+
         @include('likes/_likes')
       </small>
     </div>

@@ -21,7 +21,11 @@
     </div>
 
     <div class="form-group text-right">
-      <input type="submit" class="btn btn-primary" value="@lang('comments.comment')">
+      <button type="submit" class="btn btn-primary">
+          <x-icon name="paper-plane" />
+
+          @lang('comments.comment')
+      </button>
     </div>
   </form>
 @else

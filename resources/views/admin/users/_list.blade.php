@@ -20,7 +20,7 @@
                 <td>{{ humanize_date($user->registered_at, 'd/m/Y H:i:s') }}</td>
                 <td>
                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        <x-icon name="edit" />
                     </a>
                 </td>
             </tr>

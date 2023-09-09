@@ -5,8 +5,8 @@
             <th>@lang('posts.attributes.title')</th>
             <th>@lang('posts.attributes.author')</th>
             <th>@lang('posts.attributes.posted_at')</th>
-            <th><i class="fa-regular fa-comments" aria-hidden="true"></i></th>
-            <th><i class="fa-regular fa-heart" aria-hidden="true"></i></th>
+            <th><x-icon name="comments" prefix="fa-regular" /></th>
+            <th><x-icon name="heart" prefix="fa-regular" /></th>
             <th></th>
         </tr>
     </thead>
@@ -28,7 +28,7 @@
                 <td><span class="badge badge-pill badge-secondary">{{ $post->likes_count }}</span></td>
                 <td>
                     <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        <x-icon name="edit" />
                     </a>
 
                     <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="form-inline" data-confirm="@lang('forms.posts.delete')">
@@ -36,7 +36,7 @@
                         @csrf
 
                         <button type="submit" name="submit" class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            <x-icon name="trash" />
                         </button>
                     </form>
                 </td>

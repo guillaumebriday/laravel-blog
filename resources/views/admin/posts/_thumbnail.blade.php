@@ -6,7 +6,8 @@
         @csrf
 
         <button type="submit" name="submit" class="btn btn-link text-danger">
-            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+            <x-icon name="trash" />
+
             @lang('posts.delete_thumbnail')
         </button>
     </form>

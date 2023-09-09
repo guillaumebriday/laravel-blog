@@ -5,7 +5,9 @@
 <div class="row">
   <div class="col-md-12 mb-3">
     <a href="{{ route('users.show', $user) }}">
-      <i class="fa-solid fa-long-arrow-left" aria-hidden="true"></i> @lang('users.public_profile')
+      <x-icon name="long-arrow-left" />
+
+      @lang('users.public_profile')
     </a>
   </div>
 </div>
@@ -16,15 +18,21 @@
       <div class="card-header">@lang('users.profile')</div>
       <div class="list-group list-group-flush">
         <a href="{{ route('users.edit') }}" class="list-group-item {{ ($tab == 'profile') ? 'active' : '' }}">
-          <i class="fa-regular fa-user" aria-hidden="true"></i> @lang('users.profile')
+          <x-icon name="user" prefix="fa-regular" />
+
+          @lang('users.profile')
         </a>
 
         <a href="{{ route('users.password') }}" class="list-group-item {{ ($tab == 'security') ? 'active' : '' }}">
-          <i class="fa-solid fa-lock" aria-hidden="true"></i> @lang('users.security')
+          <x-icon name="lock" />
+
+          @lang('users.security')
         </a>
 
         <a href="{{ route('users.token') }}" class="list-group-item {{ ($tab == 'api_token') ? 'active' : '' }}">
-          <i class="fa-solid fa-key" aria-hidden="true"></i> @lang('users.api_token')
+          <x-icon name="key" />
+
+          @lang('users.api_token')
         </a>
       </div>
     </div>

@@ -30,7 +30,7 @@
                 <td>{{ humanize_date($comment->posted_at, 'd/m/Y H:i:s') }}</td>
                 <td>
                     <a href="{{ route('admin.comments.edit', $comment) }}" class="btn btn-primary btn-sm">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        <x-icon name="edit" />
                     </a>
 
                     <form action="{{ route('admin.comments.destroy', $comment) }}" method="POST" class="form-inline" data-confirm="@lang('forms.comments.delete')">
@@ -38,7 +38,7 @@
                         @csrf
 
                         <button type="submit" name="submit" class="btn btn-danger btn-sm">
-                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            <x-icon name="trash" />
                         </button>
                     </form>
                 </td>
