@@ -17,7 +17,7 @@ class Alert extends Component
         public ?string $dismissible = null
     ) {
         $this->type = $type;
-        $this->dismissible = $dismissible;
+        $this->dismissible = isset($dismissible) && $dismissible;
     }
 
     /**

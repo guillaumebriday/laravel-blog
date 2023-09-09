@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="bg-white p-3 post-card">
+  <x-card>
     @if ($post->hasThumbnail())
-      <img src="{{ $post->thumbnail->getUrl() }}" alt="{{ $post->thumbnail->name }}" class="card-img-top">
+      <x-slot:image>
+        <img src="{{ $post->thumbnail->getUrl() }}" alt="{{ $post->thumbnail->name }}" class="card-img-top">
+      </x-slot>
     @endif
 
     <h1 v-pre>{{ $post->title }}</h1>
@@ -24,7 +26,7 @@
     <div class="mt-3">
       @include('likes/_likes')
     </div>
-  </div>
+  </x-card>
 
   @include ('comments/_list')
 @endsection

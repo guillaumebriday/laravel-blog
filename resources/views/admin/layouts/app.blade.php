@@ -29,11 +29,9 @@
                 <div class="col">
                     @include('shared/alerts')
 
-                    <div class="card">
-                        <div class="card-body">
-                            @yield('content')
-                        </div>
-                    </div>
+                    <x-card>
+                        @yield('content')
+                    </x-card>
                 </div>
             </div>
         </div>

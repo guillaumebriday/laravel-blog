@@ -3,47 +3,51 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <div class="card mb-2">
-        <div class="card-body text-center">
-          <h2 v-pre class="card-title mb-0">{{ $user->name }}</h2>
-          <small class="card-subtitle mb-2 text-muted">{{ $user->email }}</small>
+      <x-card class="text-center mb-2">
+        <h2 v-pre class="card-title mb-0">{{ $user->name }}</h2>
+        <small class="card-subtitle mb-2 text-muted">{{ $user->email }}</small>
 
-          <div class="card-text row mt-3">
-            <div class="col-md-4">
-              <span class="text-muted d-block">@lang('comments.comments')</span>
-              {{ $comments_count }}
-            </div>
-
-            <div class="col-md-4">
-              <span class="text-muted d-block">@lang('posts.posts')</span>
-              {{ $posts_count }}
-            </div>
-
-            <div class="col-md-4">
-              <span class="text-muted d-block">@lang('likes.likes')</span>
-              {{ $likes_count }}
-            </div>
+        <div class="card-text row mt-3">
+          <div class="col-md-4">
+            <span class="text-muted d-block">@lang('comments.comments')</span>
+            {{ $comments_count }}
           </div>
 
-          @profile($user)
-            <a href="{{ route('users.edit') }}" class="btn btn-primary btn-sm float-right">
-              @lang('users.edit')
-            </a>
-          @endprofile
+          <div class="col-md-4">
+            <span class="text-muted d-block">@lang('posts.posts')</span>
+            {{ $posts_count }}
+          </div>
+
+          <div class="col-md-4">
+            <span class="text-muted d-block">@lang('likes.likes')</span>
+            {{ $likes_count }}
+          </div>
         </div>
-      </div>
+
+        @profile($user)
+          <a href="{{ route('users.edit') }}" class="btn btn-primary btn-sm float-right">
+            @lang('users.edit')
+          </a>
+        @endprofile
+      </x-card>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
       <h2>@lang('comments.last_comments')</h2>
-      @each('users/_comment', $comments, 'comment')
+
+      <div class="space-y-3">
+        @each('users/_comment', $comments, 'comment')
+      </div>
     </div>
 
     <div class="col-md-6">
       <h2>@lang('posts.last_posts')</h2>
-      @each('users/_post', $posts, 'post')
+
+      <div class="space-y-3">
+        @each('users/_post', $posts, 'post')
+      </div>
     </div>
   </div>
 @endsection

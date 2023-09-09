@@ -24,3 +24,10 @@ body > #app > .container-fluid {
     padding-bottom: 15px;
     padding-top: 15px;
 }
+
+
+@each $size, $length in $spacers {
+    .space-y-#{$size} > * + * {
+        margin-top: $length !important;
+    }
+}
