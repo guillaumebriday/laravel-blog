@@ -31,9 +31,14 @@
                         <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                     </a>
 
-                    {!! Form::model($post, ['method' => 'DELETE', 'route' => ['admin.posts.destroy', $post], 'class' => 'form-inline', 'data-confirm' => __('forms.posts.delete')]) !!}
-                        {!! Form::button('<i class="fa-solid fa-trash" aria-hidden="true"></i>', ['class' => 'btn btn-danger btn-sm', 'name' => 'submit', 'type' => 'submit']) !!}
-                    {!! Form::close() !!}
+                    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="form-inline" data-confirm="@lang('forms.posts.delete')">
+                        @method('DELETE')
+                        @csrf
+
+                        <button type="submit" name="submit" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

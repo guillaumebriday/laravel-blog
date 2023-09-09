@@ -7,14 +7,27 @@
       <hr class="my-4">
 
       <div class="form-group">
-        {!! Form::label('api_token', __('users.attributes.api_token')) !!}
-        {!! Form::text('api_token', $user->api_token ?? __('users.empty_api_token'), ['class' => 'form-control', 'readonly']) !!}
+        <label for="api_token">
+            @lang('users.attributes.api_token')
+        </label>
+
+        <input
+            type="text"
+            id="api_token"
+            name="api_token"
+            class="form-control"
+            readonly
+            value="{{ $user->api_token ?? __('users.empty_api_token') }}"
+        >
       </div>
 
       <div class="d-flex justify-content-start">
-        {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.token.update', $user], 'class' => 'ml-auto']) !!}
-          {!! Form::submit(__('forms.actions.generate'), ['class'=> 'btn btn-primary', 'data-confirm' => __('forms.tokens.generate')]) !!}
-        {!! Form::close() !!}
+        <form action="{{ route('users.token.update', $user) }}" method="POST" class="ml-auto">
+          @method('PATCH')
+          @csrf
+
+          <input type="submit" class="btn btn-primary" data-confirm="@lang('forms.tokens.generate')" value="@lang('forms.actions.generate')">
+        </form>
       </div>
     </div>
   </div>

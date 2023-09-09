@@ -1,9 +1,19 @@
 @auth
-  {!! Form::open(['id' => 'comments_form', 'route' => ['comments.store'], 'method' => 'POST', 'data-turbo' => 'true']) !!}
-    {!! Form::hidden('post_id', $post->id) !!}
+  <form id="comments_form" action="{{ route('comments.store') }}" method="POST" data-turbo="true">
+    @csrf
+
+    <input type="hidden" name="post_id" value="{{ $post->id }}">
 
     <div class="form-group">
-      {!! Form::textarea('content', null, ['class' => 'form-control' . ($errors->has('content') ? ' is-invalid' : ''), 'placeholder' => __('comments.placeholder.content'), 'required']) !!}
+      <textarea
+          name="content"
+          id="content"
+          cols="50"
+          rows="10"
+          @class(['form-control', 'is-invalid' => $errors->has('content')])
+          placeholder="@lang('comments.placeholder.content')"
+          required
+      >{{ old('content', $comment ?? null) }}</textarea>
 
       @error('content')
         <span class="invalid-feedback">{{ $message }}</span>
@@ -11,9 +21,9 @@
     </div>
 
     <div class="form-group text-right">
-      {!! Form::submit(__('comments.comment'), ['class' => 'btn btn-primary']) !!}
+      <input type="submit" class="btn btn-primary" value="@lang('comments.comment')">
     </div>
-  {!! Form::close() !!}
+  </form>
 @else
   <x-alert type="warning">
     @lang('comments.sign_in_to_comment')

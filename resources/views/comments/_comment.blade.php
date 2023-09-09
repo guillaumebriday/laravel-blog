@@ -8,9 +8,14 @@
         </h6>
 
         @can('delete', $comment)
-          {!! Form::model($comment, ['method' => 'DELETE', 'route' => ['comments.destroy', $comment], 'class' => 'form-inline pull-right', 'data-turbo' => 'true', 'data-turbo-confirm' => __('forms.comments.delete')]) !!}
-            {!! Form::button('<span aria-hidden="true">&times;</span>', ['class' => 'close text-danger', 'name' => 'submit', 'type' => 'submit']) !!}
-          {!! Form::close() !!}
+          <form action="{{ route('comments.destroy', $comment) }}" method="POST" class="form-inline pull-right" data-turbo="true" data-turbo-confirm="@lang('forms.comments.delete')">
+            @method('DELETE')
+            @csrf
+
+            <button type="submit" name="submit" class="close text-danger">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </form>
         @endcan
       </div>
 

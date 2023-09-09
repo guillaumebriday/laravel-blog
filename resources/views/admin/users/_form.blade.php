@@ -1,9 +1,22 @@
-{!! Form::model($user, ['method' => 'PATCH', 'route' => ['admin.users.update', $user]]) !!}
+<form action="{{ route('admin.users.update', $user) }}" method="POST">
+  @method('PATCH')
+  @csrf
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      {!! Form::label('name', __('users.attributes.name')) !!}
-      {!! Form::text('name', null, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.name'), 'required']) !!}
+      <label for="name">
+        @lang('users.attributes.name')
+      </label>
+
+      <input
+          type="text"
+          id="name"
+          name="name"
+          @class(['form-control', 'is-invalid' => $errors->has('name')])
+          placeholder="@lang('users.placeholder.name')"
+          required
+          value="{{ old('name', $user) }}"
+      >
 
       @error('name')
         <span class="invalid-feedback">{{ $message }}</span>
@@ -11,8 +24,19 @@
     </div>
 
     <div class="form-group col-md-6">
-      {!! Form::label('email', __('users.attributes.email')) !!}
-      {!! Form::text('email', null, ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.email'), 'required']) !!}
+      <label for="email">
+        @lang('users.attributes.email')
+      </label>
+
+      <input
+          type="email"
+          id="email"
+          name="email"
+          @class(['form-control', 'is-invalid' => $errors->has('email')])
+          placeholder="@lang('users.placeholder.email')"
+          required
+          value="{{ old('email', $user) }}"
+      >
 
       @error('email')
         <span class="invalid-feedback">{{ $message }}</span>
@@ -22,8 +46,17 @@
 
   <div class="form-row">
     <div class="form-group col-md-6">
-      {!! Form::label('password', __('users.attributes.password')) !!}
-      {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password')]) !!}
+      <label for="password">
+        @lang('users.attributes.password')
+      </label>
+
+      <input
+          type="password"
+          id="password"
+          name="password"
+          @class(['form-control', 'is-invalid' => $errors->has('password')])
+          placeholder="@lang('users.placeholder.password')"
+      >
 
       @error('password')
         <span class="invalid-feedback">{{ $message }}</span>
@@ -31,8 +64,17 @@
     </div>
 
     <div class="form-group col-md-6">
-      {!! Form::label('password_confirmation', __('users.attributes.password_confirmation')) !!}
-      {!! Form::password('password_confirmation', ['class' => 'form-control' . ($errors->has('password_confirmation') ? ' is-invalid' : ''), 'placeholder' => __('users.placeholder.password_confirmation')]) !!}
+      <label for="password_confirmation">
+        @lang('users.attributes.password_confirmation')
+      </label>
+
+      <input
+          type="password"
+          id="password_confirmation"
+          name="password_confirmation"
+          @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')])
+          placeholder="@lang('users.placeholder.password_confirmation')"
+      >
 
       @error('password_confirmation')
         <span class="invalid-feedback">{{ $message }}</span>
@@ -41,12 +83,15 @@
   </div>
 
   <div class="form-group">
-    {!! Form::label('roles', __('users.attributes.roles')) !!}
+    <label for="roles">
+        @lang('users.attributes.roles')
+    </label>
 
     @foreach($roles as $role)
       <div class="checkbox">
         <label>
-          {!! Form::checkbox("roles[$role->id]", $role->id, $user->hasRole($role->name)) !!}
+          <input type="checkbox" name="roles[{{ $role->id }}]" value="{{ $role->id }}" @checked($user->hasRole($role->name))>
+
           @if (Lang::has('roles.' . $role->name))
             {!! __('roles.' . $role->name) !!}
           @else
@@ -61,6 +106,5 @@
       @lang('forms.actions.back')
   </a>
 
-  {!! Form::submit(__('forms.actions.update'), ['class' => 'btn btn-primary']) !!}
-
-{!! Form::close() !!}
+  <input type="submit" class="btn btn-primary" value="@lang('forms.actions.update')">
+</form>

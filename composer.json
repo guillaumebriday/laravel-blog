@@ -14,7 +14,6 @@
         "laravel/socialite": "5.8.0",
         "laravel/tinker": "2.8.1",
         "laravel/ui": "3.4.5",
-        "laravelcollective/html": "6.4.1",
         "nunomaduro/collision": "6.2.0",
         "predis/predis": "2.2.1",
         "pusher/pusher-php-server": "7.2.3",

@@ -5,10 +5,23 @@
     <div class="col-md-6">
         <h1>@lang('auth.login')</h1>
 
-        {!! Form::open(['route' => 'login', 'role' => 'form', 'method' => 'POST']) !!}
+        <form action="{{ route('login') }}" method="POST" role="form">
+            @csrf
+
             <div class="form-group">
-                {!! Form::label('email', __('validation.attributes.email'), ['class' => 'control-label']) !!}
-                {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''), 'required', 'autofocus']) !!}
+                <label for="email" class="control-label">
+                    @lang('validation.attributes.email')
+                </label>
+
+                <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    @class(['form-control', 'is-invalid' => $errors->has('email')])
+                    required
+                    autofocus
+                    value="{{ old('email') }}"
+                >
 
                 @error('email')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -16,8 +29,17 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('password', __('validation.attributes.password'), ['class' => 'control-label']) !!}
-                {!! Form::password('password', ['class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''), 'required']) !!}
+                <label for="password" class="control-label">
+                    @lang('validation.attributes.password')
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    @class(['form-control', 'is-invalid' => $errors->has('password')])
+                    required
+                >
 
                 @error('password')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -27,16 +49,21 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        {!! Form::checkbox('remember', null, old('remember')) !!} @lang('auth.remember_me')
+                        <input type="checkbox" name="remember" @checked(old('remember'))>
+
+                        @lang('auth.remember_me')
                     </label>
                 </div>
             </div>
 
             <div class="form-group">
-                {!! Form::submit(__('auth.login'), ['class' => 'btn btn-primary']) !!}
-                {{ link_to('/password/reset', __('auth.forgotten_password'), ['class' => 'btn btn-link'])}}
+                <input type="submit" class="btn btn-primary" value="@lang('auth.login')">
+
+                <a href="/password/reset" class="btn btn-link">
+                    @lang('auth.forgotten_password')
+                </a>
             </div>
-        {!! Form::close() !!}
+        </form>
 
         <hr>
 
