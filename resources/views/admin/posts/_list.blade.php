@@ -23,7 +23,7 @@
                         {{ $post->author->fullname }}
                     </a>
                 </td>
-                <td>{{ humanize_date($post->posted_at, 'd/m/Y H:i:s') }}</td>
+                <td>@humanize_date($post->posted_at, 'd/m/Y H:i:s')</td>
                 <td><span class="badge badge-pill badge-secondary">{{ $post->comments_count }}</span></td>
                 <td><span class="badge badge-pill badge-secondary">{{ $post->likes_count }}</span></td>
                 <td>

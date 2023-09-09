@@ -17,7 +17,7 @@
                     </a>
                 </td>
                 <td>{{ $user->email }}</td>
-                <td>{{ humanize_date($user->registered_at, 'd/m/Y H:i:s') }}</td>
+                <td>@humanize_date($user->registered_at, 'd/m/Y H:i:s')</td>
                 <td>
                     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">
                         <x-icon name="edit" />

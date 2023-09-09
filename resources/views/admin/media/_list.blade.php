@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </td>
-                <td>{{ humanize_date($medium->posted_at, 'd/m/Y H:i:s') }}</td>
+                <td>@humanize_date($medium->posted_at, 'd/m/Y H:i:s')</td>
                 <td>
                     <a href="{{ $medium->getUrl() }}" title="{{ __('media.show') }}" class="btn btn-primary btn-sm" target="_blank">
                         <x-icon name="eye" prefix="fa-regular" />

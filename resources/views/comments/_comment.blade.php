@@ -23,6 +23,6 @@
   </p>
 
   <p class="card-text">
-    <small class="text-muted">{{ humanize_date($comment->posted_at) }}</small>
+    <small class="text-muted">@humanize_date($comment->posted_at)</small>
   </p>
 </x-card>

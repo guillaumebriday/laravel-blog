@@ -16,7 +16,7 @@
             {{ $post->author->fullname }}
         </a>
       </small>,
-      <small class="text-muted">{{ humanize_date($post->posted_at) }}</small>
+      <small class="text-muted">@humanize_date($post->posted_at)</small>
     </div>
 
     <div v-pre class="post-content">

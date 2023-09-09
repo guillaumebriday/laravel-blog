@@ -22,7 +22,7 @@
   </p>
 
   <div class="card-text">
-    <small class="text-muted">{{ humanize_date($post->posted_at) }}</small><br>
+    <small class="text-muted">@humanize_date($post->posted_at)</small><br>
     <small class="text-muted">
       <x-icon name="comments" prefix="fa-regular" /> {{ $post->comments_count }}
 

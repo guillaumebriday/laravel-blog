@@ -27,7 +27,7 @@
                         {{ $comment->author->fullname }}
                     </a>
                 </td>
-                <td>{{ humanize_date($comment->posted_at, 'd/m/Y H:i:s') }}</td>
+                <td>@humanize_date($comment->posted_at, 'd/m/Y H:i:s')</td>
                 <td>
                     <a href="{{ route('admin.comments.edit', $comment) }}" class="btn btn-primary btn-sm">
                         <x-icon name="edit" />
