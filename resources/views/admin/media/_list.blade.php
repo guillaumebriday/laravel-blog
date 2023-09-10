@@ -49,7 +49,7 @@
                         @method('DELETE')
                         @csrf
 
-                        <button type="submit" name="submit" class="btn btn-danger btn-sm" title="@lang('media.delete')">
+                        <button type="submit" name="submit" class="btn btn-outline-danger btn-sm" title="@lang('media.delete')">
                             <x-icon name="trash" />
                         </button>
                     </form>

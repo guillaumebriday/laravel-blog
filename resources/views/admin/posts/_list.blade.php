@@ -35,7 +35,7 @@
                         @method('DELETE')
                         @csrf
 
-                        <button type="submit" name="submit" class="btn btn-danger btn-sm">
+                        <button type="submit" name="submit" class="btn btn-outline-danger btn-sm">
                             <x-icon name="trash" />
                         </button>
                     </form>
