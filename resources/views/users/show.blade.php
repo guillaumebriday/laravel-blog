@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-12">
       <x-card class="text-center mb-2">
-        <h2 v-pre class="card-title mb-0">{{ $user->name }}</h2>
+        <h2 class="card-title mb-0">{{ $user->name }}</h2>
         <small class="card-subtitle mb-2 text-muted">{{ $user->email }}</small>
 
         <div class="card-text row mt-3">

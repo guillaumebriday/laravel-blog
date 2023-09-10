@@ -7,14 +7,14 @@
     </x-slot>
   @endif
 
-  <h4 v-pre class="card-title">
+  <h4 class="card-title">
     <a href="{{ route('posts.show', $post) }}">
       {{ $post->title }}
     </a>
   </h4>
 
   <p class="card-text">
-    <small v-pre class="text-muted">
+    <small class="text-muted">
       <a href="{{ route('users.show', $post->author) }}">
         {{ $post->author->fullname }}
       </a>

@@ -8,10 +8,10 @@
       </x-slot>
     @endif
 
-    <h1 v-pre>{{ $post->title }}</h1>
+    <h1>{{ $post->title }}</h1>
 
     <div class="mb-3">
-      <small v-pre class="text-muted">
+      <small class="text-muted">
         <a href="{{ route('users.show', $post->author) }}">
             {{ $post->author->fullname }}
         </a>
@@ -19,7 +19,7 @@
       <small class="text-muted">@humanize_date($post->posted_at)</small>
     </div>
 
-    <div v-pre class="post-content">
+    <div class="post-content">
       {!! $post->content !!}
     </div>
 

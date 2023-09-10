@@ -7,7 +7,7 @@
     </x-slot>
   @endif
 
-  <h4 v-pre class="card-title">
+  <h4 class="card-title">
     <a href="{{ route('posts.show', $post) }}">
       {{ $post->title }}
     </a>
