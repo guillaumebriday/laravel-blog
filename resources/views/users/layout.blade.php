@@ -17,19 +17,19 @@
     <div class="card">
       <div class="card-header">@lang('users.profile')</div>
       <div class="list-group list-group-flush">
-        <a href="{{ route('users.edit') }}" class="list-group-item {{ ($tab == 'profile') ? 'active' : '' }}">
+        <a href="{{ route('users.edit') }}" @class(['list-group-item', 'active' => $tab == 'profile'])>
           <x-icon name="user" prefix="fa-regular" />
 
           @lang('users.profile')
         </a>
 
-        <a href="{{ route('users.password') }}" class="list-group-item {{ ($tab == 'security') ? 'active' : '' }}">
+        <a href="{{ route('users.password') }}" @class(['list-group-item', 'active' => $tab == 'security'])>
           <x-icon name="lock" />
 
           @lang('users.security')
         </a>
 
-        <a href="{{ route('users.token') }}" class="list-group-item {{ ($tab == 'api_token') ? 'active' : '' }}">
+        <a href="{{ route('users.token') }}" @class(['list-group-item', 'active' => $tab == 'api_token'])>
           <x-icon name="key" />
 
           @lang('users.api_token')

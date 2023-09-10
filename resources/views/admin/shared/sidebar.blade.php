@@ -7,14 +7,14 @@
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.posts')">
-        <a class="nav-link {{ request()->route()->named('admin.posts.*') ? 'active' : '' }}" href="{{ route('admin.posts.index') }}">
+        <a @class(['nav-link', 'active' => request()->route()->named('admin.posts.*')]) href="{{ route('admin.posts.index') }}">
             <x-icon name="file-text" prefix="fa-regular" />
             <span class="nav-link-text">@lang('dashboard.posts')</span>
         </a>
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.comments')">
-        <a class="nav-link {{ request()->route()->named('admin.comments.*') ? 'active' : '' }}" href="{{ route('admin.comments.index') }}">
+        <a @class(['nav-link', 'active' => request()->route()->named('admin.comments.*')]) href="{{ route('admin.comments.index') }}">
             <x-icon name="comments" prefix="fa-regular" />
 
             <span class="nav-link-text">@lang('dashboard.comments')</span>
@@ -22,7 +22,7 @@
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.users')">
-        <a class="nav-link {{ request()->route()->named('admin.users.*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
+        <a @class(['nav-link', 'active' => request()->route()->named('admin.users.*')]) href="{{ route('admin.users.index') }}">
             <x-icon name="users" />
 
             <span class="nav-link-text">@lang('dashboard.users')</span>
@@ -30,7 +30,7 @@
     </li>
 
     <li class="nav-item" role="presentation" data-toggle="tooltip" data-placement="right" title="@lang('dashboard.media')">
-        <a class="nav-link {{ request()->route()->named('admin.media.*') ? 'active' : '' }}" href="{{ route('admin.media.index') }}">
+        <a @class(['nav-link', 'active' => request()->route()->named('admin.media.*')]) href="{{ route('admin.media.index') }}">
             <x-icon name="file" prefix="fa-regular" />
 
             <span class="nav-link-text">@lang('dashboard.media')</span>
