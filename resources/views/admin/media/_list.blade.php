@@ -37,11 +37,11 @@
                 </td>
                 <td>@humanize_date($medium->posted_at, 'd/m/Y H:i:s')</td>
                 <td>
-                    <a href="{{ $medium->getUrl() }}" title="{{ __('media.show') }}" class="btn btn-primary btn-sm" target="_blank">
+                    <a href="{{ $medium->getUrl() }}" title="@lang('media.show')" class="btn btn-primary btn-sm" target="_blank">
                         <x-icon name="eye" prefix="fa-regular" />
                     </a>
 
-                    <a href="{{ route('admin.media.show', $medium) }}" title="{{ __('media.download') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('admin.media.show', $medium) }}" title="@lang('media.download')" class="btn btn-primary btn-sm">
                         <x-icon name="download" />
                     </a>
 
