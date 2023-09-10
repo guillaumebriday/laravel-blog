@@ -21,7 +21,7 @@
                 <td>
                     <div class="input-group">
                         <input
-                            id="medium-{{ $medium->id }}"
+                            id="@domid($medium)"
                             type="text"
                             class="form-control"
                             readonly
@@ -29,7 +29,7 @@
                         >
 
                         <div class="input-group-append">
-                            <button class="input-group-text btn" data-clipboard-target="#medium-{{ $medium->id }}">
+                            <button class="input-group-text btn" data-clipboard-target="#@domid($medium)">
                                 <x-icon name="clipboard" prefix="fa-regular" />
                             </button>
                         </div>
