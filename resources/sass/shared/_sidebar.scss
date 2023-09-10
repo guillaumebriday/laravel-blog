@@ -22,20 +22,20 @@
       overflow-y: auto;
       flex-direction: column;
 
-      margin-top: $navbar-base-height;
+      margin-top: var(--navbar-base-height);
     }
   }
 
   .navbar-sidenav,
   .sidenav-toggler {
     & .nav-link {
-      width: $sidenav-base-width;
+      width: var(--sidenav-base-width);
       padding: 1em !important;
     }
   }
 
   .navbar-sidenav {
-    height: calc(100vh - #{$navbar-base-height * 2});
+    height: calc(100vh - var(--navbar-base-height) * 2);
   }
 
   .sidenav-toggler {
@@ -50,7 +50,7 @@
     overflow-y: auto;
     flex-direction: column;
 
-    margin-top: calc(100vh - #{$navbar-base-height});
+    margin-top: calc(100vh - var(--navbar-base-height));
 
     background-color: $gray-900;
     a {
@@ -76,6 +76,6 @@
 
   .navbar-sidenav,
   .sidenav-toggler .nav-link{
-    width: $sidenav-collapsed-width !important;
+    width: var(--sidenav-collapsed-width) !important;
   }
 }
