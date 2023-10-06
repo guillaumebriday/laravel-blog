@@ -52,10 +52,10 @@
 
     margin-top: calc(100vh - var(--navbar-base-height));
 
-    background-color: $gray-900;
+    background-color: var(--bs-gray-900);
     a {
       i {
-        color: $gray-500;
+        color: var(--bs-gray-500);
       }
     }
   }

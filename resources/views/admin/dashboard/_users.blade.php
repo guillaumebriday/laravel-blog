@@ -2,8 +2,8 @@
     <div class="row justify-content-between">
         <x-icon name="users" class="fa-5x" />
 
-        <div class="text-right">
-            <div class="huge">{{ $users->count() }}</div>
+        <div class="col text-end">
+            <div class="fa-2x">{{ $users->count() }}</div>
             <div>{{ trans_choice('users.new_users', $users->count()) }}</div>
         </div>
     </div>

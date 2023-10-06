@@ -4,7 +4,7 @@
 @import "node_modules/bootstrap/scss/bootstrap";
 
 // Base
-@import "base/base";
+@import "base/utilities";
 
 // Font-awesome
 @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
@@ -14,12 +14,9 @@
 
 // Modules
 @import "modules/form";
-@import "modules/panels";
-@import "modules/buttons";
 
 // Shared
 @import "shared/sidebar";
-@import "shared/footer";
 
 // Layouts
 @import "layouts/posts";

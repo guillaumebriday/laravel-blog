@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark position-absolute footer-container">
+<footer class="navbar bg-dark" data-bs-theme="dark">
     <div class="container justify-content-center">
         <ul class="navbar-nav text-center">
             <li class="nav-item text-white m-3">
@@ -24,4 +24,4 @@
             </li>
         </ul>
     </div>
-</nav>
+</footer>

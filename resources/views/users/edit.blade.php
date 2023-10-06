@@ -9,8 +9,8 @@
       @method('PATCH')
       @csrf
 
-      <div class="form-group row">
-        <label for="name" class="col-sm-2 col-form-label">
+      <div class="form-group mb-3 row">
+        <label for="name" class="form-label col-sm-2 col-form-label">
           @lang('users.attributes.name')
         </label>
 
@@ -31,8 +31,8 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">
+      <div class="form-group mb-3 row">
+        <label for="email" class="form-label col-sm-2 col-form-label">
           @lang('users.attributes.email')
         </label>
 
@@ -53,11 +53,11 @@
         </div>
       </div>
 
-      <div class="form-group offset-sm-2">
+      <div class="form-group mb-3 offset-sm-2">
         <button type="submit" class="btn btn-primary">
-            <x-icon name="save" />
+          <x-icon name="save" />
 
-            @lang('forms.actions.save')
+          @lang('forms.actions.save')
         </button>
       </div>
     </form>

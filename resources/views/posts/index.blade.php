@@ -5,7 +5,7 @@
   @include ('posts/_search_form')
 
   <x-turbo-frame id="posts">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between gap-2">
       <div class="p-2">
         @if (request()->has('q'))
           <h2>{{ trans_choice('posts.search_results', $posts->count(), ['query' => request()->input('q')]) }}</h2>
@@ -15,7 +15,7 @@
       </div>
 
       <div class="p-2">
-        <a href="{{ route('posts.feed') }}" class="pull-right" data-turbolinks="false">
+        <a href="{{ route('posts.feed') }}" data-turbo="false">
           <x-icon name="rss" />
         </a>
       </div>

@@ -8,8 +8,8 @@
         <form action="{{ route('register') }}" method="POST" role="form">
             @csrf
 
-            <div class="form-group">
-                <label for="name" class="control-label">
+            <div class="form-group mb-3">
+                <label for="name" class="form-label control-label">
                     @lang('validation.attributes.name')
                 </label>
 
@@ -28,8 +28,8 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="email" class="control-label">
+            <div class="form-group mb-3">
+                <label for="email" class="form-label control-label">
                     @lang('validation.attributes.email')
                 </label>
 
@@ -46,8 +46,8 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="password" class="control-label">
+            <div class="form-group mb-3">
+                <label for="password" class="form-label control-label">
                     @lang('validation.attributes.password')
                 </label>
 
@@ -64,8 +64,8 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="password_confirmation" class="control-label">
+            <div class="form-group mb-3">
+                <label for="password_confirmation" class="form-label control-label">
                     @lang('validation.attributes.password_confirmation')
                 </label>
 
@@ -82,7 +82,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <input type="submit" class="btn btn-primary" value="@lang('auth.register')">
             </div>
         </form>

@@ -1,5 +1,5 @@
-@import "node_modules/trumbowyg/dist/ui/trumbowyg";
+@import "node_modules/trumbowyg/dist/ui/sass/trumbowyg";
 
 .admin-body {
-    padding-top: 56px;
+    padding-top: var(--navbar-base-height);
 }

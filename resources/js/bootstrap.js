@@ -7,14 +7,12 @@ import 'bootstrap'
 import Clipboard from 'clipboard'
 import jquery from 'jquery'
 import Echo from 'laravel-echo'
-import PopperJs from 'popper.js'
 import 'pusher-js'
 import * as Turbo from '@hotwired/turbo'
 
 Turbo.session.drive = false
 
 window.$ = window.jQuery = jquery
-window.PopperJs = PopperJs.default
 
 new Clipboard('[data-clipboard-target]')
 

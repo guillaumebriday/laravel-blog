@@ -14,8 +14,8 @@
   </h4>
 
   <p class="card-text">
-    <small class="text-muted">@humanize_date($post->posted_at)</small><br>
-    <small class="text-muted">
+    <small class="text-body-secondary">@humanize_date($post->posted_at)</small><br>
+    <small class="text-body-secondary">
       <x-icon name="comments" prefix="fa-regular" /> {{ $post->comments_count }}
       <x-icon name="heart" prefix="fa-regular" /> {{ $post->likes_count }}
     </small>

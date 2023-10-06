@@ -9,8 +9,8 @@
       @method('PATCH')
       @csrf
 
-      <div class="form-group row">
-        <label for="current_password" class="col-sm-4 col-form-label">
+      <div class="form-group mb-3 row">
+        <label for="current_password" class="form-label col-sm-4 col-form-label">
             @lang('users.attributes.current_password')
         </label>
 
@@ -30,8 +30,8 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <label for="password" class="col-sm-4 col-form-label">
+      <div class="form-group mb-3 row">
+        <label for="password" class="form-label col-sm-4 col-form-label">
             @lang('users.attributes.password')
         </label>
 
@@ -51,8 +51,8 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <label for="password_confirmation" class="col-sm-4 col-form-label">
+      <div class="form-group mb-3 row">
+        <label for="password_confirmation" class="form-label col-sm-4 col-form-label">
             @lang('users.attributes.password_confirmation')
         </label>
 
@@ -72,11 +72,11 @@
         </div>
       </div>
 
-      <div class="form-group offset-sm-4">
+      <div class="form-group mb-3 offset-sm-4">
         <button type="submit" class="btn btn-primary">
-            <x-icon name="save" />
+          <x-icon name="save" />
 
-            @lang('forms.actions.save')
+          @lang('forms.actions.save')
         </button>
       </div>
     </form>

@@ -5,27 +5,27 @@
     <div class="col-md-12">
       <x-card class="text-center mb-2">
         <h2 class="card-title mb-0">{{ $user->name }}</h2>
-        <small class="card-subtitle mb-2 text-muted">{{ $user->email }}</small>
+        <small class="card-subtitle mb-2 text-body-secondary">{{ $user->email }}</small>
 
         <div class="card-text row mt-3">
           <div class="col-md-4">
-            <span class="text-muted d-block">@lang('comments.comments')</span>
+            <span class="text-body-secondary d-block">@lang('comments.comments')</span>
             {{ $comments_count }}
           </div>
 
           <div class="col-md-4">
-            <span class="text-muted d-block">@lang('posts.posts')</span>
+            <span class="text-body-secondary d-block">@lang('posts.posts')</span>
             {{ $posts_count }}
           </div>
 
           <div class="col-md-4">
-            <span class="text-muted d-block">@lang('likes.likes')</span>
+            <span class="text-body-secondary d-block">@lang('likes.likes')</span>
             {{ $likes_count }}
           </div>
         </div>
 
         @profile($user)
-          <a href="{{ route('users.edit') }}" class="btn btn-primary btn-sm float-right">
+          <a href="{{ route('users.edit') }}" class="btn btn-primary btn-sm float-end">
             @lang('users.edit')
           </a>
         @endprofile

@@ -1,4 +1,4 @@
-<x-card :id="dom_id($comment)">
+<x-card :id="dom_id($comment)" class="mb-3">
   <div class="card-title d-flex justify-content-between">
     <h6>
         <a href="{{ route('users.show', $comment->author) }}">
@@ -7,13 +7,11 @@
     </h6>
 
     @can('delete', $comment)
-      <form action="{{ route('comments.destroy', $comment) }}" method="POST" class="form-inline pull-right" data-turbo="true" data-turbo-confirm="@lang('forms.comments.delete')">
+      <form action="{{ route('comments.destroy', $comment) }}" method="POST" class="form-inline" data-turbo="true" data-turbo-confirm="@lang('forms.comments.delete')">
         @method('DELETE')
         @csrf
 
-        <button type="submit" name="submit" class="close text-danger">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="submit" class="btn-close"></button>
       </form>
     @endcan
   </div>

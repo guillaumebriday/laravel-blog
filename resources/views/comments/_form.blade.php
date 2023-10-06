@@ -4,7 +4,7 @@
 
     <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <textarea
           name="content"
           id="content"
@@ -20,7 +20,7 @@
       @enderror
     </div>
 
-    <div class="form-group text-right">
+    <div class="form-group mb-3 text-end">
       <button type="submit" class="btn btn-primary">
           <x-icon name="paper-plane" />
 

@@ -29,7 +29,7 @@ The purpose of this repository is to show good development practices on [Laravel
 
 Beside Laravel, this project uses other tools like:
 
-- [Bootstrap 4](https://getbootstrap.com/)
+- [Bootstrap 5.x](https://getbootstrap.com/)
 - [Pint](https://github.com/laravel/pint)
 - [Travis CI](https://travis-ci.org/)
 - [Font Awesome](https://fontawesome.com/)

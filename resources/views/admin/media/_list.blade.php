@@ -28,11 +28,9 @@
                             value="{{ url($medium->getUrl()) }}"
                         >
 
-                        <div class="input-group-append">
-                            <button class="input-group-text btn" data-clipboard-target="#@domid($medium)">
-                                <x-icon name="clipboard" prefix="fa-regular" />
-                            </button>
-                        </div>
+                        <button class="input-group-text btn" data-clipboard-target="#@domid($medium)">
+                            <x-icon name="clipboard" prefix="fa-regular" />
+                        </button>
                     </div>
                 </td>
                 <td>@humanize_date($medium->posted_at, 'd/m/Y H:i:s')</td>
