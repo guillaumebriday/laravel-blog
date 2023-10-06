@@ -6,6 +6,6 @@
   <p class="card-text">{{ $comment->content }}</p>
 
   <p class="card-text">
-    <small class="text-muted">@humanize_date($comment->posted_at)</small>
+    <small class="text-body-secondary">@humanize_date($comment->posted_at)</small>
   </p>
 </x-card>

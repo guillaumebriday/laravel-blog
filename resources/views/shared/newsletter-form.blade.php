@@ -5,7 +5,7 @@
         <input
             type="email"
             name="email"
-            class="form-control mr-sm-1 mb-1"
+            class="form-control me-sm-1 mb-1"
             placeholder="@lang('newsletter.placeholder')"
         >
 

@@ -31,15 +31,4 @@
             </button>
         </div>
     </form>
-
-    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST" class="form-inline pull-right" data-confirm="@lang('forms.posts.delete')">
-        @method('DELETE')
-        @csrf
-
-        <button type="submit" name="submit" class="btn btn-link text-danger">
-            <x-icon name="trash" />
-
-            @lang('posts.delete')
-        </button>
-    </form>
 @endsection

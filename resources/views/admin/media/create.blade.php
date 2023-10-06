@@ -6,8 +6,8 @@
     <form action="{{ route('admin.media.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="form-group">
-            <label for="image">
+        <div class="form-group mb-3">
+            <label class="form-label" for="image">
                 @lang('media.attributes.image')
             </label>
 
@@ -25,8 +25,8 @@
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="name">
+        <div class="form-group mb-3">
+            <label class="form-label" for="name">
                 @lang('media.attributes.name')
             </label>
 

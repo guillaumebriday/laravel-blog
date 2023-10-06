@@ -5,8 +5,8 @@
     <h1>@lang('users.attributes.api_token')</h1>
     <hr class="my-4">
 
-    <div class="form-group">
-      <label for="api_token">
+    <div class="form-group mb-3">
+      <label class="form-label" for="api_token">
           @lang('users.attributes.api_token')
       </label>
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="d-flex justify-content-start">
-      <form action="{{ route('users.token.update', $user) }}" method="POST" class="ml-auto">
+      <form action="{{ route('users.token.update', $user) }}" method="POST" class="ms-auto">
         @method('PATCH')
         @csrf
 

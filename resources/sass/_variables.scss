@@ -1,3 +1,6 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
 $fa-font-display: swap;
 $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 
@@ -7,3 +10,6 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   --sidenav-collapsed-width: 55px;
   --navbar-base-height: 56px;
 }
+
+$body-bg: $gray-100;
+$link-decoration: none;

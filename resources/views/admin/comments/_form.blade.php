@@ -2,9 +2,9 @@
     @method('PUT')
     @csrf
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="author_id">
+    <div class="row">
+        <div class="form-group mb-3 col-md-6">
+            <label class="form-label" for="author_id">
                 @lang('comments.attributes.author')
             </label>
 
@@ -21,8 +21,8 @@
             @enderror
         </div>
 
-        <div class="form-group col-md-6">
-            <label for="posted_at">
+        <div class="form-group mb-3 col-md-6">
+            <label class="form-label" for="posted_at">
                 @lang('comments.attributes.posted_at')
             </label>
 
@@ -41,8 +41,8 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="content">
+    <div class="form-group mb-3">
+        <label class="form-label" for="content">
             @lang('comments.attributes.content')
         </label>
 
@@ -73,15 +73,4 @@
             @lang('forms.actions.update')
         </button>
     </div>
-</form>
-
-<form action="{{ route('admin.comments.destroy', $comment) }}" method="POST" class="form-inline pull-right" data-confirm="@lang('forms.comments.delete')">
-    @method('DELETE')
-    @csrf
-
-    <button type="submit" name="submit" class="btn btn-link text-danger">
-        <x-icon name="trash" />
-
-        @lang('comments.delete')
-    </button>
 </form>

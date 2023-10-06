@@ -24,8 +24,8 @@
                     </a>
                 </td>
                 <td>@humanize_date($post->posted_at, 'd/m/Y H:i:s')</td>
-                <td><span class="badge badge-pill badge-secondary">{{ $post->comments_count }}</span></td>
-                <td><span class="badge badge-pill badge-secondary">{{ $post->likes_count }}</span></td>
+                <td><span class="badge rounded-pill bg-secondary">{{ $post->comments_count }}</span></td>
+                <td><span class="badge rounded-pill bg-secondary">{{ $post->likes_count }}</span></td>
                 <td>
                     <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm">
                         <x-icon name="edit" />

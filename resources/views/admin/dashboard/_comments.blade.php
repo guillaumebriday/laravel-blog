@@ -2,8 +2,8 @@
     <div class="row justify-content-between">
         <x-icon name="comments" prefix="fa-regular" class="fa-5x" />
 
-        <div class="text-right">
-            <div class="huge">{{ $comments->count() }}</div>
+        <div class="col text-end">
+            <div class="fa-2x">{{ $comments->count() }}</div>
             <div>{{ trans_choice('comments.new_comments', $comments->count()) }}</div>
         </div>
     </div>

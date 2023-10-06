@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
+<nav class="navbar bg-dark fixed-top navbar-expand-lg" data-bs-theme="dark">
     <div class="container">
         <!-- Branding Image -->
         <a href="{{ route('home') }}" class="navbar-brand">
@@ -6,16 +6,16 @@
         </a>
 
         <!-- Collapsed Hamburger -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             @include('admin/shared/sidebar')
 
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
 

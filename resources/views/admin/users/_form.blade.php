@@ -2,9 +2,9 @@
   @method('PATCH')
   @csrf
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="name">
+  <div class="row">
+    <div class="form-group mb-3 col-md-6">
+      <label class="form-label" for="name">
         @lang('users.attributes.name')
       </label>
 
@@ -23,8 +23,8 @@
       @enderror
     </div>
 
-    <div class="form-group col-md-6">
-      <label for="email">
+    <div class="form-group mb-3 col-md-6">
+      <label class="form-label" for="email">
         @lang('users.attributes.email')
       </label>
 
@@ -44,9 +44,9 @@
     </div>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="password">
+  <div class="row">
+    <div class="form-group mb-3 col-md-6">
+      <label class="form-label" for="password">
         @lang('users.attributes.password')
       </label>
 
@@ -63,8 +63,8 @@
       @enderror
     </div>
 
-    <div class="form-group col-md-6">
-      <label for="password_confirmation">
+    <div class="form-group mb-3 col-md-6">
+      <label class="form-label" for="password_confirmation">
         @lang('users.attributes.password_confirmation')
       </label>
 
@@ -82,8 +82,8 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="roles">
+  <div class="form-group mb-3">
+    <label class="form-label" for="roles">
         @lang('users.attributes.roles')
     </label>
 

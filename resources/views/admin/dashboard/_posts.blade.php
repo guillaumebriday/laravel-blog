@@ -2,8 +2,8 @@
     <div class="row justify-content-between">
         <x-icon name="file-text" prefix="fa-regular" class="fa-5x" />
 
-        <div class="text-right">
-            <div class="huge">{{ $posts->count() }}</div>
+        <div class="col text-end">
+            <div class="fa-2x">{{ $posts->count() }}</div>
             <div>{{ trans_choice('posts.new_posts', $posts->count()) }}</div>
         </div>
     </div>

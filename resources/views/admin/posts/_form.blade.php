@@ -2,8 +2,8 @@
     $posted_at = old('posted_at', (isset($post) ? $post->posted_at->format('Y-m-d\TH:i') : null));
 @endphp
 
-<div class="form-group">
-    <label for="title">
+<div class="form-group mb-3">
+    <label class="form-label" for="title">
         @lang('posts.attributes.title')
     </label>
 
@@ -21,9 +21,9 @@
     @enderror
 </div>
 
-<div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="author_id">
+<div class="row">
+    <div class="form-group mb-3 col-md-6">
+        <label class="form-label" for="author_id">
             @lang('posts.attributes.author')
         </label>
 
@@ -40,8 +40,8 @@
         @enderror
     </div>
 
-    <div class="form-group col-md-6">
-        <label for="posted_at">
+    <div class="form-group mb-3 col-md-6">
+        <label class="form-label" for="posted_at">
             @lang('posts.attributes.posted_at')
         </label>
 
@@ -60,8 +60,8 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="thumbnail_id">
+<div class="form-group mb-3">
+    <label class="form-label" for="thumbnail_id">
         @lang('posts.attributes.thumbnail')
     </label>
 
@@ -83,8 +83,8 @@
 </div>
 
 
-<div class="form-group">
-    <label for="content">
+<div class="form-group mb-3">
+    <label class="form-label" for="content">
         @lang('posts.attributes.content')
     </label>
 

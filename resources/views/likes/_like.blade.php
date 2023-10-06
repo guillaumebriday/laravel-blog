@@ -6,7 +6,7 @@
                 @csrf
 
                 <button type="submit" name="submit" class="btn btn-link p-0">
-                    <x-icon name="heart" prefix="fa-regular" class="ml-2 text-danger" />
+                    <x-icon name="heart" prefix="fa-regular" class="ms-2 text-danger" />
                 </button>
             </form>
         @else
@@ -14,14 +14,14 @@
                 @csrf
 
                 <button type="submit" name="submit" class="btn btn-link p-0">
-                    <x-icon name="heart" prefix="fa-regular" class="ml-2" />
+                    <x-icon name="heart" prefix="fa-regular" class="ms-2" />
                 </button>
             </form>
         @endif
     </x-turbo-frame>
 @else
     <i
-        class="fa-regular ml-2 fa-heart"
+        class="fa-regular ms-2 fa-heart"
         aria-hidden="true"
     ></i>
 @endauth

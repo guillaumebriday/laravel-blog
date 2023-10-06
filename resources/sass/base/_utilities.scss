@@ -1,0 +1,5 @@
+@each $size, $length in $spacers {
+    .space-y-#{$size} > * + * {
+        margin-top: $length !important;
+    }
+}

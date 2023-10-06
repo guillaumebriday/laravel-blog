@@ -5,7 +5,7 @@
         @method('DELETE')
         @csrf
 
-        <button type="submit" name="submit" class="btn btn-link text-danger">
+        <button type="submit" name="submit" class="btn btn-link">
             <x-icon name="trash" />
 
             @lang('posts.delete_thumbnail')

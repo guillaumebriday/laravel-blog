@@ -11,12 +11,13 @@
     <h1>{{ $post->title }}</h1>
 
     <div class="mb-3">
-      <small class="text-muted">
+      <small class="text-body-secondary">
         <a href="{{ route('users.show', $post->author) }}">
             {{ $post->author->fullname }}
         </a>
       </small>,
-      <small class="text-muted">@humanize_date($post->posted_at)</small>
+
+      <small class="text-body-secondary">@humanize_date($post->posted_at)</small>
     </div>
 
     <div class="post-content">
