@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsletterSubscriptionController;
+use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\UserTokenController;
@@ -28,6 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('token', [UserTokenController::class, 'edit'])->name('users.token');
         Route::match(['put', 'patch'], 'token', [UserTokenController::class, 'update'])->name('users.token.update');
     });
+
+    Route::resource('comments', CommentController::class)->only(['store', 'destroy']);
+    Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes.store');
+    Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes.destroy');
 
     Route::resource('newsletter-subscriptions', NewsletterSubscriptionController::class)->only('store');
 });
