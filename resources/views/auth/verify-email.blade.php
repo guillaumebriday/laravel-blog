@@ -9,7 +9,7 @@
                     @lang('Verify Your Email Address')
                 </x-slot>
 
-                @if (session('resent'))
+                @if (session('status') == 'verification-link-sent')
                     <x-alert type="success">
                         @lang('A fresh verification link has been sent to your email address.')
                     </x-alert>
@@ -18,7 +18,7 @@
                 @lang('Before proceeding, please check your email for a verification link.')
                 @lang('If you did not receive the email'),
 
-                <form action="{{ route('verification.resend') }}" method="POST" class="d-inline" role="form">
+                <form action="{{ route('verification.send') }}" method="POST" class="d-inline" role="form">
                     @csrf
 
                     <input type="submit" class="btn btn-link p-0 m-0 align-baseline" value="@lang('click here to request another')">

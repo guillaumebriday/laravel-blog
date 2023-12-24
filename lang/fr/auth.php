@@ -26,8 +26,4 @@ return [
     'logged_in_provider' => 'Vous êtes désormais connecté avec :Provider.',
     'not_authorized' => "Cette opération n'est pas autorisée.",
 
-    'services' => [
-        'github' => 'Se connecter avec Github',
-        'twitter' => 'Se connecter avec Twitter',
-    ],
 ];
