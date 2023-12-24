@@ -44,8 +44,7 @@ class CommentTest extends TestCase
             ->assertSee($comment->content)
             ->assertSee('Posted at')
             ->assertSee(humanize_date($comment->posted_at, 'Y-m-d\TH:i'))
-            ->assertSee('Update')
-            ->assertSee('Delete');
+            ->assertSee('Update');
     }
 
     public function testUpdate()

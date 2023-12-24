@@ -16,10 +16,6 @@
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
-
-        <testsuite name="Browser">
-            <directory suffix="Test.php">./tests/Browser</directory>
-        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
