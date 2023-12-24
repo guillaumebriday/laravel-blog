@@ -58,6 +58,12 @@ $ php artisan telescope:install
 $ php artisan storage:link
 ```
 
+### Mailer
+
+You can use [Mailpit](https://github.com/axllent/mailpit) to test your emails in development.
+
+Once installed, open [http://localhost:8025](http://localhost:8025).
+
 ## Before starting
 You need to run the migrations with the seeds :
 ```bash

@@ -55,6 +55,7 @@
                     type="password"
                     id="password"
                     name="password"
+                    autocomplete="new-password"
                     @class(['form-control', 'is-invalid' => $errors->has('password')])
                     required
                 >
@@ -73,6 +74,7 @@
                     type="password"
                     id="password_confirmation"
                     name="password_confirmation"
+                    autocomplete="new-password"
                     @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')])
                     required
                 >

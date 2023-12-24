@@ -26,9 +26,4 @@ return [
     'logged_in_provider' => 'You are now logged in with :Provider.',
     'not_authorized' => 'Not authorized.',
 
-    'services' => [
-        'github' => 'Login with Github',
-        'twitter' => 'Login with Twitter',
-    ],
-
 ];

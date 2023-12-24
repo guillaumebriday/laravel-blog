@@ -5,10 +5,10 @@
     <div class="col-md-6">
         <h1>@lang('auth.reset_password')</h1>
 
-        <form action="{{ route('password.request') }}" method="POST" role="form">
+        <form action="{{ route('password.store') }}" method="POST" role="form">
             @csrf
 
-            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
             <div class="form-group mb-3">
                 <label for="email" class="form-label control-label">
@@ -38,6 +38,7 @@
                     type="password"
                     id="password"
                     name="password"
+                    autocomplete="new-password"
                     @class(['form-control', 'is-invalid' => $errors->has('password')])
                     required
                 >
@@ -56,6 +57,7 @@
                     type="password"
                     id="password_confirmation"
                     name="password_confirmation"
+                    autocomplete="new-password"
                     @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')])
                     required
                 >
