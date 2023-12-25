@@ -28,7 +28,6 @@ Beside Laravel, this project uses other tools like:
 
 - [Bootstrap 5.x](https://getbootstrap.com/)
 - [Pint](https://github.com/laravel/pint)
-- [Travis CI](https://travis-ci.org/)
 - [Font Awesome](https://fontawesome.com/)
 - [Hotwired](https://hotwired.dev/)
 - [Redis](https://redis.io/)
