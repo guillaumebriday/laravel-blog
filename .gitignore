@@ -1,3 +1,4 @@
+/.phpunit.cache
 /node_modules
 /public/storage
 /public/hot
@@ -18,3 +19,4 @@ public/build/
 /log
 .phpunit.result.cache
 pint.json
+storage/media-library/temp

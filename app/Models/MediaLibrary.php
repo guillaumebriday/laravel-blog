@@ -11,7 +11,7 @@ class MediaLibrary extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(350)

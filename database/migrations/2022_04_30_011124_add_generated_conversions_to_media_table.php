@@ -10,10 +10,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         if (!Schema::hasColumn('media', 'generated_conversions')) {
             Schema::table('media', function (Blueprint $table) {
@@ -24,10 +22,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         /* Restore the 'generated_conversions' field in the 'custom_properties' column if you removed them in this migration
         Media::query()

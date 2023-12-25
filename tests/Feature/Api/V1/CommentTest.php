@@ -233,11 +233,8 @@ class CommentTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
-     *
-     * @param  array  $overrides new params
-     * @return array Valid params for updating or creating a resource
      */
-    private function validParams($overrides = [])
+    private function validParams(array $overrides = []): array
     {
         return array_merge([
             'content' => 'Star Trek ?',

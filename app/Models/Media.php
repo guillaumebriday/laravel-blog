@@ -11,7 +11,11 @@ class Media extends BaseMedia
      *
      * @var array
      */
-    protected $dates = [
-        'posted_at'
+    protected $casts = [
+        'posted_at' => 'datetime',
+        'manipulations' => 'array',
+        'custom_properties' => 'array',
+        'generated_conversions' => 'array',
+        'responsive_images' => 'array',
     ];
 }

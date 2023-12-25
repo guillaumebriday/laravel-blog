@@ -6,7 +6,7 @@ use Illuminate\Contracts\Console\Kernel;
 use PHPUnit\Runner\AfterLastTestHook;
 use PHPUnit\Runner\BeforeFirstTestHook;
 
-class Bootstrap implements BeforeFirstTestHook, AfterLastTestHook
+class Bootstrap implements AfterLastTestHook, BeforeFirstTestHook
 {
     /*
     |--------------------------------------------------------------------------

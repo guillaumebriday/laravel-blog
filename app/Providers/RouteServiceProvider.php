@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
-     * The path to the "home" route for your application.
+     * The path to your application's "home" route.
      *
      * This is used by Laravel authentication to redirect users after login.
      *
@@ -34,7 +34,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureRateLimiting();
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
 
         Route::model('medium', Media::class);
     }
@@ -98,17 +100,5 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->group(base_path('routes/auth.php'));
-    }
-
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting()
-    {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
     }
 }

@@ -29,8 +29,8 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $dates = [
-        'posted_at'
+    protected $casts = [
+        'posted_at' => 'datetime'
     ];
 
     /**
