@@ -89,11 +89,8 @@ class UserTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource
-     *
-     * @param  array  $overrides new params
-     * @return array  Valid params for updating or creating a resource
      */
-    private function validParams($overrides = [])
+    private function validParams(array $overrides = []): array
     {
         return array_merge([
             'name' => 'Padmé',
@@ -103,11 +100,8 @@ class UserTest extends TestCase
 
     /**
      * Valid params for updating or creating a resource's password
-     *
-     * @param  array  $overrides new params
-     * @return array  Valid params for updating or creating a resource
      */
-    private function validPasswordParams($overrides = [])
+    private function validPasswordParams(array $overrides = []): array
     {
         return array_merge([
             'current_password' => '4_n3w_h0p3',

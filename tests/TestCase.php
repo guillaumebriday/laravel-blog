@@ -22,10 +22,8 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Return an admin user
-     *
-     * @return User $admin
      */
-    protected function admin($overrides = [])
+    protected function admin(array $overrides = []): User
     {
         $admin = $this->user($overrides);
         $admin->roles()->attach(
@@ -37,10 +35,8 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Return an user
-     *
-     * @return User
      */
-    protected function user($overrides = [])
+    protected function user(array $overrides = []): User
     {
         return User::factory()->create($overrides);
     }

@@ -1,32 +1,32 @@
 {
     "name": "guillaumebriday/laravel-blog",
-    "description": "Laravel 9.0 blog.",
+    "description": "Laravel 10.x blog.",
     "keywords": ["framework", "laravel", "blog", "example"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": "^8.2",
-        "barryvdh/laravel-debugbar": "3.8.2",
-        "doctrine/dbal": "3.6.6",
+        "barryvdh/laravel-debugbar": "3.9.2",
+        "doctrine/dbal": "3.7.2",
         "hotwired/turbo-laravel": "^1.12",
         "laravel/breeze": "^1.19",
-        "laravel/framework": "^9",
-        "laravel/horizon": "5.19.1",
+        "laravel/framework": "^10.24",
+        "laravel/horizon": "5.21.4",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "2.8.1",
-        "nunomaduro/collision": "6.2.0",
-        "predis/predis": "2.2.1",
-        "pusher/pusher-php-server": "7.2.3",
-        "spatie/laravel-backup": "8.1.2",
-        "spatie/laravel-medialibrary": "10.11.3"
+        "laravel/tinker": "2.8.2",
+        "nunomaduro/collision": "7.8.1",
+        "predis/predis": "2.2.2",
+        "pusher/pusher-php-server": "7.2.4",
+        "spatie/laravel-backup": "8.4.1",
+        "spatie/laravel-medialibrary": "11.0.3"
     },
     "require-dev": {
-        "filp/whoops": "2.15.3",
+        "filp/whoops": "2.15.4",
         "fzaninotto/faker": "dev-master",
-        "laravel/pint": "1.11.0",
-        "laravel/telescope": "4.9.0",
-        "mockery/mockery": "1.6.6",
-        "phpunit/phpunit": "9.5.20"
+        "laravel/pint": "1.13.7",
+        "laravel/telescope": "4.17.3",
+        "mockery/mockery": "1.6.7",
+        "phpunit/phpunit": "10.5.3"
     },
     "autoload": {
         "psr-4": {

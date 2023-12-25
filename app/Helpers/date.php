@@ -5,7 +5,7 @@ use Illuminate\Support\Carbon;
 /**
  * Return a Carbon instance.
  */
-function carbon(string $parseString = '', string $tz = null): Carbon
+function carbon(string $parseString = '', ?string $tz = null): Carbon
 {
     return new Carbon($parseString, $tz);
 }

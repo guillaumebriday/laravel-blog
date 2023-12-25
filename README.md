@@ -1,31 +1,31 @@
-# Laravel 9.0 blog
+# Laravel 10.x blog
 
 [![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's features like:
 
-- [Authentication](https://laravel.com/docs/9.x/authentication)
+- [Authentication](https://laravel.com/docs/10.x/authentication)
 - API
-  - [Sanctum](https://laravel.com/docs/9.x/sanctum)
-  - [API Resources](https://laravel.com/docs/9.x/eloquent-resources)
+  - [Sanctum](https://laravel.com/docs/10.x/sanctum)
+  - [API Resources](https://laravel.com/docs/10.x/eloquent-resources)
   - Versioning
-- [Blade](https://laravel.com/docs/9.x/blade)
-- [Broadcasting](https://laravel.com/docs/9.x/broadcasting)
-- [Cache](https://laravel.com/docs/9.x/cache)
-- [Email Verification](https://laravel.com/docs/9.x/verification)
-- [Filesystem](https://laravel.com/docs/9.x/filesystem)
-- [Helpers](https://laravel.com/docs/9.x/helpers)
-- [Horizon](https://laravel.com/docs/9.x/horizon)
-- [Localization](https://laravel.com/docs/9.x/localization)
-- [Mail](https://laravel.com/docs/9.x/mail)
-- [Migrations](https://laravel.com/docs/9.x/migrations)
-- [Policies](https://laravel.com/docs/9.x/authorization)
-- [Providers](https://laravel.com/docs/9.x/providers)
-- [Requests](https://laravel.com/docs/9.x/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/9.x/seeding)
-- [Testing](https://laravel.com/docs/9.x/testing)
-- [Homestead](https://laravel.com/docs/9.x/homestead)
+- [Blade](https://laravel.com/docs/10.x/blade)
+- [Broadcasting](https://laravel.com/docs/10.x/broadcasting)
+- [Cache](https://laravel.com/docs/10.x/cache)
+- [Email Verification](https://laravel.com/docs/10.x/verification)
+- [Filesystem](https://laravel.com/docs/10.x/filesystem)
+- [Helpers](https://laravel.com/docs/10.x/helpers)
+- [Horizon](https://laravel.com/docs/10.x/horizon)
+- [Localization](https://laravel.com/docs/10.x/localization)
+- [Mail](https://laravel.com/docs/10.x/mail)
+- [Migrations](https://laravel.com/docs/10.x/migrations)
+- [Policies](https://laravel.com/docs/10.x/authorization)
+- [Providers](https://laravel.com/docs/10.x/providers)
+- [Requests](https://laravel.com/docs/10.x/validation#form-request-validation)
+- [Seeding & Factories](https://laravel.com/docs/10.x/seeding)
+- [Testing](https://laravel.com/docs/10.x/testing)
+- [Homestead](https://laravel.com/docs/10.x/homestead)
 
 Beside Laravel, this project uses other tools like:
 
