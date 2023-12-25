@@ -84,6 +84,12 @@ $ php artisan tinker
 ```
 
 ## Useful commands
+
+Start Laravel Horizon:
+```bash
+$ php artisan horizon
+```
+
 Seeding the database :
 ```bash
 $ php artisan db:seed
