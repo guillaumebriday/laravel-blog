@@ -7,7 +7,7 @@ The purpose of this repository is to show good development practices on [Laravel
 
 - [Authentication](https://laravel.com/docs/9.x/authentication)
 - API
-  - Token authentication
+  - [Sanctum](https://laravel.com/docs/9.x/sanctum)
   - [API Resources](https://laravel.com/docs/9.x/eloquent-resources)
   - Versioning
 - [Blade](https://laravel.com/docs/9.x/blade)
@@ -126,16 +126,21 @@ $ php artisan migrate:fresh --seed
 
 ## Accessing the API
 
-Clients can access to the REST API. API requests require authentication via token. You can create a new token in your user profile.
+Clients can access to the REST API. API requests require authentication via Bearer token.
 
-Then, you can use this token either as url parameter or in Authorization header :
+Generate a new token:
 
 ```bash
-# Url parameter
-GET http://laravel-blog.app/api/v1/posts?api_token=your_private_token_here
+curl --location --request POST 'laravel-blog.test/api/v1/authenticate?email=your_email&password=your_password' \
+     --header 'X-Requested-With: XMLHttpRequest'
+```
 
-# Authorization Header
-curl --header "Authorization: Bearer your_private_token_here" http://laravel-blog.app/api/v1/posts
+And now you can use the `meta.access_token` key as your `Bearer` token:
+
+```bash
+curl --location 'laravel-blog.test/api/v1/posts' \
+      --header 'X-Requested-With: XMLHttpRequest' \
+      --header 'Authorization: Bearer access_token'
 ```
 
 API are prefixed by `api` and the API version number like so `v1`.

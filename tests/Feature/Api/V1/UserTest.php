@@ -105,7 +105,7 @@ class UserTest extends TestCase
         $user = $this->user();
         $params = $this->validParams();
 
-        $this->actingAs($user, 'api')
+        $this->actingAs($user, 'sanctum')
             ->json('PATCH', "/api/v1/users/{$user->id}", $params)
             ->assertOk();
 

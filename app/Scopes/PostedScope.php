@@ -14,7 +14,7 @@ class PostedScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $user = Auth::user() ?? Auth::guard('api')->user();
+        $user = Auth::user() ?? Auth::guard('sanctum')->user();
 
         // if not connected or if connected but not admin
         if (!$user || !$user->isAdmin()) {

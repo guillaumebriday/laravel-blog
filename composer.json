@@ -12,6 +12,7 @@
         "laravel/breeze": "^1.19",
         "laravel/framework": "^9",
         "laravel/horizon": "5.19.1",
+        "laravel/sanctum": "^3.3",
         "laravel/tinker": "2.8.1",
         "nunomaduro/collision": "6.2.0",
         "predis/predis": "2.2.1",

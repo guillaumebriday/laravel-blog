@@ -10,7 +10,6 @@ return [
     'password_updated' => 'Le mot de passe a bien été mis à jour',
     'new_users' => 'nouvel utilisateur|nouveaux utilisateurs',
     'count' => ':count utilisateur|:count utilisateurs',
-    'api_token' => "Clé d'API",
     'security' => 'Sécurité',
 
     'attributes' => [
@@ -21,7 +20,6 @@ return [
         'password_confirmation' => 'Confirmation du mot de passe',
         'roles' => 'Rôles',
         'registered_at' => 'Enregistré le',
-        'api_token' => "Clé d'API"
     ],
 
     'placeholder' => [

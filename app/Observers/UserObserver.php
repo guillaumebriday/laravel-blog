@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\Token;
 use App\Models\User;
 
 class UserObserver
@@ -13,6 +12,5 @@ class UserObserver
     public function creating(User $user): void
     {
         $user->registered_at = now();
-        $user->api_token = Token::generate();
     }
 }

@@ -20,7 +20,7 @@ class AuthenticateController extends Controller
 
             return (new UserResource($user))
                 ->additional(['meta' => [
-                    'access_token' => $user->api_token
+                    'access_token' => $user->createToken('api_token')->plainTextToken
                 ]]);
         }
 

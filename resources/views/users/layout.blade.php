@@ -28,12 +28,6 @@
 
           @lang('users.security')
         </a>
-
-        <a href="{{ route('users.token') }}" @class(['list-group-item', 'active' => $tab == 'api_token'])>
-          <x-icon name="key" />
-
-          @lang('users.api_token')
-        </a>
       </div>
     </div>
   </div>
