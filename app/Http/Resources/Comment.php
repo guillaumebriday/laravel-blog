@@ -12,7 +12,7 @@ class Comment extends JsonResource
      */
     public function toArray($request): array
     {
-        $user = Auth::guard('api')->user();
+        $user = Auth::guard('sanctum')->user();
 
         return [
             'id' => $this->id,

@@ -10,7 +10,6 @@ return [
     'password_updated' => 'Password updated',
     'new_users' => 'new user|new users',
     'count' => ':count user|:count users',
-    'api_token' => 'API key',
     'security' => 'Security',
 
     'attributes' => [
@@ -21,7 +20,6 @@ return [
         'password_confirmation' => 'Password confirmation',
         'roles' => 'Roles',
         'registered_at' => 'Registered at',
-        'api_token' => 'API key'
     ],
 
     'placeholder' => [

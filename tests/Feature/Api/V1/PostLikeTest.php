@@ -14,7 +14,7 @@ class PostLikeTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('POST', "/api/v1/posts/{$post->id}/likes")
             ->assertCreated();
 
@@ -27,7 +27,7 @@ class PostLikeTest extends TestCase
         $post = Post::factory()->create();
         $post->likes()->create(['author_id' => $user->id]);
 
-        $this->actingAs($user, 'api')
+        $this->actingAs($user, 'sanctum')
             ->json('DELETE', "/api/v1/posts/{$post->id}/likes")
             ->assertOk();
 

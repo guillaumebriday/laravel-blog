@@ -142,7 +142,7 @@ class PostTest extends TestCase
         $post = Post::factory()->create();
         $params = $this->validParams();
 
-        $this->actingAsAdmin('api')
+        $this->actingAsAdmin('sanctum')
             ->json('PATCH', "/api/v1/posts/{$post->id}", $params)
             ->assertOk();
 
@@ -157,7 +157,7 @@ class PostTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams())
             ->assertForbidden()
             ->assertJson([
@@ -169,7 +169,7 @@ class PostTest extends TestCase
     {
         $params = $this->validParams();
 
-        $this->actingAsAdmin('api')
+        $this->actingAsAdmin('sanctum')
             ->json('POST', '/api/v1/posts/', $params)
             ->assertCreated();
 
@@ -179,7 +179,7 @@ class PostTest extends TestCase
 
     public function testStorePostUnauthorized()
     {
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('POST', '/api/v1/posts/', $this->validParams())
             ->assertForbidden()
             ->assertJson([
@@ -191,7 +191,7 @@ class PostTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $this->actingAsAdmin('api')
+        $this->actingAsAdmin('sanctum')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
             ->assertNoContent();
 
@@ -202,7 +202,7 @@ class PostTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('DELETE', "/api/v1/posts/{$post->id}")
             ->assertForbidden()
             ->assertJson([

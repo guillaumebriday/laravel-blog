@@ -4,7 +4,6 @@ use App\Models\Comment;
 use App\Models\MediaLibrary;
 use App\Models\Post;
 use App\Models\Role;
-use App\Models\Token;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -62,10 +61,5 @@ class DatabaseSeeder extends Seeder
                 'content' => "Hey ! I'm a comment as example."
             ]
         );
-
-        // API tokens
-        User::where('api_token', null)->get()->each->update([
-            'api_token' => Token::generate()
-        ]);
     }
 }

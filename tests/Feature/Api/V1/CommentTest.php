@@ -132,14 +132,14 @@ class CommentTest extends TestCase
     {
         $post = Post::factory()->create();
 
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('POST', "/api/v1/posts/{$post->id}/comments", $this->validParams())
             ->assertCreated();
     }
 
     public function testStoreFail()
     {
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('POST', '/api/v1/posts/31415/comments', $this->validParams())
             ->assertNotFound()
             ->assertJson([
@@ -194,14 +194,14 @@ class CommentTest extends TestCase
     {
         $comment = Comment::factory()->create();
 
-        $this->actingAs($comment->author, 'api')
+        $this->actingAs($comment->author, 'sanctum')
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertNoContent();
     }
 
     public function testCommentDeleteNotFound()
     {
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('DELETE', '/api/v1/comments/31415')
             ->assertNotFound()
             ->assertJson([
@@ -213,7 +213,7 @@ class CommentTest extends TestCase
     {
         $comment = Comment::factory()->create();
 
-        $this->actingAsUser('api')
+        $this->actingAsUser('sanctum')
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertForbidden()
             ->assertJson([
