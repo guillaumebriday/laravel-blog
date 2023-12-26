@@ -9,7 +9,7 @@
           name="content"
           id="content"
           cols="50"
-          rows="10"
+          rows="3"
           @class(['form-control', 'is-invalid' => $errors->has('content')])
           placeholder="@lang('comments.placeholder.content')"
           required

@@ -1,17 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="row">
-  <div class="col-md-12 mb-3">
-    <a href="{{ route('users.show', $user) }}">
-      <x-icon name="long-arrow-left" />
-
-      @lang('users.public_profile')
-    </a>
-  </div>
-</div>
-
 <div class="row">
   <div class="col-md-3 mb-3">
     <div class="card">

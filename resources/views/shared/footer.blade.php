@@ -1,25 +1,23 @@
-<footer class="navbar bg-dark" data-bs-theme="dark">
+<footer class="navbar py-5">
     <div class="container justify-content-center">
-        <ul class="navbar-nav text-center">
-            <li class="nav-item text-white m-3">
-                Made with <x-icon name="heart" prefix="fa-regular" class="text-danger" /> by <a href="https://guillaumebriday.fr" target="_blank" class="text-secondary">Guillaume Briday</a>
-            </li>
-
-            <li class="nav-item text-white m-3">
-                <a href="https://github.com/guillaumebriday/laravel-blog" target="_blank" class="btn btn-outline-secondary mt-1">
+        <ul class="navbar-nav text-center vstack gap-3">
+            <li class="nav-item text-gray-500 d-flex gap-3 justify-content-center">
+                <a href="https://github.com/guillaumebriday/laravel-blog" target="_blank" class="btn text-secondary fs-3">
                     <x-icon name="github" prefix="fa-brands" />
-
-                    Fork me on GitHub
                 </a>
 
-                <a href="https://twitter.com/guillaumebriday" target="_blank" class="btn btn-outline-secondary mt-1">
+                <a href="https://twitter.com/guillaumebriday" target="_blank" class="btn text-secondary fs-3">
                     <x-icon name="twitter" prefix="fa-brands" />
-
-                    Say Hi on Twitter !
                 </a>
             </li>
 
-            <li class="nav-item m-3">
+            <li class="nav-item">
+                <small>
+                    Made with <x-icon name="heart" class="text-danger" /> by <a href="https://guillaumebriday.fr" target="_blank" class="text-secondary">Guillaume Briday</a>
+                </small>
+            </li>
+
+            <li class="nav-item">
                 @include('shared/newsletter-form')
             </li>
         </ul>

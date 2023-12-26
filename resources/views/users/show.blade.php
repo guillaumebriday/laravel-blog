@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-md-12">
       <x-card class="text-center mb-2">
         <h2 class="card-title mb-0">{{ $user->name }}</h2>

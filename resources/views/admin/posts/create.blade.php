@@ -8,7 +8,7 @@
 
         @include('admin/posts/_form')
 
-        <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.posts.index') }}" class="btn btn-light">
             <x-icon name="chevron-left" />
 
             @lang('forms.actions.back')

@@ -1,6 +1,11 @@
-<form action="{{ route('home') }}" method="GET" class="d-flex gap-2" data-turbo="true" data-turbo-frame="posts" data-turbo-action="advance">
-  @csrf
-
+<form
+  action="{{ route('home') }}"
+  method="GET"
+  class="d-flex gap-2"
+  data-turbo="true"
+  data-turbo-frame="posts"
+  data-turbo-action="advance"
+>
   <div class="input-group">
     <input
         type="text"
@@ -11,8 +16,4 @@
         value="{{ request('q') }}"
     >
   </div>
-
-  <button type="submit" class="btn btn-primary">
-    <x-icon name="magnifying-glass" />
-  </button>
 </form>

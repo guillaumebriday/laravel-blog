@@ -44,7 +44,7 @@
         </div>
 
 
-        <a href="{{ route('admin.media.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.media.index') }}" class="btn btn-light">
             <x-icon name="chevron-left" />
 
             @lang('forms.actions.back')

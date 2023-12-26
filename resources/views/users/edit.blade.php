@@ -3,6 +3,7 @@
 @section('main_content')
   <x-card>
     <h1>@lang('users.profile')</h1>
+
     <hr class="my-4">
 
     <form action="{{ route('users.update') }}" method="POST">

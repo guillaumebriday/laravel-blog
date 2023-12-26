@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark sticky-top navbar-expand-md" data-bs-theme="dark">
+<nav class="navbar bg-white border-bottom sticky-top navbar-expand-md">
     <div class="container">
         <!-- Branding Image -->
         <a href="{{ route('home') }}" class="navbar-brand">
@@ -6,7 +6,15 @@
         </a>
 
         <!-- Collapsed Hamburger -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -39,7 +47,7 @@
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">
                                 @lang('users.public_profile')
                             </a>

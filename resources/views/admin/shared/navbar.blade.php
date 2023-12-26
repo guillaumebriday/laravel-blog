@@ -19,7 +19,7 @@
                         {{ Auth::user()->name }}
                     </a>
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                         <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item">
                             @lang('users.public_profile')
                         </a>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <x-card>
+  <x-card class="border-0">
     @if ($post->hasThumbnail())
       <x-slot:image>
         <img src="{{ $post->thumbnail->getUrl() }}" alt="{{ $post->thumbnail->name }}" class="card-img-top">
