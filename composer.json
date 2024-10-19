@@ -13,6 +13,7 @@
         "laravel/framework": "^11.28",
         "laravel/horizon": "5.29.1",
         "laravel/sanctum": "^4.0.3",
+        "laravel/telescope": "^5.2",
         "laravel/tinker": "2.10.0",
         "nunomaduro/collision": "8.5.0",
         "predis/predis": "2.2.2",
@@ -24,7 +25,6 @@
         "filp/whoops": "2.16.0",
         "fzaninotto/faker": "dev-master",
         "laravel/pint": "1.18.1",
-        "laravel/telescope": "5.2.3",
         "mockery/mockery": "1.6.12",
         "phpunit/phpunit": "11.4.1"
     },
@@ -58,7 +58,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan package:discover",
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ]
     },
     "config": {
