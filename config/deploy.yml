@@ -1,0 +1,50 @@
+<% require "dotenv"; Dotenv.load(".env") %>
+
+# Name of your application. Used to uniquely configure containers.
+service: laravel-blog
+
+# Name of the container image.
+image: guillaumebriday/laravel-blog
+
+# Deploy to these servers.
+servers:
+  web:
+    - 51.159.152.188
+
+proxy:
+  app_port: 8080
+  ssl: true
+  host: laravel-blog.guillaumebriday.fr
+
+# Credentials for your image host.
+registry:
+  username: guillaumebriday
+
+  # Always use an access token rather than real password (pulled from .kamal/secrets).
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+env:
+  clear:
+    APP_NAME: "Laravel blog"
+    APP_ENV: "production"
+    APP_DEBUG: false
+    APP_URL: "https://laravel-blog.guillaumebriday.fr"
+    ASSET_URL: "https://laravel-blog.guillaumebriday.fr"
+    DB_CONNECTION: "sqlite"
+    DB_DATABASE: "/var/www/html/data/production_laravel_blog.sqlite3"
+    MAIL_MAILER: "log"
+    SESSION_DRIVER: "file"
+    CACHE_STORE: "file"
+  secret:
+    - APP_KEY
+
+volumes:
+  - "data:/var/www/html/data"
+
+aliases:
+  console: app exec --reuse -i "bash"
+  tinker: app exec --reuse -i "php artisan tinker"
