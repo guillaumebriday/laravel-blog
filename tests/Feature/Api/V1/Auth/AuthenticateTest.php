@@ -14,13 +14,13 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticate()
     {
-        $user = User::factory()->anakin()->create(['password' => Hash::make('4nak1n')]);
+        $user = User::factory()->anakin()->create(['password' => Hash::make('demodemo')]);
         $role = Role::factory()->editor()->create();
         $user->roles()->save($role);
 
         $res = $this->json('POST', '/api/v1/authenticate', [
             'email' => 'anakin@skywalker.st',
-            'password' => '4nak1n'
+            'password' => 'demodemo'
         ])
             ->assertOk()
             ->assertJsonStructure([
@@ -46,7 +46,7 @@ class AuthenticateTest extends TestCase
 
     public function testAuthenticateFail()
     {
-        $user = User::factory()->anakin()->create(['password' => Hash::make('4nak1n')]);
+        $user = User::factory()->anakin()->create(['password' => Hash::make('demodemo')]);
         $user->roles()->save(
             Role::factory()->editor()->create()
         );

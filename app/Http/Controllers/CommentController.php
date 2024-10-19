@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentsRequest;
 use App\Models\Comment;
+use HotwiredLaravel\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
 use Illuminate\Support\Facades\Auth;
-use Tonysm\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
 
 class CommentController extends Controller
 {

@@ -1,5 +1,5 @@
 @auth
-    <x-turbo-frame :id="[$post, 'like']">
+    <x-turbo::frame :id="[$post, 'like']">
         @if ($post->isLiked())
             <form action="{{ route('posts.likes.destroy', $post) }}" method="POST" class="form-inline" data-turbo="true">
                 @method('DELETE')
@@ -18,7 +18,7 @@
                 </button>
             </form>
         @endif
-    </x-turbo-frame>
+    </x-turbo::frame>
 @else
     <i
         class="fa-regular ms-2 fa-heart"

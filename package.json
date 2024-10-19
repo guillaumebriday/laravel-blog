@@ -1,33 +1,33 @@
 {
     "private": true,
-    "type": "module",
     "scripts": {
         "lint": "eslint --ext .js resources/js",
         "dev": "vite",
         "build": "vite build"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.4.2",
-        "@hotwired/turbo": "^7.1.0",
+        "@fortawesome/fontawesome-free": "^6.6.0",
+        "@hotwired/turbo": "^8.0.12",
         "@popperjs/core": "^2.11.8",
-        "bootstrap": "^5.3.2",
-        "clipboard": "2.0.10",
+        "bootstrap": "^5.3.3",
+        "clipboard": "2.0.11",
         "cross-env": "7.0.3",
         "jquery": "^3.7.1",
-        "laravel-echo": "1.11.7",
-        "laravel-vite-plugin": "^0.8.0",
-        "pusher-js": "7.1.0-beta",
-        "trumbowyg": "2.25.1",
-        "vite": "^4.4.9"
+        "laravel-echo": "1.16.1",
+        "laravel-vite-plugin": "^1.0.5",
+        "pusher-js": "7.6.0",
+        "trumbowyg": "2.28.0",
+        "vite": "^5.4.9"
     },
     "devDependencies": {
-        "eslint": "8.14.0",
-        "eslint-config-standard": "17.0.0",
-        "eslint-plugin-import": "2.26.0",
-        "eslint-plugin-n": "^15.2.0",
+        "eslint": "8.57.0",
+        "eslint-config-standard": "17.1.0",
+        "eslint-plugin-import": "2.29.1",
+        "eslint-plugin-n": "16.6.2",
         "eslint-plugin-node": "11.1.0",
-        "eslint-plugin-promise": "6.0.0",
+        "eslint-plugin-promise": "6.6.0",
         "eslint-plugin-standard": "5.0.0",
-        "sass": "1.51.0"
-    }
+        "sass": "1.80.3"
+    },
+    "packageManager": "yarn@4.5.1"
 }

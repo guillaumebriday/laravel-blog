@@ -1,3 +1,5 @@
+// https://eslint.org/docs/user-guide/configuring
+
 module.exports = {
   env: {
     browser: true,
@@ -12,7 +14,6 @@ module.exports = {
     $: false
   },
   parserOptions: {
-    ecmaVersion: 2018,
     sourceType: 'module'
   },
   rules: {

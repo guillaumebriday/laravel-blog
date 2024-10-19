@@ -66,7 +66,7 @@ class NewsletterSubscriptionTest extends TestCase
     private function validParams(array $overrides = []): array
     {
         return array_merge([
-            'email' => 'darthvader@deathstar.ds'
+            'email' => 'demo@demo.com'
         ], $overrides);
     }
 }

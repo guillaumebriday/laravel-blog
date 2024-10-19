@@ -120,7 +120,7 @@ class PostTest extends TestCase
     /**
      * Valid params for updating or creating a resource
      *
-     * @param  array  $overrides new params
+     * @param  array  $overrides  new params
      */
     private function validParams(array $overrides = []): array
     {

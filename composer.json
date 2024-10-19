@@ -5,28 +5,28 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.2",
-        "barryvdh/laravel-debugbar": "3.9.2",
-        "doctrine/dbal": "3.7.2",
-        "hotwired/turbo-laravel": "^1.12",
-        "laravel/breeze": "^1.19",
-        "laravel/framework": "^10.24",
-        "laravel/horizon": "5.21.4",
-        "laravel/sanctum": "^3.3",
-        "laravel/tinker": "2.8.2",
-        "nunomaduro/collision": "7.8.1",
+        "php": "^8.3",
+        "barryvdh/laravel-debugbar": "3.14.6",
+        "doctrine/dbal": "4.2.1",
+        "hotwired-laravel/turbo-laravel": "^2.1",
+        "laravel/breeze": "^2.2.2",
+        "laravel/framework": "^11.28",
+        "laravel/horizon": "5.29.1",
+        "laravel/sanctum": "^4.0.3",
+        "laravel/tinker": "2.10.0",
+        "nunomaduro/collision": "8.5.0",
         "predis/predis": "2.2.2",
-        "pusher/pusher-php-server": "7.2.4",
-        "spatie/laravel-backup": "8.4.1",
-        "spatie/laravel-medialibrary": "11.0.3"
+        "pusher/pusher-php-server": "7.2.6",
+        "spatie/laravel-backup": "9.1.2",
+        "spatie/laravel-medialibrary": "11.9.2"
     },
     "require-dev": {
-        "filp/whoops": "2.15.4",
+        "filp/whoops": "2.16.0",
         "fzaninotto/faker": "dev-master",
-        "laravel/pint": "1.13.7",
-        "laravel/telescope": "4.17.3",
-        "mockery/mockery": "1.6.7",
-        "phpunit/phpunit": "10.5.3"
+        "laravel/pint": "1.18.1",
+        "laravel/telescope": "5.2.3",
+        "mockery/mockery": "1.6.12",
+        "phpunit/phpunit": "11.4.1"
     },
     "autoload": {
         "psr-4": {

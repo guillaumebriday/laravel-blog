@@ -7,7 +7,7 @@
                 </a>
 
                 <a href="https://twitter.com/guillaumebriday" target="_blank" class="btn text-secondary fs-3">
-                    <x-icon name="twitter" prefix="fa-brands" />
+                    <x-icon name="x-twitter" prefix="fa-brands" />
                 </a>
             </li>
 
