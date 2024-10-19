@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use HotwiredLaravel\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
 use Illuminate\Support\Str;
-use Tonysm\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
 
-use function Tonysm\TurboLaravel\dom_id;
+use function HotwiredLaravel\TurboLaravel\dom_id;
 
 class PostLikeController extends Controller
 {

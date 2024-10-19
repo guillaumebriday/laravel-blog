@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->name('api')->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Comments
         Route::apiResource('comments', CommentController::class)->only('destroy');

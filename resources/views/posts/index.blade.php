@@ -3,7 +3,7 @@
 @section('content')
   @include ('posts/_search_form')
 
-  <x-turbo-frame id="posts">
+  <x-turbo::frame id="posts">
     <div class="d-flex justify-content-between gap-3 mt-3">
       <div class="p-2">
         <h2>
@@ -29,5 +29,5 @@
     <div class="d-flex justify-content-center">
       {{ $posts->links() }}
     </div>
-  </x-turbo-frame>
+  </x-turbo::frame>
 @endsection

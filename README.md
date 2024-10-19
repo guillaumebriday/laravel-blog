@@ -1,28 +1,28 @@
-# Laravel 10.x blog
+# Laravel 11.x blog
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's features like:
 
-- [Authentication](https://laravel.com/docs/10.x/authentication)
+- [Authentication](https://laravel.com/docs/11.x/authentication)
 - API
-  - [Sanctum](https://laravel.com/docs/10.x/sanctum)
-  - [API Resources](https://laravel.com/docs/10.x/eloquent-resources)
+  - [Sanctum](https://laravel.com/docs/11.x/sanctum)
+  - [API Resources](https://laravel.com/docs/11.x/eloquent-resources)
   - Versioning
-- [Blade](https://laravel.com/docs/10.x/blade)
-- [Broadcasting](https://laravel.com/docs/10.x/broadcasting)
-- [Cache](https://laravel.com/docs/10.x/cache)
-- [Email Verification](https://laravel.com/docs/10.x/verification)
-- [Filesystem](https://laravel.com/docs/10.x/filesystem)
-- [Helpers](https://laravel.com/docs/10.x/helpers)
-- [Horizon](https://laravel.com/docs/10.x/horizon)
-- [Localization](https://laravel.com/docs/10.x/localization)
-- [Mail](https://laravel.com/docs/10.x/mail)
-- [Migrations](https://laravel.com/docs/10.x/migrations)
-- [Policies](https://laravel.com/docs/10.x/authorization)
-- [Providers](https://laravel.com/docs/10.x/providers)
-- [Requests](https://laravel.com/docs/10.x/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/10.x/seeding)
-- [Testing](https://laravel.com/docs/10.x/testing)
-- [Homestead](https://laravel.com/docs/10.x/homestead)
+- [Blade](https://laravel.com/docs/11.x/blade)
+- [Broadcasting](https://laravel.com/docs/11.x/broadcasting)
+- [Cache](https://laravel.com/docs/11.x/cache)
+- [Email Verification](https://laravel.com/docs/11.x/verification)
+- [Filesystem](https://laravel.com/docs/11.x/filesystem)
+- [Helpers](https://laravel.com/docs/11.x/helpers)
+- [Horizon](https://laravel.com/docs/11.x/horizon)
+- [Localization](https://laravel.com/docs/11.x/localization)
+- [Mail](https://laravel.com/docs/11.x/mail)
+- [Migrations](https://laravel.com/docs/11.x/migrations)
+- [Policies](https://laravel.com/docs/11.x/authorization)
+- [Providers](https://laravel.com/docs/11.x/providers)
+- [Requests](https://laravel.com/docs/11.x/validation#form-request-validation)
+- [Seeding & Factories](https://laravel.com/docs/11.x/seeding)
+- [Testing](https://laravel.com/docs/11.x/testing)
+- [Homestead](https://laravel.com/docs/11.x/homestead)
 
 Beside Laravel, this project uses other tools like:
 
@@ -41,7 +41,7 @@ You can find some screenshots of the application on : [https://imgur.com/a/Jbnwj
 
 ## Installation
 
-To create your development environment [follow these instructions](https://laravel.com/docs/10.x/installation).
+To create your development environment [follow these instructions](https://laravel.com/docs/11.x/installation#local-installation-using-herd).
 
 Setting up your development environment on your local machine:
 ```bash
@@ -54,6 +54,8 @@ $ php artisan telescope:install
 $ php artisan storage:link
 ```
 
+Now open [http://laravel-blog.test](http://laravel-blog.test).
+
 ### Mailer
 
 You can use [Mailpit](https://github.com/axllent/mailpit) to test your emails in development.
@@ -63,18 +65,18 @@ Once installed, open [http://localhost:8025](http://localhost:8025).
 ## Before starting
 You need to run the migrations with the seeds :
 ```bash
-$ php artisan migrate --seed
+$ php artisan migrate:fresh --seed
 ```
 
 This will create a new user that you can use to sign in :
 ```yml
-email: darthvader@deathstar.ds
-password: 4nak1n
+email: demo@demo.com
+password: demodemo
 ```
 
 And then, compile the assets :
 ```bash
-$ yarn dev # or yarn watch
+$ yarn dev
 ```
 
 Starting job for newsletter :
