@@ -8,9 +8,7 @@ import Clipboard from 'clipboard'
 import jquery from 'jquery'
 import Echo from 'laravel-echo'
 import 'pusher-js'
-import * as Turbo from '@hotwired/turbo'
-
-Turbo.session.drive = false
+import '@hotwired/turbo'
 
 window.$ = window.jQuery = jquery
 

@@ -15,7 +15,7 @@
   </div>
 
   <h6>
-    <a href="{{ route('users.show', $comment->author) }}">
+    <a href="{{ route('users.show', $comment->author) }}" data-turbo-frame="_top">
       {{ $comment->author->name }}
     </a>
   </h6>
