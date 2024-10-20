@@ -10,6 +10,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @production
+        <script defer data-domain="laravel-blog.guillaumebriday.fr" src="https://plausible.io/js/script.js"></script>
+    @endproduction
+
     @vite([
         'resources/sass/app.scss',
         'resources/js/app.js'
