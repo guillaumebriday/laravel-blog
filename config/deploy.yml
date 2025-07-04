@@ -9,7 +9,7 @@ image: guillaumebriday/laravel-blog
 # Deploy to these servers.
 servers:
   web:
-    - 51.159.152.188
+    - 51.83.9.67
 
 proxy:
   app_port: 8080
