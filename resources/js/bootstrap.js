@@ -7,10 +7,11 @@ import 'bootstrap'
 import Clipboard from 'clipboard'
 import jquery from 'jquery'
 import Echo from 'laravel-echo'
-import 'pusher-js'
+import Pusher from 'pusher-js'
 import '@hotwired/turbo'
 
 window.$ = window.jQuery = jquery
+window.Pusher = Pusher
 
 new Clipboard('[data-clipboard-target]')
 
@@ -24,5 +25,5 @@ window.Echo = new Echo({
   broadcaster: 'pusher',
   key: import.meta.env.VITE_PUSHER_APP_KEY,
   cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
-  encrypted: true
+  forceTLS: true,
 })
