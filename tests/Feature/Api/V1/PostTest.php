@@ -219,4 +219,6 @@ test('post index limit is clamped', function (mixed $limit, int $expected): void
     'too large' => [100000, 100],
     'negative' => [-5, 1],
     'not a number' => ['abc', 20],
+    'numeric prefix' => ['6r', 6],
+    'array' => [['h', 'H'], 1],
 ]);
