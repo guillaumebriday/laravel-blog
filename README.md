@@ -8,7 +8,6 @@ The purpose of this repository is to show good development practices on [Laravel
   - [API Resources](https://laravel.com/docs/13.x/eloquent-resources)
   - Versioning
 - [Blade](https://laravel.com/docs/13.x/blade)
-- [Broadcasting](https://laravel.com/docs/13.x/broadcasting)
 - [Cache](https://laravel.com/docs/13.x/cache)
 - [Email Verification](https://laravel.com/docs/13.x/verification)
 - [Filesystem](https://laravel.com/docs/13.x/filesystem)

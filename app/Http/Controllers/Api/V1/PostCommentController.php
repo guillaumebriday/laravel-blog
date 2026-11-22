@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Events\CommentPosted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CommentsRequest;
 use App\Http\Resources\Comment as CommentResource;
@@ -28,15 +27,11 @@ class PostCommentController extends Controller
      */
     public function store(CommentsRequest $request, Post $post): CommentResource
     {
-        $comment = new CommentResource(
+        return new CommentResource(
             Auth::user()->comments()->create([
                 'post_id' => $post->id,
                 'content' => $request->input('content')
             ])
         );
-
-        broadcast(new CommentPosted($comment, $post))->toOthers();
-
-        return $comment;
     }
 }

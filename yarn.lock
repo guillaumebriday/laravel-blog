@@ -1730,21 +1730,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"laravel-echo@npm:^2.6.3":
-  version: 2.6.3
-  resolution: "laravel-echo@npm:2.6.3"
-  peerDependencies:
-    pusher-js: "*"
-    socket.io-client: "*"
-  peerDependenciesMeta:
-    pusher-js:
-      optional: true
-    socket.io-client:
-      optional: true
-  checksum: 10c0/bc115059a617fb8911a4cdecd63eb4e812f370117d39a5c624b6eaa7fab7983eb72bf4eaf1b2d63ce32389c2ac95886b3e9fd09efc21f32456403cea8f2027b5
-  languageName: node
-  linkType: hard
-
 "laravel-vite-plugin@npm:^3.2.1":
   version: 3.2.1
   resolution: "laravel-vite-plugin@npm:3.2.1"
@@ -2325,15 +2310,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pusher-js@npm:^8.6.0":
-  version: 8.6.0
-  resolution: "pusher-js@npm:8.6.0"
-  dependencies:
-    tweetnacl: "npm:^1.0.3"
-  checksum: 10c0/93ed5ecc9eb30c2b3d8bd17eeb3b18a7a2e54480129eebb848c1837e9f7ea19d2cda124c833a6a6a460eb33b70b97976a7355f6f83193f43f7838f8511d34982
-  languageName: node
-  linkType: hard
-
 "qified@npm:^0.10.1":
   version: 0.10.1
   resolution: "qified@npm:0.10.1"
@@ -2436,10 +2412,8 @@ __metadata:
     clipboard: "npm:^2.0.11"
     eslint: "npm:^10.15.0"
     jquery: "npm:^4.1.0"
-    laravel-echo: "npm:^2.6.3"
     laravel-vite-plugin: "npm:^3.2.1"
     neostandard: "npm:^0.14.1"
-    pusher-js: "npm:^8.6.0"
     sass: "npm:^1.108.2"
     trumbowyg: "npm:^2.31.0"
     vite: "npm:^8.3.8"
@@ -2685,13 +2659,6 @@ __metadata:
   version: 2.9.1
   resolution: "tslib@npm:2.9.1"
   checksum: 10c0/8ff46e7a4d19fa62c23483c89cf5ccc3906e742ef6e6d60bd3826b686143b300b4f6f04161cc1cf31a6b11fe70e1058ae4d4e4a108b5c68326d469684736a83c
-  languageName: node
-  linkType: hard
-
-"tweetnacl@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "tweetnacl@npm:1.0.3"
-  checksum: 10c0/069d9df51e8ad4a89fbe6f9806c68e06c65be3c7d42f0701cc43dba5f0d6064686b238bbff206c5addef8854e3ce00c643bff59432ea2f2c639feab0ee1a93f9
   languageName: node
   linkType: hard
 

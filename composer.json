@@ -18,7 +18,6 @@
         "laravel/sanctum": "^4.5",
         "laravel/telescope": "^5.29",
         "laravel/tinker": "^3.2",
-        "pusher/pusher-php-server": "^7.3",
         "spatie/laravel-backup": "^10.5",
         "spatie/laravel-medialibrary": "^11.23"
     },
