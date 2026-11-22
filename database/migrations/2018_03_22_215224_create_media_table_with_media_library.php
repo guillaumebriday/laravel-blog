@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table): void {
             $table->increments('id');
             $table->morphs('model');
             $table->string('collection_name');
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->nullableTimestamps();
         });
 
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table): void {
             $table->integer('thumbnail_id')->unsigned()->nullable();
             $table->foreign('thumbnail_id')->references('id')->on('media')->onDelete('set null');
         });
@@ -37,9 +37,9 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table): void {
             $table->dropForeign(['thumbnail_id']);
             $table->dropColumn('thumbnail_id');
         });

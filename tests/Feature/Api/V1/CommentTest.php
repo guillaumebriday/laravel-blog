@@ -4,7 +4,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 
-test('comment index', function () {
+test('comment index', function (): void {
     Comment::factory()->count(2)->create();
 
     $this->json('GET', '/api/v1/comments')
@@ -35,7 +35,7 @@ test('comment index', function () {
         ]);
 });
 
-test('users comments', function () {
+test('users comments', function (): void {
     $user = User::factory()->create();
     Comment::factory()->count(10)->create(['author_id' => $user->id]);
     Comment::factory()->count(10)->create();
@@ -76,7 +76,7 @@ test('users comments', function () {
         ]);
 });
 
-test('posts comments', function () {
+test('posts comments', function (): void {
     $post = Post::factory()->create();
     Comment::factory()->count(10)->create(['post_id' => $post->id]);
     Comment::factory()->count(10)->create();
@@ -117,7 +117,7 @@ test('posts comments', function () {
         ]);
 });
 
-test('store', function () {
+test('store', function (): void {
     $post = Post::factory()->create();
 
     $this->actingAsUser('sanctum')
@@ -125,7 +125,7 @@ test('store', function () {
         ->assertCreated();
 });
 
-test('store fail', function () {
+test('store fail', function (): void {
     $this->actingAsUser('sanctum')
         ->json('POST', '/api/v1/posts/31415/comments', validApiCommentParams())
         ->assertNotFound()
@@ -134,7 +134,7 @@ test('store fail', function () {
         ]);
 });
 
-test('comment show', function () {
+test('comment show', function (): void {
     $comment = Comment::factory()->create([
         'content' => 'The Empire Strikes Back'
     ]);
@@ -167,7 +167,7 @@ test('comment show', function () {
         ]);
 });
 
-test('comment show fail', function () {
+test('comment show fail', function (): void {
     $this->json('GET', '/api/v1/comments/31415')
         ->assertNotFound()
         ->assertJson([
@@ -175,7 +175,7 @@ test('comment show fail', function () {
         ]);
 });
 
-test('comment delete', function () {
+test('comment delete', function (): void {
     $comment = Comment::factory()->create();
 
     $this->actingAs($comment->author, 'sanctum')
@@ -183,7 +183,7 @@ test('comment delete', function () {
         ->assertNoContent();
 });
 
-test('comment delete not found', function () {
+test('comment delete not found', function (): void {
     $this->actingAsUser('sanctum')
         ->json('DELETE', '/api/v1/comments/31415')
         ->assertNotFound()
@@ -192,7 +192,7 @@ test('comment delete not found', function () {
         ]);
 });
 
-test('comment delete unauthorized', function () {
+test('comment delete unauthorized', function (): void {
     $comment = Comment::factory()->create();
 
     $this->actingAsUser('sanctum')
@@ -203,7 +203,7 @@ test('comment delete unauthorized', function () {
         ]);
 });
 
-test('comments delete unauthenticated', function () {
+test('comments delete unauthenticated', function (): void {
     $comment = Comment::factory()->create();
     $this->json('DELETE', "/api/v1/comments/{$comment->id}")
         ->assertUnauthorized()

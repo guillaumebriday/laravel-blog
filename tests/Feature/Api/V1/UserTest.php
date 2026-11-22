@@ -5,7 +5,7 @@ use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
 
-test('user index', function () {
+test('user index', function (): void {
     User::factory()
         ->count(2)
         ->create()
@@ -46,7 +46,7 @@ test('user index', function () {
         ]);
 });
 
-test('user show', function () {
+test('user show', function (): void {
     $user = User::factory()->anakin()->create();
     $role = Role::factory()->editor()->create();
     $user->roles()->save($role);
@@ -90,7 +90,7 @@ test('user show', function () {
         ]);
 });
 
-test('update', function () {
+test('update', function (): void {
     $user = $this->user();
     $params = validApiUserParams();
 

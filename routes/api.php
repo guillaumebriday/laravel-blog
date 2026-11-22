@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('v1')->name('api')->group(function () {
-    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::prefix('v1')->name('api')->group(function (): void {
+    Route::middleware(['auth:sanctum', 'verified'])->group(function (): void {
         // Comments
         Route::apiResource('comments', CommentController::class)->only('destroy');
         Route::apiResource('posts.comments', PostCommentController::class)->only('store');

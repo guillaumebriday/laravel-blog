@@ -22,8 +22,8 @@ class UserController extends Controller
             'posts_count' => $user->posts()->count(),
             'comments_count' => $user->comments()->count(),
             'likes_count' => $user->likes()->count(),
-            'posts' => $user->posts()->withCount('likes', 'comments')->latest()->limit(5)->get(),
-            'comments' => $user->comments()->with('post.author')->latest()->limit(5)->get()
+            'posts' => $user->posts()->withCount('likes', 'comments')->latest('posted_at')->limit(5)->get(),
+            'comments' => $user->comments()->with('post.author')->latest('posted_at')->limit(5)->get()
         ]);
     }
 
@@ -53,6 +53,6 @@ class UserController extends Controller
 
         $user->update($request->validated());
 
-        return redirect()->route('users.edit')->withSuccess(__('users.updated'));
+        return to_route('users.edit')->withSuccess(__('users.updated'));
     }
 }

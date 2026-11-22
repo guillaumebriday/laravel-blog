@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table): void {
             $table->integer('thumbnail_id')->unsigned()->nullable();
             $table->foreign('thumbnail_id')->references('id')->on('media');
         });
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table): void {
             $table->dropForeign(['thumbnail_id']);
             $table->dropColumn('thumbnail_id');
         });

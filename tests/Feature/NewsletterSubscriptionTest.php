@@ -2,7 +2,7 @@
 
 use App\Models\NewsletterSubscription;
 
-test('store', function () {
+test('store', function (): void {
     $params = validNewsletterSubscriptionParams();
 
     $this->actingAsUser()
@@ -13,7 +13,7 @@ test('store', function () {
     $this->assertDatabaseHas('newsletter_subscriptions', $params);
 });
 
-test('store fail', function () {
+test('store fail', function (): void {
     $params = validNewsletterSubscriptionParams();
     NewsletterSubscription::factory()->create($params);
 
@@ -25,7 +25,7 @@ test('store fail', function () {
     expect('The Email has already been taken.')->toEqual(session('errors')->first());
 });
 
-test('unsubscribe', function () {
+test('unsubscribe', function (): void {
     $params = validNewsletterSubscriptionParams();
     $newsletter = NewsletterSubscription::factory()->create($params);
 
@@ -37,7 +37,7 @@ test('unsubscribe', function () {
     $this->assertDatabaseMissing('newsletter_subscriptions', $newsletter->toArray());
 });
 
-test('unsubscribe fail', function () {
+test('unsubscribe fail', function (): void {
     $params = validNewsletterSubscriptionParams();
 
     $this->actingAsUser()

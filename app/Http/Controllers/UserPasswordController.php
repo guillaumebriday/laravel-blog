@@ -37,6 +37,6 @@ class UserPasswordController extends Controller
 
         $user->update($request->only('password'));
 
-        return redirect()->route('users.password')->withSuccess(__('users.password_updated'));
+        return to_route('users.password')->withSuccess(__('users.password_updated'));
     }
 }

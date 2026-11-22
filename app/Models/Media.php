@@ -11,14 +11,15 @@ class Media extends BaseMedia
 {
     /**
      * The attributes that should be mutated to dates.
-     *
-     * @var array
      */
-    protected $casts = [
-        'posted_at' => 'datetime',
-        'manipulations' => 'array',
-        'custom_properties' => 'array',
-        'generated_conversions' => 'array',
-        'responsive_images' => 'array',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'posted_at' => 'datetime',
+            'manipulations' => 'array',
+            'custom_properties' => 'array',
+            'generated_conversions' => 'array',
+            'responsive_images' => 'array',
+        ];
+    }
 }

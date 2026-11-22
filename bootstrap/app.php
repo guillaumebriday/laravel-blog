@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         channels: __DIR__ . '/../routes/channels.php',
         health: '/up',
-        then: function () {
+        then: function (): void {
             Route::prefix('admin')
                 ->middleware(['web', 'auth', 'role:admin', 'verified'])
                 ->as('admin.')
@@ -26,7 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
 
-        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectGuestsTo(fn (): string => route('login'));
         $middleware->redirectUsersTo('/');
 
         $middleware->alias([

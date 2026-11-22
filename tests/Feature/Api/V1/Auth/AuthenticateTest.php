@@ -4,7 +4,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-test('authenticate', function () {
+test('authenticate', function (): void {
     $user = User::factory()->anakin()->create(['password' => Hash::make('demodemo')]);
     $role = Role::factory()->editor()->create();
     $user->roles()->save($role);
@@ -35,7 +35,7 @@ test('authenticate', function () {
         ]);
 });
 
-test('authenticate fail', function () {
+test('authenticate fail', function (): void {
     $user = User::factory()->anakin()->create(['password' => Hash::make('demodemo')]);
     $user->roles()->save(
         Role::factory()->editor()->create()

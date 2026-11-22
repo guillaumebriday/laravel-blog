@@ -3,15 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\NewsletterSubscription;
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Foundation\Bus\PendingDispatch;
+use Illuminate\Foundation\Queue\Queueable;
 
 class PrepareNewsletterSubscriptionEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Queueable;
 
     /**
      * Execute the job.
@@ -20,8 +18,8 @@ class PrepareNewsletterSubscriptionEmail implements ShouldQueue
     {
         $newsletterSubscriptions = NewsletterSubscription::all();
 
-        $newsletterSubscriptions->each(fn ($newsletterSubscription) => SendNewsletterSubscriptionEmail::dispatch($newsletterSubscription->email));
+        $newsletterSubscriptions->each(fn ($newsletterSubscription): PendingDispatch => dispatch(new SendNewsletterSubscriptionEmail($newsletterSubscription->email)));
 
-        PrepareNewsletterSubscriptionEmail::dispatch()->delay(carbon('next month'));
+        dispatch(new PrepareNewsletterSubscriptionEmail)->delay(carbon('next month'));
     }
 }

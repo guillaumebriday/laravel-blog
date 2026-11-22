@@ -18,7 +18,7 @@ class AuthenticateController extends Controller
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             $user = User::where('email', $request->input('email'))->first();
 
-            return (new UserResource($user))
+            return new UserResource($user)
                 ->additional(['meta' => [
                     'access_token' => $user->createToken('api_token')->plainTextToken
                 ]]);

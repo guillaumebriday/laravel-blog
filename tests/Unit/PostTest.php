@@ -3,7 +3,7 @@
 use App\Models\Post;
 use Faker\Factory;
 
-test('limit last month posts', function () {
+test('limit last month posts', function (): void {
     $limit = 5;
     Post::factory()->count(6)->create();
     $lastPosts = Post::lastMonth($limit)->get();
@@ -11,19 +11,19 @@ test('limit last month posts', function () {
     expect($lastPosts->count())->toEqual($limit);
 });
 
-test('slug', function () {
+test('slug', function (): void {
     $post = Post::factory()->create(['title' => 'The Empire Strikes Back']);
     expect('the-empire-strikes-back')->toEqual($post->slug);
 });
 
-test('getting only last month posts', function () {
+test('getting only last month posts', function (): void {
     $faker = Factory::create();
 
     // Older Posts
     Post::factory()
         ->count(3)
         ->create()
-        ->each(function ($post) use ($faker) {
+        ->each(function ($post) use ($faker): void {
             $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
             $post->save();
         });
@@ -32,7 +32,7 @@ test('getting only last month posts', function () {
     Post::factory()
         ->count(3)
         ->create()
-        ->each(function ($post) use ($faker) {
+        ->each(function ($post) use ($faker): void {
             $post->posted_at = $faker->dateTimeBetween(carbon('3 weeks ago'), carbon('1 weeks ago'));
             $post->save();
         });
@@ -49,14 +49,14 @@ test('getting only last month posts', function () {
     expect($isDuringLastMonth)->toBeTrue();
 });
 
-test('getting only last week posts', function () {
+test('getting only last week posts', function (): void {
     $faker = Factory::create();
 
     // Older Posts
     Post::factory()
         ->count(3)
         ->create()
-        ->each(function ($post) use ($faker) {
+        ->each(function ($post) use ($faker): void {
             $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
             $post->save();
         });
@@ -65,7 +65,7 @@ test('getting only last week posts', function () {
     Post::factory()
         ->count(3)
         ->create()
-        ->each(function ($post) use ($faker) {
+        ->each(function ($post) use ($faker): void {
             $post->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
             $post->save();
         });
@@ -82,7 +82,7 @@ test('getting only last week posts', function () {
     expect($isDuringLastWeek)->toBeTrue();
 });
 
-test('posted at scope applied', function () {
+test('posted at scope applied', function (): void {
     Post::factory()->create()->update(['posted_at' => carbon('yesterday')]);
     Post::factory()->create()->update(['posted_at' => carbon('tomorrow')]);
 
@@ -99,7 +99,7 @@ test('posted at scope applied', function () {
     expect(Post::count())->toEqual(1);
 });
 
-test('posted at scope not applied', function () {
+test('posted at scope not applied', function (): void {
     $this->actingAsAdmin();
 
     Post::factory()->create()->update(['posted_at' => carbon('yesterday')]);
@@ -118,7 +118,7 @@ test('posted at scope not applied', function () {
     expect(Post::count())->toEqual(2);
 });
 
-test('search', function () {
+test('search', function (): void {
     Post::factory()->create(['title' => 'Hello Luke']);
     Post::factory()->create(['title' => 'Hello Leia']);
 

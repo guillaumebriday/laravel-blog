@@ -4,7 +4,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 
-test('index', function () {
+test('index', function (): void {
     $anakin = User::factory()->anakin()->create();
 
     $post = Post::factory()->create(['author_id' => $anakin->id]);
@@ -20,7 +20,7 @@ test('index', function () {
         ->assertSee('Anakin');
 });
 
-test('search', function () {
+test('search', function (): void {
     Post::factory()->count(3)->create();
     $post = Post::factory()->create(['title' => 'Hello Obiwan']);
 
@@ -31,7 +31,7 @@ test('search', function () {
         ->assertSee(humanize_date($post->posted_at));
 });
 
-test('show', function () {
+test('show', function (): void {
     $post = Post::factory()->create();
     Comment::factory()->count(2)->create(['post_id' => $post->id]);
     Comment::factory()->create(['post_id' => $post->id]);
@@ -46,10 +46,20 @@ test('show', function () {
         ->assertSee('Comment');
 });
 
-test('show unauthenticated', function () {
+test('show unauthenticated', function (): void {
     $post = Post::factory()->create();
 
     $this->get("/posts/{$post->slug}")
         ->assertOk()
         ->assertSee('You must be signed in to comment.');
+});
+
+test('posts are listed by posted at date', function (): void {
+    // Created most recently, but posted earlier
+    $older = Post::factory()->create(['posted_at' => now()->subWeek(), 'created_at' => now()]);
+    $newer = Post::factory()->create(['posted_at' => now()->subDay(), 'created_at' => now()->subMonth()]);
+
+    $this->get('/')
+        ->assertOk()
+        ->assertSeeInOrder([$newer->title, $older->title]);
 });

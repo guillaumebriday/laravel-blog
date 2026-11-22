@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Media;
 use Spatie\ImageOptimizer\Optimizers\Avifenc;
 use Spatie\ImageOptimizer\Optimizers\Cwebp;
 use Spatie\ImageOptimizer\Optimizers\Gifsicle;
@@ -16,7 +17,6 @@ use Spatie\MediaLibrary\Conversions\ImageGenerators\Webp;
 use Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob;
 use Spatie\MediaLibrary\Downloaders\DefaultDownloader;
 use Spatie\MediaLibrary\MediaCollections\FileAdder;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\MediaCollections\Models\Observers\MediaObserver;
 use Spatie\MediaLibrary\ResponsiveImages\Jobs\GenerateResponsiveImagesJob;
 use Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\Blurred;
@@ -44,7 +44,7 @@ return [
      * This is useful when the originals live on a remote disk (e.g. S3) but the
      * generated derivatives should stay local for faster access and lower egress.
      */
-    'conversions_disk_name' => env('MEDIA_CONVERSIONS_DISK', null),
+    'conversions_disk_name' => env('MEDIA_CONVERSIONS_DISK'),
 
     /*
      * The maximum file size of an item in bytes.
@@ -99,7 +99,7 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'media_model' => App\Models\Media::class,
+    'media_model' => Media::class,
 
     /*
      * The fully qualified class name of the media observer.

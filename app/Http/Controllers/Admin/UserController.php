@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('admin.users.index', [
-            'users' => User::latest()->paginate(50)
+            'users' => User::latest('registered_at')->paginate(50)
         ]);
     }
 
@@ -46,9 +46,9 @@ class UserController extends Controller
 
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
-        $role_ids = array_values($request->get('roles', []));
+        $role_ids = array_values($request->input('roles', []));
         $user->roles()->sync($role_ids);
 
-        return redirect()->route('admin.users.edit', $user)->withSuccess(__('users.updated'));
+        return to_route('admin.users.edit', $user)->withSuccess(__('users.updated'));
     }
 }

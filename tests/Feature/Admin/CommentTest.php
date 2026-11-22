@@ -3,10 +3,10 @@
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
-test('index', function () {
+test('index', function (): void {
     $anakin = User::factory()->anakin()->create();
     $comment = Comment::factory()->create(['author_id' => $anakin->id]);
 
@@ -21,7 +21,7 @@ test('index', function () {
         ->assertSee(Str::limit($comment->content, 50));
 });
 
-test('edit', function () {
+test('edit', function (): void {
     $anakin = User::factory()->anakin()->create();
     $comment = Comment::factory()->create(['author_id' => $anakin->id]);
 
@@ -38,7 +38,7 @@ test('edit', function () {
         ->assertSee('Update');
 });
 
-test('update', function () {
+test('update', function (): void {
     $post = Post::factory()->create();
     $comment = Comment::factory()->create(['post_id' => $post->id]);
     $params = validAdminCommentParams([
@@ -50,11 +50,11 @@ test('update', function () {
         ->patch("/admin/comments/{$comment->id}", $params)
         ->assertRedirect("/admin/comments/{$comment->id}/edit");
 
-    $this->assertDatabaseHas('comments', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
+    $this->assertDatabaseHas('comments', ['posted_at' => Date::parse($params['posted_at'])->toDateTimeString()] + $params);
     expect($comment->refresh()->content)->toEqual($params['content']);
 });
 
-test('update fail', function () {
+test('update fail', function (): void {
     $post = Post::factory()->create();
     $comment = Comment::factory()->create(['post_id' => $post->id]);
     $params = validAdminCommentParams([
@@ -70,7 +70,7 @@ test('update fail', function () {
     $this->assertDatabaseMissing('comments', $params);
 });
 
-test('delete', function () {
+test('delete', function (): void {
     $comment = Comment::factory()->create();
 
     $this->actingAsAdmin()

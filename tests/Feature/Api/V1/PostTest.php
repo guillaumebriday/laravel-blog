@@ -3,9 +3,9 @@
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Date;
 
-test('post index', function () {
+test('post index', function (): void {
     Post::factory()->count(2)->create();
 
     $this->json('GET', '/api/v1/posts')
@@ -38,7 +38,7 @@ test('post index', function () {
         ]);
 });
 
-test('users posts', function () {
+test('users posts', function (): void {
     $user = User::factory()->create();
     Post::factory()->create(['author_id' => $user->id]);
 
@@ -72,7 +72,7 @@ test('users posts', function () {
         ]);
 });
 
-test('users posts fail', function () {
+test('users posts fail', function (): void {
     $user = User::factory()->create();
     Post::factory()->create(['author_id' => $user->id]);
 
@@ -83,7 +83,7 @@ test('users posts fail', function () {
         ]);
 });
 
-test('post show', function () {
+test('post show', function (): void {
     $post = Post::factory()->create([
         'title' => 'The Empire Strikes Back',
         'content' => 'A Star Wars Story'
@@ -116,7 +116,7 @@ test('post show', function () {
         ]);
 });
 
-test('post show fail', function () {
+test('post show fail', function (): void {
     $this->json('GET', '/api/v1/posts/31415')
         ->assertNotFound()
         ->assertJson([
@@ -124,7 +124,7 @@ test('post show fail', function () {
         ]);
 });
 
-test('update', function () {
+test('update', function (): void {
     $post = Post::factory()->create();
     $params = validApiPostParams();
 
@@ -134,12 +134,12 @@ test('update', function () {
 
     $post->refresh();
 
-    $this->assertDatabaseHas('posts', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
+    $this->assertDatabaseHas('posts', ['posted_at' => Date::parse($params['posted_at'])->toDateTimeString()] + $params);
     expect($post->title)->toEqual($params['title']);
     expect($post->content)->toEqual($params['content']);
 });
 
-test('update fail', function () {
+test('update fail', function (): void {
     $post = Post::factory()->create();
 
     $this->actingAsUser('sanctum')
@@ -150,18 +150,18 @@ test('update fail', function () {
         ]);
 });
 
-test('store post', function () {
+test('store post', function (): void {
     $params = validApiPostParams();
 
     $this->actingAsAdmin('sanctum')
         ->json('POST', '/api/v1/posts/', $params)
         ->assertCreated();
 
-    $params['posted_at'] = Carbon::yesterday()->second(0)->toDateTimeString();
-    $this->assertDatabaseHas('posts', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
+    $params['posted_at'] = Date::yesterday()->second(0)->toDateTimeString();
+    $this->assertDatabaseHas('posts', ['posted_at' => Date::parse($params['posted_at'])->toDateTimeString()] + $params);
 });
 
-test('store post unauthorized', function () {
+test('store post unauthorized', function (): void {
     $this->actingAsUser('sanctum')
         ->json('POST', '/api/v1/posts/', validApiPostParams())
         ->assertForbidden()
@@ -170,7 +170,7 @@ test('store post unauthorized', function () {
         ]);
 });
 
-test('post delete', function () {
+test('post delete', function (): void {
     $post = Post::factory()->create();
 
     $this->actingAsAdmin('sanctum')
@@ -180,7 +180,7 @@ test('post delete', function () {
     $this->assertDatabaseMissing('posts', $post->toArray());
 });
 
-test('post delete unauthorized', function () {
+test('post delete unauthorized', function (): void {
     $post = Post::factory()->create();
 
     $this->actingAsUser('sanctum')
@@ -201,7 +201,7 @@ function validApiPostParams(array $overrides = []): array
     return array_merge([
         'title' => 'Star Trek ?',
         'content' => 'Star Wars.',
-        'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
+        'posted_at' => Date::yesterday()->format('Y-m-d\TH:i'),
         'author_id' => test()->admin()->id,
     ], $overrides);
 }

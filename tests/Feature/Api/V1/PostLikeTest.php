@@ -2,7 +2,7 @@
 
 use App\Models\Post;
 
-test('post like', function () {
+test('post like', function (): void {
     $post = Post::factory()->create();
 
     $this->actingAsUser('sanctum')
@@ -12,7 +12,7 @@ test('post like', function () {
     expect($post->likes)->toHaveCount(1);
 });
 
-test('post dislike', function () {
+test('post dislike', function (): void {
     $user = $this->user();
     $post = Post::factory()->create();
     $post->likes()->create(['author_id' => $user->id]);

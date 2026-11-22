@@ -15,6 +15,6 @@ class PostThumbnailController extends Controller
     {
         $post->update(['thumbnail_id' => null]);
 
-        return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
+        return to_route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 }

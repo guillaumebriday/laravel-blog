@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/.well-known/change-password', '/settings/password');
 
-Route::middleware('guest')->group(function () {
+Route::middleware('guest')->group(function (): void {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -28,7 +28,7 @@ Route::middleware('guest')->group(function () {
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function (): void {
     Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
         ->middleware(['signed', 'throttle:6,1'])
@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::prefix('settings')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function (): void {
+    Route::prefix('settings')->group(function (): void {
         Route::get('account', [UserController::class, 'edit'])->name('users.edit');
         Route::match(['put', 'patch'], 'account', [UserController::class, 'update'])->name('users.update');
 

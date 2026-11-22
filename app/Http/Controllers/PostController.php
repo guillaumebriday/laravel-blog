@@ -17,7 +17,7 @@ class PostController extends Controller
             'posts' => Post::search($request->input('q'))
                 ->with('author', 'likes')
                 ->withCount('comments', 'thumbnail', 'likes')
-                ->latest()
+                ->latest('posted_at')
                 ->paginate(20)
         ]);
     }

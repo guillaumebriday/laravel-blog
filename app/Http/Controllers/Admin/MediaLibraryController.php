@@ -55,7 +55,7 @@ class MediaLibraryController extends Controller
             ->usingName($name)
             ->toMediaCollection();
 
-        return redirect()->route('admin.media.index')->withSuccess(__('media.created'));
+        return to_route('admin.media.index')->withSuccess(__('media.created'));
     }
 
     /**
@@ -65,6 +65,6 @@ class MediaLibraryController extends Controller
     {
         $medium->delete();
 
-        return redirect()->route('admin.media.index')->withSuccess(__('media.deleted'));
+        return to_route('admin.media.index')->withSuccess(__('media.deleted'));
     }
 }

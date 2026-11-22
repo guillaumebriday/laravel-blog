@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media_libraries', function (Blueprint $table) {
+        Schema::create('media_libraries', function (Blueprint $table): void {
             $table->increments('id');
             $table->timestamps();
         });

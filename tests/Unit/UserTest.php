@@ -4,7 +4,7 @@ use App\Models\Role;
 use App\Models\User;
 use Faker\Factory;
 
-test('user has role', function () {
+test('user has role', function (): void {
     $user = User::factory()->create();
     $role = Role::factory()->create();
     $user->roles()->attach($role);
@@ -12,7 +12,7 @@ test('user has role', function () {
     expect($user->hasRole($role->name))->toBeTrue();
 });
 
-test('user is admin', function () {
+test('user is admin', function (): void {
     $admin = User::factory()->create();
     $role_editor = Role::factory()->editor()->create();
     $role_admin = Role::factory()->admin()->create();
@@ -22,7 +22,7 @@ test('user is admin', function () {
     expect($admin->isAdmin())->toBeTrue();
 });
 
-test('user is not admin', function () {
+test('user is not admin', function (): void {
     $user = User::factory()->create();
     $user->roles()->attach(
         Role::factory()->editor()->create()
@@ -31,14 +31,14 @@ test('user is not admin', function () {
     expect($user->isAdmin())->toBeFalse();
 });
 
-test('getting only last week users', function () {
+test('getting only last week users', function (): void {
     $faker = Factory::create();
 
     // Older Users
     User::factory()
         ->count(10)
         ->create()
-        ->each(function ($user) use ($faker) {
+        ->each(function ($user) use ($faker): void {
             $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
             $user->save();
         });
@@ -47,7 +47,7 @@ test('getting only last week users', function () {
     User::factory()
         ->count(3)
         ->create()
-        ->each(function ($user) use ($faker) {
+        ->each(function ($user) use ($faker): void {
             $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
             $user->save();
         });
@@ -64,24 +64,24 @@ test('getting only last week users', function () {
     expect($isDuringLastWeek)->toBeTrue();
 });
 
-test('fullname attribute', function () {
+test('fullname attribute', function (): void {
     $user = User::factory()->create(['name' => 'LEIA']);
 
     expect($user->fullname)->toEqual('Leia');
 });
 
-test('registered at', function () {
+test('registered at', function (): void {
     $user = User::factory()->create();
     expect(now()->timestamp)->toEqualWithDelta($user->registered_at->timestamp, 1);
 });
 
-test('authors scope', function () {
+test('authors scope', function (): void {
     $editor = Role::factory()->editor()->create();
     User::factory()->count(10)->create();
     User::factory()
         ->count(3)
         ->create()
-        ->each(function ($user) use ($editor) {
+        ->each(function ($user) use ($editor): void {
             $user->roles()->attach($editor);
         });
 

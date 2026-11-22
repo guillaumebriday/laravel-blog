@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
 
         RateLimiter::for('api', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
 
-        Blade::directive('humanize_date', fn (string $params) => "<?php echo humanize_date($params); ?>");
-        Blade::if('admin', fn () => Auth::check() && Auth::user()->isAdmin());
-        Blade::if('profile', fn ($user) => Auth::check() && Auth::id() == $user->id);
+        Blade::directive('humanize_date', fn (string $params): string => "<?php echo humanize_date($params); ?>");
+        Blade::if('admin', fn (): bool => Auth::check() && Auth::user()->isAdmin());
+        Blade::if('profile', fn ($user): bool => Auth::check() && Auth::id() == $user->id);
     }
 }

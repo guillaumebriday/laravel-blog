@@ -4,7 +4,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 
-test('dashboard', function () {
+test('dashboard', function (): void {
     Post::factory()->count(2)->create();
     User::factory()->count(2)->create();
     Comment::factory()->count(2)->create();

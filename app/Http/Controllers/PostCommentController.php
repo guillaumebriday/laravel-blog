@@ -13,7 +13,7 @@ class PostCommentController extends Controller
     public function index(Post $post): View
     {
         return view('comments.index', [
-            'comments' => $post->comments()->with('author')->latest()->get()
+            'comments' => $post->comments()->with('author')->latest('posted_at')->get()
         ]);
     }
 }

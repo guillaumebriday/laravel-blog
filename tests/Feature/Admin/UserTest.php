@@ -4,7 +4,7 @@ use App\Models\Post;
 use App\Models\Role;
 use App\Models\User;
 
-test('index', function () {
+test('index', function (): void {
     $anakin = User::factory()->anakin()->create();
     User::factory()->count(3)->create();
     Post::factory()->count(3)->create(['author_id' => $anakin->id]);
@@ -21,7 +21,7 @@ test('index', function () {
         ->assertSee('Registered at');
 });
 
-test('edit', function () {
+test('edit', function (): void {
     $anakin = User::factory()->anakin()->create();
 
     $this->actingAsAdmin()
@@ -36,7 +36,7 @@ test('edit', function () {
         ->assertSee('Administrator');
 });
 
-test('update', function () {
+test('update', function (): void {
     $user = User::factory()->create();
     $params = validAdminUserParams();
 
@@ -48,7 +48,7 @@ test('update', function () {
     expect($user->refresh()->email)->toEqual($params['email']);
 });
 
-test('update roles', function () {
+test('update roles', function (): void {
     $user = User::factory()->create();
 
     $role_editor = Role::factory()->editor()->create();

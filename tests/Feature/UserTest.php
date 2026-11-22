@@ -4,7 +4,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Facades\Hash;
 
-test('profil', function () {
+test('profil', function (): void {
     $user = $this->user();
     $comment = Comment::factory()->create(['author_id' => $user->id]);
     $posts = Post::factory()->count(3)->create(['author_id' => $user->id]);
@@ -25,7 +25,7 @@ test('profil', function () {
         ->assertSee('Edit profile');
 });
 
-test('editing', function () {
+test('editing', function (): void {
     $user = $this->user();
 
     $this->actingAs($user)
@@ -39,7 +39,7 @@ test('editing', function () {
         ->assertSee('Save');
 });
 
-test('update', function () {
+test('update', function (): void {
     $user = $this->user();
     $params = validUserParams();
 
@@ -51,7 +51,7 @@ test('update', function () {
     expect($user->refresh()->email)->toEqual($params['email']);
 });
 
-test('update password', function () {
+test('update password', function (): void {
     $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
     $params = validPasswordParams();
 
@@ -63,7 +63,7 @@ test('update password', function () {
     expect(Hash::check($params['password'], $user->refresh()->password))->toBeTrue();
 });
 
-test('update password fail', function () {
+test('update password fail', function (): void {
     $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
     $params = validPasswordParams(['current_password' => '7h3_l457_j3d1']);
 

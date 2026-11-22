@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\NewsletterSubscription;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<NewsletterSubscription>
+ */
 class NewsletterSubscriptionFactory extends Factory
 {
     /**
@@ -12,6 +15,7 @@ class NewsletterSubscriptionFactory extends Factory
      *
      * @var string
      */
+    #[\Override]
     protected $model = NewsletterSubscription::class;
 
     /**
@@ -20,7 +24,7 @@ class NewsletterSubscriptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'email' => $this->faker->unique()->safeEmail()
+            'email' => fake()->unique()->safeEmail()
         ];
     }
 }

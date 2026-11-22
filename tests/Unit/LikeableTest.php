@@ -3,14 +3,14 @@
 use App\Models\Like;
 use App\Models\Post;
 
-test('likes', function () {
+test('likes', function (): void {
     $post = Post::factory()->create();
     Like::factory()->create(['likeable_id' => $post->id]);
 
     expect($post->likes)->toHaveCount(1);
 });
 
-test('like', function () {
+test('like', function (): void {
     $this->actingAsUser();
     $post = Post::factory()->create();
 
@@ -19,7 +19,7 @@ test('like', function () {
     expect($post->likes)->toHaveCount(1);
 });
 
-test('dislike', function () {
+test('dislike', function (): void {
     $this->actingAsUser();
     $post = Post::factory()->create();
 
@@ -29,7 +29,7 @@ test('dislike', function () {
     expect($post->likes)->toHaveCount(0);
 });
 
-test('is liked', function () {
+test('is liked', function (): void {
     $this->actingAsUser();
     $post = Post::factory()->create();
 
@@ -38,7 +38,7 @@ test('is liked', function () {
     expect($post->isLiked())->toBeTrue();
 });
 
-test('is not liked', function () {
+test('is not liked', function (): void {
     $this->actingAsUser();
     $post = Post::factory()->create();
 

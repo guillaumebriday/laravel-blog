@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class NewsletterSubscriptionController extends Controller
 {
@@ -18,7 +18,7 @@ class NewsletterSubscriptionController extends Controller
      */
     public function store(NewsletterSubscriptionRequest $request): RedirectResponse
     {
-        $newsletterSubscription = NewsletterSubscription::create($request->validated());
+        NewsletterSubscription::create($request->validated());
 
         return back()->withSuccess(__('newsletter.created'));
     }
@@ -29,7 +29,7 @@ class NewsletterSubscriptionController extends Controller
     public function unsubscribe(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:newsletter_subscriptions,email'
+            'email' => ['required', 'email', 'exists:newsletter_subscriptions,email']
         ]);
 
         if ($validator->fails()) {
@@ -40,10 +40,10 @@ class NewsletterSubscriptionController extends Controller
                 $route = 'home';
             }
 
-            return redirect()->route($route)->withErrors($errors);
+            return to_route($route)->withErrors($errors);
         }
 
-        UnsubscribeEmailNewsletter::dispatch($request->input('email'));
+        dispatch(new UnsubscribeEmailNewsletter($request->input('email')));
 
         Session::flash('success', __('newsletter.unsubscribed'));
 

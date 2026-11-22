@@ -17,13 +17,7 @@ class CommentPosted implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(
-        public CommentResource $comment,
-        private Post $post
-    ) {
-        $this->comment = $comment;
-        $this->post = $post;
-    }
+    public function __construct(public CommentResource $comment, private Post $post) {}
 
     /**
      * Get the channels the event should broadcast on.

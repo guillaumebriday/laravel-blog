@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('personal_access_tokens', function (Blueprint $table): void {
             $table->id();
             $table->morphs('tokenable');
             $table->string('name');
@@ -30,7 +30,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('personal_access_tokens');
 
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table): void {
             $table->string('api_token', 60)->unique()->nullable();
         });
     }
