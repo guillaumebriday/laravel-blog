@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Concern\Likeable;
+use App\Observers\PostObserver;
 use App\Scopes\PostedScope;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
+#[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
     use HasFactory, Likeable;
