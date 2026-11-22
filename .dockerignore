@@ -1,0 +1,17 @@
+.git
+.env
+.env.backup
+.env.production
+.idea
+.DS_Store
+node_modules
+vendor
+public/build
+public/hot
+public/storage
+public/media
+data/*.sqlite3
+storage/logs/*.log
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*.php

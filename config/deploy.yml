@@ -11,6 +11,30 @@ servers:
   web:
     - 51.83.9.67
 
+  # Processes queued jobs (newsletter emails, broadcasting, media conversions)
+  job:
+    hosts:
+      - 51.83.9.67
+    cmd: php /var/www/html/artisan queue:work --tries=3
+    env:
+      clear:
+        AUTORUN_ENABLED: "false"
+    options:
+      stop-signal: SIGTERM
+      health-cmd: healthcheck-queue
+
+  # Runs the scheduler (backups and Telescope pruning, see routes/console.php)
+  cron:
+    hosts:
+      - 51.83.9.67
+    cmd: php /var/www/html/artisan schedule:work
+    env:
+      clear:
+        AUTORUN_ENABLED: "false"
+    options:
+      stop-signal: SIGTERM
+      health-cmd: healthcheck-schedule
+
 proxy:
   app_port: 8080
   ssl: true
