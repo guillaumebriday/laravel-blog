@@ -205,3 +205,18 @@ function validApiPostParams(array $overrides = []): array
         'author_id' => test()->admin()->id,
     ], $overrides);
 }
+
+test('post index limit is clamped', function (mixed $limit, int $expected): void {
+    Post::factory()->count(3)->create();
+
+    $this->json('GET', '/api/v1/posts', ['limit' => $limit])
+        ->assertOk()
+        ->assertJsonPath('meta.per_page', $expected);
+})->with([
+    'empty' => [null, 20],
+    'zero' => [0, 20],
+    'within bounds' => [2, 2],
+    'too large' => [100000, 100],
+    'negative' => [-5, 1],
+    'not a number' => ['abc', 20],
+]);

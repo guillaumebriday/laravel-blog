@@ -21,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+        Request::macro('perPage', fn (int $default = 20, int $max = 100): int => clamp($this->integer('limit') ?: $default, 1, $max));
+
         Route::model('medium', Media::class);
 
         RateLimiter::for('api', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));

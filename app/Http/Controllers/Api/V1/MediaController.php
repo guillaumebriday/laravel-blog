@@ -20,7 +20,7 @@ class MediaController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return MediaResource::collection(
-            MediaLibrary::first()->media()->paginate($request->input('limit', 20))
+            MediaLibrary::first()->media()->paginate($request->perPage())
         );
     }
 

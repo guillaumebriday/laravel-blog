@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return UserResource::collection(
-            User::withCount(['comments', 'posts'])->with('roles')->latest('registered_at')->paginate($request->input('limit', 20))
+            User::withCount(['comments', 'posts'])->with('roles')->latest('registered_at')->paginate($request->perPage())
         );
     }
 
