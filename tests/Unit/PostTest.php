@@ -11,7 +11,7 @@ class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testLimitLastMonthPosts()
+    public function test_limit_last_month_posts()
     {
         $limit = 5;
         Post::factory()->count(6)->create();
@@ -20,13 +20,13 @@ class PostTest extends TestCase
         $this->assertEquals($limit, $lastPosts->count());
     }
 
-    public function testSlug()
+    public function test_slug()
     {
         $post = Post::factory()->create(['title' => 'The Empire Strikes Back']);
         $this->assertEquals($post->slug, 'the-empire-strikes-back');
     }
 
-    public function testGettingOnlyLastMonthPosts()
+    public function test_getting_only_last_month_posts()
     {
         $faker = Factory::create();
 
@@ -60,7 +60,7 @@ class PostTest extends TestCase
         $this->assertTrue($isDuringLastMonth);
     }
 
-    public function testGettingOnlyLastWeekPosts()
+    public function test_getting_only_last_week_posts()
     {
         $faker = Factory::create();
 
@@ -94,7 +94,7 @@ class PostTest extends TestCase
         $this->assertTrue($isDuringLastWeek);
     }
 
-    public function testPostedAtScopeApplied()
+    public function test_posted_at_scope_applied()
     {
         Post::factory()->create()->update(['posted_at' => carbon('yesterday')]);
         Post::factory()->create()->update(['posted_at' => carbon('tomorrow')]);
@@ -112,7 +112,7 @@ class PostTest extends TestCase
         $this->assertEquals(1, Post::count());
     }
 
-    public function testPostedAtScopeNotApplied()
+    public function test_posted_at_scope_not_applied()
     {
         $this->actingAsAdmin();
 
@@ -132,7 +132,7 @@ class PostTest extends TestCase
         $this->assertEquals(2, Post::count());
     }
 
-    public function testSearch()
+    public function test_search()
     {
         Post::factory()->create(['title' => 'Hello Luke']);
         Post::factory()->create(['title' => 'Hello Leia']);

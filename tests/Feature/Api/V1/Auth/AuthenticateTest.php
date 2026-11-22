@@ -12,7 +12,7 @@ class AuthenticateTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testAuthenticate()
+    public function test_authenticate()
     {
         $user = User::factory()->anakin()->create(['password' => Hash::make('demodemo')]);
         $role = Role::factory()->editor()->create();
@@ -44,7 +44,7 @@ class AuthenticateTest extends TestCase
             ]);
     }
 
-    public function testAuthenticateFail()
+    public function test_authenticate_fail()
     {
         $user = User::factory()->anakin()->create(['password' => Hash::make('demodemo')]);
         $user->roles()->save(

@@ -13,7 +13,7 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserIndex()
+    public function test_user_index()
     {
         User::factory()
             ->count(2)
@@ -55,7 +55,7 @@ class UserTest extends TestCase
             ]);
     }
 
-    public function testUserShow()
+    public function test_user_show()
     {
         $user = User::factory()->anakin()->create();
         $role = Role::factory()->editor()->create();
@@ -100,7 +100,7 @@ class UserTest extends TestCase
             ]);
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $user = $this->user();
         $params = $this->validParams();

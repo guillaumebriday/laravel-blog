@@ -12,7 +12,7 @@ class DashboardTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testDashboard()
+    public function test_dashboard()
     {
         Post::factory()->count(2)->create();
         User::factory()->count(2)->create();

@@ -1,0 +1,12 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "no_superfluous_elseif": true,
+        "no_useless_else": true,
+        "trailing_comma_in_multiline": false,
+        "not_operator_with_successor_space": false,
+        "concat_space": {
+            "spacing": "one"
+        }
+    }
+}

@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -33,7 +34,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        $this->authorize('update', $user);
+        Gate::authorize('update', $user);
 
         return view('users.edit', [
             'user' => $user,
@@ -48,7 +49,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        $this->authorize('update', $user);
+        Gate::authorize('update', $user);
 
         $user->update($request->validated());
 

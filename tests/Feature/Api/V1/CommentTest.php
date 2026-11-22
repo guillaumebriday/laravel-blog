@@ -12,7 +12,7 @@ class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCommentIndex()
+    public function test_comment_index()
     {
         Comment::factory()->count(2)->create();
 
@@ -44,7 +44,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testUsersComments()
+    public function test_users_comments()
     {
         $user = User::factory()->create();
         Comment::factory()->count(10)->create(['author_id' => $user->id]);
@@ -86,7 +86,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testPostsComments()
+    public function test_posts_comments()
     {
         $post = Post::factory()->create();
         Comment::factory()->count(10)->create(['post_id' => $post->id]);
@@ -128,7 +128,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testStore()
+    public function test_store()
     {
         $post = Post::factory()->create();
 
@@ -137,7 +137,7 @@ class CommentTest extends TestCase
             ->assertCreated();
     }
 
-    public function testStoreFail()
+    public function test_store_fail()
     {
         $this->actingAsUser('sanctum')
             ->json('POST', '/api/v1/posts/31415/comments', $this->validParams())
@@ -147,7 +147,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testCommentShow()
+    public function test_comment_show()
     {
         $comment = Comment::factory()->create([
             'content' => 'The Empire Strikes Back'
@@ -181,7 +181,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testCommentShowFail()
+    public function test_comment_show_fail()
     {
         $this->json('GET', '/api/v1/comments/31415')
             ->assertNotFound()
@@ -190,7 +190,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testCommentDelete()
+    public function test_comment_delete()
     {
         $comment = Comment::factory()->create();
 
@@ -199,7 +199,7 @@ class CommentTest extends TestCase
             ->assertNoContent();
     }
 
-    public function testCommentDeleteNotFound()
+    public function test_comment_delete_not_found()
     {
         $this->actingAsUser('sanctum')
             ->json('DELETE', '/api/v1/comments/31415')
@@ -209,7 +209,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testCommentDeleteUnauthorized()
+    public function test_comment_delete_unauthorized()
     {
         $comment = Comment::factory()->create();
 
@@ -221,7 +221,7 @@ class CommentTest extends TestCase
             ]);
     }
 
-    public function testCommentsDeleteUnauthenticated()
+    public function test_comments_delete_unauthenticated()
     {
         $comment = Comment::factory()->create();
         $this->json('DELETE', "/api/v1/comments/{$comment->id}")

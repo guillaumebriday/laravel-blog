@@ -11,7 +11,7 @@ class LikeableTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testLikes()
+    public function test_likes()
     {
         $post = Post::factory()->create();
         Like::factory()->create(['likeable_id' => $post->id]);
@@ -19,7 +19,7 @@ class LikeableTest extends TestCase
         $this->assertCount(1, $post->likes);
     }
 
-    public function testLike()
+    public function test_like()
     {
         $this->actingAsUser();
         $post = Post::factory()->create();
@@ -29,7 +29,7 @@ class LikeableTest extends TestCase
         $this->assertCount(1, $post->likes);
     }
 
-    public function testDislike()
+    public function test_dislike()
     {
         $this->actingAsUser();
         $post = Post::factory()->create();
@@ -40,7 +40,7 @@ class LikeableTest extends TestCase
         $this->assertCount(0, $post->likes);
     }
 
-    public function testIsLiked()
+    public function test_is_liked()
     {
         $this->actingAsUser();
         $post = Post::factory()->create();
@@ -50,7 +50,7 @@ class LikeableTest extends TestCase
         $this->assertTrue($post->isLiked());
     }
 
-    public function testIsNotLiked()
+    public function test_is_not_liked()
     {
         $this->actingAsUser();
         $post = Post::factory()->create();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserPasswordsRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
@@ -16,7 +17,7 @@ class UserPasswordController extends Controller
     {
         $user = auth()->user();
 
-        $this->authorize('update', $user);
+        Gate::authorize('update', $user);
 
         return view('users.password', ['user' => $user]);
     }
@@ -28,7 +29,7 @@ class UserPasswordController extends Controller
     {
         $user = auth()->user();
 
-        $this->authorize('update', $user);
+        Gate::authorize('update', $user);
 
         $request->merge([
             'password' => Hash::make($request->input('password'))

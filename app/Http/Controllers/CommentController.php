@@ -6,6 +6,7 @@ use App\Http\Requests\CommentsRequest;
 use App\Models\Comment;
 use HotwiredLaravel\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -28,7 +29,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment): MultiplePendingTurboStreamResponse
     {
-        $this->authorize('delete', $comment);
+        Gate::authorize('delete', $comment);
 
         $comment->delete();
 

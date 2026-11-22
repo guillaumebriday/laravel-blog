@@ -11,13 +11,13 @@ class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPostedAt()
+    public function test_posted_at()
     {
         $comment = Comment::factory()->create();
         $this->assertEqualsWithDelta($comment->posted_at->timestamp, now()->timestamp, 1);
     }
 
-    public function testGettingOnlyLastWeekComments()
+    public function test_getting_only_last_week_comments()
     {
         $faker = Factory::create();
 

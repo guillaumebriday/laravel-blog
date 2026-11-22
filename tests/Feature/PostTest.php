@@ -12,7 +12,7 @@ class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $anakin = User::factory()->anakin()->create();
 
@@ -29,7 +29,7 @@ class PostTest extends TestCase
             ->assertSee('Anakin');
     }
 
-    public function testSearch()
+    public function test_search()
     {
         Post::factory()->count(3)->create();
         $post = Post::factory()->create(['title' => 'Hello Obiwan']);
@@ -41,7 +41,7 @@ class PostTest extends TestCase
             ->assertSee(humanize_date($post->posted_at));
     }
 
-    public function testShow()
+    public function test_show()
     {
         $post = Post::factory()->create();
         Comment::factory()->count(2)->create(['post_id' => $post->id]);
@@ -57,7 +57,7 @@ class PostTest extends TestCase
             ->assertSee('Comment');
     }
 
-    public function testShowUnauthenticated()
+    public function test_show_unauthenticated()
     {
         $post = Post::factory()->create();
 

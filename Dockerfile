@@ -1,18 +1,19 @@
-FROM serversideup/php:8.3-fpm-nginx AS base
+FROM node:26-slim AS node
+
+FROM serversideup/php:8.6-fpm-nginx AS base
 
 # Switch to root so we can do root things
 USER root
 
-# Install the exif extension with root permissions
-RUN install-php-extensions exif
+# Install PHP extensions (exif and gd are required by spatie/laravel-medialibrary)
+RUN install-php-extensions exif gd intl
 
 # Install JavaScript dependencies
-ARG NODE_VERSION=20.18.0
-ENV PATH=/usr/local/node/bin:$PATH
-RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
-    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    corepack enable && \
-    rm -rf /tmp/node-build-master
+COPY --from=node /usr/local/bin/node /usr/local/bin/node
+COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
+    npm install --global corepack && \
+    corepack enable
 
 # Drop back to our unprivileged user
 USER www-data
@@ -27,8 +28,8 @@ ENV HEALTHCHECK_PATH="/up"
 # Copy the app files...
 COPY --chown=www-data:www-data . /var/www/html
 
-# Re-run install, but now with scripts and optimizing the autoloader (should be faster)...
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+# Install PHP dependencies, without dev packages, with an optimized autoloader
+RUN composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
 
 # Precompiling assets for production
 RUN yarn install --immutable && \

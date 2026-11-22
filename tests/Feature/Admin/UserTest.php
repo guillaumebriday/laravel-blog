@@ -12,7 +12,7 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $anakin = User::factory()->anakin()->create();
         User::factory()->count(3)->create();
@@ -30,7 +30,7 @@ class UserTest extends TestCase
             ->assertSee('Registered at');
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $anakin = User::factory()->anakin()->create();
 
@@ -46,7 +46,7 @@ class UserTest extends TestCase
             ->assertSee('Administrator');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $user = User::factory()->create();
         $params = $this->validParams();
@@ -59,7 +59,7 @@ class UserTest extends TestCase
         $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
-    public function testUpdateRoles()
+    public function test_update_roles()
     {
         $user = User::factory()->create();
 

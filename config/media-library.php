@@ -1,5 +1,32 @@
 <?php
 
+use Spatie\ImageOptimizer\Optimizers\Avifenc;
+use Spatie\ImageOptimizer\Optimizers\Cwebp;
+use Spatie\ImageOptimizer\Optimizers\Gifsicle;
+use Spatie\ImageOptimizer\Optimizers\Jpegoptim;
+use Spatie\ImageOptimizer\Optimizers\Optipng;
+use Spatie\ImageOptimizer\Optimizers\Pngquant;
+use Spatie\ImageOptimizer\Optimizers\Svgo;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Avif;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Image;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Pdf;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Svg;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Video;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Webp;
+use Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob;
+use Spatie\MediaLibrary\Downloaders\DefaultDownloader;
+use Spatie\MediaLibrary\MediaCollections\FileAdder;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Observers\MediaObserver;
+use Spatie\MediaLibrary\ResponsiveImages\Jobs\GenerateResponsiveImagesJob;
+use Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\Blurred;
+use Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\FileSizeOptimizedWidthCalculator;
+use Spatie\MediaLibrary\Support\FileNamer\DefaultFileNamer;
+use Spatie\MediaLibrary\Support\FileRemover\DefaultFileRemover;
+use Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator;
+use Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator;
+use Spatie\MediaLibraryPro\Models\TemporaryUpload;
+
 return [
 
     /*
@@ -9,22 +36,55 @@ return [
     'disk_name' => env('MEDIA_DISK', 'public'),
 
     /*
+     * The disk on which to store conversions (thumbnails, etc.) and responsive images
+     * when no disk is specified explicitly on the media collection or via
+     * `storingConversionsOnDisk()`. When left null, conversions are stored on the
+     * same disk as the original media — preserving previous behavior.
+     *
+     * This is useful when the originals live on a remote disk (e.g. S3) but the
+     * generated derivatives should stay local for faster access and lower egress.
+     */
+    'conversions_disk_name' => env('MEDIA_CONVERSIONS_DISK', null),
+
+    /*
      * The maximum file size of an item in bytes.
      * Adding a larger file will result in an exception.
      */
     'max_file_size' => 1024 * 1024 * 10, // 10MB
 
     /*
+     * Uploads whose file name contains any of these extensions will be rejected.
+     * The check looks at every extension in the file name, so a file named
+     * `malicious.php.jpg` is blocked as well. Matching is case-insensitive
+     * and a leading dot is optional.
+     *
+     * The default list lives on the `FileAdder` class so the shipped config
+     * and the in-code fallback (used when the config is cached without the
+     * key) cannot drift. Override here to extend or shrink it.
+     */
+    'disallowed_extensions' => FileAdder::$defaultDisallowedExtensions,
+
+    /*
+     * When this is set to an array of extensions, only uploads whose final
+     * extension is in the list will be accepted. Matching is case-insensitive
+     * and a leading dot is optional. The `disallowed_extensions` list above
+     * is still enforced, so an interior dangerous segment (such as the `php`
+     * in `shell.php.jpg`) is rejected even if the final extension is allowed.
+     * Leave `null` to disable allowlisting.
+     */
+    'allowed_extensions' => null,
+
+    /*
      * This queue connection will be used to generate derived and responsive images.
      * Leave empty to use the default queue connection.
      */
-    'queue_connection_name' => '',
+    'queue_connection_name' => env('QUEUE_CONNECTION', 'sync'),
 
     /*
      * This queue will be used to generate derived and responsive images.
      * Leave empty to use the default queue.
      */
-    'queue_name' => '',
+    'queue_name' => env('MEDIA_QUEUE', ''),
 
     /*
      * By default all conversions will be performed on a queue.
@@ -32,19 +92,37 @@ return [
     'queue_conversions_by_default' => env('QUEUE_CONVERSIONS_BY_DEFAULT', true),
 
     /*
+     * Should database transactions be run after database commits?
+     */
+    'queue_conversions_after_database_commit' => env('QUEUE_CONVERSIONS_AFTER_DB_COMMIT', true),
+
+    /*
      * The fully qualified class name of the media model.
      */
     'media_model' => App\Models\Media::class,
+
+    /*
+     * The fully qualified class name of the media observer.
+     */
+    'media_observer' => MediaObserver::class,
+
+    /*
+     * When enabled, media collections will be serialised using the default
+     * laravel model serialization behaviour.
+     *
+     * Keep this option disabled if using Media Library Pro components (https://medialibrary.pro)
+     */
+    'use_default_collection_serialization' => false,
 
     /*
      * The fully qualified class name of the model used for temporary uploads.
      *
      * This model is only used in Media Library Pro (https://medialibrary.pro)
      */
-    'temporary_upload_model' => Spatie\MediaLibraryPro\Models\TemporaryUpload::class,
+    'temporary_upload_model' => TemporaryUpload::class,
 
     /*
-     * When enabled, Media Library Pro will only process temporary uploads there were uploaded
+     * When enabled, Media Library Pro will only process temporary uploads that were uploaded
      * in the same session. You can opt to disable this for stateless usage of
      * the pro components.
      */
@@ -58,18 +136,38 @@ return [
     /*
      * This is the class that is responsible for naming generated files.
      */
-    'file_namer' => Spatie\MediaLibrary\Support\FileNamer\DefaultFileNamer::class,
+    'file_namer' => DefaultFileNamer::class,
 
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    'path_generator' => DefaultPathGenerator::class,
+
+    /*
+     * The class that contains the strategy for determining how to remove files.
+     */
+    'file_remover_class' => DefaultFileRemover::class,
+
+    /*
+     * Here you can specify which path generator should be used for the given class.
+     */
+    'custom_path_generators' => [
+        // Model::class => PathGenerator::class
+        // or
+        // 'model_morph_alias' => PathGenerator::class
+    ],
 
     /*
      * When urls to files get generated, this class will be called. Use the default
      * if your files are stored locally above the site root or on s3.
      */
-    'url_generator' => Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator::class,
+    'url_generator' => DefaultUrlGenerator::class,
+
+    /*
+     * Moves media on updating to keep path consistent. Enable it only with a custom
+     * PathGenerator that uses, for example, the media UUID.
+     */
+    'moves_media_on_update' => false,
 
     /*
      * Whether to activate versioning when urls to files get generated.
@@ -83,33 +181,34 @@ return [
      * the optimizers that will be used by default.
      */
     'image_optimizers' => [
-        Spatie\ImageOptimizer\Optimizers\Jpegoptim::class => [
+        Jpegoptim::class => [
             '-m85', // set maximum quality to 85%
+            '--force', // ensure that progressive generation is always done also if a little bigger
             '--strip-all', // this strips out all text information such as comments and EXIF data
             '--all-progressive', // this will make sure the resulting image is a progressive one
         ],
-        Spatie\ImageOptimizer\Optimizers\Pngquant::class => [
+        Pngquant::class => [
             '--force', // required parameter for this package
         ],
-        Spatie\ImageOptimizer\Optimizers\Optipng::class => [
+        Optipng::class => [
             '-i0', // this will result in a non-interlaced, progressive scanned image
             '-o2', // this set the optimization level to two (multiple IDAT compression trials)
             '-quiet', // required parameter for this package
         ],
-        Spatie\ImageOptimizer\Optimizers\Svgo::class => [
+        Svgo::class => [
             '--disable=cleanupIDs', // disabling because it is known to cause troubles
         ],
-        Spatie\ImageOptimizer\Optimizers\Gifsicle::class => [
+        Gifsicle::class => [
             '-b', // required parameter for this package
             '-O3', // this produces the slowest but best results
         ],
-        Spatie\ImageOptimizer\Optimizers\Cwebp::class => [
+        Cwebp::class => [
             '-m 6', // for the slowest compression method in order to get the best compression.
             '-pass 10', // for maximizing the amount of analysis pass.
             '-mt', // multithreading for some speed improvements.
-            '-q 90', //quality factor that brings the least noticeable changes.
+            '-q 90', // quality factor that brings the least noticeable changes.
         ],
-        Spatie\ImageOptimizer\Optimizers\Avifenc::class => [
+        Avifenc::class => [
             '-a cq-level=23', // constant quality level, lower values mean better quality and greater file size (0-63).
             '-j all', // number of jobs (worker threads, "all" uses all available cores).
             '--min 0', // min quantizer for color (0-63).
@@ -125,12 +224,12 @@ return [
      * These generators will be used to create an image of media files.
      */
     'image_generators' => [
-        Spatie\MediaLibrary\Conversions\ImageGenerators\Image::class,
-        Spatie\MediaLibrary\Conversions\ImageGenerators\Webp::class,
-        Spatie\MediaLibrary\Conversions\ImageGenerators\Avif::class,
-        Spatie\MediaLibrary\Conversions\ImageGenerators\Pdf::class,
-        Spatie\MediaLibrary\Conversions\ImageGenerators\Svg::class,
-        Spatie\MediaLibrary\Conversions\ImageGenerators\Video::class,
+        Image::class,
+        Webp::class,
+        Avif::class,
+        Pdf::class,
+        Svg::class,
+        Video::class,
     ],
 
     /*
@@ -141,7 +240,7 @@ return [
 
     /*
      * The engine that should perform the image conversions.
-     * Should be either `gd` or `imagick`.
+     * Should be either `gd`, `imagick` or `vips`.
      */
     'image_driver' => env('IMAGE_DRIVER', 'gd'),
 
@@ -154,12 +253,24 @@ return [
     'ffprobe_path' => env('FFPROBE_PATH', '/usr/bin/ffprobe'),
 
     /*
+     * The timeout (in seconds) that will be used when generating video
+     * thumbnails via FFMPEG.
+     */
+    'ffmpeg_timeout' => env('FFMPEG_TIMEOUT', 900),
+
+    /*
+     * The number of threads that FFMPEG should use. 0 means that FFMPEG
+     * may decide itself.
+     */
+    'ffmpeg_threads' => env('FFMPEG_THREADS', 0),
+
+    /*
      * Here you can override the class names of the jobs used by this package. Make sure
      * your custom jobs extend the ones provided by the package.
      */
     'jobs' => [
-        'perform_conversions' => Spatie\MediaLibrary\Conversions\Jobs\PerformConversionsJob::class,
-        'generate_responsive_images' => Spatie\MediaLibrary\ResponsiveImages\Jobs\GenerateResponsiveImagesJob::class,
+        'perform_conversions' => PerformConversionsJob::class,
+        'generate_responsive_images' => GenerateResponsiveImagesJob::class,
     ],
 
     /*
@@ -167,7 +278,20 @@ return [
      * This is particularly useful when the url of the image is behind a firewall and
      * need to add additional flags, possibly using curl.
      */
-    'media_downloader' => Spatie\MediaLibrary\Downloaders\DefaultDownloader::class,
+    'media_downloader' => DefaultDownloader::class,
+
+    /*
+     * When using the addMediaFromUrl method the SSL is verified by default.
+     * This is option disables SSL verification when downloading remote media.
+     * Please note that this is a security risk and should only be false in a local environment.
+     */
+    'media_downloader_ssl' => env('MEDIA_DOWNLOADER_SSL', true),
+
+    /*
+     * The default lifetime in minutes for temporary urls.
+     * This is used when you call the `getLastTemporaryUrl` or `getLastTemporaryUrl` method on a media item.
+     */
+    'temporary_url_default_lifetime' => env('MEDIA_TEMPORARY_URL_DEFAULT_LIFETIME', 5),
 
     'remote' => [
         /*
@@ -186,16 +310,17 @@ return [
     'responsive_images' => [
         /*
          * This class is responsible for calculating the target widths of the responsive
-         * images. By default we optimize for filesize and create variations that each are 20%
+         * images. By default we optimize for filesize and create variations that each are 30%
          * smaller than the previous one. More info in the documentation.
          *
-         * https://spatie.be/docs/laravel-medialibrary/v11/responsive-images/getting-started-with-responsive-images
+         * https://docs.spatie.be/laravel-medialibrary/v9/advanced-usage/generating-responsive-images
          */
-        'width_calculator' => Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\FileSizeOptimizedWidthCalculator::class,
+        'width_calculator' => FileSizeOptimizedWidthCalculator::class,
 
         /*
          * By default rendering media to a responsive image will add some javascript and a tiny placeholder.
          * This ensures that the browser can already determine the correct layout.
+         * When disabled, no tiny placeholder is generated.
          */
         'use_tiny_placeholders' => true,
 
@@ -203,7 +328,7 @@ return [
          * This class will generate the tiny placeholder used for progressive image loading. By default
          * the media library will use a tiny blurred jpg image.
          */
-        'tiny_placeholder_generator' => Spatie\MediaLibrary\ResponsiveImages\TinyPlaceholderGenerator\Blurred::class,
+        'tiny_placeholder_generator' => Blurred::class,
     ],
 
     /*
@@ -229,4 +354,10 @@ return [
      * If you set this to `/my-subdir`, all your media will be stored in a `/my-subdir` directory.
      */
     'prefix' => env('MEDIA_PREFIX', ''),
+
+    /*
+     * When forcing lazy loading, media will be loaded even if you don't eager load media and you have
+     * disabled lazy loading globally in the service provider.
+     */
+    'force_lazy_loading' => env('FORCE_MEDIA_LIBRARY_LAZY_LOADING', true),
 ];

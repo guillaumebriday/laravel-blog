@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Comment;
 use App\Models\NewsletterSubscription;
 use App\Models\Post;

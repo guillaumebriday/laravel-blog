@@ -12,7 +12,7 @@ class NewsletterMailTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testNewsletterMail()
+    public function test_newsletter_mail()
     {
         $user = $this->user();
         $posts = Post::factory()->count(2)->create();

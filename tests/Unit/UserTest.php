@@ -12,7 +12,7 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserHasRole()
+    public function test_user_has_role()
     {
         $user = User::factory()->create();
         $role = Role::factory()->create();
@@ -21,7 +21,7 @@ class UserTest extends TestCase
         $this->assertTrue($user->hasRole($role->name));
     }
 
-    public function testUserIsAdmin()
+    public function test_user_is_admin()
     {
         $admin = User::factory()->create();
         $role_editor = Role::factory()->editor()->create();
@@ -32,7 +32,7 @@ class UserTest extends TestCase
         $this->assertTrue($admin->isAdmin());
     }
 
-    public function testUserIsNotAdmin()
+    public function test_user_is_not_admin()
     {
         $user = User::factory()->create();
         $user->roles()->attach(
@@ -42,7 +42,7 @@ class UserTest extends TestCase
         $this->assertFalse($user->isAdmin());
     }
 
-    public function testGettingOnlyLastWeekUsers()
+    public function test_getting_only_last_week_users()
     {
         $faker = Factory::create();
 
@@ -76,20 +76,20 @@ class UserTest extends TestCase
         $this->assertTrue($isDuringLastWeek);
     }
 
-    public function testFullnameAttribute()
+    public function test_fullname_attribute()
     {
         $user = User::factory()->create(['name' => 'LEIA']);
 
         $this->assertEquals('Leia', $user->fullname);
     }
 
-    public function testRegisteredAt()
+    public function test_registered_at()
     {
         $user = User::factory()->create();
         $this->assertEqualsWithDelta($user->registered_at->timestamp, now()->timestamp, 1);
     }
 
-    public function testAuthorsScope()
+    public function test_authors_scope()
     {
         $editor = Role::factory()->editor()->create();
         User::factory()->count(10)->create();

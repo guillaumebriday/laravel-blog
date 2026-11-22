@@ -6,13 +6,14 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Tests\TestCase;
 
 class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $anakin = User::factory()->anakin()->create();
         Post::factory()->create(['author_id' => $anakin->id]);
@@ -28,7 +29,7 @@ class PostTest extends TestCase
             ->assertSee('Title');
     }
 
-    public function testCreate()
+    public function test_create()
     {
         $this->actingAsAdmin()
             ->get('/admin/posts/create')
@@ -41,7 +42,7 @@ class PostTest extends TestCase
             ->assertSee('Save');
     }
 
-    public function testStore()
+    public function test_store()
     {
         $params = $this->validParams();
 
@@ -53,10 +54,10 @@ class PostTest extends TestCase
 
         $post = Post::first();
 
-        $this->assertDatabaseHas('posts', $params);
+        $this->assertDatabaseHas('posts', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
     }
 
-    public function testStoreFail()
+    public function test_store_fail()
     {
         $params = $this->validParams(['content' => null]);
 
@@ -66,7 +67,7 @@ class PostTest extends TestCase
             ->assertSessionHas('errors');
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $anakin = $this->admin(['name' => 'Anakin', 'email' => 'anakin@skywalker.st']);
         $post = Post::factory()->create(['author_id' => $anakin->id]);
@@ -83,7 +84,7 @@ class PostTest extends TestCase
             ->assertSee('Posted at');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $post = Post::factory()->create();
         $params = $this->validParams();
@@ -94,11 +95,11 @@ class PostTest extends TestCase
 
         $response->assertRedirect("/admin/posts/{$post->slug}/edit");
 
-        $this->assertDatabaseHas('posts', $params);
+        $this->assertDatabaseHas('posts', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
         $this->assertEquals($params['content'], $post->content);
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $post = Post::factory()->create();
         Comment::factory()

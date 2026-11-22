@@ -10,7 +10,7 @@ class NewsletterSubscriptionTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testStore()
+    public function test_store()
     {
         $params = $this->validParams();
 
@@ -22,7 +22,7 @@ class NewsletterSubscriptionTest extends TestCase
         $this->assertDatabaseHas('newsletter_subscriptions', $params);
     }
 
-    public function testStoreFail()
+    public function test_store_fail()
     {
         $params = $this->validParams();
         NewsletterSubscription::factory()->create($params);
@@ -35,7 +35,7 @@ class NewsletterSubscriptionTest extends TestCase
         $this->assertEquals(session('errors')->first(), 'The Email has already been taken.');
     }
 
-    public function testUnsubscribe()
+    public function test_unsubscribe()
     {
         $params = $this->validParams();
         $newsletter = NewsletterSubscription::factory()->create($params);
@@ -48,7 +48,7 @@ class NewsletterSubscriptionTest extends TestCase
         $this->assertDatabaseMissing('newsletter_subscriptions', $newsletter->toArray());
     }
 
-    public function testUnsubscribeFail()
+    public function test_unsubscribe_fail()
     {
         $params = $this->validParams();
 

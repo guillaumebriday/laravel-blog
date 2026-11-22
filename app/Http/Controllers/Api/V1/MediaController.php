@@ -10,6 +10,7 @@ use App\Models\MediaLibrary;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class MediaController extends Controller
 {
@@ -28,7 +29,7 @@ class MediaController extends Controller
      */
     public function store(MediaLibraryRequest $request): MediaResource
     {
-        $this->authorize('store', Media::class);
+        Gate::authorize('store', Media::class);
 
         $image = $request->file('image');
         $name = $image->getClientOriginalName();
@@ -50,7 +51,7 @@ class MediaController extends Controller
      */
     public function destroy(Media $medium): Response
     {
-        $this->authorize('delete', $medium);
+        Gate::authorize('delete', $medium);
 
         $medium->delete();
 

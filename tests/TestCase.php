@@ -9,7 +9,6 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-
     /**
      * Setup the test environment.
      */

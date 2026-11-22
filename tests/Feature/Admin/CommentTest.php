@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
@@ -13,7 +14,7 @@ class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $anakin = User::factory()->anakin()->create();
         $comment = Comment::factory()->create(['author_id' => $anakin->id]);
@@ -29,7 +30,7 @@ class CommentTest extends TestCase
             ->assertSee(Str::limit($comment->content, 50));
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $anakin = User::factory()->anakin()->create();
         $comment = Comment::factory()->create(['author_id' => $anakin->id]);
@@ -47,7 +48,7 @@ class CommentTest extends TestCase
             ->assertSee('Update');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $post = Post::factory()->create();
         $comment = Comment::factory()->create(['post_id' => $post->id]);
@@ -60,11 +61,11 @@ class CommentTest extends TestCase
             ->patch("/admin/comments/{$comment->id}", $params)
             ->assertRedirect("/admin/comments/{$comment->id}/edit");
 
-        $this->assertDatabaseHas('comments', $params);
+        $this->assertDatabaseHas('comments', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
         $this->assertEquals($params['content'], $comment->refresh()->content);
     }
 
-    public function testUpdateFail()
+    public function test_update_fail()
     {
         $post = Post::factory()->create();
         $comment = Comment::factory()->create(['post_id' => $post->id]);
@@ -81,7 +82,7 @@ class CommentTest extends TestCase
         $this->assertDatabaseMissing('comments', $params);
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $comment = Comment::factory()->create();
 

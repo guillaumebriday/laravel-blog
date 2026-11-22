@@ -12,7 +12,7 @@ class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testProfil()
+    public function test_profil()
     {
         $user = $this->user();
         $comment = Comment::factory()->create(['author_id' => $user->id]);
@@ -34,7 +34,7 @@ class UserTest extends TestCase
             ->assertSee('Edit profile');
     }
 
-    public function testEditing()
+    public function test_editing()
     {
         $user = $this->user();
 
@@ -49,7 +49,7 @@ class UserTest extends TestCase
             ->assertSee('Save');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $user = $this->user();
         $params = $this->validParams();
@@ -62,7 +62,7 @@ class UserTest extends TestCase
         $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
-    public function testUpdatePassword()
+    public function test_update_password()
     {
         $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
         $params = $this->validPasswordParams();
@@ -75,7 +75,7 @@ class UserTest extends TestCase
         $this->assertTrue(Hash::check($params['password'], $user->refresh()->password));
     }
 
-    public function testUpdatePasswordFail()
+    public function test_update_password_fail()
     {
         $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
         $params = $this->validPasswordParams(['current_password' => '7h3_l457_j3d1']);

@@ -13,7 +13,7 @@ class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPostIndex()
+    public function test_post_index()
     {
         Post::factory()->count(2)->create();
 
@@ -47,7 +47,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testUsersPosts()
+    public function test_users_posts()
     {
         $user = User::factory()->create();
         Post::factory()->create(['author_id' => $user->id]);
@@ -82,7 +82,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testUsersPostsFail()
+    public function test_users_posts_fail()
     {
         $user = User::factory()->create();
         Post::factory()->create(['author_id' => $user->id]);
@@ -94,7 +94,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testPostShow()
+    public function test_post_show()
     {
         $post = Post::factory()->create([
             'title' => 'The Empire Strikes Back',
@@ -128,7 +128,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testPostShowFail()
+    public function test_post_show_fail()
     {
         $this->json('GET', '/api/v1/posts/31415')
             ->assertNotFound()
@@ -137,7 +137,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testUpdate()
+    public function test_update()
     {
         $post = Post::factory()->create();
         $params = $this->validParams();
@@ -148,12 +148,12 @@ class PostTest extends TestCase
 
         $post->refresh();
 
-        $this->assertDatabaseHas('posts', $params);
+        $this->assertDatabaseHas('posts', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
         $this->assertEquals($params['title'], $post->title);
         $this->assertEquals($params['content'], $post->content);
     }
 
-    public function testUpdateFail()
+    public function test_update_fail()
     {
         $post = Post::factory()->create();
 
@@ -165,7 +165,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testStorePost()
+    public function test_store_post()
     {
         $params = $this->validParams();
 
@@ -174,10 +174,10 @@ class PostTest extends TestCase
             ->assertCreated();
 
         $params['posted_at'] = Carbon::yesterday()->second(0)->toDateTimeString();
-        $this->assertDatabaseHas('posts', $params);
+        $this->assertDatabaseHas('posts', ['posted_at' => Carbon::parse($params['posted_at'])->toDateTimeString()] + $params);
     }
 
-    public function testStorePostUnauthorized()
+    public function test_store_post_unauthorized()
     {
         $this->actingAsUser('sanctum')
             ->json('POST', '/api/v1/posts/', $this->validParams())
@@ -187,7 +187,7 @@ class PostTest extends TestCase
             ]);
     }
 
-    public function testPostDelete()
+    public function test_post_delete()
     {
         $post = Post::factory()->create();
 
@@ -198,7 +198,7 @@ class PostTest extends TestCase
         $this->assertDatabaseMissing('posts', $post->toArray());
     }
 
-    public function testPostDeleteUnauthorized()
+    public function test_post_delete_unauthorized()
     {
         $post = Post::factory()->create();
 
