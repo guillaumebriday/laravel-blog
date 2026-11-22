@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index(): View
     {
         return view('admin.posts.index', [
-            'posts' => Post::withCount('comments', 'likes')->with('author')->latest()->paginate(50)
+            'posts' => Post::withCount('comments', 'likes')->with('author')->latest('posted_at')->paginate(50)
         ]);
     }
 
@@ -53,7 +53,7 @@ class PostController extends Controller
     {
         $post = Post::create($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
-        return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
+        return to_route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
     }
 
     /**
@@ -63,7 +63,7 @@ class PostController extends Controller
     {
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
-        return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
+        return to_route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 
     /**
@@ -73,6 +73,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index')->withSuccess(__('posts.deleted'));
+        return to_route('admin.posts.index')->withSuccess(__('posts.deleted'));
     }
 }

@@ -13,13 +13,7 @@ class Newsletter extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(
-        protected $posts,
-        protected string $email
-    ) {
-        $this->posts = $posts;
-        $this->email = $email;
-    }
+    public function __construct(protected $posts, protected string $email) {}
 
     /**
      * Build the message.

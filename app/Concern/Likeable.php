@@ -17,6 +17,8 @@ trait Likeable
 
     /**
      * Get all of the resource's likes.
+     *
+     * @return morphMany<Like, $this>
      */
     public function likes(): morphMany
     {

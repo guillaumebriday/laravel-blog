@@ -1,33 +1,33 @@
-# Laravel 11.x blog
+# Laravel 13.x blog
 
 The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's features like:
 
-- [Authentication](https://laravel.com/docs/11.x/authentication)
+- [Authentication](https://laravel.com/docs/13.x/authentication)
 - API
-  - [Sanctum](https://laravel.com/docs/11.x/sanctum)
-  - [API Resources](https://laravel.com/docs/11.x/eloquent-resources)
+  - [Sanctum](https://laravel.com/docs/13.x/sanctum)
+  - [API Resources](https://laravel.com/docs/13.x/eloquent-resources)
   - Versioning
-- [Blade](https://laravel.com/docs/11.x/blade)
-- [Broadcasting](https://laravel.com/docs/11.x/broadcasting)
-- [Cache](https://laravel.com/docs/11.x/cache)
-- [Email Verification](https://laravel.com/docs/11.x/verification)
-- [Filesystem](https://laravel.com/docs/11.x/filesystem)
-- [Helpers](https://laravel.com/docs/11.x/helpers)
-- [Horizon](https://laravel.com/docs/11.x/horizon)
-- [Localization](https://laravel.com/docs/11.x/localization)
-- [Mail](https://laravel.com/docs/11.x/mail)
-- [Migrations](https://laravel.com/docs/11.x/migrations)
-- [Policies](https://laravel.com/docs/11.x/authorization)
-- [Providers](https://laravel.com/docs/11.x/providers)
-- [Requests](https://laravel.com/docs/11.x/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/11.x/seeding)
-- [Testing](https://laravel.com/docs/11.x/testing)
-- [Homestead](https://laravel.com/docs/11.x/homestead)
+- [Blade](https://laravel.com/docs/13.x/blade)
+- [Cache](https://laravel.com/docs/13.x/cache)
+- [Email Verification](https://laravel.com/docs/13.x/verification)
+- [Filesystem](https://laravel.com/docs/13.x/filesystem)
+- [Helpers](https://laravel.com/docs/13.x/helpers)
+- [Horizon](https://laravel.com/docs/13.x/horizon)
+- [Localization](https://laravel.com/docs/13.x/localization)
+- [Mail](https://laravel.com/docs/13.x/mail)
+- [Migrations](https://laravel.com/docs/13.x/migrations)
+- [Policies](https://laravel.com/docs/13.x/authorization)
+- [Providers](https://laravel.com/docs/13.x/providers)
+- [Requests](https://laravel.com/docs/13.x/validation#form-request-validation)
+- [Seeding & Factories](https://laravel.com/docs/13.x/seeding)
+- [Testing](https://laravel.com/docs/13.x/testing)
 
 Beside Laravel, this project uses other tools like:
 
 - [Bootstrap 5.x](https://getbootstrap.com/)
+- [Pest](https://pestphp.com/)
 - [Pint](https://github.com/laravel/pint)
+- [Rector](https://getrector.com/)
 - [Font Awesome](https://fontawesome.com/)
 - [Hotwired](https://hotwired.dev/)
 - [Redis](https://redis.io/)
@@ -41,16 +41,15 @@ You can find some screenshots of the application on : [https://imgur.com/a/Jbnwj
 
 ## Installation
 
-To create your development environment [follow these instructions](https://laravel.com/docs/11.x/installation#local-installation-using-herd).
+To create your development environment [follow these instructions](https://laravel.com/docs/13.x/installation#local-installation-using-herd).
+
+Requirements: PHP 8.6, Node.js 26 and Yarn (via Corepack). With [mise](https://mise.jdx.dev/), `mise install` installs the pinned Node.js version.
 
 Setting up your development environment on your local machine:
 ```bash
 $ git clone https://github.com/guillaumebriday/laravel-blog.git
 $ cd laravel-blog
-$ cp .env.example .env
-$ php artisan key:generate
-$ php artisan horizon:install
-$ php artisan telescope:install
+$ composer setup
 $ php artisan storage:link
 ```
 
@@ -97,14 +96,20 @@ Seeding the database :
 $ php artisan db:seed
 ```
 
-Running tests :
+Running tests (with [Pest](https://pestphp.com/)) :
 ```bash
-$ php artisan test
+$ composer test
 ```
 
-Running Laravel Pint :
+Checking code style and refactorings ([Pint](https://github.com/laravel/pint), [Rector](https://getrector.com/) and ESLint) :
 ```bash
-$ ./vendor/bin/pint --verbose --test
+$ composer test:lint
+$ yarn lint
+```
+
+Fixing them automatically :
+```bash
+$ composer lint
 ```
 
 Generating backup :

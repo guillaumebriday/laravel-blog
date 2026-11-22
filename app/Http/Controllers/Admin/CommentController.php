@@ -17,7 +17,7 @@ class CommentController extends Controller
     public function index(): View
     {
         return view('admin.comments.index', [
-            'comments' => Comment::with('post', 'author')->latest()->paginate(50)
+            'comments' => Comment::with('post', 'author')->latest('posted_at')->paginate(50)
         ]);
     }
 
@@ -39,7 +39,7 @@ class CommentController extends Controller
     {
         $comment->update($request->validated());
 
-        return redirect()->route('admin.comments.edit', $comment)->withSuccess(__('comments.updated'));
+        return to_route('admin.comments.edit', $comment)->withSuccess(__('comments.updated'));
     }
 
     /**
@@ -49,6 +49,6 @@ class CommentController extends Controller
     {
         $comment->delete();
 
-        return redirect()->route('admin.comments.index')->withSuccess(__('comments.deleted'));
+        return to_route('admin.comments.index')->withSuccess(__('comments.deleted'));
     }
 }

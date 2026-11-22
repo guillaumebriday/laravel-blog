@@ -8,6 +8,7 @@ use App\Http\Resources\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -18,7 +19,7 @@ class UserController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return UserResource::collection(
-            User::withCount(['comments', 'posts'])->with('roles')->latest()->paginate($request->input('limit', 20))
+            User::withCount(['comments', 'posts'])->with('roles')->latest('registered_at')->paginate($request->perPage())
         );
     }
 
@@ -35,7 +36,7 @@ class UserController extends Controller
      */
     public function update(UsersRequest $request, User $user): UserResource
     {
-        $this->authorize('update', $user);
+        Gate::authorize('update', $user);
 
         if ($request->filled('password')) {
             $request->merge([

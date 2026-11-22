@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php:
+    name: PHP (tests and lint)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.6'
+          extensions: exif, gd, intl, pdo_sqlite
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Pint and Rector
+        run: composer test:lint
+
+      - name: Pest
+        run: vendor/bin/pest --parallel
+
+  javascript:
+    name: JavaScript (lint and build)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 26
+
+      - name: Enable Corepack
+        run: npm install --global corepack && corepack enable
+
+      - run: yarn install --immutable
+
+      - run: yarn lint
+
+      - run: yarn build

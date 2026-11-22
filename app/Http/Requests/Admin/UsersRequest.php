@@ -8,14 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class UsersRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      */
     public function rules(): array
@@ -23,8 +15,8 @@ class UsersRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', new AlphaName],
             'email' => 'required|email|unique:users,email,' . $this->user->id,
-            'password' => 'nullable|confirmed',
-            'roles.*' => 'exists:roles,id'
+            'password' => ['nullable', 'confirmed'],
+            'roles.*' => ['exists:roles,id']
         ];
     }
 }

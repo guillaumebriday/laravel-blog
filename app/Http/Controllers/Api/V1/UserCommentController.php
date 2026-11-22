@@ -16,7 +16,7 @@ class UserCommentController extends Controller
     public function index(Request $request, User $user): ResourceCollection
     {
         return CommentResource::collection(
-            $user->comments()->latest()->paginate($request->input('limit', 20))
+            $user->comments()->latest('posted_at')->paginate($request->perPage())
         );
     }
 }

@@ -7,6 +7,9 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Comment>
+ */
 class CommentFactory extends Factory
 {
     /**
@@ -14,6 +17,7 @@ class CommentFactory extends Factory
      *
      * @var string
      */
+    #[\Override]
     protected $model = Comment::class;
 
     /**
@@ -22,7 +26,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => $this->faker->paragraph(),
+            'content' => fake()->paragraph(),
             'author_id' => User::factory(),
             'post_id' => Post::factory()
         ];

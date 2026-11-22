@@ -3,20 +3,12 @@
 namespace App\Http\Requests\Admin;
 
 use App\Rules\CanBeAuthor;
-use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
 class PostsRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     /**
      * Prepare the data for validation.
      */
@@ -27,7 +19,7 @@ class PostsRequest extends FormRequest
         ]);
 
         $this->merge([
-            'posted_at' => Carbon::parse($this->input('posted_at'))
+            'posted_at' => Date::parse($this->input('posted_at'))
         ]);
     }
 
@@ -37,12 +29,12 @@ class PostsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
-            'content' => 'required',
-            'posted_at' => 'required|date',
-            'thumbnail_id' => 'nullable|exists:media,id',
+            'title' => ['required'],
+            'content' => ['required'],
+            'posted_at' => ['required', 'date'],
+            'thumbnail_id' => ['nullable', 'exists:media,id'],
             'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
-            'slug' => 'unique:posts,slug,' . (optional($this->post)->id ?: 'NULL'),
+            'slug' => 'unique:posts,slug,' . ($this->post?->id ?: 'NULL'),
         ];
     }
 }

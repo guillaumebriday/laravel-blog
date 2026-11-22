@@ -9,16 +9,8 @@ class Icon extends Component
 {
     /**
      * Create a new component instance.
-     *
-     * @return void
      */
-    public function __construct(
-        public string $name,
-        public string $prefix = 'fa-solid'
-    ) {
-        $this->name = $name;
-        $this->prefix = $prefix;
-    }
+    public function __construct(public string $name, public string $prefix = 'fa-solid') {}
 
     /**
      * Get the view / contents that represent the component.

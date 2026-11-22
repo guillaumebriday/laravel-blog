@@ -3,8 +3,12 @@
 namespace App\Models;
 
 use App\Concern\Likeable;
+use App\Observers\PostObserver;
 use App\Scopes\PostedScope;
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,32 +16,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
+#[ObservedBy(PostObserver::class)]
+#[Fillable([
+    'author_id',
+    'title',
+    'content',
+    'posted_at',
+    'slug',
+    'thumbnail_id',
+])]
 class Post extends Model
 {
     use HasFactory, Likeable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'author_id',
-        'title',
-        'content',
-        'posted_at',
-        'slug',
-        'thumbnail_id',
-    ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'posted_at' => 'datetime'
-    ];
 
     /**
      * The "booting" method of the model.
@@ -70,8 +60,11 @@ class Post extends Model
 
     /**
      * Scope a query to search posts
+     *
+     * @param  Builder<static>  $query
      */
-    public function scopeSearch(Builder $query, ?string $search)
+    #[Scope]
+    protected function search(Builder $query, ?string $search)
     {
         if ($search) {
             return $query->where('title', 'LIKE', "%{$search}%");
@@ -79,34 +72,36 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to order posts by latest posted
-     */
-    public function scopeLatest(Builder $query): Builder
-    {
-        return $query->orderBy('posted_at', 'desc');
-    }
-
-    /**
      * Scope a query to only include posts posted last month.
+     *
+     * @param  Builder<static>  $query
+     * @return Builder<static>
      */
-    public function scopeLastMonth(Builder $query, int $limit = 5): Builder
+    #[Scope]
+    protected function lastMonth(Builder $query, int $limit = 5): Builder
     {
         return $query->whereBetween('posted_at', [carbon('1 month ago'), now()])
-            ->latest()
+            ->latest('posted_at')
             ->limit($limit);
     }
 
     /**
      * Scope a query to only include posts posted last week.
+     *
+     * @param  Builder<static>  $query
+     * @return Builder<static>
      */
-    public function scopeLastWeek(Builder $query): Builder
+    #[Scope]
+    protected function lastWeek(Builder $query): Builder
     {
         return $query->whereBetween('posted_at', [carbon('1 week ago'), now()])
-            ->latest();
+            ->latest('posted_at');
     }
 
     /**
      * Return the post's author
+     *
+     * @return BelongsTo<User, $this>
      */
     public function author(): BelongsTo
     {
@@ -115,6 +110,8 @@ class Post extends Model
 
     /**
      * Return the post's thumbnail
+     *
+     * @return BelongsTo<Media, $this>
      */
     public function thumbnail(): BelongsTo
     {
@@ -123,6 +120,8 @@ class Post extends Model
 
     /**
      * Return the post's comments
+     *
+     * @return HasMany<Comment, $this>
      */
     public function comments(): HasMany
     {
@@ -143,5 +142,15 @@ class Post extends Model
     public function hasThumbnail(): bool
     {
         return filled($this->thumbnail_id);
+    }
+
+    /**
+     * The attributes that should be mutated to dates.
+     */
+    protected function casts(): array
+    {
+        return [
+            'posted_at' => 'datetime'
+        ];
     }
 }

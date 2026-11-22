@@ -7,6 +7,9 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Like>
+ */
 class LikeFactory extends Factory
 {
     /**
@@ -14,6 +17,7 @@ class LikeFactory extends Factory
      *
      * @var string
      */
+    #[\Override]
     protected $model = Like::class;
 
     /**
@@ -22,7 +26,7 @@ class LikeFactory extends Factory
     public function definition(): array
     {
         return [
-            'likeable_type' => 'App\Models\Post',
+            'likeable_type' => Post::class,
             'likeable_id' => Post::factory(),
             'author_id' => User::factory()
         ];

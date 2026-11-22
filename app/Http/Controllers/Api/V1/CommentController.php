@@ -8,6 +8,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -17,7 +18,7 @@ class CommentController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return CommentResource::collection(
-            Comment::latest()->paginate($request->input('limit', 20))
+            Comment::latest('posted_at')->paginate($request->perPage())
         );
     }
 
@@ -34,7 +35,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment): Response
     {
-        $this->authorize('delete', $comment);
+        Gate::authorize('delete', $comment);
 
         $comment->delete();
 

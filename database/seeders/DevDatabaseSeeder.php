@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Comment;
 use App\Models\NewsletterSubscription;
 use App\Models\Post;
@@ -15,7 +17,7 @@ class DevDatabaseSeeder extends Seeder
         Post::factory()
             ->count(20)
             ->create()
-            ->each(function ($post) {
+            ->each(function ($post): void {
                 Comment::factory()
                     ->count(5)
                     ->create([

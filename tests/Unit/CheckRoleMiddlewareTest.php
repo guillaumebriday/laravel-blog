@@ -1,27 +1,16 @@
 <?php
 
-namespace Tests\Unit;
+test('admin authorized', function (): void {
+    $this->actingAsAdmin()
+        ->get('/admin/dashboard')
+        ->assertOk();
+});
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+test('admin forbidden', function (): void {
+    $this->actingAsUser()
+        ->get('/admin/dashboard')
+        ->assertRedirect('/');
 
-class CheckRoleMiddlewareTest extends TestCase
-{
-    use RefreshDatabase;
-
-    public function testAdminAuthorized()
-    {
-        $this->actingAsAdmin()
-            ->get('/admin/dashboard')
-            ->assertOk();
-    }
-
-    public function testAdminForbidden()
-    {
-        $this->actingAsUser()
-            ->get('/admin/dashboard')
-            ->assertRedirect('/');
-
-        $this->assertEquals(session('errors')->first(), 'Not authorized.');
-    }
-}
+    $this->followRedirects($this->get('/admin/dashboard'))
+        ->assertSee('Not authorized.');
+});

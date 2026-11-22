@@ -5,6 +5,9 @@ namespace Database\Factories;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Role>
+ */
 class RoleFactory extends Factory
 {
     /**
@@ -12,6 +15,7 @@ class RoleFactory extends Factory
      *
      * @var string
      */
+    #[\Override]
     protected $model = Role::class;
 
     /**
@@ -20,7 +24,7 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word()
+            'name' => fake()->word()
         ];
     }
 
@@ -29,11 +33,9 @@ class RoleFactory extends Factory
      */
     public function admin(): Factory
     {
-        return $this->state(function () {
-            return [
-                'name' => 'admin'
-            ];
-        });
+        return $this->state(fn (): array => [
+            'name' => 'admin'
+        ]);
     }
 
     /**
@@ -41,10 +43,8 @@ class RoleFactory extends Factory
      */
     public function editor(): Factory
     {
-        return $this->state(function () {
-            return [
-                'name' => 'editor'
-            ];
-        });
+        return $this->state(fn (): array => [
+            'name' => 'editor'
+        ]);
     }
 }

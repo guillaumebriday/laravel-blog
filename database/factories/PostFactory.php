@@ -6,6 +6,9 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends Factory<Post>
+ */
 class PostFactory extends Factory
 {
     /**
@@ -13,6 +16,7 @@ class PostFactory extends Factory
      *
      * @var string
      */
+    #[\Override]
     protected $model = Post::class;
 
     /**
@@ -21,8 +25,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(),
-            'content' => $this->faker->paragraph(),
+            'title' => fake()->sentence(),
+            'content' => fake()->paragraph(),
             'posted_at' => now(),
             'author_id' => User::factory()
         ];

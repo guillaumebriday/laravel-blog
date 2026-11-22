@@ -1,16 +1,20 @@
+// Font-awesome
+@use "@fortawesome/fontawesome-free/scss/variables" with (
+  $font-path: "@fortawesome/fontawesome-free/webfonts",
+  $font-display: swap
+);
+@use "@fortawesome/fontawesome-free/scss/fontawesome";
+@use "@fortawesome/fontawesome-free/scss/regular";
+@use "@fortawesome/fontawesome-free/scss/solid";
+@use "@fortawesome/fontawesome-free/scss/brands";
+
 @import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 
 // Base
 @import "base/utilities";
-
-// Font-awesome
-@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
-@import "node_modules/@fortawesome/fontawesome-free/scss/solid";
-@import "node_modules/@fortawesome/fontawesome-free/scss/brands";
 
 // Modules
 @import "modules/form";

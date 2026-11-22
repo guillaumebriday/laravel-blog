@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+/**
+ * @extends Factory<User>
+ */
 class UserFactory extends Factory
 {
     /**
@@ -13,6 +16,7 @@ class UserFactory extends Factory
      *
      * @var string
      */
+    #[\Override]
     protected $model = User::class;
 
     /**
@@ -23,8 +27,8 @@ class UserFactory extends Factory
         static $password;
 
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
             'password' => $password ?: $password = 'password',
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
@@ -36,11 +40,9 @@ class UserFactory extends Factory
      */
     public function anakin(): Factory
     {
-        return $this->state(function () {
-            return [
-                'name' => 'Anakin',
-                'email' => 'anakin@skywalker.st'
-            ];
-        });
+        return $this->state(fn (): array => [
+            'name' => 'Anakin',
+            'email' => 'anakin@skywalker.st'
+        ]);
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -18,7 +19,7 @@ class PostController extends Controller
     public function index(Request $request): ResourceCollection
     {
         return PostResource::collection(
-            Post::search($request->input('q'))->withCount('comments')->latest()->paginate($request->input('limit', 20))
+            Post::search($request->input('q'))->withCount('comments')->latest('posted_at')->paginate($request->perPage())
         );
     }
 
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function update(PostsRequest $request, Post $post): PostResource
     {
-        $this->authorize('update', $post);
+        Gate::authorize('update', $post);
 
         $post->update($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']));
 
@@ -39,7 +40,7 @@ class PostController extends Controller
      */
     public function store(PostsRequest $request): PostResource
     {
-        $this->authorize('store', Post::class);
+        Gate::authorize('store', Post::class);
 
         return new PostResource(
             Post::create($request->only(['title', 'content', 'posted_at', 'author_id', 'thumbnail_id']))
@@ -59,7 +60,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post): Response
     {
-        $this->authorize('delete', $post);
+        Gate::authorize('delete', $post);
 
         $post->delete();
 

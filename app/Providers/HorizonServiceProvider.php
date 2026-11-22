@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Horizon;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Horizon\Horizon;
 
 class HorizonServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,7 @@ class HorizonServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (!app()->environment('local')) {
-            Horizon::auth(fn ($request) => auth()->check() && auth()->user()->isAdmin());
+            Horizon::auth(fn ($request): bool => auth()->check() && auth()->user()->isAdmin());
         }
     }
 }
