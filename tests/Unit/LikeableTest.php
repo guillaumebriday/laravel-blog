@@ -1,60 +1,46 @@
 <?php
 
-namespace Tests\Unit;
-
 use App\Models\Like;
 use App\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class LikeableTest extends TestCase
-{
-    use RefreshDatabase;
+test('likes', function () {
+    $post = Post::factory()->create();
+    Like::factory()->create(['likeable_id' => $post->id]);
 
-    public function test_likes()
-    {
-        $post = Post::factory()->create();
-        Like::factory()->create(['likeable_id' => $post->id]);
+    expect($post->likes)->toHaveCount(1);
+});
 
-        $this->assertCount(1, $post->likes);
-    }
+test('like', function () {
+    $this->actingAsUser();
+    $post = Post::factory()->create();
 
-    public function test_like()
-    {
-        $this->actingAsUser();
-        $post = Post::factory()->create();
+    $post->like();
 
-        $post->like();
+    expect($post->likes)->toHaveCount(1);
+});
 
-        $this->assertCount(1, $post->likes);
-    }
+test('dislike', function () {
+    $this->actingAsUser();
+    $post = Post::factory()->create();
 
-    public function test_dislike()
-    {
-        $this->actingAsUser();
-        $post = Post::factory()->create();
+    $post->like();
+    $post->dislike();
 
-        $post->like();
-        $post->dislike();
+    expect($post->likes)->toHaveCount(0);
+});
 
-        $this->assertCount(0, $post->likes);
-    }
+test('is liked', function () {
+    $this->actingAsUser();
+    $post = Post::factory()->create();
 
-    public function test_is_liked()
-    {
-        $this->actingAsUser();
-        $post = Post::factory()->create();
+    $post->like();
 
-        $post->like();
+    expect($post->isLiked())->toBeTrue();
+});
 
-        $this->assertTrue($post->isLiked());
-    }
+test('is not liked', function () {
+    $this->actingAsUser();
+    $post = Post::factory()->create();
 
-    public function test_is_not_liked()
-    {
-        $this->actingAsUser();
-        $post = Post::factory()->create();
-
-        $this->assertFalse($post->isLiked());
-    }
-}
+    expect($post->isLiked())->toBeFalse();
+});

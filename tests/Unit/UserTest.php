@@ -1,116 +1,100 @@
 <?php
 
-namespace Tests\Unit;
-
 use App\Models\Role;
 use App\Models\User;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class UserTest extends TestCase
-{
-    use RefreshDatabase;
+test('user has role', function () {
+    $user = User::factory()->create();
+    $role = Role::factory()->create();
+    $user->roles()->attach($role);
 
-    public function test_user_has_role()
-    {
-        $user = User::factory()->create();
-        $role = Role::factory()->create();
-        $user->roles()->attach($role);
+    expect($user->hasRole($role->name))->toBeTrue();
+});
 
-        $this->assertTrue($user->hasRole($role->name));
-    }
+test('user is admin', function () {
+    $admin = User::factory()->create();
+    $role_editor = Role::factory()->editor()->create();
+    $role_admin = Role::factory()->admin()->create();
 
-    public function test_user_is_admin()
-    {
-        $admin = User::factory()->create();
-        $role_editor = Role::factory()->editor()->create();
-        $role_admin = Role::factory()->admin()->create();
+    $admin->roles()->sync([$role_admin->id, $role_editor->id]);
 
-        $admin->roles()->sync([$role_admin->id, $role_editor->id]);
+    expect($admin->isAdmin())->toBeTrue();
+});
 
-        $this->assertTrue($admin->isAdmin());
-    }
+test('user is not admin', function () {
+    $user = User::factory()->create();
+    $user->roles()->attach(
+        Role::factory()->editor()->create()
+    );
 
-    public function test_user_is_not_admin()
-    {
-        $user = User::factory()->create();
-        $user->roles()->attach(
-            Role::factory()->editor()->create()
-        );
+    expect($user->isAdmin())->toBeFalse();
+});
 
-        $this->assertFalse($user->isAdmin());
-    }
+test('getting only last week users', function () {
+    $faker = Factory::create();
 
-    public function test_getting_only_last_week_users()
-    {
-        $faker = Factory::create();
+    // Older Users
+    User::factory()
+        ->count(10)
+        ->create()
+        ->each(function ($user) use ($faker) {
+            $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+            $user->save();
+        });
 
-        // Older Users
-        User::factory()
-            ->count(10)
-            ->create()
-            ->each(function ($user) use ($faker) {
-                $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                $user->save();
-            });
+    // Newer Users
+    User::factory()
+        ->count(3)
+        ->create()
+        ->each(function ($user) use ($faker) {
+            $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+            $user->save();
+        });
 
-        // Newer Users
-        User::factory()
-            ->count(3)
-            ->create()
-            ->each(function ($user) use ($faker) {
-                $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                $user->save();
-            });
+    $isDuringLastWeek = true;
+    foreach (User::lastWeek()->get() as $user) {
+        $isDuringLastWeek = $user->registered_at->between(carbon('1 week ago'), now());
 
-        $isDuringLastWeek = true;
-        foreach (User::lastWeek()->get() as $user) {
-            $isDuringLastWeek = $user->registered_at->between(carbon('1 week ago'), now());
-
-            if (!$isDuringLastWeek) {
-                break;
-            }
+        if (!$isDuringLastWeek) {
+            break;
         }
-
-        $this->assertTrue($isDuringLastWeek);
     }
 
-    public function test_fullname_attribute()
-    {
-        $user = User::factory()->create(['name' => 'LEIA']);
+    expect($isDuringLastWeek)->toBeTrue();
+});
 
-        $this->assertEquals('Leia', $user->fullname);
-    }
+test('fullname attribute', function () {
+    $user = User::factory()->create(['name' => 'LEIA']);
 
-    public function test_registered_at()
-    {
-        $user = User::factory()->create();
-        $this->assertEqualsWithDelta($user->registered_at->timestamp, now()->timestamp, 1);
-    }
+    expect($user->fullname)->toEqual('Leia');
+});
 
-    public function test_authors_scope()
-    {
-        $editor = Role::factory()->editor()->create();
-        User::factory()->count(10)->create();
-        User::factory()
-            ->count(3)
-            ->create()
-            ->each(function ($user) use ($editor) {
-                $user->roles()->attach($editor);
-            });
+test('registered at', function () {
+    $user = User::factory()->create();
+    expect(now()->timestamp)->toEqualWithDelta($user->registered_at->timestamp, 1);
+});
 
-        $authors = User::authors()->get();
+test('authors scope', function () {
+    $editor = Role::factory()->editor()->create();
+    User::factory()->count(10)->create();
+    User::factory()
+        ->count(3)
+        ->create()
+        ->each(function ($user) use ($editor) {
+            $user->roles()->attach($editor);
+        });
 
-        $hasOnlyAuthors = true;
-        foreach ($authors as $author) {
-            if (!$author->canBeAuthor()) {
-                $hasOnlyAuthors = false;
-                break;
-            }
+    $authors = User::authors()->get();
+
+    $hasOnlyAuthors = true;
+    foreach ($authors as $author) {
+        if (!$author->canBeAuthor()) {
+            $hasOnlyAuthors = false;
+            break;
         }
-
-        $this->assertTrue($hasOnlyAuthors);
-        $this->assertCount(3, $authors);
     }
-}
+
+    expect($hasOnlyAuthors)->toBeTrue();
+    expect($authors)->toHaveCount(3);
+});

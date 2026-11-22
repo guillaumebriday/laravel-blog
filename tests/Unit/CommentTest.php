@@ -1,53 +1,42 @@
 <?php
 
-namespace Tests\Unit;
-
 use App\Models\Comment;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class CommentTest extends TestCase
-{
-    use RefreshDatabase;
+test('posted at', function () {
+    $comment = Comment::factory()->create();
+    expect(now()->timestamp)->toEqualWithDelta($comment->posted_at->timestamp, 1);
+});
 
-    public function test_posted_at()
-    {
-        $comment = Comment::factory()->create();
-        $this->assertEqualsWithDelta($comment->posted_at->timestamp, now()->timestamp, 1);
-    }
+test('getting only last week comments', function () {
+    $faker = Factory::create();
 
-    public function test_getting_only_last_week_comments()
-    {
-        $faker = Factory::create();
+    // Older Comments
+    Comment::factory()
+        ->count(3)
+        ->create()
+        ->each(function ($comment) use ($faker) {
+            $comment->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+            $comment->save();
+        });
 
-        // Older Comments
-        Comment::factory()
-            ->count(3)
-            ->create()
-            ->each(function ($comment) use ($faker) {
-                $comment->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                $comment->save();
-            });
+    // Newer Comments
+    Comment::factory()
+        ->count(3)
+        ->create()
+        ->each(function ($comment) use ($faker) {
+            $comment->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+            $comment->save();
+        });
 
-        // Newer Comments
-        Comment::factory()
-            ->count(3)
-            ->create()
-            ->each(function ($comment) use ($faker) {
-                $comment->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                $comment->save();
-            });
+    $isDuringLastWeek = true;
+    foreach (Comment::lastWeek()->get() as $comment) {
+        $isDuringLastWeek = $comment->posted_at->between(carbon('1 week ago'), now());
 
-        $isDuringLastWeek = true;
-        foreach (Comment::lastWeek()->get() as $comment) {
-            $isDuringLastWeek = $comment->posted_at->between(carbon('1 week ago'), now());
-
-            if (!$isDuringLastWeek) {
-                break;
-            }
+        if (!$isDuringLastWeek) {
+            break;
         }
-
-        $this->assertTrue($isDuringLastWeek);
     }
-}
+
+    expect($isDuringLastWeek)->toBeTrue();
+});

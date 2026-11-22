@@ -1,26 +1,14 @@
 <?php
 
-namespace Tests\Unit;
+test('humanize date', function () {
+    $date = now();
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+    expect(humanize_date($date))->toEqual($date->format('d F Y, H:i'));
+});
 
-class DateHelperTest extends TestCase
-{
-    use RefreshDatabase;
+test('humanize date format', function () {
+    $date = now();
+    $format = 'Y-m-d H:i:s';
 
-    public function test_humanize_date()
-    {
-        $date = now();
-
-        $this->assertEquals($date->format('d F Y, H:i'), humanize_date($date));
-    }
-
-    public function test_humanize_date_format()
-    {
-        $date = now();
-        $format = 'Y-m-d H:i:s';
-
-        $this->assertEquals($date->format($format), humanize_date($date, $format));
-    }
-}
+    expect(humanize_date($date, $format))->toEqual($date->format($format));
+});
